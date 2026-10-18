@@ -1,0 +1,120 @@
+// =============================================================================
+// BASE / TOKENS
+// -----------------------------------------------------------------------------
+// DESIGN TOKENS = every colour, space, radius and shadow of the brand, defined
+// ONCE as CSS custom properties. Components never contain a raw hex or magic
+// number; they read tokens through the Sass functions (color(), space()...).
+//
+// Why CSS variables and not Sass variables? Because the browser can swap them
+// at runtime: [data-theme="dark"] re-defines the colours and the whole site
+// changes theme with zero extra CSS per component.
+//
+// Names mirror the Figma variables, so design <-> code stay in sync.
+// =============================================================================
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+// LIGHT THEME (default)
+// -----------------------------------------------------------------------------
+:root {
+  // ---- Colour: backgrounds
+  --color-page: #f7f8fa; // page background
+  --color-surface: #ffffff; // cards, navbar, panels
+  --color-surface-2: #eef0f4; // subtle fills, skeleton blocks
+  --color-inverse: #0b0d12; // dark blocks on a light page
+
+  // ---- Colour: brand accent (the single accent of the brand)
+  --color-accent: #1463ff;
+  --color-accent-hover: #0a3fb3;
+  --color-accent-soft: #e8efff; // light blue tint (badges, icon tiles)
+  --color-accent-light: #7aa5ff; // lighter blue (hover indicators, soft borders)
+
+  // ---- Colour: text
+  --color-text: #0b0d12;
+  --color-muted: #5b6475; // secondary text
+  --color-on-accent: #ffffff; // text placed on the accent colour
+  --color-inverse-text: #ffffff;
+
+  // ---- Colour: lines + status
+  --color-border: #e6e8ee;
+  --color-success: #12a150;
+  --color-warning: #d98a00; // charts: the "badly coded" line
+  --color-neutral: #9aa3b2; // charts: the "generic template" line
+  --color-whatsapp: #25d366; // WhatsApp green (WhatsApp buttons only)
+  --color-whatsapp-hover: #1ebe5b;
+  --color-white: #ffffff; // always white, in both themes
+
+  // ---- Spacing scale (4px base). Used as space(1) ... space(24)
+  --space-1: 0.25rem; // 4
+  --space-2: 0.5rem; // 8
+  --space-3: 0.75rem; // 12
+  --space-4: 1rem; // 16
+  --space-6: 1.5rem; // 24
+  --space-8: 2rem; // 32
+  --space-12: 3rem; // 48
+  --space-16: 4rem; // 64
+  --space-24: 6rem; // 96
+
+  // ---- Radius
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-card: 24px;
+  --radius-pill: 999px;
+
+  // ---- Shadows
+  --shadow-card: 0 8px 30px rgb(10 13 18 / 8%);
+  --shadow-float: 0 20px 60px -10px rgb(20 99 255 / 18%);
+
+  // ---- Motion
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  // ---- Font stacks (the --font-display / --font-text variables are set by
+  // next/font in layout.tsx; the rest is the fallback while fonts load)
+  --font-display-stack: var(--font-display), "Segoe UI", system-ui, sans-serif;
+  --font-text-stack: var(--font-text), "Segoe UI", system-ui, sans-serif;
+
+  // ---- Layout (mobile values first, bigger screens override below)
+  --container-max: 1200px;
+  --gutter: 1.25rem; // 20px side padding on phones
+  --section-y: 4rem; // 64px between sections on phones
+  --navbar-height: 4.25rem; // 68px
+
+  @include mq(md) {
+    --gutter: 1.5rem; // 24px
+  }
+
+  @include mq(lg) {
+    --section-y: 7rem; // 112px
+    --navbar-height: 4.75rem; // 76px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// DARK THEME  (only the colours change; spacing, radius etc. stay the same)
+// Switched by putting data-theme="dark" on <html>.
+// -----------------------------------------------------------------------------
+[data-theme="dark"] {
+  --color-page: #0b0d12;
+  --color-surface: #12151c;
+  --color-surface-2: #1a1f2a;
+  --color-inverse: #ffffff;
+
+  --color-accent: #4f86ff;
+  --color-accent-hover: #1463ff;
+  --color-accent-soft: #16233f;
+  --color-accent-light: #8fb2ff;
+  --color-warning: #e3a33a;
+  --color-neutral: #6b7585;
+
+  --color-text: #f4f6fa;
+  --color-muted: #9aa3b2;
+  --color-on-accent: #0b0d12;
+  --color-inverse-text: #0b0d12;
+
+  --color-border: #262c38;
+
+  --shadow-card: 0 8px 30px rgb(0 0 0 / 40%);
+  --shadow-float: 0 20px 60px -10px rgb(79 134 255 / 30%);
+}

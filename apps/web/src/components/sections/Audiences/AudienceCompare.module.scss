@@ -1,0 +1,198 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// AUDIENCE COMPARE  (mobile first)
+// Phone:   audience cards, then the note, then the chart panel (one column)
+// lg+:     two columns: cards + note on the left (5 parts), chart on the right (7)
+// =============================================================================
+
+.audienceCompare {
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+    gap: space(8);
+  }
+}
+
+// Left column: the two cards and the note, stacked.
+.audienceCompareOptions {
+  @include flex-col(space(4));
+}
+
+// ---- One audience card -----------------------------------------------------------------
+// Unselected cards are a little faded; the selected card gets the accent border,
+// a blue glow and its details slide open.
+.audienceOption {
+  @include card(0);
+  opacity: 0.88;
+  // No hover effect on purpose: the cards react to CLICKS only.
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    opacity var(--duration-base) var(--ease-out);
+}
+
+.audienceOptionIsSelected {
+  border-color: color(accent);
+  box-shadow: shadow(float);
+  opacity: 1;
+}
+
+// The clickable header: [icon] [title + audience] [arrow]
+.audienceOptionHeader {
+  @include reset-button;
+  @include flex(row, flex-start, center, space(4));
+  @include focus-ring;
+  width: 100%;
+  padding: space(6);
+  border-radius: radius(card);
+  text-align: start;
+}
+
+.audienceOptionIconTile {
+  @include flex-center;
+  flex: none;
+  width: rem(48);
+  height: rem(48);
+  border-radius: radius(md);
+  background: color(accent-soft);
+  color: color(accent);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out);
+}
+
+.audienceOptionIsSelected .audienceOptionIconTile {
+  background: color(accent);
+  color: color(on-accent);
+}
+
+.audienceOptionHeading {
+  @include flex-col(space(1));
+  flex: 1;
+}
+
+.audienceOptionTitle {
+  @include text(title-md);
+}
+
+.audienceOptionAudience {
+  @include text(small);
+  color: color(muted);
+}
+
+// The round arrow button at the end of the header.
+.audienceOptionArrow {
+  @include flex-center;
+  flex: none;
+  width: rem(36);
+  height: rem(36);
+  border: 1px solid color(border);
+  border-radius: 50%;
+  color: color(muted);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    transform 0.4s var(--ease-out);
+}
+
+.audienceOptionIsSelected .audienceOptionArrow {
+  border-color: color(accent);
+  background: color(accent);
+  color: color(on-accent);
+  transform: translateX(3px);
+}
+
+// ---- The details that slide open ---------------------------------------------------------
+// Animating `grid-template-rows` from 0fr to 1fr is the trick that lets a box
+// of unknown height open smoothly with pure CSS.
+.audienceOptionBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-out);
+}
+
+.audienceOptionIsSelected .audienceOptionBody {
+  grid-template-rows: 1fr;
+}
+
+.audienceOptionBodyInner {
+  @include flex-col(space(4));
+  min-height: 0;
+  padding-inline: space(6);
+  // Tooltips on the chips need to escape the box, so it only clips while closed.
+  overflow: hidden;
+}
+
+.audienceOptionIsSelected .audienceOptionBodyInner {
+  overflow: visible;
+  padding-bottom: space(6);
+}
+
+.audienceOptionValue {
+  color: color(muted);
+}
+
+.audienceOptionOutcomes {
+  @include reset-list;
+  @include flex-col(space(2));
+}
+
+.audienceOptionOutcome {
+  @include flex(row, flex-start, flex-start, space(2));
+  @include text(small);
+  color: color(text);
+
+  svg {
+    flex: none;
+    margin-top: rem(3);
+    color: color(accent);
+  }
+}
+
+.audienceOptionChips {
+  @include flex-wrap-row(space(2));
+}
+
+.audienceOptionChip {
+  @include pill;
+  cursor: help;
+}
+
+// ---- The note card under the options -------------------------------------------------------
+.audienceNote {
+  @include flex(row, flex-start, flex-start, space(3));
+  padding: space(6);
+  border-radius: radius(card);
+  background: color(accent-soft);
+  color: color(muted);
+
+  svg {
+    flex: none;
+    margin-top: rem(2);
+    color: color(accent);
+  }
+}
+
+.audienceNoteText {
+  @include flex-col(space(1));
+  @include text(small);
+}
+
+.audienceNoteTitle {
+  @include text(heading);
+  color: color(text);
+}
+
+@include reduced-motion {
+  .audienceOption,
+  .audienceOptionBody,
+  .audienceOptionArrow,
+  .audienceOptionIconTile {
+    transition: none;
+  }
+}

@@ -1,0 +1,22 @@
+@use "abstracts" as *;
+
+// Eyebrow, title and subtitle stacked, left aligned.
+.sectionHeading {
+  @include flex-col(space(4), flex-start);
+}
+
+.sectionHeadingEyebrow {
+  @include text(eyebrow);
+  color: color(accent);
+}
+
+.sectionHeadingTitle {
+  @include text(display-2);
+  max-width: rem(760);
+}
+
+.sectionHeadingSubtitle {
+  @include text(lead);
+  max-width: rem(640);
+  color: color(muted);
+}

@@ -1,0 +1,45 @@
+@use "abstracts" as *;
+
+// Shared shape: pill, centred content, focus ring (from the button-base mixin).
+.buttonBase {
+  @include button-base;
+}
+
+// ---- Sizes -----------------------------------------------------------------------
+.buttonSizeMedium {
+  @include button-size(medium);
+}
+
+.buttonSizeLarge {
+  @include button-size(large);
+}
+
+// ---- Colour variants -------------------------------------------------------------
+.buttonPrimary {
+  background: color(accent);
+  color: color(on-accent);
+
+  @include on-hover {
+    background: color(accent-hover);
+  }
+}
+
+.buttonSecondary {
+  background: color(surface);
+  border-color: color(border);
+  color: color(text);
+
+  @include on-hover {
+    border-color: color(accent);
+  }
+}
+
+.buttonDark {
+  background: color(inverse);
+  color: color(inverse-text);
+}
+
+// ---- Modifier --------------------------------------------------------------------
+.buttonFullWidth {
+  width: 100%;
+}

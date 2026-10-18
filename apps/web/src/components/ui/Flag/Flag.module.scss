@@ -1,0 +1,17 @@
+@use "abstracts" as *;
+
+// A 22px round window; the SVG inside is cropped to fill it.
+.flagCircle {
+  display: inline-flex;
+  width: rem(22);
+  height: rem(22);
+  flex: none;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid color(border);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

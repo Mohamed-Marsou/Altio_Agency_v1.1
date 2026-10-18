@@ -1,0 +1,412 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// HERO VISUAL  (mobile first)
+// A fake browser window made of CSS. The wrapper is `position: relative` so the
+// glows, the browser and the chips can be placed with `position: absolute`.
+//
+// TWO KINDS OF MOTION
+//  1. IDLE ("live"): chips and halo float gently all the time. Done with the
+//     `translate` property, so it never fights the hover effects below.
+//  2. HOVER: when the mouse is anywhere over the hero, everything reacts:
+//     the browser tilts and lifts, colours change (dark bars turn blue, the
+//     button turns WhatsApp green, the halo turns green), the 48h chip pops
+//     and pulses, the WhatsApp chip jumps and ripples. Done with `transform`.
+// =============================================================================
+
+// Local helper: wraps rules so they run only while the mouse is over the hero
+// (the <section data-hero>) on devices that can hover.
+//   .heroVisualBrowser { @include when-hero-hovered { transform: ... } }
+@mixin when-hero-hovered {
+  @media (hover: hover) {
+    :global([data-hero]):hover & {
+      @content;
+    }
+  }
+}
+
+.heroVisual {
+  position: relative;
+  height: rem(360);
+
+  @include mq(lg) {
+    height: rem(500);
+  }
+}
+
+// ---- Halos behind the browser ------------------------------------------------------
+// color-mix() makes a see-through version of a token colour, so the glows also
+// work in dark mode.
+%heroVisualGlow {
+  position: absolute;
+  top: space(6);
+  right: 0;
+  width: rem(300);
+  height: rem(300);
+  border-radius: 50%;
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+
+  @include mq(lg) {
+    width: rem(440);
+    height: rem(440);
+  }
+}
+
+.heroVisualGlowBlue {
+  @extend %heroVisualGlow;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #{color(accent)} 28%, transparent),
+    transparent 68%
+  );
+  animation: heroVisualGlowBreathe 6s ease-in-out infinite alternate;
+
+  @include when-hero-hovered {
+    transform: scale(1.15);
+  }
+}
+
+// Green halo: invisible at rest, fades in when the hero is hovered.
+.heroVisualGlowGreen {
+  @extend %heroVisualGlow;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #{color(whatsapp)} 30%, transparent),
+    transparent 68%
+  );
+  opacity: 0;
+
+  @include when-hero-hovered {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+// ---- The browser window ------------------------------------------------------------
+.heroVisualBrowser {
+  @include card(0);
+  position: absolute;
+  top: space(6);
+  inset-inline: 0;
+  height: rem(300);
+  overflow: hidden;
+  box-shadow: shadow(float);
+  transition:
+    transform 0.7s var(--ease-out),
+    box-shadow 0.7s var(--ease-out);
+  animation: heroVisualBrowserDrift 7s ease-in-out infinite alternate;
+
+  // Desktop: a fixed-width window, nudged away from the left edge.
+  @include mq(lg) {
+    top: space(12);
+    inset-inline: rem(30) auto;
+    width: rem(500);
+    height: rem(420);
+  }
+
+  @include when-hero-hovered {
+    transform: translateY(-6px) rotate(-1.2deg) scale(1.02);
+    box-shadow: 0 30px 80px -12px color-mix(in srgb, #{color(accent)} 35%, transparent);
+  }
+}
+
+.heroVisualBrowserBar {
+  @include flex(row, flex-start, center, space(2));
+  padding: space(3) space(4);
+  background: color(surface-2);
+}
+
+.heroVisualBrowserDot {
+  width: rem(10);
+  height: rem(10);
+  border-radius: 50%;
+  background: color(border);
+}
+
+.heroVisualBrowserUrl {
+  @include text(small);
+  margin-inline-start: space(2);
+  padding: rem(2) space(4);
+  border-radius: radius(pill);
+  background: color(surface);
+  color: color(muted);
+}
+
+// ---- The fake page inside the window ------------------------------------------------
+.heroVisualPage {
+  @include flex-col(space(4));
+  padding: space(6);
+
+  @include mq(lg) {
+    padding: rem(28);
+    gap: rem(18);
+  }
+}
+
+// Shared look of every grey "skeleton" block (a placeholder for real content).
+%heroVisualSkeleton {
+  display: block;
+  border-radius: radius(sm);
+  background: color(surface-2);
+  transition:
+    background-color 0.6s var(--ease-out),
+    width 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+
+.heroVisualPageEyebrow {
+  @extend %heroVisualSkeleton;
+  width: rem(120);
+  height: rem(12);
+  border-radius: radius(pill);
+  background: color(accent-soft);
+
+  @include when-hero-hovered {
+    width: rem(170);
+    background: color(accent-light);
+  }
+}
+
+// Headline bars: dark at rest, they turn blue (long) and light blue (short).
+.heroVisualPageTitleLong {
+  @extend %heroVisualSkeleton;
+  width: 86%;
+  height: rem(24);
+  background: color(text);
+  opacity: 0.92;
+
+  @include when-hero-hovered {
+    background: color(accent);
+  }
+}
+
+.heroVisualPageTitleShort {
+  @extend %heroVisualSkeleton;
+  width: 64%;
+  height: rem(24);
+  background: color(text);
+  opacity: 0.92;
+  transition-delay: 0.08s;
+
+  @include when-hero-hovered {
+    width: 74%;
+    background: color(accent-light);
+  }
+}
+
+.heroVisualPageTextLong {
+  @extend %heroVisualSkeleton;
+  width: 80%;
+  height: rem(10);
+  border-radius: radius(pill);
+}
+
+.heroVisualPageTextShort {
+  @extend %heroVisualSkeleton;
+  width: 62%;
+  height: rem(10);
+  border-radius: radius(pill);
+}
+
+// The button block: blue at rest, WhatsApp green on hover (matches the CTA).
+.heroVisualPageButton {
+  @extend %heroVisualSkeleton;
+  width: rem(140);
+  height: rem(40);
+  border-radius: radius(pill);
+  background: color(accent);
+  transform-origin: left center;
+
+  @include when-hero-hovered {
+    background: color(whatsapp);
+    transform: scale(1.08);
+  }
+}
+
+.heroVisualPageCardsRow {
+  @include flex(row, flex-start, stretch, space(3));
+}
+
+// Three cards that light up one after another (stagger with transition-delay).
+.heroVisualPageCard {
+  @extend %heroVisualSkeleton;
+  flex: 1;
+  height: rem(80);
+  border-radius: radius(md);
+
+  @include mq(lg) {
+    height: rem(96);
+  }
+
+  &:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+
+  &:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+
+  @include when-hero-hovered {
+    background: color(accent-soft);
+    transform: translateY(-4px);
+  }
+}
+
+// ---- Floating chips -----------------------------------------------------------------
+%heroVisualChip {
+  position: absolute;
+  box-shadow: shadow(card);
+  transition:
+    transform 0.6s var(--ease-out),
+    box-shadow 0.6s var(--ease-out);
+}
+
+// "Your design is ready"
+.heroVisualChipReady {
+  @extend %heroVisualChip;
+  @include flex(row, flex-start, center, space(2));
+  @include text(label);
+  left: space(2);
+  bottom: space(2);
+  padding: space(3) space(4);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  animation: heroVisualFloat 5s ease-in-out infinite alternate;
+
+  @include mq(lg) {
+    left: 0;
+    bottom: rem(80);
+  }
+
+  @include when-hero-hovered {
+    transform: translateX(10px);
+  }
+}
+
+// The green circle with the check mark inside the first chip.
+.heroVisualChipReadyIcon {
+  @include flex-center;
+  width: rem(28);
+  height: rem(28);
+  border-radius: 50%;
+  background: color(success);
+  color: color(white);
+}
+
+// "48h": a blue badge that gets bigger and pulses a ring on hover.
+.heroVisualChipTime {
+  @extend %heroVisualChip;
+  @include flex-center;
+  @include text(label);
+  top: 0;
+  right: space(2);
+  padding: space(3) space(4);
+  border-radius: radius(pill);
+  background: color(accent);
+  color: color(on-accent);
+  animation: heroVisualFloat 4s ease-in-out 0.6s infinite alternate;
+
+  @include mq(lg) {
+    right: 0;
+    top: space(2);
+  }
+
+  @include when-hero-hovered {
+    transform: scale(1.25);
+    animation:
+      heroVisualFloat 4s ease-in-out 0.6s infinite alternate,
+      heroVisualRingPulse 1.4s ease-out infinite;
+  }
+}
+
+// WhatsApp chip: green circle that jumps and sends out ripples on hover.
+.heroVisualChipWhatsApp {
+  @extend %heroVisualChip;
+  @include flex-center;
+  right: space(2);
+  bottom: space(2);
+  width: rem(52);
+  height: rem(52);
+  border-radius: 50%;
+  background: color(whatsapp);
+  color: color(white);
+  animation: heroVisualFloat 4.5s ease-in-out 1.2s infinite alternate;
+
+  @include mq(lg) {
+    right: rem(6);
+    bottom: rem(24);
+  }
+
+  @include when-hero-hovered {
+    transform: translateY(-12px) rotate(-10deg) scale(1.12);
+    animation:
+      heroVisualFloat 4.5s ease-in-out 1.2s infinite alternate,
+      heroVisualRippleGreen 1.6s ease-out infinite;
+  }
+}
+
+// ---- Keyframes ----------------------------------------------------------------------
+// Idle float uses `translate` (not `transform`) so hover effects can combine.
+@keyframes heroVisualFloat {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes heroVisualGlowBreathe {
+  from {
+    opacity: 0.75;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroVisualBrowserDrift {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: 0 -5px;
+  }
+}
+
+@keyframes heroVisualRingPulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #{color(accent)} 55%, transparent);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rem(16) transparent;
+  }
+}
+
+@keyframes heroVisualRippleGreen {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #{color(whatsapp)} 60%, transparent);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rem(18) transparent;
+  }
+}
+
+// Visitors who asked for less motion: no idle float, no pulses, no tilt.
+@include reduced-motion {
+  .heroVisualGlowBlue,
+  .heroVisualBrowser,
+  .heroVisualChipReady,
+  .heroVisualChipTime,
+  .heroVisualChipWhatsApp {
+    animation: none !important;
+  }
+}

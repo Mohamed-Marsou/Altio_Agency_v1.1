@@ -1,21 +1,43 @@
-MIT License
+ALTIO AGENCY — PROPRIETARY SOFTWARE LICENSE (INTERNAL USE ONLY)
 
-Copyright (c) 2026 Mohamed Marsou
+Copyright (c) 2026 Altio Agency. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository and everything in it, including source code, designs, content,
+copy, images, logos, configuration, documentation and any derived works
+(together, the "Software"), is confidential and proprietary to Altio Agency and
+its founders (the "Owners").
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. NO LICENSE GRANTED. No license or right is granted to any person to use,
+   copy, modify, merge, publish, distribute, sublicense, sell, host, deploy,
+   reverse engineer or create derivative works of the Software, except as
+   stated in section 2.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. AUTHORISED USE. Only the Owners, and people the Owners have authorised in
+   writing (for example team members, interns and contractors bound by a
+   confidentiality agreement), may access the Software, and only to work on
+   Altio Agency projects. Authorised people must not use the Software for
+   personal projects, for other employers or clients, or in their own
+   portfolio, without the Owners' prior written permission.
+
+3. CONFIDENTIALITY. The Software must not be made public in any form, including
+   public repositories, forks, gists, screenshots, code-sharing sites, AI
+   training or public AI tools, tutorials, or job applications. Secrets,
+   credentials and client data must never be committed to this repository.
+
+4. THIRD-PARTY COMPONENTS. Open-source packages and fonts used by the Software
+   remain under their own licenses, which are not changed by this notice.
+
+5. OWNERSHIP. All intellectual property rights in the Software, the Altio name,
+   logo and brand assets remain with the Owners. Contributions made to this
+   repository are assigned to the Owners.
+
+6. NO WARRANTY. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+   THE OWNERS ARE NOT LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING
+   FROM ITS USE.
+
+7. TERMINATION. Access may be withdrawn by the Owners at any time. On request,
+   all copies must be deleted.
+
+Unauthorised use, copying or disclosure may result in legal action.
+
+Contact: Altio Agency, Tangier, Morocco.

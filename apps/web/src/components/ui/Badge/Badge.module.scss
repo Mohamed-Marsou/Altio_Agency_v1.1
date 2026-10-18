@@ -1,0 +1,6 @@
+@use "abstracts" as *;
+
+// The whole look comes from the reusable pill() mixin (see abstracts/_mixins).
+.badgePill {
+  @include pill;
+}

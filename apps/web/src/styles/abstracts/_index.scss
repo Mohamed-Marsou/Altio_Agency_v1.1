@@ -1,0 +1,14 @@
+// =============================================================================
+// ABSTRACTS / INDEX
+// -----------------------------------------------------------------------------
+// One door for everything Sass-only. In ANY component stylesheet write:
+//
+//     @use "abstracts" as *;
+//
+// and you get: breakpoints, z-layers, type scale, all functions (rem, space,
+// color, radius, shadow, z, fluid) and all mixins (mq, flex, text, container...).
+// This file emits NO CSS, so importing it everywhere costs nothing.
+// =============================================================================
+@forward "variables";
+@forward "functions";
+@forward "mixins";

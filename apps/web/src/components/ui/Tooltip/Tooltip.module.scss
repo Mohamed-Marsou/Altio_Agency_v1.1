@@ -1,0 +1,101 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// TOOLTIP
+// The root is `position: relative` so the bubble can be placed against it.
+// The bubble is invisible and slightly pushed away until the root is hovered
+// or focused, then it fades and slides into place.
+// =============================================================================
+
+.tooltipRoot {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  @include focus-ring;
+  border-radius: radius(sm);
+}
+
+.tooltipBubble {
+  @include text(small);
+  position: absolute;
+  z-index: z(overlay);
+  width: max-content;
+  max-width: min(rem(264), 80vw);
+  padding: space(2) space(3);
+  border-radius: radius(sm);
+  background: color(inverse);
+  color: color(inverse-text);
+  box-shadow: shadow(card);
+  text-align: start;
+  font-weight: 500;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+// ---- Position: above or below the element ----------------------------------------
+.tooltipBubbleAbove {
+  bottom: calc(100% + #{space(2)});
+  left: 50%;
+  transform: translate(-50%, rem(4));
+}
+
+.tooltipBubbleBelow {
+  top: calc(100% + #{space(2)});
+  left: 50%;
+  transform: translate(-50%, rem(-4));
+}
+
+// ---- Alignment: keep the bubble on screen near the edges ----------------------------
+.tooltipBubbleAlignStart {
+  left: 0;
+  transform: translate(0, rem(4));
+}
+
+.tooltipBubbleAlignEnd {
+  right: 0;
+  left: auto;
+  transform: translate(0, rem(4));
+}
+
+// ---- Shown on keyboard focus, and on mouse hover (mouse devices only) --------------
+.tooltipRoot:focus-within .tooltipBubble {
+  opacity: 1;
+}
+
+.tooltipRoot:focus-within .tooltipBubbleAbove,
+.tooltipRoot:focus-within .tooltipBubbleBelow {
+  transform: translate(-50%, 0);
+}
+
+.tooltipRoot:focus-within .tooltipBubbleAlignStart,
+.tooltipRoot:focus-within .tooltipBubbleAlignEnd {
+  transform: none;
+}
+
+.tooltipRoot {
+  @include on-hover {
+    .tooltipBubble {
+      opacity: 1;
+    }
+
+    .tooltipBubbleAbove,
+    .tooltipBubbleBelow {
+      transform: translate(-50%, 0);
+    }
+
+    .tooltipBubbleAlignStart,
+    .tooltipBubbleAlignEnd {
+      transform: none;
+    }
+  }
+}
+
+@include reduced-motion {
+  .tooltipBubble {
+    transition: none;
+  }
+}
