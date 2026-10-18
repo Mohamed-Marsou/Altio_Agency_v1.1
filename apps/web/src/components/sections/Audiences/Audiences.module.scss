@@ -1,0 +1,18 @@
+@use "abstracts" as *;
+
+// Section shell (mobile first). Background = "page" colour, so it alternates
+// with the white Problem section above it.
+.audiencesSection {
+  @include section-y;
+  background: color(page);
+}
+
+// The wrapper is also the page container (max 1200px + side padding).
+.audiencesContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: space(12);
+  }
+}

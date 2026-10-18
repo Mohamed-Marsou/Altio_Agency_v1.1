@@ -1,0 +1,561 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// AUDIENCE CHART PANEL  (mobile first)
+// Everything animated only runs while the panel has the class
+// `audienceChartPanelIsPlaying` (set by the component when the section is on
+// screen). Before that, lines are undrawn, bars empty, steps grey.
+// Reading order of this file: panel > header > plot (lines, labels) > legend >
+// KPI bars > strategy steps > disclaimer > keyframes.
+// =============================================================================
+
+.audienceChartPanel {
+  @include card(space(6));
+  @include flex-col(space(6));
+  position: relative;
+  overflow: visible;
+  box-shadow: shadow(card);
+
+  @include mq(lg) {
+    padding: space(8);
+  }
+}
+
+// ---- Header: title + metric on the left, "Illustrative model" badge on the right ---------
+.audienceChartHeader {
+  @include flex(row, space-between, flex-start, space(4), wrap);
+}
+
+.audienceChartHeaderText {
+  @include flex-col(space(1));
+}
+
+.audienceChartTitle {
+  @include text(heading);
+}
+
+.audienceChartMetric {
+  @include text(small);
+  color: color(muted);
+}
+
+.audienceChartBadge {
+  @include flex-center(space(1));
+  @include text(small);
+  padding: space(1) space(3);
+  border: 1px dashed color(border);
+  border-radius: radius(pill);
+  color: color(muted);
+  font-weight: 600;
+  cursor: help;
+  white-space: nowrap;
+}
+
+// ---- The plot ------------------------------------------------------------------------------
+// The wrapper keeps the same shape (aspect ratio) as the 640x300 drawing, so the
+// HTML labels placed with percentages line up exactly with the SVG lines.
+.audienceChartPlot {
+  position: relative;
+  aspect-ratio: 640 / 300;
+  margin-top: space(2);
+}
+
+.audienceChartSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.audienceChartGridLine {
+  stroke: color(border);
+  stroke-width: 1;
+}
+
+// Area under the Altio line: a soft blue fade (gradient defined in the SVG).
+.audienceChartGradientStart {
+  stop-color: var(--color-accent);
+  stop-opacity: 0.28;
+}
+
+.audienceChartGradientEnd {
+  stop-color: var(--color-accent);
+  stop-opacity: 0;
+}
+
+.audienceChartArea {
+  opacity: 0;
+}
+
+// The three lines. pathLength={1} in the markup makes "1" = the full length of
+// the line, so dasharray 1 + dashoffset 1 = fully hidden, and animating the
+// offset to 0 "draws" it.
+.audienceChartLine {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.audienceChartLineTemplate {
+  stroke: color(neutral);
+  stroke-width: 3;
+}
+
+.audienceChartLineBad {
+  stroke: color(warning);
+  stroke-width: 3;
+}
+
+.audienceChartLineAltio {
+  stroke: color(accent);
+  stroke-width: 6;
+  filter: drop-shadow(0 6px 12px color-mix(in srgb, #{color(accent)} 40%, transparent));
+}
+
+// Hovering a legend card spotlights its line and dims the other two.
+.audienceChartLineIsDimmed {
+  opacity: 0.18;
+}
+
+// ---- Month labels under the chart ----------------------------------------------------------
+.audienceChartAxisLabel {
+  position: absolute;
+  top: 95%;
+  transform: translateX(-50%);
+  color: color(muted);
+  font-size: rem(11);
+  white-space: nowrap;
+}
+
+// ---- Milestones: dots on the Altio line ----------------------------------------------------
+// The container sits exactly on the point (centred with translate). Its inner
+// Tooltip holds the dot and a label that floats above it.
+.audienceChartMilestone {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.audienceChartMilestoneDot {
+  display: block;
+  width: rem(14);
+  height: rem(14);
+  border: 3px solid color(accent);
+  border-radius: 50%;
+  background: color(surface);
+  cursor: help;
+  transition: transform var(--duration-base) var(--ease-out);
+
+  @include on-hover {
+    transform: scale(1.35);
+  }
+}
+
+// The text label: hidden on phones (too little room), shown from md.
+.audienceChartMilestoneLabel {
+  display: none;
+
+  @include mq(md) {
+    display: block;
+    position: absolute;
+    bottom: calc(100% + #{space(2)});
+    left: 50%;
+    padding: rem(2) space(3);
+    border: 1px solid color(border);
+    border-radius: radius(pill);
+    background: color(surface);
+    font-size: rem(11);
+    font-weight: 600;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+}
+
+// ---- End-of-line labels: Plateaus / Decays / Compounds --------------------------------------
+%audienceChartEndLabel {
+  @include flex(row, flex-start, center, space(1));
+  position: absolute;
+  transform: translate(rem(14), -50%);
+  font-family: var(--font-display-stack);
+  font-size: rem(11);
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+// The words ("Compounds") need room, so on phones only the Altio logo marks the
+// end of the line; the text appears from md.
+.audienceChartEndLabelText {
+  display: none;
+
+  @include mq(md) {
+    display: inline;
+  }
+}
+
+// Only the Altio label shows on phones; the other two appear from md.
+.audienceChartEndLabelTemplate {
+  @extend %audienceChartEndLabel;
+  display: none;
+  color: color(muted);
+
+  @include mq(md) {
+    display: flex;
+  }
+}
+
+.audienceChartEndLabelBad {
+  @extend %audienceChartEndLabel;
+  display: none;
+  color: color(warning);
+
+  @include mq(md) {
+    display: flex;
+  }
+}
+
+.audienceChartEndLabelAltio {
+  @extend %audienceChartEndLabel;
+  color: color(accent);
+}
+
+// ---- Legend: three cards explaining the three lines -----------------------------------------
+.audienceChartLegend {
+  @include flex-col(space(3));
+
+  @include mq(md) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// The Tooltip root around each card must fill its grid cell.
+.audienceChartLegendItem {
+  display: flex;
+  width: 100%;
+}
+
+.audienceChartLegendCard {
+  @include flex-col(space(1));
+  width: 100%;
+  padding: space(3) space(4);
+  border: 1px solid color(border);
+  border-radius: radius(md);
+  cursor: help;
+  transition:
+    transform 0.4s var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+
+  @include on-hover {
+    transform: translateY(-2px);
+    border-color: color(accent-light);
+  }
+}
+
+// Altio's card is highlighted with the brand tint and shows the logo.
+.audienceChartLegendCardIsBrand {
+  border-color: color(accent);
+  background: color(accent-soft);
+}
+
+.audienceChartLegendTitle {
+  @include flex(row, flex-start, center, space(2));
+  @include text(label);
+}
+
+.audienceChartLegendDot {
+  display: block;
+  width: rem(10);
+  height: rem(10);
+  border-radius: 50%;
+}
+
+.audienceChartLegendDotTemplate {
+  background: color(neutral);
+}
+
+.audienceChartLegendDotBad {
+  background: color(warning);
+}
+
+.audienceChartLegendText {
+  @include text(small);
+  color: color(muted);
+  font-size: rem(13);
+  line-height: 1.45;
+}
+
+// ---- KPI bars ------------------------------------------------------------------------------
+.audienceChartKpis {
+  @include flex-col(space(4));
+
+  @include mq(md) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: space(6);
+  }
+}
+
+.audienceChartKpiItem {
+  display: flex;
+  width: 100%;
+}
+
+.audienceChartKpi {
+  @include flex-col(space(2));
+  width: 100%;
+  cursor: help;
+}
+
+.audienceChartKpiHeader {
+  @include flex-between;
+  @include text(label);
+}
+
+.audienceChartKpiContext {
+  color: color(muted);
+  font-size: rem(13);
+  font-weight: 500;
+}
+
+.audienceChartKpiBars {
+  @include flex-col(rem(5));
+}
+
+// A bar = a grey track; its ::before is the coloured fill that grows to --bar-width.
+.audienceChartKpiBar {
+  position: relative;
+  height: rem(7);
+  border-radius: radius(pill);
+  background: color(surface-2);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    border-radius: inherit;
+    background: var(--bar-color);
+  }
+}
+
+.audienceChartKpiBarTemplate {
+  --bar-color: #{color(neutral)};
+}
+
+.audienceChartKpiBarBad {
+  --bar-color: #{color(warning)};
+}
+
+.audienceChartKpiBarAltio {
+  --bar-color: #{color(accent)};
+  height: rem(9);
+}
+
+// ---- Strategy steps ---------------------------------------------------------------------------
+.audienceChartSteps {
+  @include reset-list;
+  @include flex(row, space-between, flex-start);
+}
+
+.audienceChartStepItem {
+  position: relative;
+  flex: 1;
+
+  // Grey connector line to the next step, and the blue one that fills it.
+  &:not(:last-child)::before,
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: rem(15);
+    left: 50%;
+    width: 100%;
+    height: rem(2);
+  }
+
+  &:not(:last-child)::before {
+    background: color(surface-2);
+  }
+
+  &:not(:last-child)::after {
+    width: 0;
+    background: color(accent);
+  }
+
+  @include mq(md) {
+    &:not(:last-child)::before,
+    &:not(:last-child)::after {
+      top: rem(17);
+    }
+  }
+}
+
+.audienceChartStepTooltip {
+  width: 100%;
+  justify-content: center;
+}
+
+.audienceChartStep {
+  @include flex-col(space(2), center);
+  position: relative;
+  z-index: 1;
+  color: color(muted);
+  font-size: rem(11);
+  font-weight: 600;
+  text-align: center;
+  cursor: help;
+
+  @include mq(md) {
+    font-size: rem(12);
+  }
+}
+
+.audienceChartStepNumber {
+  @include flex-center;
+  width: rem(30);
+  height: rem(30);
+  border-radius: 50%;
+  background: color(surface-2);
+  color: color(muted);
+  font-family: var(--font-display-stack);
+  font-size: rem(13);
+  font-weight: 700;
+
+  @include mq(md) {
+    width: rem(34);
+    height: rem(34);
+  }
+}
+
+.audienceChartStepTitle {
+  max-width: 100%;
+}
+
+.audienceChartDisclaimer {
+  @include text(small);
+  color: color(muted);
+  font-size: rem(12);
+}
+
+// =============================================================================
+// ANIMATIONS: only when the panel is playing
+// =============================================================================
+.audienceChartPanelIsPlaying {
+  // Lines draw one after another; Altio last and slowest.
+  .audienceChartLineTemplate {
+    animation: audienceChartDraw 1.5s var(--ease-out) forwards;
+  }
+
+  .audienceChartLineBad {
+    animation: audienceChartDraw 1.5s var(--ease-out) 0.12s forwards;
+  }
+
+  .audienceChartLineAltio {
+    animation: audienceChartDraw 1.9s var(--ease-out) 0.28s forwards;
+  }
+
+  .audienceChartArea {
+    animation: audienceChartFadeIn 0.9s ease 1.3s forwards;
+  }
+
+  // Milestones appear one by one; --delay is set per milestone in the markup.
+  .audienceChartMilestone {
+    animation: audienceChartFadeIn 0.5s var(--ease-out) var(--delay) forwards;
+  }
+
+  .audienceChartEndLabelTemplate {
+    animation: audienceChartFadeIn 0.5s var(--ease-out) 1.35s forwards;
+  }
+
+  .audienceChartEndLabelBad {
+    animation: audienceChartFadeIn 0.5s var(--ease-out) 1.5s forwards;
+  }
+
+  .audienceChartEndLabelAltio {
+    animation: audienceChartFadeIn 0.5s var(--ease-out) 2s forwards;
+  }
+
+  // KPI bars grow, each KPI a little later than the previous (--delay).
+  .audienceChartKpiBar::before {
+    animation: audienceChartBarGrow 1.1s var(--ease-out) var(--delay, 0s) forwards;
+  }
+
+  // Strategy steps light up in order, and the connector lines fill behind them.
+  .audienceChartStepNumber {
+    animation: audienceChartStepLight 0.5s var(--ease-out) forwards;
+    animation-delay: calc(var(--step-index) * 0.3s + 0.2s);
+  }
+
+  .audienceChartStepItem:not(:last-child)::after {
+    animation: audienceChartLineFill 0.5s var(--ease-out) forwards;
+    animation-delay: calc(var(--step-index) * 0.3s + 0.4s);
+  }
+}
+
+@keyframes audienceChartDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes audienceChartFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes audienceChartBarGrow {
+  to {
+    width: var(--bar-width);
+  }
+}
+
+@keyframes audienceChartStepLight {
+  to {
+    background: color(accent);
+    color: color(on-accent);
+  }
+}
+
+@keyframes audienceChartLineFill {
+  to {
+    width: 100%;
+  }
+}
+
+// Visitors who asked for less motion: show the finished chart at once.
+@include reduced-motion {
+  .audienceChartLine {
+    stroke-dashoffset: 0;
+  }
+
+  .audienceChartArea,
+  .audienceChartMilestone,
+  .audienceChartEndLabelTemplate,
+  .audienceChartEndLabelBad,
+  .audienceChartEndLabelAltio {
+    opacity: 1;
+  }
+
+  .audienceChartKpiBar::before {
+    width: var(--bar-width);
+  }
+
+  .audienceChartStepNumber {
+    background: color(accent);
+    color: color(on-accent);
+  }
+
+  .audienceChartStepItem:not(:last-child)::after {
+    width: 100%;
+  }
+
+  .audienceChartPanelIsPlaying * {
+    animation: none !important;
+  }
+}

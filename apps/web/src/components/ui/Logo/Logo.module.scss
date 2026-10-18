@@ -1,0 +1,16 @@
+@use "abstracts" as *;
+
+// The whole logo is a link to the home page: [symbol] ALTIO
+.logoLink {
+  @include flex(row, flex-start, center, space(3));
+  @include focus-ring;
+}
+
+// The wordmark: thin, wide, uppercase, like the brand logo.
+.logoWordmark {
+  font-family: var(--font-display-stack);
+  font-weight: 500;
+  font-size: rem(15);
+  letter-spacing: 0.2em;
+  color: color(text);
+}

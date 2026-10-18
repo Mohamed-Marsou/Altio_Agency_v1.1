@@ -1,0 +1,25 @@
+// =============================================================================
+// BASE / UTILITIES
+// -----------------------------------------------------------------------------
+// A few global classes used on many pages. Keep this list SHORT: if a style
+// belongs to one component, it goes in that component's .module.scss instead.
+// =============================================================================
+@use "../abstracts" as *;
+
+// Centered page column. Usage: <div className="container">
+.container {
+  @include container;
+}
+
+// Screen-reader-only text. Usage: <span className="visually-hidden">
+.visually-hidden {
+  @include visually-hidden;
+}
+
+// Hides the normal mouse arrow while our brand cursor is running. The attribute
+// is set (and removed) by the CustomCursor component, and only on devices with
+// a real mouse, so touch screens and visitors without JavaScript are unaffected.
+[data-custom-cursor="on"],
+[data-custom-cursor="on"] * {
+  cursor: none !important;
+}

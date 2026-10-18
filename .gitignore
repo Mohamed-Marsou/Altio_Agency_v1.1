@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+# builds
+.next
+out
+build
+
+# env files (keep the example)
+.env*
+!.env.example
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+npm-debug.log*

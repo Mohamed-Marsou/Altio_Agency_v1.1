@@ -1,0 +1,29 @@
+// =============================================================================
+// BASE / TYPOGRAPHY
+// -----------------------------------------------------------------------------
+// Default look of plain HTML text. Components can still pick a specific style
+// with @include text(...), but a bare <h1> or <p> already looks right.
+// =============================================================================
+@use "../abstracts" as *;
+
+body {
+  @include text(body);
+}
+
+h1 {
+  @include text(display-1);
+}
+
+h2 {
+  @include text(display-2);
+}
+
+h3 {
+  @include text(display-3);
+}
+
+h4,
+h5,
+h6 {
+  @include text(heading);
+}

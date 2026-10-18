@@ -1,0 +1,236 @@
+// =============================================================================
+// ABSTRACTS / MIXINS
+// -----------------------------------------------------------------------------
+// A mixin is a reusable block of CSS you paste with @include. Rule of thumb:
+// if you write the same 3+ lines twice, it becomes a mixin here.
+// =============================================================================
+@use "sass:map";
+@use "sass:list";
+@use "variables" as *;
+@use "functions" as *;
+
+// -----------------------------------------------------------------------------
+// MEDIA QUERY (mobile first)
+//   @include mq(lg) { ... }   => applies from 1024px and up
+// -----------------------------------------------------------------------------
+@mixin mq($breakpoint) {
+  @if not map.has-key($breakpoints, $breakpoint) {
+    @error "Unknown breakpoint `#{$breakpoint}`. Use one of: #{map.keys($breakpoints)}.";
+  }
+  @media (min-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// FLEX HELPERS
+// One mixin for every flex layout so the intent reads clearly:
+//   @include flex(row, space-between, center, space(4));
+//   @include flex-center(space(2));      centres both ways
+//   @include flex-between();             left/right ends, vertically centred
+//   @include flex-col(space(6));         vertical stack with a gap
+//   @include flex-wrap-row(space(3));    row that wraps onto new lines
+// -----------------------------------------------------------------------------
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: null, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
+@mixin flex-center($gap: null) {
+  @include flex(row, center, center, $gap);
+}
+
+@mixin flex-between($align: center, $gap: null) {
+  @include flex(row, space-between, $align, $gap);
+}
+
+@mixin flex-col($gap: null, $align: stretch) {
+  @include flex(column, flex-start, $align, $gap);
+}
+
+@mixin flex-wrap-row($gap: null, $align: center) {
+  @include flex(row, flex-start, $align, $gap, wrap);
+}
+
+// -----------------------------------------------------------------------------
+// LAYOUT
+// -----------------------------------------------------------------------------
+// Centered page column: max 1200px wide with side padding (gutter).
+@mixin container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+// Vertical breathing room of a page section: 64px on phones, 112px on desktop.
+@mixin section-y {
+  padding-block: var(--section-y);
+}
+
+// -----------------------------------------------------------------------------
+// TYPOGRAPHY
+// Applies a whole text style from the type scale in _variables.scss.
+//   @include text(display-1);
+// -----------------------------------------------------------------------------
+@mixin text($name) {
+  $style: map.get($type-scale, $name);
+  @if not $style {
+    @error "Unknown text style `#{$name}`. Use one of: #{map.keys($type-scale)}.";
+  }
+  $size: map.get($style, size);
+
+  @if map.get($style, family) == display {
+    font-family: var(--font-display-stack);
+  } @else {
+    font-family: var(--font-text-stack);
+  }
+  font-size: fluid(list.nth($size, 1), list.nth($size, 2));
+  font-weight: map.get($style, weight);
+  line-height: map.get($style, line);
+  letter-spacing: map.get($style, tracking);
+  @if map.has-key($style, transform) {
+    text-transform: map.get($style, transform);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// INTERACTION HELPERS
+// on-hover:         hover effects ONLY on devices that really hover (mouse).
+//                   On phones a "stuck" hover after a tap would look broken.
+// reduced-motion:   rules inside run only for visitors who asked their system
+//                   for less animation (accessibility). Use it to switch
+//                   animations OFF.
+//   .box { @include on-hover { background: color(accent); } }
+//   .box { animation: float 4s infinite; @include reduced-motion { animation: none; } }
+// -----------------------------------------------------------------------------
+@mixin on-hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// ACCESSIBILITY + RESETS
+// -----------------------------------------------------------------------------
+// Visible keyboard focus. Only shows for keyboard users (:focus-visible).
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid color(accent);
+    outline-offset: 3px;
+  }
+}
+
+// Hidden on screen but still read by screen readers.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Strips default <button> styling so we can style it ourselves.
+@mixin reset-button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+// Removes the default list bullets and spacing (for nav menus etc.).
+@mixin reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// -----------------------------------------------------------------------------
+// COMPONENT BUILDING BLOCKS
+// -----------------------------------------------------------------------------
+// Round icon-only button (theme toggle, menu button). 44px = comfortable touch.
+@mixin icon-button($size: 44px) {
+  @include reset-button;
+  @include flex-center;
+  @include focus-ring;
+  width: $size;
+  height: $size;
+  border-radius: radius(pill);
+  border: 1px solid color(border);
+  background: color(surface);
+  color: color(text);
+  transition: border-color var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    border-color: color(accent);
+  }
+}
+
+// Card surface: white box, thin border, big radius.
+@mixin card($padding: space(6)) {
+  background: color(surface);
+  border: 1px solid color(border);
+  border-radius: radius(card);
+  padding: $padding;
+}
+
+// Shared shape of every button (pill, centred content, focus ring).
+// Colours are added by each button variant, sizes by button-size().
+@mixin button-base {
+  @include flex-center(space(2));
+  @include focus-ring;
+  @include text(label);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: radius(pill);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+// Button padding presets:  @include button-size(medium);  or  (large)
+@mixin button-size($size) {
+  @if $size == medium {
+    padding: space(3) space(6);
+  } @else if $size == large {
+    padding: space(4) space(8);
+    font-size: rem(16);
+  } @else {
+    @error "Unknown button size `#{$size}`. Use medium or large.";
+  }
+}
+
+// Pill-shaped chip/badge look.
+@mixin pill($bg: color(accent-soft), $fg: color(accent)) {
+  @include flex-center(space(2));
+  display: inline-flex;
+  padding: space(1) space(3);
+  border-radius: radius(pill);
+  background: $bg;
+  color: $fg;
+  @include text(label);
+}

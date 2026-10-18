@@ -1,0 +1,36 @@
+@use "abstracts" as *;
+
+// The <h1> keeps the global display-1 style (from base/_typography). We only
+// reserve room for 3 lines so the content below never jumps while the
+// sentences get longer and shorter.
+.heroHeadline {
+  min-height: 3.3em; // 3 lines x line-height 1.08, plus a little air
+}
+
+.heroHeadlineText {
+  display: inline;
+}
+
+// The blinking text cursor after the last letter.
+.heroHeadlineCaret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.85em;
+  margin-inline-start: 0.08em;
+  vertical-align: -0.05em;
+  border-radius: 2px;
+  background: color(accent);
+  animation: heroHeadlineCaretBlink 1s steps(1) infinite;
+}
+
+@keyframes heroHeadlineCaretBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@include reduced-motion {
+  .heroHeadlineCaret {
+    animation: none;
+  }
+}

@@ -1,0 +1,99 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// LANGUAGE SWITCHER: a pill showing the current language + a small popup
+// =============================================================================
+
+// `position: relative` so the popup can be placed right under the button.
+.languageSwitcher {
+  position: relative;
+}
+
+// The pill: [flag] EN [v]
+.languageSwitcherButton {
+  @include reset-button;
+  @include flex-center(space(2));
+  @include focus-ring;
+  @include text(label);
+  padding: space(2) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  transition: border-color var(--duration-fast) var(--ease-out);
+
+  @include on-hover {
+    border-color: color(accent);
+  }
+}
+
+.languageSwitcherCode {
+  text-transform: uppercase;
+}
+
+.languageSwitcherChevron {
+  color: color(muted);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.languageSwitcherChevronIsOpen {
+  transform: rotate(180deg);
+}
+
+// The popup card, opening below the button and aligned to its right edge.
+.languageSwitcherMenu {
+  @include reset-list;
+  position: absolute;
+  top: calc(100% + #{space(2)});
+  right: 0;
+  z-index: z(overlay);
+  min-width: rem(176);
+  padding: space(2);
+  border: 1px solid color(border);
+  border-radius: radius(md);
+  background: color(surface);
+  box-shadow: shadow(card);
+  animation: languageSwitcherMenuIn var(--duration-base) var(--ease-out);
+}
+
+// One row: [flag] Language name [check]
+.languageSwitcherOption {
+  @include reset-button;
+  @include flex(row, flex-start, center, space(3));
+  @include focus-ring;
+  @include text(label);
+  width: 100%;
+  padding: space(3);
+  border-radius: radius(sm);
+  text-align: start;
+
+  @include on-hover {
+    background: color(accent-soft);
+  }
+}
+
+.languageSwitcherOptionIsSelected {
+  color: color(accent);
+}
+
+// The language name takes all free space, pushing the check mark to the end.
+.languageSwitcherOptionLabel {
+  flex: 1;
+}
+
+@keyframes languageSwitcherMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@include reduced-motion {
+  .languageSwitcherMenu {
+    animation: none;
+  }
+}

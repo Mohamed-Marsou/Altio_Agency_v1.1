@@ -1,0 +1,28 @@
+{
+  "badge": "Free design in 48 hours",
+  "title": "A website that works as hard as you do.",
+  "headlines": [
+    "A website that works as hard as you do.",
+    "Get your free design now.",
+    "See your website before you pay.",
+    "Turn visitors into customers.",
+    "Stop looking like everyone else.",
+    "Your business, online and unforgettable."
+  ],
+  "lead": "Custom websites for local businesses in Morocco. We design your homepage for free in 48 hours, and you only pay if you love it.",
+  "primaryCta": {
+    "label": "Get your free design",
+    "hoverLabel": "Send us a message",
+    "message": "Hi Altio, I would like a free design for my business."
+  },
+  "secondaryCta": {
+    "label": "Chat on WhatsApp",
+    "message": "Hi Altio, I have a question about your services."
+  },
+  "microcopy": "Based in Tangier · We answer on WhatsApp, 24/7",
+  "visual": {
+    "url": "yourbusiness.ma",
+    "chipReady": "Your design is ready",
+    "chipTime": "48h"
+  }
+}

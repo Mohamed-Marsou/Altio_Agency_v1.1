@@ -1,0 +1,120 @@
+{
+  "eyebrow": "Who we work with",
+  "title": "Businesses and individuals. The same top-tier standard.",
+  "subtitle": "A template gets you online. A strategy gets you found, trusted and booked. Pick who you are and see the difference.",
+  "optionsLabel": "Who we work with",
+  "options": [
+    {
+      "key": "business",
+      "title": "For businesses",
+      "audience": "Restaurants · Clinics · Shops · Real estate · SMEs",
+      "value": "Turn visitors into customers: a site and a growth plan built around your offer, your city and your competitors.",
+      "outcomes": [
+        "Local SEO and Google Maps visibility",
+        "Lead and booking flow with WhatsApp built in",
+        "Dashboards, admin tools and online stores when you grow"
+      ],
+      "chips": [
+        { "label": "Website or store", "tip": "A fast custom site, or an online shop if you sell products." },
+        { "label": "Local SEO", "tip": "Show up on Google and Google Maps when people search near you." },
+        { "label": "Lead tracking", "tip": "See every call, WhatsApp click and form that comes from the site." }
+      ],
+      "chart": {
+        "metric": "Qualified leads per month",
+        "series": {
+          "template": [8, 10, 12, 14, 15, 16, 17, 17, 18, 18, 19, 19, 19],
+          "bad": [8, 13, 18, 22, 22, 20, 18, 16, 15, 14, 14, 13, 12],
+          "altio": [8, 12, 18, 27, 36, 45, 54, 62, 70, 77, 84, 90, 96]
+        },
+        "milestones": [
+          { "month": 1, "label": "Launch", "tip": "Your site goes live: fast, tracked and ready to be found." },
+          { "month": 3, "label": "Indexed on Google", "tip": "Google has found and listed your pages, usually within the first weeks." },
+          { "month": 6, "label": "First-page rankings", "tip": "Your key pages start to appear on the first results page for your main searches (depends on competition)." },
+          { "month": 11, "label": "Compounding growth", "tip": "Visits and enquiries build on each other as content and rankings add up." }
+        ],
+        "kpis": [
+          { "label": "Page speed", "context": "Mobile", "tip": "How fast the site loads on a phone. Slow sites lose visitors and rank lower.", "values": [30, 45, 96] },
+          { "label": "Search visibility", "context": "Google", "tip": "How often the site appears in Google results for what you offer.", "values": [20, 24, 90] },
+          { "label": "Lead flow", "context": "Per month", "tip": "Enquiries that reach you through the site each month.", "values": [25, 32, 92] }
+        ]
+      }
+    },
+    {
+      "key": "individuals",
+      "title": "For individuals",
+      "audience": "Freelancers · Consultants · Doctors · Creators · Coaches",
+      "value": "Be found, look credible and get booked: a personal brand site that works for you while you sleep.",
+      "outcomes": [
+        "Portfolio or profile that builds instant trust",
+        "Search visibility for your name and your niche",
+        "Simple booking and contact flow that converts"
+      ],
+      "chips": [
+        { "label": "Personal brand site", "tip": "A profile page that presents you, your work and your services clearly." },
+        { "label": "Booking flow", "tip": "Let clients book or contact you in one step." },
+        { "label": "Niche SEO", "tip": "Rank for your name and for the service you are known for." }
+      ],
+      "chart": {
+        "metric": "Enquiries and bookings per month",
+        "series": {
+          "template": [6, 8, 9, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14],
+          "bad": [6, 10, 14, 16, 15, 14, 12, 11, 10, 10, 9, 9, 8],
+          "altio": [6, 14, 24, 35, 45, 54, 62, 69, 75, 81, 86, 90, 93]
+        },
+        "milestones": [
+          { "month": 1, "label": "Launch", "tip": "Your profile goes live: fast, clear and ready to be found." },
+          { "month": 3, "label": "Found by your name", "tip": "People who search your name now find your site first." },
+          { "month": 6, "label": "Booked every week", "tip": "A steady flow of enquiries and bookings starts to arrive (depends on your field)." },
+          { "month": 11, "label": "Known in your niche", "tip": "You appear for the services you are known for, and referrals build on it." }
+        ],
+        "kpis": [
+          { "label": "Credibility", "context": "First impression", "tip": "How professional and trustworthy visitors find you in the first few seconds.", "values": [35, 40, 95] },
+          { "label": "Search visibility", "context": "Name + niche", "tip": "How often you appear in Google for your name and your specialty.", "values": [18, 22, 88] },
+          { "label": "Bookings", "context": "Per month", "tip": "Bookings and enquiries that reach you through the site each month.", "values": [22, 30, 90] }
+        ]
+      }
+    }
+  ],
+  "note": {
+    "title": "Same engineering, same SEO, same support.",
+    "text": "Only the strategy changes. Every site is custom code, fast on mobile, structured for search and tracked from day one."
+  },
+  "chart": {
+    "title": "12-month growth path",
+    "badge": "Illustrative model",
+    "badgeTip": "A model of typical paths, not a promise. Real numbers depend on your market, and we measure them with you after launch.",
+    "startLabel": "Launch",
+    "monthLabel": "Month",
+    "endLabels": { "template": "Plateaus", "bad": "Decays", "altio": "Compounds" },
+    "legend": [
+      {
+        "key": "template",
+        "title": "Generic template",
+        "text": "Same layout as thousands of sites. Slow, hard to rank, forgettable.",
+        "tip": "Built from the same blocks as thousands of other sites, with plugins and extra code you never use."
+      },
+      {
+        "key": "bad",
+        "title": "Badly coded site",
+        "text": "Looks fine, but heavy code and no structure. Search engines skip it.",
+        "tip": "Often built in a hurry: broken on mobile, no clear headings or page information, slow. Search engines struggle to read it."
+      },
+      {
+        "key": "altio",
+        "title": "Altio",
+        "text": "Clean code with clear intent, SEO structure, speed and tracking.",
+        "tip": "Clean custom code, a clear structure on every page, speed targets and tracking built in from day one."
+      }
+    ],
+    "stepsLabel": "Our strategy",
+    "steps": [
+      { "title": "Discover", "tip": "We learn your business, your customers and your competitors." },
+      { "title": "Design", "tip": "A custom design in Figma before any code, free for you to review." },
+      { "title": "Clean code", "tip": "Fast, accessible code with a clear structure, built page by page." },
+      { "title": "SEO", "tip": "Titles, descriptions, structured data and local listings set up properly." },
+      { "title": "Tracking", "tip": "Analytics and lead tracking, so you can see what works." },
+      { "title": "Growth", "tip": "We improve from real data after launch (task-by-task support or the Managed pack)." }
+    ],
+    "disclaimer": "Illustrative model of typical trajectories, not a guarantee. We measure your real numbers with you after launch."
+  }
+}

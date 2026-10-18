@@ -1,0 +1,99 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// MORPH BUTTON: blue "Get your free design"  ->  green "Send us a message"
+// How it works (all CSS):
+//  1. The button itself is blue.
+//  2. ::before is a GREEN layer hidden as a zero-size circle at the left edge.
+//     On hover the circle grows (clip-path) and wipes over the blue.
+//  3. Two labels share the same grid cell, so the button is as wide as the
+//     longest one. On hover the first label slides up and fades out while the
+//     second slides in from below.
+// =============================================================================
+
+.morphButton {
+  @include button-base;
+  display: inline-grid;
+  background: color(accent);
+  color: color(on-accent);
+  isolation: isolate; // keeps the ::before layer inside the button
+
+  // The green layer, collapsed by default.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color(whatsapp);
+    clip-path: circle(0% at 0% 50%);
+    transition: clip-path 0.55s var(--ease-out);
+  }
+}
+
+.morphButtonSizeMedium {
+  @include button-size(medium);
+}
+
+.morphButtonSizeLarge {
+  @include button-size(large);
+}
+
+// Both labels live in the same grid cell (row 1 / column 1).
+.morphButtonLabelDefault,
+.morphButtonLabelHover {
+  grid-area: 1 / 1;
+  @include flex-center(space(2));
+  transition:
+    transform 0.45s var(--ease-out),
+    opacity 0.3s var(--ease-out);
+}
+
+.morphButtonLabelHover {
+  color: color(white);
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+// Keyboard focus triggers the same animation as the mouse.
+.morphButton:focus-visible {
+  &::before {
+    clip-path: circle(150% at 0% 50%);
+  }
+
+  .morphButtonLabelDefault {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  .morphButtonLabelHover {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Mouse hover: grow the green layer and swap the labels.
+.morphButton {
+  @include on-hover {
+    &::before {
+      clip-path: circle(150% at 0% 50%);
+    }
+
+    .morphButtonLabelDefault {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+
+    .morphButtonLabelHover {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@include reduced-motion {
+  .morphButton::before,
+  .morphButtonLabelDefault,
+  .morphButtonLabelHover {
+    transition: none;
+  }
+}

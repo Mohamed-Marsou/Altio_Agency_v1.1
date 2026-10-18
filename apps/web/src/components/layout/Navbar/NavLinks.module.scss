@@ -1,0 +1,81 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// NAV LINKS with a sliding underline
+// The list is `position: relative` so the two bars can be placed under it with
+// `position: absolute` (their left/width come from CSS variables set in JS).
+// =============================================================================
+
+.navLinksList {
+  @include reset-list;
+  @include flex(row, flex-start, center, space(8));
+  position: relative;
+}
+
+.navLinksLink {
+  @include text(label);
+  @include focus-ring;
+  display: block;
+  padding-block: space(2);
+  color: color(muted);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+// Darker text for the page we are on and for the link under the mouse.
+.navLinksLinkIsActive,
+.navLinksLinkIsHovered {
+  color: color(text);
+}
+
+// ---- The two sliding bars -------------------------------------------------------
+%navLinksBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+// Accent bar: always under the current page.
+.navLinksActiveBar {
+  @extend %navLinksBar;
+  width: var(--active-width);
+  transform: translateX(var(--active-left));
+  background: color(accent);
+}
+
+// Lighter bar: follows the mouse. Hidden until the mouse is over another link.
+.navLinksHoverBar {
+  @extend %navLinksBar;
+  width: var(--hover-width);
+  transform: translateX(var(--hover-left));
+  background: color(accent-light);
+}
+
+.navLinksHoverBarIsVisible {
+  opacity: 1;
+}
+
+// Once measured, show the active bar and animate every move.
+.navLinksListIsReady {
+  .navLinksActiveBar {
+    opacity: 1;
+  }
+
+  .navLinksActiveBar,
+  .navLinksHoverBar {
+    transition:
+      transform 0.45s var(--ease-out),
+      width 0.45s var(--ease-out),
+      opacity 0.25s var(--ease-out);
+  }
+}
+
+@include reduced-motion {
+  .navLinksActiveBar,
+  .navLinksHoverBar {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,114 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// PROBLEM SECTION  (mobile first)
+// Phone:   intro on top, the three numbered points below (one column)
+// lg+:     two columns, intro on the left (5 parts) and the list on the right (6)
+// Editorial look on purpose: big numbers and space, no borders, boxes or icons.
+// Its background is the "surface" colour (white), so it separates from the hero.
+// =============================================================================
+
+.problemSection {
+  @include section-y;
+  background: color(surface);
+}
+
+// The content wrapper is also the page container (max 1200px + side padding).
+.problemContent {
+  @include container;
+  @include flex-col(space(12));
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    align-items: start;
+    gap: space(24);
+  }
+}
+
+// Intro: heading block, then the little accent line.
+.problemIntro {
+  @include flex-col(space(8), flex-start);
+
+  // Mouse over the heading block: the line below GROWS and turns GREEN.
+  @include on-hover {
+    .problemAccentLine {
+      width: rem(240);
+      background: color(success);
+    }
+  }
+}
+
+.problemAccentLine {
+  width: rem(56);
+  height: rem(3);
+  border-radius: rem(3);
+  background: color(accent);
+  transition:
+    width 0.7s var(--ease-out),
+    background-color 0.5s var(--ease-out);
+}
+
+// ---- The numbered list ----------------------------------------------------------------
+.problemList {
+  @include reset-list;
+  @include flex-col(space(2));
+}
+
+// One row: [number] [title + text]. No borders: the rows are separated by
+// space only, and the hover background draws the card shape.
+// The negative side margin + equal padding lets the hover background extend a
+// little beyond the text WITHOUT moving the text itself.
+.problemItem {
+  display: grid;
+  grid-template-columns: rem(48) 1fr;
+  gap: space(3);
+  position: relative;
+  margin-inline: calc(-1 * #{space(4)});
+  padding: space(6) space(4);
+  border-radius: radius(md);
+  transition: background-color 0.45s var(--ease-out);
+
+  @include mq(lg) {
+    grid-template-columns: rem(72) 1fr;
+    padding-block: space(8);
+  }
+
+  // Mouse over the row: COLOUR CHANGE ONLY (no borders, bars or movement).
+  // The background turns soft blue and the number turns green.
+  @include on-hover {
+    background: color(accent-soft);
+
+    .problemItemNumber {
+      color: color(success);
+    }
+  }
+}
+
+// Big light-weight blue number: 01, 02, 03.
+.problemItemNumber {
+  @include text(numeral);
+  color: color(accent);
+  transition: color 0.4s var(--ease-out);
+}
+
+.problemItemBody {
+  @include flex-col(space(2));
+}
+
+.problemItemTitle {
+  @include text(title-md);
+}
+
+.problemItemText {
+  color: color(muted);
+}
+
+// Visitors who asked for less motion: no growing line, no fading colours.
+@include reduced-motion {
+  .problemAccentLine,
+  .problemItem,
+  .problemItemNumber {
+    transition: none;
+  }
+}

@@ -1,0 +1,69 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// NAVBAR  (mobile first: the base rules are the PHONE layout)
+// Phone:   [logo] ................ [moon] [menu]
+// lg:      [logo] ........ [moon] [CTA button] [menu]
+// xl+:     [logo]  Home Services ...  [moon] [EN v] [CTA button]
+// Class names read as  navbar + Part:  navbarHeader, navbarContent, ...
+// =============================================================================
+
+// The bar stays at the top while scrolling.
+.navbarHeader {
+  position: sticky;
+  top: 0;
+  z-index: z(sticky);
+  background: color(page);
+  border-bottom: 1px solid color(border);
+}
+
+// Logo on the left, actions on the right, links (lg+) in the middle.
+.navbarContent {
+  @include container;
+  @include flex-between;
+  height: var(--navbar-height);
+}
+
+// Links: hidden on phones and tablets, shown from xl (1280px). Below that the
+// full row (7 links + language + CTA) does not fit next to the logo.
+.navbarLinksWrapper {
+  display: none;
+
+  @include mq(xl) {
+    display: block;
+  }
+}
+
+// Right side: theme button, language, CTA, menu button.
+.navbarActions {
+  @include flex(row, flex-end, center, space(3));
+}
+
+.navbarIconButton {
+  @include icon-button;
+}
+
+// The hamburger exists only below xl: xl+ shows the full link row instead.
+.navbarMenuButton {
+  @include mq(xl) {
+    display: none;
+  }
+}
+
+// CTA button: hidden on phones, shown from lg (1024px).
+.navbarCtaWrapper {
+  display: none;
+
+  @include mq(lg) {
+    display: block;
+  }
+}
+
+// Language popup button: shown from xl together with the links.
+.navbarLanguageWrapper {
+  display: none;
+
+  @include mq(xl) {
+    display: block;
+  }
+}

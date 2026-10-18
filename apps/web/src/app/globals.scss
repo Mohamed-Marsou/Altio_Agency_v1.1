@@ -1,0 +1,14 @@
+// =============================================================================
+// GLOBALS  (the ONLY stylesheet imported by layout.tsx)
+// -----------------------------------------------------------------------------
+// It loads the base layer once for the whole site. ORDER MATTERS:
+//   1. tokens      -> defines the CSS variables everything else reads
+//   2. reset       -> neutral starting point
+//   3. typography  -> default text styles
+//   4. utilities   -> a few shared classes (.container, .visually-hidden)
+// Component styles are NOT here: each component owns a *.module.scss file.
+// =============================================================================
+@use "../styles/base/tokens";
+@use "../styles/base/reset";
+@use "../styles/base/typography";
+@use "../styles/base/utilities";

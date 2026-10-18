@@ -1,0 +1,57 @@
+// =============================================================================
+// ABSTRACTS / FUNCTIONS
+// -----------------------------------------------------------------------------
+// A Sass function RETURNS a value (a mixin outputs CSS rules). Use these
+// everywhere instead of typing raw numbers or colours in component files.
+// =============================================================================
+@use "sass:map";
+@use "sass:math";
+@use "variables" as *;
+
+// px -> rem.  rem(24) => 1.5rem
+// rem lets the page respect the user's browser font-size setting.
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// Spacing token.  space(4) => var(--space-4)  (which is 16px)
+// The scale is defined once in base/_tokens.scss: 1,2,3,4,6,8,12,16,24.
+@function space($step) {
+  @return var(--space-#{$step});
+}
+
+// Colour token.  color(accent) => var(--color-accent)
+// Because it is a CSS variable, dark mode swaps it automatically.
+@function color($name) {
+  @return var(--color-#{$name});
+}
+
+// Radius token.  radius(card) => var(--radius-card)
+@function radius($name) {
+  @return var(--radius-#{$name});
+}
+
+// Shadow token.  shadow(float) => var(--shadow-float)
+@function shadow($name) {
+  @return var(--shadow-#{$name});
+}
+
+// Z-index layer.  z(sticky) => 100
+@function z($layer) {
+  @if not map.has-key($z-layers, $layer) {
+    @error "Unknown z-index layer `#{$layer}`. Use one of: #{map.keys($z-layers)}.";
+  }
+  @return map.get($z-layers, $layer);
+}
+
+// Fluid size: grows smoothly from $min (on a 390px screen) to $max (on a 1440px
+// screen) with no breakpoints. Returns a CSS clamp().
+//   font-size: fluid(40, 64);  =>  clamp(2.5rem, 1.5rem + 2.29vw, 4rem)
+@function fluid($min, $max, $min-vw: 390, $max-vw: 1440) {
+  @if $min == $max {
+    @return rem($min);
+  }
+  $slope: math.div($max - $min, $max-vw - $min-vw);
+  $intercept: $min - $slope * $min-vw;
+  @return clamp(#{rem($min)}, #{rem($intercept)} + #{$slope * 100}vw, #{rem($max)});
+}

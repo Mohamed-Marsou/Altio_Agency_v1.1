@@ -1,0 +1,22 @@
+{
+  "eyebrow": "The problem",
+  "title": "Your website is the first thing customers judge.",
+  "subtitle": "Most local sites lose them within seconds, and nobody notices until the phone stops ringing.",
+  "items": [
+    {
+      "number": "01",
+      "title": "Generic by default",
+      "text": "Template sites look like everyone else’s and load slowly, so visitors leave before they read a word."
+    },
+    {
+      "number": "02",
+      "title": "Hard to reach",
+      "text": "No WhatsApp button and no clear next step. An interested visitor cannot contact you in one tap."
+    },
+    {
+      "number": "03",
+      "title": "Built, then forgotten",
+      "text": "Many agencies host a template for a year and vanish. You deserve real support after launch."
+    }
+  ]
+}
