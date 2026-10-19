@@ -1,0 +1,97 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// PROCESS SECTION  (mobile first)
+// Phone: steps stacked  |  sm: 2 columns  |  lg: 4 columns in one row.
+// Grey page background (alternates with the white Services section above).
+// Hover on a step = soft blue background, the top line grows and turns green,
+// the number turns green. Colour changes only, nothing shifts.
+// =============================================================================
+
+.processSection {
+  @include section-y;
+  background: color(page);
+}
+
+.processContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: space(12);
+  }
+}
+
+.processList {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: space(4);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: space(6);
+  }
+}
+
+// One step. The negative top margin + padding lets the hover background
+// extend around the text without moving the text itself.
+.processStep {
+  @include flex-col(space(2));
+  padding: space(4);
+  margin-inline: calc(-1 * #{space(4)});
+  border-radius: radius(md);
+  transition: background-color 0.45s var(--ease-out);
+
+  @include on-hover {
+    background: color(accent-soft);
+
+    .processStepLine {
+      width: 100%;
+      background: color(success);
+    }
+
+    .processStepNumber {
+      color: color(success);
+    }
+  }
+}
+
+// The line starts as a short blue dash and grows to the full width on hover.
+.processStepLine {
+  display: block;
+  width: rem(56);
+  height: rem(3);
+  margin-bottom: space(3);
+  border-radius: rem(3);
+  background: color(accent);
+  transition:
+    width 0.7s var(--ease-out),
+    background-color 0.5s var(--ease-out);
+}
+
+.processStepNumber {
+  @include text(numeral);
+  color: color(accent);
+  transition: color 0.4s var(--ease-out);
+}
+
+.processStepTitle {
+  @include text(title-md);
+}
+
+.processStepText {
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .processStep,
+  .processStepLine,
+  .processStepNumber {
+    transition: none;
+  }
+}

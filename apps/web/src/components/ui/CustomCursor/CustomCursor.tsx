@@ -71,7 +71,7 @@ export default function CustomCursor() {
       }
 
       // The dot is glued to the mouse.
-      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      dot.style.translate = `${mouseX}px ${mouseY}px`;
 
       // Is the mouse over something clickable? The stylesheet reacts to this attribute.
       const isInteractive = (event.target as Element | null)?.closest?.(INTERACTIVE_SELECTOR);
@@ -109,7 +109,7 @@ export default function CustomCursor() {
       const speed = prefersReducedMotion ? 1 : RING_FOLLOW_SPEED;
       ringX += (mouseX - ringX) * speed;
       ringY += (mouseY - ringY) * speed;
-      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+      ring.style.translate = `${ringX}px ${ringY}px`;
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);

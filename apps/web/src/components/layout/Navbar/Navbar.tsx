@@ -1,7 +1,8 @@
-import { Menu, Moon } from "lucide-react";
+import { Menu } from "lucide-react";
 import { getNav, getWhatsAppUrl } from "@/lib/content";
 import Logo from "@/components/ui/Logo/Logo";
 import MorphButton from "@/components/ui/MorphButton/MorphButton";
+import ThemeToggle from "@/components/ui/ThemeToggle/ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import NavLinks from "./NavLinks";
 import styles from "./Navbar.module.scss";
@@ -14,7 +15,8 @@ type NavbarProps = {
 // The top bar. It is a SERVER component that assembles smaller parts:
 //   Logo | NavLinks (client: sliding underline) | theme button
 //        | LanguageSwitcher (client: popup) | MorphButton (CSS) | menu button
-// The theme toggle and the mobile menu button do nothing yet.
+// The theme toggle works (light/dark, saved in localStorage); the mobile menu
+// button does nothing yet.
 //
 // MOBILE FIRST: on a phone we show  [logo] ........ [moon] [menu]
 //               from the lg breakpoint we ALSO show the links, language, CTA.
@@ -32,9 +34,7 @@ export default function Navbar({ currentPath = "/" }: NavbarProps) {
         </nav>
 
         <div className={styles.navbarActions}>
-          <button type="button" className={styles.navbarIconButton} aria-label={labels.toggleTheme}>
-            <Moon size={18} aria-hidden="true" />
-          </button>
+          <ThemeToggle label={labels.toggleTheme} />
 
           <div className={styles.navbarLanguageWrapper}>
             <LanguageSwitcher languages={languages} buttonLabel={labels.chooseLanguage} />

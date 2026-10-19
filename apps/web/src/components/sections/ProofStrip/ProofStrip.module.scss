@@ -1,0 +1,77 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// PROOF STRIP  (mobile first)
+// Phone: 1 column | sm: 2 columns | lg: 4 in a row. One white card on the page
+// background. Hover on a promise: its tick turns into a filled blue circle.
+// =============================================================================
+
+.proofStripSection {
+  padding-block: space(2) space(12);
+  background: color(page);
+}
+
+// Page container (max 1200px + side padding) around the card.
+.proofStripContent {
+  @include container;
+}
+
+.proofStripCard {
+  @include reset-list;
+  @include card(space(6));
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: space(6);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, 1fr);
+    padding: space(6) space(8);
+  }
+}
+
+.proofStripItem {
+  @include flex(row, flex-start, center, space(3));
+
+  @include on-hover {
+    .proofStripIcon {
+      background: color(accent);
+      color: color(on-accent);
+    }
+  }
+}
+
+.proofStripIcon {
+  @include flex-center;
+  flex: none;
+  width: rem(36);
+  height: rem(36);
+  border-radius: 50%;
+  background: color(accent-soft);
+  color: color(accent);
+  transition:
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+}
+
+.proofStripText {
+  @include flex-col(rem(2));
+}
+
+.proofStripTitle {
+  @include text(label);
+}
+
+.proofStripDetail {
+  @include text(small);
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .proofStripIcon {
+    transition: none;
+  }
+}

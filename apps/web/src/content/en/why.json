@@ -1,0 +1,97 @@
+{
+  "eyebrow": "Why Altio",
+  "title": "An agency team, not a template shop.",
+  "text": "We are a team of full-stack engineers and designers who treat every site as a product, from the first design to the support that follows.",
+  "stats": [
+    {
+      "value": "Team",
+      "label": "of engineers"
+    },
+    {
+      "value": "48h",
+      "label": "to a free design"
+    },
+    {
+      "value": "24/7",
+      "label": "answers"
+    }
+  ],
+  "cards": [
+    {
+      "icon": "code",
+      "title": "Full-stack engineering",
+      "text": "Web, mobile and automation under one roof, built with modern tools and clean code."
+    },
+    {
+      "icon": "layers",
+      "title": "Design first",
+      "text": "A custom design in Figma before any code, so you approve exactly what you will get."
+    },
+    {
+      "icon": "workflow",
+      "title": "A clear process",
+      "text": "Defined phases, a tracked project board and a written quote. No surprises."
+    },
+    {
+      "icon": "message",
+      "title": "Always reachable",
+      "text": "Answers on WhatsApp around the clock, and real support after launch."
+    }
+  ],
+  "stackLabel": "Our stack",
+  "stack": [
+    {
+      "name": "Node.js",
+      "mostUsed": true
+    },
+    {
+      "name": "Kotlin",
+      "mostUsed": false
+    },
+    {
+      "name": "React",
+      "mostUsed": true
+    },
+    {
+      "name": "WordPress",
+      "mostUsed": true
+    },
+    {
+      "name": "SQL",
+      "mostUsed": false
+    },
+    {
+      "name": "Spring Boot",
+      "mostUsed": false
+    },
+    {
+      "name": "Next.js",
+      "mostUsed": false
+    },
+    {
+      "name": "C#",
+      "mostUsed": false
+    },
+    {
+      "name": "Figma",
+      "mostUsed": false
+    },
+    {
+      "name": "Java",
+      "mostUsed": false
+    },
+    {
+      "name": ".NET",
+      "mostUsed": true
+    },
+    {
+      "name": "NoSQL",
+      "mostUsed": false
+    },
+    {
+      "name": "TypeScript",
+      "mostUsed": false
+    }
+  ],
+  "mostUsedTip": "Most used stack"
+}

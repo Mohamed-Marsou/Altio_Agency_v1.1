@@ -1,0 +1,152 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// SERVICES SECTION  (mobile first)
+// Phone: cards stacked  |  sm: 2 columns  |  lg: 4 columns in one row.
+// White background (alternates with the grey Audiences section above it).
+// Hover on a card = colour change + the arrow slides, no layout movement.
+// =============================================================================
+
+.servicesSection {
+  @include section-y;
+  background: color(surface);
+}
+
+.servicesContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: space(12);
+  }
+}
+
+// Intro block + accent line (the line grows and turns green on hover).
+.servicesIntro {
+  @include flex-col(space(8), flex-start);
+
+  @include on-hover {
+    .servicesAccentLine {
+      width: rem(240);
+      background: color(success);
+    }
+  }
+}
+
+.servicesAccentLine {
+  width: rem(56);
+  height: rem(3);
+  border-radius: rem(3);
+  background: color(accent);
+  transition:
+    width 0.7s var(--ease-out),
+    background-color 0.5s var(--ease-out);
+}
+
+.servicesList {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: space(4);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: space(6);
+  }
+}
+
+.servicesItem {
+  display: flex;
+}
+
+// The whole card is one link. Equal heights: the "Learn more" row is pushed to
+// the bottom with margin-top: auto.
+.servicesCard {
+  @include flex-col(space(3));
+  @include focus-ring;
+  flex: 1;
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: radius(card);
+  background: color(page);
+  color: color(text);
+  text-decoration: none;
+  transition:
+    background-color 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+
+  // Hover: soft blue card + blue border, icon tile fills with the accent,
+  // title turns accent, arrow slides right.
+  @include on-hover {
+    background: color(accent-soft);
+    border-color: color(accent-light);
+
+    .servicesCardIcon {
+      background: color(accent);
+      color: color(on-accent);
+    }
+
+    .servicesCardTitle {
+      color: color(accent);
+    }
+
+    .servicesCardArrow {
+      transform: translateX(#{rem(5)});
+    }
+  }
+}
+
+.servicesCardIcon {
+  @include flex-center;
+  width: rem(48);
+  height: rem(48);
+  margin-bottom: space(2);
+  border-radius: radius(md);
+  background: color(accent-soft);
+  color: color(accent);
+  transition:
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+
+  svg {
+    width: rem(22);
+    height: rem(22);
+  }
+}
+
+.servicesCardTitle {
+  @include text(title-md);
+  transition: color 0.4s var(--ease-out);
+}
+
+.servicesCardText {
+  color: color(muted);
+}
+
+.servicesCardLink {
+  @include flex(row, flex-start, center, space(2));
+  @include text(label);
+  margin-top: auto;
+  padding-top: space(4);
+  color: color(accent);
+}
+
+.servicesCardArrow {
+  width: rem(16);
+  height: rem(16);
+  transition: transform 0.4s var(--ease-out);
+}
+
+@include reduced-motion {
+  .servicesAccentLine,
+  .servicesCard,
+  .servicesCardIcon,
+  .servicesCardTitle,
+  .servicesCardArrow {
+    transition: none;
+  }
+}

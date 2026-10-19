@@ -1,0 +1,114 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// FOOTER  (mobile first)
+// Phone: brand block, then Services + Company side by side, then Contact.
+// lg: brand block wide on the left, three link columns on the right.
+// Links change colour on hover (colour only, nothing moves).
+// =============================================================================
+
+.footerRoot {
+  border-top: 1px solid color(border);
+  background: color(page);
+}
+
+.footerContent {
+  @include container;
+  @include flex-col(space(12));
+  padding-block: space(12) space(8);
+}
+
+.footerTop {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: space(8) space(6);
+
+  @include mq(lg) {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: space(8);
+  }
+}
+
+// The brand block takes the full row on phones.
+.footerBrand {
+  @include flex-col(space(6), flex-start);
+  grid-column: 1 / -1;
+
+  @include mq(lg) {
+    grid-column: auto;
+    max-width: rem(340);
+  }
+}
+
+.footerDescription {
+  @include text(small);
+  color: color(muted);
+}
+
+.footerColumn {
+  @include flex-col(space(4));
+
+  // On phones the Contact column takes the full row under the other two.
+  &:last-child {
+    grid-column: 1 / -1;
+
+    @include mq(lg) {
+      grid-column: auto;
+    }
+  }
+}
+
+.footerColumnTitle {
+  @include text(eyebrow);
+  color: color(text);
+}
+
+.footerLinks {
+  @include reset-list;
+  @include flex-col(space(3));
+}
+
+.footerText {
+  @include text(small);
+  color: color(muted);
+}
+
+.footerLink {
+  @include text(small);
+  color: color(muted);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out);
+
+  @include on-hover {
+    color: color(accent);
+  }
+}
+
+// Copyright on the left, legal links on the right (stacked on phones).
+.footerBottom {
+  @include flex-col(space(4));
+  padding-top: space(6);
+  border-top: 1px solid color(border);
+
+  @include mq(sm) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footerCopyright {
+  @include text(small);
+  color: color(muted);
+}
+
+.footerLegal {
+  @include reset-list;
+  @include flex(row, flex-start, center, space(6));
+}
+
+@include reduced-motion {
+  .footerLink {
+    transition: none;
+  }
+}

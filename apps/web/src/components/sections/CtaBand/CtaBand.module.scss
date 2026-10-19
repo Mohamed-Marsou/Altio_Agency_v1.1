@@ -1,0 +1,55 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// CTA BAND  (mobile first)
+// A rounded accent-coloured band. Phone: text above, buttons below (full width).
+// lg: text on the left, the two buttons stacked on the right.
+// Text colour is "on-accent" so it stays readable in dark mode too.
+// =============================================================================
+
+.ctaSection {
+  @include section-y;
+  background: color(surface);
+}
+
+.ctaContent {
+  @include container;
+}
+
+.ctaBand {
+  @include flex-col(space(8));
+  padding: space(8) space(6);
+  border-radius: radius(card);
+  background: color(accent);
+  color: color(on-accent);
+
+  @include mq(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: space(12);
+    padding: space(16);
+  }
+}
+
+.ctaText {
+  @include flex-col(space(3));
+}
+
+.ctaTitle {
+  @include text(display-2);
+}
+
+.ctaLead {
+  @include text(lead);
+  color: color-mix(in srgb, #{color(on-accent)} 88%, transparent);
+}
+
+.ctaButtons {
+  @include flex-col(space(3));
+
+  @include mq(lg) {
+    flex: none;
+    width: rem(280);
+  }
+}

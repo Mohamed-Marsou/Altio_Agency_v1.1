@@ -59,6 +59,25 @@ export default function AudienceCompare({ data }: AudienceCompareProps) {
 
   return (
     <div ref={rootRef} className={styles.audienceCompare}>
+      {/* Phones only: a simple two-way switch replaces the two big cards.
+          It drives the same state, so the chart below reacts exactly the same. */}
+      <div className={styles.audienceSwitch} role="group" aria-label={data.optionsLabel}>
+        {data.options.map((option) => (
+          <button
+            key={option.key}
+            type="button"
+            className={clsx(
+              styles.audienceSwitchButton,
+              option.key === activeKey && styles.audienceSwitchButtonIsSelected,
+            )}
+            aria-pressed={option.key === activeKey}
+            onClick={() => select(option.key)}
+          >
+            {option.title}
+          </button>
+        ))}
+      </div>
+
       <div className={styles.audienceCompareOptions} role="group" aria-label={data.optionsLabel}>
         {data.options.map((option) => {
           const isSelected = option.key === activeKey;

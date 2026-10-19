@@ -1,0 +1,154 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// WORK SECTION  (mobile first)
+// Phone: 1 card per row  |  sm and up: 2 per row (4 cards = 2 x 2).
+// Hover on a card, two animations at once:
+//   1. the whole card pops up (lifts and gets a soft shadow);
+//   2. a blue outline draws itself around the preview image from the top-left,
+//      left to right, clockwise, until the frame is closed (progress-bar style).
+// =============================================================================
+
+.workSection {
+  @include section-y;
+  background: color(surface);
+}
+
+.workContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: space(12);
+  }
+}
+
+// Heading on the left, "See all work" button on the right (stacked on phones).
+.workHeader {
+  @include flex-col(space(6), flex-start);
+
+  @include mq(md) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.workList {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: space(8) space(6);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.workItem {
+  display: flex;
+}
+
+.workCard {
+  @include flex-col(space(2));
+  @include focus-ring;
+  flex: 1;
+  color: color(text);
+  text-decoration: none;
+  transition:
+    transform 0.5s var(--ease-out),
+    filter 0.5s var(--ease-out);
+
+  // Pop-up: lift + a soft shadow that follows the card's shape.
+  @include on-hover {
+    transform: translateY(#{rem(-8)});
+    filter: drop-shadow(0 #{rem(18)} #{rem(24)} color-mix(in srgb, #{color(accent)} 14%, transparent));
+
+    .workCardOutlinePath {
+      stroke-dashoffset: 0;
+    }
+
+    .workCardTitle {
+      color: color(accent);
+    }
+  }
+}
+
+// The preview frame. The outline SVG sits on top and never blocks clicks.
+.workCardPreview {
+  position: relative;
+  display: block;
+  margin-bottom: space(2);
+  aspect-ratio: 16 / 10;
+  border-radius: radius(card);
+  background: linear-gradient(135deg, color(surface-2), color(accent-soft));
+  overflow: hidden;
+}
+
+.workCardPlaceholder {
+  @include flex-col(space(2), center);
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  color: color(muted);
+  font-size: rem(13);
+}
+
+// ---- The progress-bar outline ---------------------------------------------------------------
+// A rectangle drawn as a stroke, inset by half the line width so it stays fully
+// inside the frame. Its corner radius equals the frame's. The stroke starts
+// hidden (dashoffset 1) and "draws" when the offset goes to 0. It begins at the
+// top-left and runs clockwise: top edge, right edge, bottom edge, left edge.
+.workCardOutline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.workCardOutlinePath {
+  x: 1.5px;
+  y: 1.5px;
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+  rx: calc(#{radius(card)} - 1.5px);
+  fill: none;
+  // Blue, a little faded, as asked.
+  stroke: color-mix(in srgb, #{color(accent)} 65%, transparent);
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1s var(--ease-out);
+}
+
+.workCardTag {
+  @include pill;
+  align-self: flex-start;
+  font-size: rem(12);
+}
+
+.workCardTitle {
+  @include text(title-md);
+  transition: color 0.4s var(--ease-out);
+}
+
+.workCardMeta {
+  @include text(small);
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .workCard,
+  .workCardOutlinePath,
+  .workCardTitle {
+    transition: none;
+  }
+
+  // No travelling animation, but the finished frame still shows on hover.
+  .workCard:hover {
+    transform: none;
+    filter: none;
+  }
+}

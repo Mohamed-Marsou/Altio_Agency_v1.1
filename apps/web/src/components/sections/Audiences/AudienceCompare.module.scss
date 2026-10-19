@@ -7,7 +7,11 @@
 // =============================================================================
 
 .audienceCompare {
-  @include flex-col(space(8));
+  @include flex-col(space(3));
+
+  @include mq(md) {
+    gap: space(8);
+  }
 
   @include mq(lg) {
     display: grid;
@@ -17,9 +21,48 @@
   }
 }
 
+// ---- Phones only: the two-way switch --------------------------------------------------------
+// A pill-shaped segmented control. Hidden from md up, where the big cards are used.
+.audienceSwitch {
+  @include flex(row, stretch, stretch);
+  padding: space(1);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.audienceSwitchButton {
+  @include reset-button;
+  @include focus-ring;
+  @include text(label);
+  flex: 1;
+  padding: space(3) space(2);
+  border-radius: radius(pill);
+  color: color(muted);
+  text-align: center;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out);
+}
+
+.audienceSwitchButtonIsSelected {
+  background: color(accent);
+  color: color(on-accent);
+}
+
 // Left column: the two cards and the note, stacked.
 .audienceCompareOptions {
   @include flex-col(space(4));
+
+  // Phones: this wrapper disappears, so its children (selected card, note) join
+  // the main column and the note can be ordered AFTER the chart panel.
+  @include mq-down(md) {
+    display: contents;
+  }
 }
 
 // ---- One audience card -----------------------------------------------------------------
@@ -41,6 +84,21 @@
   opacity: 1;
 }
 
+// Phones: the switch above chooses, so only the selected card is shown, without
+// its big header, as a quiet card with the value sentence and the chips.
+@include mq-down(md) {
+  .audienceOption {
+    display: none;
+    opacity: 1;
+  }
+
+  .audienceOptionIsSelected {
+    display: block;
+    border-color: color(border);
+    box-shadow: none;
+  }
+}
+
 // The clickable header: [icon] [title + audience] [arrow]
 .audienceOptionHeader {
   @include reset-button;
@@ -50,6 +108,11 @@
   padding: space(6);
   border-radius: radius(card);
   text-align: start;
+
+  // Phones: the switch above replaces this header.
+  @include mq-down(md) {
+    display: none;
+  }
 }
 
 .audienceOptionIconTile {
@@ -131,6 +194,10 @@
 .audienceOptionIsSelected .audienceOptionBodyInner {
   overflow: visible;
   padding-bottom: space(6);
+
+  @include mq-down(md) {
+    padding: space(4);
+  }
 }
 
 .audienceOptionValue {
@@ -140,6 +207,11 @@
 .audienceOptionOutcomes {
   @include reset-list;
   @include flex-col(space(2));
+
+  // Phones: the value sentence and the chips are enough.
+  @include mq-down(md) {
+    display: none;
+  }
 }
 
 .audienceOptionOutcome {
@@ -175,6 +247,17 @@
     flex: none;
     margin-top: rem(2);
     color: color(accent);
+  }
+
+  // Phones: just two quiet lines of text at the very end of the section.
+  @include mq-down(md) {
+    order: 1;
+    padding: space(1) space(1) 0;
+    background: none;
+
+    svg {
+      display: none;
+    }
   }
 }
 

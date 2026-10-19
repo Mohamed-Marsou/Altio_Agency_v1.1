@@ -3,8 +3,11 @@
 // =============================================================================
 // CUSTOM CURSOR  (only visible on devices with a mouse; the component never
 // turns on for touch screens)
-// JS moves each element with `transform: translate3d(...)`. The hover and
-// press effects below use the separate `scale` property, so the two never fight.
+// JS moves each element with the `translate` property (NOT `transform`). The hover and
+// press effects below use the separate `scale` property. Order matters: CSS applies
+// translate first and scale after, so scaling happens around the element centre and
+// never multiplies the position (using `transform` for the move made the cursor
+// fly to a corner on hover).
 // =============================================================================
 
 // Shared base: fixed to the screen, above everything, never blocks clicks,

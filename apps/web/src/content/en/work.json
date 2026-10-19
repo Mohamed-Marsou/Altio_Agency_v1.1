@@ -1,0 +1,38 @@
+{
+  "eyebrow": "Selected work",
+  "title": "Real projects, built to be used.",
+  "linkLabel": "See all work",
+  "linkHref": "/work/",
+  "previewLabel": "Project preview",
+  "items": [
+    {
+      "id": "real-estate",
+      "tag": "Real estate",
+      "title": "Real estate agency website",
+      "meta": "Add stack · year · result",
+      "href": "/work/#real-estate"
+    },
+    {
+      "id": "clothing-shop",
+      "tag": "E-commerce",
+      "title": "Clothing shop",
+      "meta": "Add stack · year · result",
+      "href": "/work/#clothing-shop"
+    },
+    {
+      "id": "clinic",
+      "tag": "Healthcare",
+      "title": "Clinic booking website",
+      "meta": "Add stack · year · result",
+      "href": "/work/#clinic"
+    },
+    {
+      "id": "your-project",
+      "tag": "Your project",
+      "title": "Your business could be next",
+      "meta": "Start with a free design",
+      "href": "/free-design/",
+      "isCta": true
+    }
+  ]
+}

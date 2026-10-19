@@ -1,0 +1,71 @@
+{
+  "eyebrow": "Packs",
+  "title": "Four ways to work with us.",
+  "subtitle": "Every pack starts with a free design. We share pricing after we understand your business.",
+  "ctaLabel": "Let’s talk",
+  "note": "After delivery, keep it simple: we close the project and help task by task, or move you to the Managed pack.",
+  "items": [
+    {
+      "id": "launch",
+      "number": "Pack 01",
+      "name": "Launch",
+      "tagline": "Your business online, properly.",
+      "featured": false,
+      "message": "Hi Altio, I would like to talk about the Launch pack.",
+      "features": [
+        "5 custom pages",
+        "SEO foundations",
+        "WhatsApp integration",
+        "3 free changes after launch",
+        "Domain setup included"
+      ]
+    },
+    {
+      "id": "commerce",
+      "number": "Pack 02",
+      "name": "Commerce",
+      "tagline": "Sell online with confidence.",
+      "featured": false,
+      "message": "Hi Altio, I would like to talk about the Commerce pack.",
+      "features": [
+        "Online store and catalogue",
+        "Cart and checkout",
+        "Orders and product management",
+        "SEO foundations",
+        "Mobile-first build"
+      ]
+    },
+    {
+      "id": "custom",
+      "number": "Pack 03",
+      "name": "Custom",
+      "tagline": "Built around how you work.",
+      "featured": true,
+      "message": "Hi Altio, I would like to talk about the Custom pack.",
+      "features": [
+        "Web app or platform",
+        "Admin panel and dashboard",
+        "Custom integrations",
+        "Scoped together with you",
+        "Dedicated project plan"
+      ]
+    },
+    {
+      "id": "managed",
+      "number": "Pack 04",
+      "name": "Managed",
+      "tagline": "We run it, you grow.",
+      "featured": false,
+      "message": "Hi Altio, I would like to talk about the Managed pack.",
+      "features": [
+        "Hosting, updates and fixes handled",
+        "Monthly improvements",
+        "Priority answers, 24/7",
+        "You get access, we handle the rest",
+        "No technical work on your side"
+      ]
+    }
+  ],
+  "badge": "Most used pack",
+  "hoverLabel": "Send us a message"
+}

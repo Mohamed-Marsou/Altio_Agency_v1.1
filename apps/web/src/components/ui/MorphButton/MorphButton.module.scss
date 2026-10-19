@@ -30,6 +30,22 @@
   }
 }
 
+// Colour variants (the green wipe on hover is the same for all).
+.morphButtonLight {
+  background: color(surface);
+  color: color(text);
+}
+
+.morphButtonOutline {
+  background: color(surface);
+  border-color: color(border);
+  color: color(text);
+}
+
+.morphButtonFullWidth {
+  width: 100%;
+}
+
 .morphButtonSizeMedium {
   @include button-size(medium);
 }

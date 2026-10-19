@@ -96,6 +96,9 @@
 // Switched by putting data-theme="dark" on <html>.
 // -----------------------------------------------------------------------------
 [data-theme="dark"] {
+  // Tells the browser to draw its own parts (scrollbars, form controls) dark too.
+  color-scheme: dark;
+
   --color-page: #0b0d12;
   --color-surface: #12151c;
   --color-surface-2: #1a1f2a;
