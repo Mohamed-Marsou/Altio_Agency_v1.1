@@ -1,0 +1,13 @@
+@use "abstracts" as *;
+
+// Shell of the Work list page: the container that holds the filters, the
+// featured project and the grid.
+.workPageSection {
+  padding-block: 0 var(--section-y);
+  background: color(page);
+}
+
+.workPageContent {
+  @include container;
+  @include flex-col(space(12));
+}

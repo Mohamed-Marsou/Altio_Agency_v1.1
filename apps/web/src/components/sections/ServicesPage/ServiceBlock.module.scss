@@ -1,0 +1,154 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// SERVICE BLOCK  (mobile first)
+// Phone: text, then the illustration (one column).
+// lg:    two columns; every second block is mirrored (picture on the left) and
+//        sits on the white band, so the page alternates grey / white.
+// scroll-margin-top keeps the heading clear of the sticky navbar when a Home
+// card links straight to #custom etc.
+// =============================================================================
+
+.serviceBlock {
+  @include section-y;
+  scroll-margin-top: var(--navbar-height);
+  background: color(page);
+}
+
+.serviceBlockIsMirrored {
+  background: color(surface);
+}
+
+.serviceBlockContent {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(12);
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: rem(72);
+  }
+}
+
+// Mirrored: picture first on desktop (the HTML order stays text first, which
+// is the right reading order on phones and for screen readers).
+.serviceBlockIsMirrored .serviceBlockArt {
+  @include mq(lg) {
+    order: -1;
+  }
+}
+
+.serviceBlockText {
+  @include flex-col(space(4), flex-start);
+}
+
+.serviceBlockMeta {
+  @include flex(row, flex-start, center, space(3), wrap);
+}
+
+.serviceBlockNumber {
+  @include text(label);
+  color: color(accent);
+  font-family: var(--font-display-stack);
+}
+
+.serviceBlockPack {
+  padding: rem(4) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  color: color(muted);
+  font-size: rem(11);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.serviceBlockMostUsed {
+  padding: rem(4) space(3);
+  border-radius: radius(pill);
+  background: color(success);
+  color: color(white);
+  font-size: rem(11);
+  font-weight: 600;
+}
+
+.serviceBlockTitle {
+  @include text(display-2);
+}
+
+.serviceBlockLead {
+  @include text(lead);
+  max-width: rem(540);
+  color: color(muted);
+}
+
+.serviceBlockFeatures {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(3) space(6);
+  margin-block: space(2);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.serviceBlockFeature {
+  @include flex(row, flex-start, flex-start, space(3));
+  @include text(small);
+  color: color(text);
+}
+
+.serviceBlockTick {
+  @include flex-center;
+  flex: none;
+  width: rem(18);
+  height: rem(18);
+  margin-top: rem(3);
+  border-radius: 50%;
+  background: color(accent-soft);
+  color: color(accent);
+}
+
+.serviceBlockFit {
+  @include text(small);
+  padding: space(4) rem(18);
+  border-radius: rem(16);
+  background: color(surface-2);
+  color: color(muted);
+
+  b {
+    color: color(text);
+  }
+}
+
+.serviceBlockArt {
+  min-width: 0;
+  // Room for the floating cards that overhang the picture.
+  padding-block: space(2);
+}
+
+// The CTA stands out with a clear accent border (2px). Doubled selector so it
+// beats the button's own 1px border. On hover the border follows the green wipe.
+.serviceBlockCta.serviceBlockCta {
+  border: 2px solid color(accent);
+  box-shadow: 0 #{rem(6)} #{rem(18)} #{rem(-8)} color-mix(in srgb, #{color(accent)} 45%, transparent);
+  transition:
+    border-color 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+
+  @include on-hover {
+    border-color: color(whatsapp);
+    box-shadow: 0 #{rem(6)} #{rem(18)} #{rem(-8)} color-mix(in srgb, #{color(whatsapp)} 55%, transparent);
+  }
+}
+
+@include reduced-motion {
+  .serviceBlockCta.serviceBlockCta {
+    transition: none;
+  }
+}

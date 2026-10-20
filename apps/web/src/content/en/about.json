@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "eyebrow": "About",
+    "title": "A small team that",
+    "accent": "answers when you call.",
+    "lead": "We are an agency of full-stack engineers and designers in Tangier. We design first, build properly and stay reachable after launch.",
+    "cta": {
+      "label": "Chat on WhatsApp",
+      "hoverLabel": "Send us a message",
+      "message": "Hi Altio, I would like to know more about your team."
+    },
+    "nodes": [
+      { "letter": "D", "title": "Design", "text": "Figma, before any code" },
+      { "letter": "E", "title": "Engineering", "text": "Clean, fast, custom code" },
+      { "letter": "S", "title": "Support", "text": "Real people after launch" }
+    ],
+    "pins": ["Based in Tangier", "Answers on WhatsApp, 24/7"],
+    "orbitLabel": "Design, engineering and support around the Altio mark"
+  },
+  "numbers": [
+    { "value": "48 to 72 h", "label": "to a free design" },
+    { "value": "3", "label": "free changes after launch" },
+    { "value": "14 days", "label": "live before the final payment" },
+    { "value": "24/7", "label": "answers on WhatsApp" }
+  ],
+  "story": {
+    "eyebrow": "Our story",
+    "title": "Why we do it this way",
+    "big": "Most local websites look like everyone else’s and are forgotten after launch.",
+    "bigAccent": "We wanted to build the opposite.",
+    "paragraphs": [
+      "So we start with the design, free, so you see the result before you spend anything. Then we build it with clean custom code, set up search and tracking, and stay close once it is live. No templates, no page builders, no disappearing act.",
+      "We are a team, not a one-person shop, which means someone always answers and the work never depends on a single person."
+    ]
+  },
+  "principles": {
+    "eyebrow": "What we believe",
+    "title": "Four rules we do not break",
+    "items": [
+      { "title": "Design first", "text": "You approve a custom design before any code or payment." },
+      { "title": "Plain talk", "text": "A written quote, clear phases and no surprises or jargon." },
+      { "title": "Built to last", "text": "Fast, accessible, clean code you are not locked out of." },
+      { "title": "Always reachable", "text": "Answers on WhatsApp and real support after launch." }
+    ]
+  },
+  "roles": {
+    "eyebrow": "How the team works",
+    "title": "Three roles, one team behind every project",
+    "items": [
+      { "tag": "Design", "title": "Shapes the experience", "bars": [50, 80, 60, 95], "points": ["Your free design in Figma", "Desktop, mobile and dark mode", "Brand colours and type"] },
+      { "tag": "Engineering", "title": "Builds it properly", "bars": [90, 55, 75, 40], "points": ["Custom sites, stores and web apps", "SEO and tracking set up", "Admin panels and integrations"] },
+      { "tag": "Support", "title": "Looks after it", "bars": [70, 70, 70, 70], "points": ["Answers on WhatsApp, 24/7", "Free changes after launch", "Hosting and monthly care"] }
+    ],
+    "stack": ["Next.js", "React", "Node.js", "WordPress", ".NET", "Spring Boot", "Kotlin", "TypeScript", "SQL", "NoSQL", "Figma"]
+  },
+  "place": {
+    "eyebrow": "Where we are",
+    "title": "In Tangier, working with businesses across Morocco",
+    "text": "Come by, call or message. Most clients never need to travel: we work over WhatsApp and video calls.",
+    "hours": [
+      { "day": "Monday to Friday", "time": "09:00 to 18:00" },
+      { "day": "Saturday", "time": "10:00 to 14:00" },
+      { "day": "WhatsApp", "time": "24/7" }
+    ],
+    "mapLabel": "Altio, Tangier"
+  }
+}

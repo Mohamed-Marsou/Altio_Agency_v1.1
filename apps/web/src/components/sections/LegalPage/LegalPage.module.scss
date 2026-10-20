@@ -1,0 +1,234 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// LEGAL PAGE  (mobile first)
+// Phone: one column (the contents list is hidden). lg: contents on the left
+// (200px), the text on the right (max 720px). Calm, high-contrast reading.
+// =============================================================================
+
+.legalHeader {
+  padding-block: space(12) space(8);
+  background: color(page);
+}
+
+.legalHeaderContent {
+  @include container;
+  @include flex-col(space(4), flex-start);
+}
+
+.legalDraft {
+  padding: rem(6) space(4);
+  border-radius: radius(pill);
+  background: color-mix(in srgb, #{color(warning)} 16%, #{color(surface)});
+  color: color(text);
+  font-size: rem(12);
+  font-weight: 600;
+}
+
+.legalTitle {
+  @include text(display-1);
+}
+
+.legalUpdated {
+  margin-top: rem(-8);
+  color: color(muted);
+  font-size: rem(14);
+}
+
+.legalShort {
+  @include flex-col(space(3));
+  max-width: rem(880);
+  padding: rem(26) space(6);
+  border-radius: rem(24);
+  background: color(accent-soft);
+
+  p {
+    color: color(accent);
+    font-family: var(--font-display-stack);
+    font-size: rem(18);
+    font-weight: 800;
+  }
+
+  ul {
+    @include reset-list;
+    @include flex-col(space(3));
+  }
+
+  li {
+    @include flex(row, flex-start, flex-start, space(3));
+
+    &::before {
+      content: "✓";
+      flex: none;
+      width: rem(22);
+      height: rem(22);
+      margin-top: rem(2);
+      border-radius: 50%;
+      background: color(accent);
+      color: color(on-accent);
+      font-size: rem(12);
+      font-weight: 700;
+      line-height: rem(22);
+      text-align: center;
+    }
+  }
+}
+
+// ---- Body --------------------------------------------------------------------------------------
+.legalBody {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  padding-block: space(8) var(--section-y);
+
+  @include mq(lg) {
+    grid-template-columns: rem(220) minmax(0, rem(720));
+    gap: space(16);
+    justify-content: center;
+    align-items: start;
+    max-width: none;
+  }
+}
+
+.legalToc {
+  display: none;
+
+  @include mq(lg) {
+    display: block;
+    align-self: stretch;
+  }
+}
+
+.legalDoc {
+  min-width: 0;
+}
+
+.legalSection {
+  scroll-margin-top: calc(var(--navbar-height) + #{space(6)});
+  margin-bottom: rem(40);
+  padding-bottom: rem(40);
+  border-bottom: 1px solid color(border);
+
+  h2 {
+    @include flex(row, flex-start, baseline, space(4));
+    @include text(display-3);
+    margin-bottom: space(4);
+
+    i {
+      min-width: rem(28);
+      color: color(accent);
+      font-size: rem(14);
+      font-style: normal;
+      font-weight: 800;
+    }
+  }
+
+  p,
+  li {
+    color: color-mix(in srgb, #{color(text)} 86%, #{color(muted)});
+    font-size: rem(16.5);
+    line-height: 1.75;
+  }
+
+  p + p,
+  p + ul,
+  ul + p {
+    margin-top: space(4);
+  }
+
+  ul {
+    @include flex-col(rem(6));
+    padding-left: rem(20);
+    margin-top: space(3);
+  }
+}
+
+.legalTable {
+  width: 100%;
+  margin-block: space(4);
+  border: 1px solid color(border);
+  border-collapse: collapse;
+  font-size: rem(14);
+
+  th {
+    padding: space(3) space(4);
+    background: color(surface-2);
+    color: color(muted);
+    font-size: rem(12);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: rem(14) space(4);
+    border-top: 1px solid color(border);
+    background: color(surface);
+  }
+}
+
+// The 30 / 30 / 40 payment bar.
+.legalPay {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: rem(6);
+  margin-block: space(4);
+
+  @include mq(sm) {
+    grid-template-columns: 3fr 3fr 4fr;
+  }
+
+  div {
+    @include flex-col(rem(4));
+    padding: rem(18);
+    border-radius: radius(md);
+    color: color(white);
+
+    &:nth-child(1) {
+      background: #1463ff;
+    }
+
+    &:nth-child(2) {
+      background: #0e49c7;
+    }
+
+    &:nth-child(3) {
+      background: #0a35b8;
+    }
+  }
+
+  b {
+    font-family: var(--font-display-stack);
+    font-size: rem(30);
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  span {
+    font-size: rem(13);
+    opacity: 0.9;
+  }
+}
+
+.legalCallout {
+  margin-top: space(4);
+  padding: rem(18) rem(22);
+  border-radius: rem(18);
+  background: color(surface-2);
+  font-size: rem(15);
+}
+
+.legalAsk {
+  @include flex-between(center, space(5));
+  flex-wrap: wrap;
+  padding: rem(24) rem(28);
+  border: 1px solid color(border);
+  border-radius: rem(22);
+  background: color(surface);
+
+  h3 {
+    @include text(heading);
+  }
+}

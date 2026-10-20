@@ -1,0 +1,148 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// MOBILE MENU  (phones and tablets; hidden from xl, where the link row shows)
+// The panel is fixed under the navbar and covers the rest of the screen.
+// Closed: invisible, slightly raised, not focusable (visibility: hidden).
+// Open: fades in and drops into place; the links then slide in one after the
+// other (--index sets each delay).
+// =============================================================================
+
+.mobileMenuButton {
+  @include icon-button;
+
+  @include mq(xl) {
+    display: none;
+  }
+}
+
+.mobileMenuPanel {
+  position: fixed;
+  inset: var(--navbar-height) 0 0;
+  z-index: z(sticky);
+  overflow-y: auto;
+  background: color(page);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(#{rem(-12)});
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.45s var(--ease-out),
+    visibility 0s linear 0.45s; // stays visible until the fade-out has finished
+
+  @include mq(xl) {
+    display: none;
+  }
+}
+
+.mobileMenuPanelIsOpen {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.mobileMenuContent {
+  @include container;
+  @include flex-col(space(8));
+  min-height: 100%;
+  padding-block: space(6) space(12);
+}
+
+.mobileMenuLinks {
+  @include reset-list;
+  @include flex-col(0);
+}
+
+.mobileMenuItem {
+  border-bottom: 1px solid color(border);
+}
+
+.mobileMenuLink {
+  @include flex-between;
+  @include focus-ring;
+  @include text(display-3);
+  padding-block: space(4);
+  color: color(text);
+  text-decoration: none;
+  transition: color 0.3s var(--ease-out);
+
+  svg {
+    color: color(accent-light);
+    transition:
+      transform 0.4s var(--ease-out),
+      color 0.3s var(--ease-out);
+  }
+
+  @include on-hover {
+    color: color(accent);
+
+    svg {
+      transform: translateX(#{rem(6)});
+      color: color(accent);
+    }
+  }
+}
+
+// The page you are on: accent colour and a small dot.
+.mobileMenuLinkIsActive {
+  color: color(accent);
+
+  svg {
+    color: color(accent);
+  }
+}
+
+.mobileMenuFooter {
+  @include flex-col(space(6));
+  margin-top: auto;
+}
+
+.mobileMenuLanguages {
+  @include reset-list;
+  @include flex-wrap-row(space(2));
+}
+
+.mobileMenuLanguage {
+  @include flex-center(space(2));
+  @include text(label);
+  padding: space(2) space(4) space(2) space(2);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  color: color(muted);
+}
+
+.mobileMenuLanguageIsCurrent {
+  border-color: color(accent);
+  color: color(text);
+}
+
+// ---- Entrance: the rows slide in one after another once the panel is open ----------------
+.mobileMenuPanelIsOpen {
+  .mobileMenuItem,
+  .mobileMenuFooter {
+    animation: mobileMenuSlideIn 0.55s var(--ease-out) backwards;
+    animation-delay: calc(var(--index) * 0.05s + 0.1s);
+  }
+}
+
+@keyframes mobileMenuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(#{rem(14)});
+  }
+}
+
+@include reduced-motion {
+  .mobileMenuPanel,
+  .mobileMenuLink,
+  .mobileMenuLink svg {
+    transition: none;
+  }
+
+  .mobileMenuPanelIsOpen .mobileMenuItem,
+  .mobileMenuPanelIsOpen .mobileMenuFooter {
+    animation: none;
+  }
+}

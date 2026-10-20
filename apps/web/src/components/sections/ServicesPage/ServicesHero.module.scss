@@ -1,0 +1,218 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// SERVICES HERO  (mobile first)
+// Phone: text, then the stack of layers below it (drawn smaller).
+// lg:    two columns, text left, stack right.
+// The stack: four cards laid flat and tilted (rotateX + rotateZ) with a gap
+// between them, so they read as a "stack seen from above". Each one bobs gently,
+// offset in time; on hover of the stack they spread apart a little more.
+// =============================================================================
+
+.servicesHero {
+  padding-block: space(12) space(8);
+  background: color(page);
+  overflow: hidden;
+
+  @include mq(lg) {
+    padding-block: rem(72) space(8);
+  }
+}
+
+.servicesHeroContent {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: space(16);
+  }
+}
+
+.servicesHeroText {
+  @include flex-col(space(6), flex-start);
+}
+
+.servicesHeroEyebrow {
+  @include text(eyebrow);
+  color: color(accent);
+}
+
+.servicesHeroTitle {
+  @include text(display-1);
+}
+
+.servicesHeroAccent {
+  color: color(accent);
+}
+
+.servicesHeroLead {
+  @include text(lead);
+  max-width: rem(540);
+  color: color(muted);
+}
+
+// ---- The stack ------------------------------------------------------------------------------------
+.servicesHeroStack {
+  position: relative;
+  height: rem(340);
+  perspective: rem(1400);
+
+  @include mq(lg) {
+    height: rem(470);
+  }
+
+  // Hover: the layers drift further apart (--spread grows).
+  --spread: 1;
+
+  @include on-hover {
+    --spread: 1.18;
+  }
+}
+
+.servicesHeroLayers {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.servicesHeroLayer {
+  @include flex-col(space(2));
+  justify-content: space-between;
+  position: absolute;
+  top: calc(var(--index) * #{rem(62)} * var(--spread));
+  left: 50%;
+  width: rem(250);
+  height: rem(112);
+  margin-left: rem(-135);
+  padding: space(4) rem(18);
+  border: 1px solid color(border);
+  border-radius: rem(18);
+  background: color(surface);
+  box-shadow: 0 #{rem(22)} #{rem(46)} #{rem(-18)} color-mix(in srgb, #{color(accent)} 38%, transparent);
+  transform: rotateX(58deg) rotateZ(-30deg);
+  transition: top 0.6s var(--ease-out);
+  animation: servicesHeroBob 6s ease-in-out infinite;
+  animation-delay: calc(var(--index) * -1.4s);
+
+  @include mq(lg) {
+    top: calc(var(--index) * #{rem(86)} * var(--spread));
+    width: rem(350);
+    height: rem(148);
+    margin-left: rem(-190);
+    padding: space(6) rem(22);
+  }
+
+  // The first layer is the accent one.
+  &:first-child {
+    border-color: transparent;
+    background: linear-gradient(135deg, color(accent), color-mix(in srgb, #{color(accent)} 70%, #{color(white)}));
+    color: color(white);
+
+    .servicesHeroLayerText {
+      color: color-mix(in srgb, #{color(white)} 80%, transparent);
+    }
+
+    .servicesHeroLayerBars i {
+      background: color-mix(in srgb, #{color(white)} 38%, transparent);
+
+      &:nth-child(2) {
+        background: color(white);
+      }
+    }
+  }
+}
+
+.servicesHeroLayerName {
+  @include text(heading);
+}
+
+.servicesHeroLayerBars {
+  display: flex;
+  gap: rem(6);
+
+  i {
+    flex: 1;
+    height: rem(8);
+    border-radius: rem(8);
+    background: color(accent-soft);
+
+    &:nth-child(2) {
+      flex: 2;
+      background: color(accent);
+    }
+  }
+}
+
+.servicesHeroLayerText {
+  color: color(muted);
+  font-size: rem(12);
+  font-weight: 500;
+}
+
+// ---- Little floating notes around the stack ----------------------------------------------
+.servicesHeroPin {
+  @include flex(row, flex-start, center, space(2));
+  position: absolute;
+  z-index: 2;
+  padding: rem(7) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  box-shadow: shadow(card);
+  font-size: rem(12);
+  font-weight: 600;
+  white-space: nowrap;
+  animation: servicesHeroBob 6s ease-in-out infinite;
+  animation-delay: calc(var(--pin-index) * -2s);
+
+  i {
+    width: rem(8);
+    height: rem(8);
+    border-radius: 50%;
+    background: color(success);
+  }
+
+  &:nth-of-type(1) {
+    top: 0;
+    left: 0;
+  }
+
+  &:nth-of-type(2) {
+    top: 52%;
+    right: 0;
+  }
+
+  &:nth-of-type(3) {
+    bottom: 0;
+    left: 6%;
+  }
+}
+
+@keyframes servicesHeroBob {
+  50% {
+    transform: translateY(#{rem(-8)});
+  }
+}
+
+// Layers keep their tilt while bobbing, so they need their own keyframes.
+.servicesHeroLayer {
+  animation-name: servicesHeroLayerBob;
+}
+
+@keyframes servicesHeroLayerBob {
+  50% {
+    transform: rotateX(58deg) rotateZ(-30deg) translateZ(#{rem(14)});
+  }
+}
+
+@include reduced-motion {
+  .servicesHeroLayer,
+  .servicesHeroPin {
+    animation: none;
+    transition: none;
+  }
+}

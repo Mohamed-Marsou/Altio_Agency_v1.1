@@ -1,0 +1,191 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// PROJECTS BROWSER  (filters, featured project, grid)  mobile first
+// Phone: chips wrap, featured is text then picture, grid is 1 column.
+// md:    grid has 2 columns   |  lg: featured is text left, picture right.
+// =============================================================================
+
+.projectsBrowserFilters {
+  @include flex-wrap-row(space(3));
+}
+
+.projectsBrowserChip {
+  @include reset-button;
+  @include focus-ring;
+  @include text(label);
+  padding: rem(9) rem(18);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  font-weight: 500;
+  transition:
+    background-color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out);
+
+  @include on-hover {
+    border-color: color(accent);
+  }
+}
+
+.projectsBrowserChipIsOn {
+  border-color: color(inverse);
+  background: color(inverse);
+  color: color(inverse-text);
+
+  @include on-hover {
+    border-color: color(inverse);
+  }
+}
+
+.projectsBrowserDivider {
+  width: 1px;
+  height: rem(26);
+  margin-inline: rem(6);
+  background: color(border);
+}
+
+// ---- Featured project ------------------------------------------------------------------
+.projectsBrowserFeatured {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: rem(30);
+  background: color(surface);
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: space(12);
+    padding: rem(32);
+  }
+}
+
+.projectsBrowserFeaturedText {
+  @include flex-col(space(4), flex-start);
+}
+
+.projectsBrowserFeaturedTag {
+  padding: rem(4) space(3);
+  border-radius: radius(pill);
+  background: var(--pv-soft);
+  color: var(--pv);
+  font-size: rem(12);
+  font-weight: 600;
+}
+
+.projectsBrowserFeaturedTitle {
+  @include text(display-2);
+}
+
+.projectsBrowserFeaturedLead {
+  @include text(lead);
+  color: color(muted);
+}
+
+.projectsBrowserStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: space(8);
+  margin: space(2) 0 0;
+
+  div {
+    @include flex-col(rem(2));
+  }
+
+  dt {
+    color: var(--pv);
+    font-family: var(--font-display-stack);
+    font-size: rem(22);
+    font-weight: 800;
+  }
+
+  dd {
+    margin: 0;
+    color: color(muted);
+    font-size: rem(13);
+  }
+}
+
+.projectsBrowserFeaturedActions {
+  @include flex(row, flex-start, center, space(4), wrap);
+  margin-top: space(2);
+}
+
+// The featured button uses the PROJECT's colour (not the site blue).
+.projectsBrowserFeaturedButton {
+  @include button-base;
+  @include button-size(large);
+  background: var(--pv);
+  color: var(--pv-on);
+  text-decoration: none;
+
+  @include on-hover {
+    filter: brightness(1.08);
+  }
+}
+
+.projectsBrowserFeaturedUrl {
+  @include flex-center(rem(6));
+  color: var(--pv);
+  font-size: rem(13);
+  font-weight: 600;
+}
+
+// ---- Grid ----------------------------------------------------------------------------------
+.projectsBrowserHeading {
+  @include text(display-3);
+  margin-top: space(4);
+}
+
+.projectsBrowserGrid {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(12) space(8);
+
+  @include mq(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.projectsBrowserNext {
+  @include flex-col(space(4), center);
+  justify-content: center;
+  min-height: rem(300);
+  padding: space(8);
+  border: 2px dashed color(accent-light);
+  border-radius: rem(22);
+  background: color(surface);
+  text-align: center;
+
+  h3 {
+    @include text(display-3);
+  }
+
+  p {
+    color: color(muted);
+  }
+}
+
+.projectsBrowserEmpty {
+  padding: space(12);
+  border: 1px dashed color(border);
+  border-radius: rem(22);
+  color: color(muted);
+  text-align: center;
+}
+
+.projectsBrowserNote {
+  @include text(small);
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .projectsBrowserChip {
+    transition: none;
+  }
+}

@@ -1,0 +1,147 @@
+[
+  {
+    "slug": "local-business-website-checklist",
+    "category": "web",
+    "featured": true,
+    "date": "2026-03-12",
+    "readTime": 6,
+    "title": "7 things your local business website needs to get you calls",
+    "excerpt": "A short checklist we use on every project, from the WhatsApp button to opening hours.",
+    "featuredExcerpt": "A short checklist we use on every project, from the WhatsApp button to opening hours, with real examples from Moroccan businesses.",
+    "body": [
+      { "type": "p", "text": "Most local websites lose visitors in the first few seconds. People are on their phone, in a hurry, and they want one thing: to reach you. Here is the checklist we use before any site goes live." },
+      { "type": "h2", "id": "whatsapp", "text": "1. A WhatsApp button on every page" },
+      { "type": "p", "text": "In Morocco, a message beats a form. A visible WhatsApp button turns a curious visitor into a conversation in one tap. Put it in the header and again at the end of each page, with a ready-made first message so people do not have to think." },
+      { "type": "quote", "text": "If a visitor cannot contact you in one tap, they will contact someone else." },
+      { "type": "h2", "id": "fast", "text": "2. Fast on a phone" },
+      { "type": "p", "text": "Most visitors arrive on mobile data. Every extra second of loading loses people. Compress your photos, avoid heavy sliders and test on a real phone, not only on a computer." },
+      { "type": "callout", "title": "Quick test", "items": ["Open your site on mobile data, not Wi-Fi", "Count the seconds until you can read the first line", "If it is over three seconds, start with the photos"] },
+      { "type": "figure", "caption": "A simple layout with one clear action beats a busy homepage." },
+      { "type": "h2", "id": "hours", "text": "3. Clear opening hours and a map" },
+      { "type": "p", "text": "Put your address, hours and a map near the top. People searching for a place nearby decide quickly, and a missing detail is a reason to leave. Keep the information identical on your Google Business Profile." },
+      { "type": "h2", "id": "photos", "text": "4. Real photos" },
+      { "type": "p", "text": "Photos of your real shop, team work and results build trust faster than stock images. Use a few good ones instead of many average ones." },
+      { "type": "h2", "id": "proof", "text": "5. Reviews and proof" },
+      { "type": "p", "text": "Show what customers say and what you have done. Two or three honest reviews and a few finished projects are enough to make a stranger feel safe contacting you." },
+      { "type": "h2", "id": "next-step", "text": "6. One clear next step" },
+      { "type": "p", "text": "Every page should lead to one action: call, message or book. A page with five competing buttons gets none of them clicked." },
+      { "type": "h2", "id": "maps", "text": "7. Google Maps ready" },
+      { "type": "p", "text": "Make sure your business name, address and phone match exactly everywhere online. Consistency is one of the simplest ways to rank in local results." }
+    ]
+  },
+  {
+    "slug": "show-up-on-google-maps",
+    "category": "seo",
+    "featured": false,
+    "date": "2026-03-03",
+    "readTime": 5,
+    "title": "How to show up on Google Maps in your city",
+    "excerpt": "Set up your Google Business Profile in an afternoon, step by step.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "When someone searches for what you sell and adds your city, Google Maps decides who they see first. A complete profile is the cheapest way to be one of them." },
+      { "type": "h2", "id": "claim", "text": "1. Claim your profile" },
+      { "type": "p", "text": "Search your business name on Google. If a profile exists, claim it. If not, create one. Google will ask you to verify it, usually with a code sent by post or phone." },
+      { "type": "h2", "id": "complete", "text": "2. Fill in everything" },
+      { "type": "p", "text": "Name, category, address, phone, opening hours, website and a short description. Incomplete profiles rank lower and look less trustworthy." },
+      { "type": "callout", "title": "Do this today", "items": ["Choose the most specific main category", "Add your WhatsApp number as the phone", "Upload at least ten real photos"] },
+      { "type": "h2", "id": "reviews", "text": "3. Ask for reviews" },
+      { "type": "p", "text": "After each good job, send customers a link to leave a review. Reply to every review, including the bad ones, politely and quickly." },
+      { "type": "quote", "text": "Reviews are the new word of mouth, and they work while you sleep." }
+    ]
+  },
+  {
+    "slug": "selling-clothes-online-morocco",
+    "category": "shop",
+    "featured": false,
+    "date": "2026-02-21",
+    "readTime": 7,
+    "title": "Selling clothes online in Morocco: what customers expect",
+    "excerpt": "Sizes, delivery and cash on delivery: the details that decide an order.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Customers who browse a clothing shop on their phone decide fast. These are the details that make the difference between a basket left behind and an order." },
+      { "type": "h2", "id": "sizes", "text": "1. Clear sizes and stock" },
+      { "type": "p", "text": "Show available sizes on the product page and a simple size guide. Nothing loses a sale faster than discovering your size is gone at checkout." },
+      { "type": "h2", "id": "delivery", "text": "2. Delivery you can explain in one line" },
+      { "type": "p", "text": "State delivery time and cost before checkout. Customers accept a fee, but not a surprise." },
+      { "type": "h2", "id": "payment", "text": "3. Cash on delivery and card" },
+      { "type": "p", "text": "Many Moroccan customers still prefer to pay on delivery. Offering it, next to card payment, removes the biggest hesitation." },
+      { "type": "callout", "title": "Checkout checklist", "items": ["Guest checkout, no account needed", "Delivery cost shown early", "A WhatsApp link for questions"] }
+    ]
+  },
+  {
+    "slug": "when-a-spreadsheet-stops-being-enough",
+    "category": "apps",
+    "featured": false,
+    "date": "2026-02-09",
+    "readTime": 4,
+    "title": "When a spreadsheet stops being enough",
+    "excerpt": "Four signs it is time to move your bookings and clients into a real tool.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "A spreadsheet is a great first tool. At some point it starts costing you time and mistakes. Here are four signs you have reached that point." },
+      { "type": "h2", "id": "double", "text": "1. Double bookings" },
+      { "type": "p", "text": "If two people can book the same slot, your tool is not protecting you. A booking tool blocks the clash for you." },
+      { "type": "h2", "id": "people", "text": "2. More than one person edits it" },
+      { "type": "p", "text": "When your team shares a file, versions drift. A real tool gives each person the right access and one source of truth." },
+      { "type": "h2", "id": "reports", "text": "3. You build reports by hand" },
+      { "type": "p", "text": "If you spend an evening a week counting, a dashboard can do it in seconds, every day." },
+      { "type": "quote", "text": "The best tool is the one your team opens without thinking." }
+    ]
+  },
+  {
+    "slug": "design-before-build",
+    "category": "tips",
+    "featured": false,
+    "date": "2026-01-28",
+    "readTime": 5,
+    "title": "Why your site should be designed before it is built",
+    "excerpt": "What a free design step saves you, and what to look for in one.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Changing a design on paper takes minutes. Changing a finished website takes days. That is the whole case for designing first." },
+      { "type": "h2", "id": "see", "text": "1. You see it before you pay" },
+      { "type": "p", "text": "A design in Figma shows exactly what you will get, on desktop and mobile, so there are no surprises later." },
+      { "type": "h2", "id": "changes", "text": "2. Changes are cheap" },
+      { "type": "p", "text": "Moving a button or rewriting a title in a design is instant. After the build, the same change touches code, tests and content." },
+      { "type": "callout", "title": "What a good design step includes", "items": ["Desktop and mobile layouts", "Your real text, not placeholders", "A clear approval step before any code"] }
+    ]
+  },
+  {
+    "slug": "template-or-custom-website",
+    "category": "web",
+    "featured": false,
+    "date": "2026-01-15",
+    "readTime": 8,
+    "title": "Template or custom website? An honest comparison",
+    "excerpt": "Where templates are fine, and where they quietly cost you customers.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Templates are not bad. They are the right choice in some situations and an expensive shortcut in others. Here is how to tell which one you are in." },
+      { "type": "h2", "id": "templates", "text": "Where templates are fine" },
+      { "type": "p", "text": "A temporary page, a personal project or a very small budget can all be served well by a template, as long as you accept the look will resemble many other sites." },
+      { "type": "h2", "id": "cost", "text": "Where they cost you customers" },
+      { "type": "p", "text": "Templates carry code you never use, which slows pages down. They also make your business look like everyone else, which is the opposite of what you want when people compare options." },
+      { "type": "quote", "text": "A website is the first thing customers judge. Make it yours." }
+    ]
+  },
+  {
+    "slug": "write-a-website-brief",
+    "category": "tips",
+    "featured": false,
+    "date": "2026-01-04",
+    "readTime": 4,
+    "title": "How to write a short brief for your website",
+    "excerpt": "Five questions to answer before you talk to any agency, so you get a better design.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "You do not need a long document. Five clear answers give any designer what they need to start well." },
+      { "type": "h2", "id": "who", "text": "1. Who are your customers?" },
+      { "type": "p", "text": "Describe one typical customer: age, city, what they want and what worries them." },
+      { "type": "h2", "id": "action", "text": "2. What action do you want?" },
+      { "type": "p", "text": "Calls, messages, bookings or orders. Pick one main action, and the design will lead to it." },
+      { "type": "callout", "title": "Your five answers", "items": ["Who your customers are", "The one action you want", "Three sites you like, and why", "What you sell and what makes you different", "Your deadline"] }
+    ]
+  }
+]

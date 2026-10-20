@@ -1,12 +1,29 @@
 {
   "links": [
-    { "label": "Home", "href": "/" },
-    { "label": "Services", "href": "/services/" },
-    { "label": "Work", "href": "/work/" },
-    { "label": "Packs", "href": "/packs/" },
-    { "label": "About", "href": "/about/" },
-    { "label": "Blog", "href": "/blog/" },
-    { "label": "Contact", "href": "/contact/" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Services",
+      "href": "/services/"
+    },
+    {
+      "label": "Work",
+      "href": "/work/"
+    },
+    {
+      "label": "About",
+      "href": "/about/"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
   ],
   "cta": {
     "label": "Get your free design",
@@ -14,14 +31,22 @@
     "message": "Hi Altio, I would like a free design for my business."
   },
   "languages": [
-    { "code": "en", "label": "English" },
-    { "code": "fr", "label": "Français" }
+    {
+      "code": "en",
+      "label": "English"
+    },
+    {
+      "code": "fr",
+      "label": "Français"
+    }
   ],
   "labels": {
     "mainNavigation": "Main navigation",
     "homeLink": "Altio home",
     "toggleTheme": "Toggle dark mode",
     "openMenu": "Open menu",
-    "chooseLanguage": "Choose language"
+    "chooseLanguage": "Choose language",
+    "closeMenu": "Close menu",
+    "menuTitle": "Menu"
   }
 }

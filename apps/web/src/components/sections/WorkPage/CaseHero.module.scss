@@ -1,0 +1,152 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// CASE HERO  (mobile first)
+// The background fades from the project's tint (--pv-soft) into the page colour,
+// so each project page opens with its own mood.
+// =============================================================================
+
+.caseHero {
+  padding-block: space(8) rem(72);
+  background: linear-gradient(180deg, var(--pv-soft), color(page));
+
+  @include mq(lg) {
+    padding-block: rem(56) rem(96);
+  }
+}
+
+.caseHeroContent {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: space(16);
+  }
+}
+
+.caseHeroText {
+  @include flex-col(space(6), flex-start);
+}
+
+.caseHeroCrumb {
+  @include flex-center(space(2));
+  color: color(muted);
+  font-size: rem(13);
+  font-weight: 500;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    @include on-hover {
+      color: var(--pv);
+    }
+  }
+
+  span:last-child {
+    color: color(text);
+  }
+}
+
+.caseHeroTitle {
+  @include text(display-1);
+}
+
+.caseHeroAccent {
+  color: var(--pv);
+}
+
+.caseHeroLead {
+  @include text(lead);
+  max-width: rem(520);
+  color: color(muted);
+}
+
+.caseHeroActions {
+  @include flex(row, flex-start, center, space(4), wrap);
+}
+
+// The visit button uses the project's colour, not the site blue.
+.caseHeroButton {
+  @include button-base;
+  @include button-size(large);
+  background: var(--pv);
+  color: var(--pv-on);
+  text-decoration: none;
+
+  @include on-hover {
+    filter: brightness(1.08);
+  }
+}
+
+.caseHeroPrivate,
+.caseHeroStatus {
+  @include flex-center(space(2));
+  padding: rem(6) space(4);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  color: color(muted);
+  font-size: rem(12);
+  font-weight: 600;
+}
+
+.caseHeroStatus i {
+  width: rem(8);
+  height: rem(8);
+  border-radius: 50%;
+  background: color(success);
+  box-shadow: 0 0 0 #{rem(4)} color-mix(in srgb, #{color(success)} 20%, transparent);
+}
+
+.caseHeroStatusIsPrivate i {
+  background: color(muted);
+  box-shadow: none;
+}
+
+// ---- Facts card (overlaps the hero) -----------------------------------------------------------
+.caseFactsWrap {
+  @include container;
+  margin-top: rem(-48);
+  position: relative;
+  z-index: 2;
+}
+
+.caseFacts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(6);
+  margin: 0;
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: rem(24);
+  background: color(surface);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: rem(26) space(8);
+  }
+
+  dt {
+    color: color(muted);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin: rem(4) 0 0;
+    font-family: var(--font-display-stack);
+    font-size: rem(16);
+    font-weight: 700;
+  }
+}

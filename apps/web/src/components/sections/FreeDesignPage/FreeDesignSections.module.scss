@@ -1,0 +1,230 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// FREE DESIGN PAGE  (mobile first)
+// Hero: the offer on the left, the short form on the right (stacked on phones).
+// Then three "what you get" cards and the four steps, which pop in one after
+// another while they are on screen.
+// =============================================================================
+
+.freeDesignHero {
+  padding-block: space(8) space(12);
+  background: linear-gradient(180deg, color(accent-soft), color(page));
+
+  @include mq(lg) {
+    padding-block: rem(64) rem(56);
+  }
+}
+
+.freeDesignHeroContent {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: rem(56);
+  }
+}
+
+.freeDesignHeroText {
+  @include flex-col(space(5), flex-start);
+}
+
+.freeDesignEyebrow {
+  @include text(eyebrow);
+  color: color(accent);
+}
+
+.freeDesignTitle {
+  @include text(display-1);
+
+  span {
+    color: color(accent);
+  }
+}
+
+.freeDesignLead {
+  @include text(lead);
+  max-width: rem(540);
+  color: color(muted);
+}
+
+.freeDesignClock {
+  @include flex(row, flex-start, center, space(4));
+  margin-top: space(2);
+  color: color(muted);
+  font-size: rem(15);
+
+  b {
+    color: color(accent);
+    font-family: var(--font-display-stack);
+    font-size: rem(30);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+}
+
+.freeDesignSection {
+  @include section-y;
+  background: color(page);
+}
+
+.freeDesignSectionIsWhite {
+  background: color(surface);
+}
+
+.freeDesignContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: rem(40);
+  }
+}
+
+// ---- What you get -------------------------------------------------------------------------------
+.freeDesignGet {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: rem(20);
+
+  @include mq(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.freeDesignGetCard {
+  @include flex-col(space(3));
+  padding: rem(26);
+  border: 1px solid color(border);
+  border-radius: rem(26);
+  background: color(surface);
+  transition:
+    transform 0.5s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+
+  h3 {
+    @include text(title-md);
+  }
+
+  p {
+    @include text(small);
+    color: color(muted);
+  }
+
+  @include on-hover {
+    transform: translateY(#{rem(-4)});
+    border-color: color(accent);
+  }
+}
+
+.freeDesignGetArt {
+  @include flex-col(rem(7));
+  justify-content: center;
+  height: rem(150);
+  padding: space(4);
+  border-radius: radius(md);
+  background: color(accent-soft);
+
+  i {
+    display: block;
+    height: rem(9);
+    border-radius: rem(8);
+    background: color(surface);
+
+    &[data-strong] {
+      width: 40%;
+      height: rem(12);
+      background: color(accent);
+    }
+  }
+}
+
+// ---- Steps -----------------------------------------------------------------------------------------
+.freeDesignSteps {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(6);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mq(lg) {
+    position: relative;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: rem(18);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: rem(22);
+      right: 10%;
+      left: 10%;
+      height: 2px;
+      background: color(border);
+    }
+  }
+}
+
+.freeDesignStep {
+  @include flex-col(space(2), flex-start);
+  position: relative;
+
+  span {
+    @include flex-center;
+    position: relative;
+    z-index: 1;
+    width: rem(46);
+    height: rem(46);
+    border-radius: 50%;
+    background: color(accent);
+    color: color(on-accent);
+    font-family: var(--font-display-stack);
+    font-size: rem(15);
+    font-weight: 800;
+  }
+
+  small {
+    color: color(accent);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    @include text(heading);
+  }
+
+  p {
+    @include text(small);
+    color: color(muted);
+  }
+}
+
+:global([data-in-view="true"]) .freeDesignStep {
+  animation: freeDesignStepIn 0.6s var(--ease-out) calc(var(--step) * 0.2s) backwards;
+}
+
+@keyframes freeDesignStepIn {
+  from {
+    opacity: 0;
+    transform: translateY(#{rem(16)});
+  }
+}
+
+@include reduced-motion {
+  .freeDesignGetCard {
+    transition: none;
+  }
+
+  .freeDesignStep {
+    animation: none !important;
+  }
+}

@@ -8,8 +8,7 @@
 // md:     2 x 2 grid  |  lg: 4 in a row.
 // The "featured" card (Custom, the most used) is highlighted with a blue border
 // and glow. Hover on a card: it lifts. Hover on the featured card ALSO: a
-// "Most used pack" badge slides out from behind it and a blue outline draws
-// itself around the card.
+// outline draws itself around the card (the "Most used pack" badge is always shown).
 // =============================================================================
 
 .packsSection {
@@ -36,7 +35,7 @@
   display: flex;
   gap: space(4);
   margin-inline: calc(-1 * var(--gutter));
-  padding: rem(40) var(--gutter) space(6);
+  padding: rem(48) var(--gutter) space(6);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--gutter);
@@ -50,7 +49,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-inline: 0;
-    padding: rem(40) 0 0;
+    padding: rem(48) 0 0;
     overflow: visible;
   }
 
@@ -75,10 +74,9 @@
   @include on-hover {
     transform: translateY(#{rem(-6)});
 
-    // Badge rises out from behind the card while its width opens left to right.
+    // The badge hops up a little with the card.
     .packsBadge {
-      transform: translateY(#{rem(-28)});
-      clip-path: inset(0);
+      transform: translateY(#{rem(-3)});
     }
 
     .packsCardOutlinePath {
@@ -117,44 +115,50 @@
 }
 
 // ---- The "Most used pack" badge ----------------------------------------------------------------
-// Hidden BEHIND the top edge of the card (pushed down by its own height and
-// clipped to zero width). On hover it rises out and its width opens from left to
-// right, like a progress bar filling.
+// A green tab that always peeks out above the top-right corner of the card. It sits
+// BEHIND the card (z-index 0 vs 1), so its bottom edge tucks under the card border.
 .packsBadge {
-  @include flex-center(space(1));
+  @include flex-center(space(2));
   @include text(label);
   position: absolute;
-  top: 0;
+  top: rem(-34);
   right: space(6);
   z-index: 0;
-  padding: space(1) space(4) space(5);
-  border-radius: radius(pill) radius(pill) 0 0;
-  background: color(accent);
-  color: color(on-accent);
+  padding: rem(8) space(4) space(6);
+  border-radius: radius(md) radius(md) 0 0; // rounded tab
+  background: color(success);
+  color: color(white);
   font-size: rem(12);
+  letter-spacing: 0.02em;
   white-space: nowrap;
-  transform: translateY(0);
-  clip-path: inset(0 100% 0 0);
-  transition:
-    transform 0.6s var(--ease-out),
-    clip-path 0.7s var(--ease-out);
+  box-shadow: 0 #{rem(-4)} #{rem(16)} color-mix(in srgb, #{color(success)} 30%, transparent);
+  transition: transform 0.5s var(--ease-out);
+
+  svg {
+    fill: currentcolor;
+  }
 }
 
 // ---- The outline that draws itself around the card ---------------------------------------
+// The svg fills the card's padding box exactly. The card border is 1px, so the
+// stroke (3px, centred 1.5px inside the OUTER edge) sits 0.5px inside this box;
+// overflow is visible so the 1px that sticks out over the border is not clipped.
 .packsCardOutline {
   position: absolute;
-  inset: -1px;
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
   pointer-events: none;
 }
 
+
 .packsCardOutlinePath {
-  x: 1.5px;
-  y: 1.5px;
-  width: calc(100% - 3px);
-  height: calc(100% - 3px);
-  rx: calc(#{radius(card)} - 1px);
+  x: 0.5px;
+  y: 0.5px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  rx: calc(#{radius(card)} - 1.5px);
   fill: none;
   stroke: color-mix(in srgb, #{color(accent)} 70%, transparent);
   stroke-width: 3px;

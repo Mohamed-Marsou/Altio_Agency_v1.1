@@ -25,10 +25,17 @@ const ICONS: Record<string, ReactNode> = {
       <path d="m3 13 9 5 9-5" />
     </>
   ),
-  search: (
+  cart: (
     <>
-      <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-3.5-3.5" />
+      <circle cx="9" cy="20" r="1.5" />
+      <circle cx="18" cy="20" r="1.5" />
+      <path d="M3 4h2.5l2.2 11h10.3l2-8H6.3" />
+    </>
+  ),
+  shield: (
+    <>
+      <path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6l8-3Z" />
+      <path d="m9 12 2.2 2.2L15.5 10" />
     </>
   ),
 };

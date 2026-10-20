@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Footer from "@/components/layout/Footer/Footer";
+import SiteLoader from "@/components/ui/SiteLoader/SiteLoader";
 import CustomCursor from "@/components/ui/CustomCursor/CustomCursor";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.scss";
@@ -41,7 +42,11 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body>
+      {/* suppressHydrationWarning: browser extensions (Grammarly etc.) add attributes to
+          <body> before React loads; without this React reports a false mismatch. */}
+      <body suppressHydrationWarning>
+        {/* The loading screen: covers the page until it is really painted */}
+        <SiteLoader />
         {children}
         <Footer />
         {/* The brand cursor + click ripple (only runs on devices with a mouse) */}

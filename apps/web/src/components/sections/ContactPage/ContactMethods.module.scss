@@ -1,0 +1,124 @@
+@use "abstracts" as *;
+
+.contactMethods {
+  @include flex-col(space(4));
+}
+
+.contactMethod {
+  @include flex(row, flex-start, center, space(4));
+  @include focus-ring;
+  padding: rem(22) space(6);
+  border: 1px solid color(border);
+  border-radius: rem(24);
+  background: color(surface);
+  color: color(text);
+  text-decoration: none;
+  transition:
+    background-color 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    transform 0.4s var(--ease-out);
+}
+
+// Only the links (not the plain location row) react to hover.
+a.contactMethod {
+  @include on-hover {
+    border-color: color(accent);
+    transform: translateY(#{rem(-2)});
+
+    .contactMethodArrow {
+      transform: translateX(#{rem(4)});
+    }
+  }
+}
+
+.contactMethodIcon {
+  @include flex-center;
+  flex: none;
+  width: rem(52);
+  height: rem(52);
+  border-radius: rem(16);
+  background: color(accent-soft);
+  color: color(accent);
+}
+
+.contactMethodText {
+  @include flex-col(rem(2));
+  min-width: 0;
+  color: color(muted);
+  font-size: rem(14);
+
+  b {
+    overflow-wrap: anywhere;
+    color: color(text);
+    font-family: var(--font-display-stack);
+    font-size: rem(18);
+  }
+}
+
+.contactMethodArrow {
+  margin-left: auto;
+  color: color(accent);
+  transition: transform 0.4s var(--ease-out);
+}
+
+// WhatsApp: the green primary method.
+.contactMethodIsWhatsapp {
+  border-color: color(whatsapp);
+  background: color(whatsapp);
+  color: color(white);
+
+  .contactMethodIcon {
+    background: color-mix(in srgb, #{color(white)} 20%, transparent);
+    color: color(white);
+  }
+
+  .contactMethodText,
+  .contactMethodText b,
+  .contactMethodArrow {
+    color: color(white);
+  }
+
+  @include on-hover {
+    border-color: color(whatsapp);
+    filter: brightness(1.06);
+  }
+}
+
+.contactMethodsReply {
+  @include flex-center(space(3));
+  justify-content: flex-start;
+  color: color(muted);
+  font-size: rem(14);
+
+  i {
+    flex: none;
+    width: rem(10);
+    height: rem(10);
+    border-radius: 50%;
+    background: color(success);
+    box-shadow: 0 0 0 #{rem(5)} color-mix(in srgb, #{color(success)} 20%, transparent);
+    animation: contactPing 2.4s ease-out infinite;
+  }
+}
+
+@keyframes contactPing {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #{color(success)} 45%, transparent);
+  }
+
+  80%,
+  100% {
+    box-shadow: 0 0 0 #{rem(9)} transparent;
+  }
+}
+
+@include reduced-motion {
+  .contactMethod,
+  .contactMethodArrow {
+    transition: none;
+  }
+
+  .contactMethodsReply i {
+    animation: none;
+  }
+}

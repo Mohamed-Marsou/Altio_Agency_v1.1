@@ -1,0 +1,186 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// SITE LOADER
+// Hidden by default (so a visitor without JavaScript never sees it). It is shown
+// only while <html data-loader="on"> (set by the inline script in <head> before
+// the first paint). Two half-screen panels in the page colour cover everything;
+// the logo fills with colour from the bottom as the REAL loading progress grows
+// (--progress, 0 to 100, is written by SiteLoader.tsx). When ready, the logo
+// lifts away and the two halves slide apart like a curtain.
+// =============================================================================
+
+.siteLoader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000; // above everything, including the custom cursor (1000)
+  visibility: hidden;
+  --progress: 0;
+}
+
+:global(html[data-loader="on"]) .siteLoader {
+  visibility: visible;
+}
+
+// While the loader is on, the page behind it cannot scroll.
+:global(html[data-loader="on"]) {
+  overflow: hidden;
+}
+
+.siteLoaderHalfTop,
+.siteLoaderHalfBottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%; // 0.5% overlap so no hairline shows between the halves
+  background: color(page);
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.siteLoaderHalfTop {
+  top: 0;
+}
+
+.siteLoaderHalfBottom {
+  bottom: 0;
+}
+
+.siteLoaderCenter {
+  @include flex-col(space(3), center);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+// ---- Logo -------------------------------------------------------------------------------------------
+.siteLoaderMark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: rem(132);
+  height: rem(132);
+}
+
+.siteLoaderMarkGhost,
+.siteLoaderMarkFill {
+  grid-area: 1 / 1;
+  width: rem(76);
+  height: auto;
+}
+
+.siteLoaderMarkGhost {
+  filter: grayscale(1);
+  opacity: 0.16;
+}
+
+// Revealed from the bottom: inset(top right bottom left); the top inset shrinks
+// from 100% (nothing visible) to 0% (all visible) as --progress goes 0 to 100.
+.siteLoaderMarkFill {
+  clip-path: inset(calc(100% - var(--progress) * 1%) 0 0 0);
+}
+
+.siteLoaderRing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  rotate: -90deg;
+}
+
+.siteLoaderRingTrack,
+.siteLoaderRingValue {
+  fill: none;
+  stroke-width: 2;
+}
+
+.siteLoaderRingTrack {
+  stroke: color(border);
+}
+
+.siteLoaderRingValue {
+  stroke: color(accent);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--progress));
+}
+
+// ---- Wordmark and percentage -------------------------------------------------------------------
+.siteLoaderWord {
+  display: flex;
+  gap: 0.28em;
+  font-family: var(--font-display-stack);
+  font-size: rem(20);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+
+  span {
+    opacity: 0;
+    translate: 0 #{rem(8)};
+    animation: siteLoaderLetter 0.6s var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 0.07s + 0.15s);
+  }
+}
+
+.siteLoaderPercent {
+  color: color(muted);
+  font-size: rem(13);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+}
+
+.siteLoaderLabel {
+  @include visually-hidden;
+}
+
+// ---- Leaving: logo lifts away, then the curtain opens --------------------------------------------
+.siteLoaderIsLeaving {
+  .siteLoaderCenter {
+    opacity: 0;
+    transform: translateY(#{rem(-16)}) scale(1.08);
+  }
+
+  .siteLoaderHalfTop {
+    transform: translateY(-101%);
+    transition-delay: 0.15s;
+  }
+
+  .siteLoaderHalfBottom {
+    transform: translateY(101%);
+    transition-delay: 0.15s;
+  }
+}
+
+@keyframes siteLoaderLetter {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+// Visitors who asked for less motion: no letter animation and no sliding curtain,
+// only a quick fade (the progress logic is the same).
+@include reduced-motion {
+  .siteLoaderWord span {
+    opacity: 1;
+    translate: 0 0;
+    animation: none;
+  }
+
+  .siteLoaderHalfTop,
+  .siteLoaderHalfBottom {
+    transition: opacity 0.3s linear;
+  }
+
+  .siteLoaderIsLeaving {
+    .siteLoaderHalfTop,
+    .siteLoaderHalfBottom {
+      transform: none;
+      opacity: 0;
+      transition-delay: 0s;
+    }
+  }
+}

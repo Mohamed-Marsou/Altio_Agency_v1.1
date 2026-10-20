@@ -1,0 +1,45 @@
+@use "abstracts" as *;
+
+.postToc {
+  @include flex-col(rem(4));
+  position: sticky;
+  top: calc(var(--navbar-height) + #{space(6)});
+}
+
+.postTocTitle {
+  margin-bottom: space(2);
+  color: color(text);
+  font-size: rem(11);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.postTocLink {
+  @include focus-ring;
+  @include text(label);
+  padding: space(2) 0 space(2) rem(14);
+  border-left: 2px solid color(border);
+  color: color(muted);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+
+  @include on-hover {
+    color: var(--pv);
+  }
+}
+
+.postTocLinkIsActive {
+  border-color: var(--pv);
+  color: var(--pv);
+  font-weight: 600;
+}
+
+@include reduced-motion {
+  .postTocLink {
+    transition: none;
+  }
+}

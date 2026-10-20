@@ -1,0 +1,90 @@
+{
+  "labels": {
+    "shortTitle": "In short",
+    "tocTitle": "On this page",
+    "updated": "Last updated",
+    "draft": "Draft · to be reviewed by a lawyer before publishing"
+  },
+  "privacy": {
+    "title": "Privacy and cookies",
+    "updated": "October 2026",
+    "short": [
+      "This website sets no tracking cookies and has no analytics today.",
+      "If you write to us, we only use your details to answer you and prepare your design.",
+      "We never sell your data. You can ask us to delete it at any time."
+    ],
+    "sections": [
+      { "id": "who", "title": "Who we are", "blocks": [
+        { "type": "p", "text": "Altio is a web agency based in Tangier, Morocco. We are responsible for the personal data described on this page. You can reach us at hello@yourdomain.ma." }
+      ] },
+      { "id": "today", "title": "What we collect today", "blocks": [
+        { "type": "p", "text": "Browsing this website does not send us any personal data. We do not use analytics, advertising or tracking tools. Your device only keeps one setting for us, described in the cookies section." }
+      ] },
+      { "id": "contact", "title": "When you contact us", "blocks": [
+        { "type": "p", "text": "The contact and free-design forms open WhatsApp with your answers pre-filled. Nothing is saved on our side until you press send in WhatsApp. When you do, we receive your name, number and the details you wrote, and use them only to:" },
+        { "type": "ul", "items": ["reply to your message and prepare your free design;", "send you a quote, if you ask for one;", "manage your project, if you become a client."] }
+      ] },
+      { "id": "cookies", "title": "Cookies and browser storage", "blocks": [
+        { "type": "p", "text": "We do not use cookies for tracking. We store a single preference in your browser, so the site remembers it on your next visit:" },
+        { "type": "table", "head": ["Name", "Purpose", "Duration"], "rows": [["altio-theme", "Remembers light or dark mode", "Until you clear it"]] },
+        { "type": "p", "text": "This is a functional preference, not personal data, so it does not need a consent banner. If we add analytics later, we will update this page first and ask for your consent where required." }
+      ] },
+      { "id": "services", "title": "Other services we use", "blocks": [
+        { "type": "p", "text": "WhatsApp (Meta) handles the messages you send us. When you click a WhatsApp button, you leave this site and their terms apply. Our fonts are served from our own site, so your browser does not contact Google." }
+      ] },
+      { "id": "keep", "title": "How long we keep data", "blocks": [
+        { "type": "p", "text": "Messages from people who do not become clients are deleted after 12 months. Client project records are kept for as long as the project and legal obligations require." }
+      ] },
+      { "id": "rights", "title": "Your rights", "blocks": [
+        { "type": "p", "text": "Under Moroccan law 09-08 on personal data, you can ask to see, correct or delete your data, and object to its use. Write to us and we answer within 30 days. You can also contact the CNDP, the national data protection authority." }
+      ] },
+      { "id": "reach", "title": "Contact", "blocks": [
+        { "type": "p", "text": "Questions about this page: hello@yourdomain.ma or WhatsApp +212 6 00 00 00 00." }
+      ] }
+    ],
+    "ask": { "title": "A question about your data?", "cta": "Ask us on WhatsApp", "message": "Hi Altio, I have a question about your privacy policy." }
+  },
+  "terms": {
+    "title": "Terms of service",
+    "updated": "October 2026",
+    "short": [
+      "The first design is free, with no obligation.",
+      "You pay in three steps: when you approve the design, when you see the MVP, and 14 days after launch.",
+      "You get 3 free changes after launch. The website is yours."
+    ],
+    "sections": [
+      { "id": "design", "title": "The free design", "blocks": [
+        { "type": "p", "text": "We deliver a custom homepage design in 48 to 72 hours, depending on complexity. It costs nothing and creates no obligation. We keep the design files unless you approve it and the project starts." }
+      ] },
+      { "id": "quotes", "title": "Quotes and prices", "blocks": [
+        { "type": "p", "text": "Prices are not published. After we understand your business, you receive a written quote with the scope, timeline and price. Work starts only after you accept it." }
+      ] },
+      { "id": "payment", "title": "Payment schedule", "blocks": [
+        { "type": "p", "text": "Projects are paid in three parts:" },
+        { "type": "pay", "parts": [
+          { "value": "30%", "label": "When you approve the design" },
+          { "value": "30%", "label": "When we show you the MVP" },
+          { "value": "40%", "label": "14 days after your site is live" }
+        ] },
+        { "type": "p", "text": "The final payment is due once your website has been live for 14 days, so you can check that everything works first." }
+      ] },
+      { "id": "changes", "title": "Changes", "blocks": [
+        { "type": "p", "text": "Changes during the build are included. After launch, every pack includes 3 free change requests. Further changes are quoted separately or covered by the Managed pack." }
+      ] },
+      { "id": "ownership", "title": "Ownership", "blocks": [
+        { "type": "p", "text": "Once the project is fully paid, the website and its content belong to you. We may show the finished work in our portfolio unless you ask us not to." }
+      ] },
+      { "id": "managed", "title": "Managed pack", "blocks": [
+        { "type": "p", "text": "With the Managed pack we host and look after your website for a monthly fee. You get access and reports, and we handle the technical work. The source code stays with Altio while the pack is active." },
+        { "type": "callout", "text": "You can leave the Managed pack at any time with one month of notice. We will explain your options for taking the site elsewhere." }
+      ] },
+      { "id": "delays", "title": "Delays", "blocks": [
+        { "type": "p", "text": "Timelines depend on you sending content and feedback on time. If feedback is late, the delivery date moves by the same amount." }
+      ] },
+      { "id": "reach", "title": "Contact", "blocks": [
+        { "type": "p", "text": "Questions about these terms: hello@yourdomain.ma or WhatsApp +212 6 00 00 00 00." }
+      ] }
+    ],
+    "ask": { "title": "Want to talk it through?", "cta": "Chat on WhatsApp", "message": "Hi Altio, I have a question about your terms." }
+  }
+}

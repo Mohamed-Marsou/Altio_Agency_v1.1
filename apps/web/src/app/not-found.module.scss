@@ -1,0 +1,173 @@
+@use "abstracts" as *;
+
+// 404 page. A "browser window" with the Altio mark in place of the zero. The
+// window bobs very gently and the mark spins slowly (both off for reduced motion).
+.notFound {
+  padding-block: space(12) rem(96);
+  background: color(page);
+  text-align: center;
+
+  @include mq(lg) {
+    padding-block: rem(72) rem(96);
+  }
+}
+
+.notFoundContent {
+  @include container;
+}
+
+.notFoundWindow {
+  max-width: rem(680);
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid color(border);
+  border-radius: rem(26);
+  background: color(surface);
+  box-shadow: 0 #{rem(40)} #{rem(80)} #{rem(-40)} color-mix(in srgb, #{color(accent)} 45%, transparent);
+  animation: notFoundBob 7s ease-in-out infinite;
+}
+
+.notFoundBar {
+  @include flex(row, flex-start, center, rem(6));
+  padding: rem(14) rem(20);
+  border-bottom: 1px solid color(border);
+
+  i {
+    width: rem(10);
+    height: rem(10);
+    border-radius: 50%;
+    background: color(border);
+  }
+
+  span {
+    margin-left: space(3);
+    padding: rem(3) space(4);
+    border-radius: radius(pill);
+    background: color(surface-2);
+    color: color(muted);
+    font-size: rem(12);
+  }
+}
+
+.notFoundBody {
+  @include flex-col(space(3), center);
+  padding: rem(40) space(6) rem(40);
+
+  @include mq(md) {
+    padding: rem(48) rem(32) rem(40);
+  }
+}
+
+.notFoundNumber {
+  @include flex-center(rem(8));
+  font-family: var(--font-display-stack);
+  font-size: clamp(5.5rem, 16vw, 10.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.notFoundZero {
+  @include flex-center;
+  width: 0.82em;
+  height: 0.82em;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06d3f2, #1463ff);
+  box-shadow: 0 0.12em 0.3em -0.08em color-mix(in srgb, #1463ff 60%, transparent);
+  color: color(white);
+
+  svg {
+    width: 0.44em;
+    height: 0.44em;
+    animation: notFoundSpin 12s linear infinite;
+  }
+}
+
+.notFoundTitle {
+  @include text(display-2);
+}
+
+.notFoundLead {
+  @include text(lead);
+  max-width: rem(460);
+  color: color(muted);
+}
+
+.notFoundActions {
+  @include flex(row, center, center, space(3), wrap);
+  margin-top: space(4);
+}
+
+.notFoundHome {
+  @include button-base;
+  @include button-size(large);
+  background: color(accent);
+  color: color(on-accent);
+  text-decoration: none;
+
+  @include on-hover {
+    background: color(accent-hover);
+  }
+}
+
+.notFoundPopular {
+  @include flex-col(space(3), center);
+  max-width: rem(680);
+  margin: rem(36) auto 0;
+
+  p {
+    color: color(muted);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  ul {
+    @include reset-list;
+    @include flex(row, center, center, space(3), wrap);
+  }
+
+  a {
+    @include focus-ring;
+    display: block;
+    padding: rem(10) rem(18);
+    border: 1px solid color(border);
+    border-radius: radius(pill);
+    background: color(surface);
+    font-size: rem(14);
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      border-color 0.3s var(--ease-out),
+      color 0.3s var(--ease-out);
+
+    @include on-hover {
+      border-color: color(accent);
+      color: color(accent);
+    }
+  }
+}
+
+@keyframes notFoundBob {
+  50% {
+    transform: translateY(#{rem(-6)});
+  }
+}
+
+@keyframes notFoundSpin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@include reduced-motion {
+  .notFoundWindow,
+  .notFoundZero svg {
+    animation: none;
+  }
+
+  .notFoundPopular a {
+    transition: none;
+  }
+}

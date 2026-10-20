@@ -6,9 +6,11 @@
 //   2. reset       -> neutral starting point
 //   3. typography  -> default text styles
 //   4. utilities   -> a few shared classes (.container, .visually-hidden)
+//   5. vibes       -> per-project colours for the Work pages (data-vibe)
 // Component styles are NOT here: each component owns a *.module.scss file.
 // =============================================================================
 @use "../styles/base/tokens";
 @use "../styles/base/reset";
 @use "../styles/base/typography";
 @use "../styles/base/utilities";
+@use "../styles/base/vibes";

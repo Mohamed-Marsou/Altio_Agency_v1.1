@@ -1,0 +1,325 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// ABOUT BODY  (mobile first)
+// Sections alternate grey / white like the rest of the site. Hover on cards
+// follows the Home language: soft blue background, accent icon tile.
+// =============================================================================
+
+.aboutContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: space(12);
+  }
+}
+
+.aboutSection {
+  @include section-y;
+  background: color(page);
+}
+
+.aboutSectionIsWhite {
+  background: color(surface);
+}
+
+.aboutEyebrow {
+  @include text(eyebrow);
+  color: color(accent);
+}
+
+// ---- Numbers -------------------------------------------------------------------------------------
+.aboutNumbersSection {
+  padding-block: 0 space(2);
+  background: color(page);
+}
+
+.aboutNumbers {
+  @include reset-list;
+  @include card(space(6));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: space(6);
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: rem(28) space(8);
+  }
+
+  b {
+    display: block;
+    color: color(accent);
+    font-family: var(--font-display-stack);
+    font-size: rem(24);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+
+    @include mq(md) {
+      font-size: rem(30);
+    }
+
+    @include mq(lg) {
+      font-size: rem(34);
+    }
+  }
+
+  span {
+    @include text(small);
+    display: block;
+    margin-top: space(2);
+    color: color(muted);
+  }
+}
+
+// ---- Story ------------------------------------------------------------------------------------------
+.aboutStory {
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+    gap: rem(72);
+    align-items: start;
+  }
+}
+
+.aboutStoryTitle {
+  @include text(display-2);
+  margin-top: space(4);
+}
+
+.aboutStoryText {
+  @include flex-col(space(4));
+  color: color(muted);
+}
+
+.aboutStoryBig {
+  @include text(display-3);
+  margin-bottom: space(4);
+  color: color(text);
+
+  span {
+    color: color(accent);
+  }
+}
+
+// ---- Principles ---------------------------------------------------------------------------------
+.aboutPrinciples {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(4);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: rem(18);
+  }
+}
+
+.aboutPrinciple {
+  @include flex-col(space(2));
+  padding: rem(26);
+  border: 1px solid color(border);
+  border-radius: rem(24);
+  background: color(page);
+  transition:
+    background-color 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+
+  h3 {
+    @include text(title-md);
+  }
+
+  p {
+    @include text(small);
+    color: color(muted);
+  }
+
+  @include on-hover {
+    background: color(accent-soft);
+    border-color: color(accent-light);
+
+    .aboutPrincipleNumber {
+      background: color(accent);
+      color: color(on-accent);
+    }
+  }
+}
+
+.aboutPrincipleNumber {
+  @include flex-center;
+  width: rem(46);
+  height: rem(46);
+  margin-bottom: space(2);
+  border-radius: rem(14);
+  background: color(accent-soft);
+  color: color(accent);
+  font-family: var(--font-display-stack);
+  font-size: rem(16);
+  font-weight: 800;
+  transition:
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+}
+
+// ---- Roles -----------------------------------------------------------------------------------------
+.aboutRoles {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: rem(20);
+
+  @include mq(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.aboutRole {
+  @include flex-col(rem(14));
+  padding: rem(28);
+  border: 1px solid color(border);
+  border-radius: rem(26);
+  background: color(surface);
+
+  h3 {
+    @include text(display-3);
+  }
+
+  // The coloured bars lift one after another on hover.
+  @include on-hover {
+    .aboutRoleArt i {
+      transform: scaleY(1.08);
+    }
+  }
+}
+
+.aboutRoleArt {
+  display: flex;
+  align-items: flex-end;
+  gap: rem(6);
+  height: rem(96);
+  padding: rem(14);
+  border-radius: rem(16);
+  background: color(accent-soft);
+
+  i {
+    flex: 1;
+    height: var(--height);
+    border-radius: rem(5) rem(5) 0 0;
+    background: color(accent);
+    transform-origin: bottom;
+    transition: transform 0.5s var(--ease-out) calc(var(--index) * 0.06s);
+  }
+}
+
+.aboutRoleTag {
+  color: color(accent);
+  font-size: rem(11);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.aboutRolePoints {
+  @include reset-list;
+  @include flex-col(space(2));
+  @include text(small);
+  color: color(muted);
+
+  li::before {
+    content: "→ ";
+    color: color(accent);
+    font-weight: 700;
+  }
+}
+
+.aboutStack {
+  @include reset-list;
+  @include flex-wrap-row(space(3));
+
+  li {
+    @include text(label);
+    padding: space(2) space(4);
+    border: 1px solid color(border);
+    border-radius: radius(pill);
+    background: color(surface);
+    font-size: rem(13);
+    transition:
+      border-color 0.35s var(--ease-out),
+      color 0.35s var(--ease-out);
+
+    @include on-hover {
+      border-color: color(accent);
+      color: color(accent);
+    }
+  }
+}
+
+// ---- Place -------------------------------------------------------------------------------------------
+.aboutPlaceSection {
+  padding-block: 0 var(--section-y);
+  background: color(page);
+}
+
+.aboutPlace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: rem(32);
+  background: color(surface);
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: space(12);
+    padding: rem(40);
+  }
+}
+
+.aboutPlaceText {
+  @include flex-col(space(4), flex-start);
+}
+
+.aboutPlaceTitle {
+  @include text(display-2);
+}
+
+.aboutPlaceLead {
+  color: color(muted);
+}
+
+.aboutHours {
+  @include flex-col(space(2));
+  width: 100%;
+  margin: space(4) 0 0;
+
+  div {
+    @include flex-between;
+    padding-bottom: space(2);
+    border-bottom: 1px solid color(border);
+  }
+
+  dt {
+    color: color(muted);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+  }
+}
+
+@include reduced-motion {
+  .aboutPrinciple,
+  .aboutPrincipleNumber,
+  .aboutRoleArt i,
+  .aboutStack li {
+    transition: none;
+  }
+}

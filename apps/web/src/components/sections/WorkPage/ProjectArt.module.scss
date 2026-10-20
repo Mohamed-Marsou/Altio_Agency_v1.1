@@ -1,0 +1,159 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// PROJECT ART: a browser window drawn with CSS, tinted by the project's colour
+// (--pv / --pv-soft / --pv-mid come from data-vibe on a parent element).
+// =============================================================================
+
+.projectArt {
+  position: relative;
+  min-height: rem(260);
+  padding: rem(26);
+  border-radius: rem(22);
+  background: var(--pv-soft);
+  overflow: hidden;
+}
+
+.projectArtIsLarge {
+  padding: rem(36);
+
+  .projectArtWindow {
+    animation: projectArtBob 7s ease-in-out infinite;
+  }
+}
+
+.projectArtStatus {
+  @include flex-center(space(2));
+  position: absolute;
+  top: space(4);
+  right: space(4);
+  z-index: 2;
+  padding: rem(5) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  color: color(muted);
+  font-size: rem(12);
+  font-weight: 600;
+
+  i {
+    width: rem(8);
+    height: rem(8);
+    border-radius: 50%;
+    background: color(success);
+    box-shadow: 0 0 0 #{rem(4)} color-mix(in srgb, #{color(success)} 20%, transparent);
+  }
+}
+
+.projectArtStatusIsPrivate i {
+  background: color(muted);
+  box-shadow: none;
+}
+
+.projectArtWindow {
+  overflow: hidden;
+  border: 1px solid color(border);
+  border-radius: rem(14);
+  background: color(surface);
+  box-shadow: 0 #{rem(24)} #{rem(44)} #{rem(-22)} color-mix(in srgb, var(--pv) 55%, transparent);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.projectArtBar {
+  @include flex(row, flex-start, center, rem(6));
+  padding: rem(10) rem(14);
+  border-bottom: 1px solid color(border);
+
+  i {
+    width: rem(8);
+    height: rem(8);
+    border-radius: 50%;
+    background: color(border);
+  }
+
+  span {
+    margin-left: space(2);
+    padding: rem(2) space(3);
+    border-radius: radius(pill);
+    background: color(surface-2);
+    color: color(muted);
+    font-size: rem(10);
+  }
+}
+
+.projectArtBody {
+  @include flex-col(space(2));
+  padding: space(4);
+}
+
+.projectArtLine {
+  display: block;
+  width: 100%;
+  height: rem(9);
+  border-radius: rem(8);
+  background: color(surface-2);
+}
+
+.projectArtLineStrong {
+  width: 62%;
+  height: rem(14);
+  background: color(text);
+}
+
+.projectArtPill {
+  width: rem(96);
+  height: rem(26);
+  border-radius: radius(pill);
+  background: var(--pv);
+}
+
+.projectArtTiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: space(2);
+}
+
+.projectArtTile {
+  @include flex-col(0);
+  overflow: hidden;
+  border: 1px solid color(border);
+  border-radius: rem(10);
+  background: color(surface);
+  color: color(muted);
+  font-size: rem(10);
+  line-height: 1.5;
+
+  i {
+    display: block;
+    height: rem(54);
+    margin-bottom: rem(6);
+    background: linear-gradient(135deg, var(--pv-mid), var(--pv-soft));
+  }
+
+  b {
+    padding-inline: space(2);
+    color: color(text);
+    font-family: var(--font-display-stack);
+    font-size: rem(11);
+  }
+
+  &:not(:has(i)) {
+    padding: space(2);
+  }
+}
+
+@keyframes projectArtBob {
+  50% {
+    transform: translateY(#{rem(-6)});
+  }
+}
+
+@include reduced-motion {
+  .projectArtIsLarge .projectArtWindow {
+    animation: none;
+  }
+
+  .projectArtWindow {
+    transition: none;
+  }
+}

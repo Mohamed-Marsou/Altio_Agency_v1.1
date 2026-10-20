@@ -7,20 +7,43 @@
     {
       "title": "Services",
       "links": [
-        { "label": "Business websites", "href": "/services/#websites" },
-        { "label": "Web apps", "href": "/services/#web-apps" },
-        { "label": "UI/UX design", "href": "/services/#design" },
-        { "label": "SEO", "href": "/services/#seo" }
+        {
+          "label": "Business websites",
+          "href": "/services/#launch"
+        },
+        {
+          "label": "Online stores",
+          "href": "/services/#commerce"
+        },
+        {
+          "label": "Web apps and platforms",
+          "href": "/services/#custom"
+        },
+        {
+          "label": "Managed care",
+          "href": "/services/#managed"
+        }
       ]
     },
     {
       "title": "Company",
       "links": [
-        { "label": "About", "href": "/about/" },
-        { "label": "Work", "href": "/work/" },
-        { "label": "Packs", "href": "/packs/" },
-        { "label": "Blog", "href": "/blog/" },
-        { "label": "Referrals", "href": "/referrals/" }
+        {
+          "label": "About",
+          "href": "/about/"
+        },
+        {
+          "label": "Work",
+          "href": "/work/"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog/"
+        },
+        {
+          "label": "Referrals",
+          "href": "/referrals/"
+        }
       ]
     }
   ],
@@ -32,8 +55,17 @@
   },
   "copyright": "© 2026 Altio Agency. All rights reserved.",
   "legal": [
-    { "label": "Privacy", "href": "/privacy/" },
-    { "label": "Terms", "href": "/terms/" },
-    { "label": "Cookies", "href": "/cookies/" }
+    {
+      "label": "Privacy",
+      "href": "/privacy/"
+    },
+    {
+      "label": "Terms",
+      "href": "/terms/"
+    },
+    {
+      "label": "Cookies",
+      "href": "/cookies/"
+    }
   ]
 }
