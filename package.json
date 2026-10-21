@@ -15,13 +15,17 @@
     "build:export": "npm run build:export -w @altio/web",
     "lint": "npm run lint -w @altio/web",
     "typecheck": "npm run typecheck -w @altio/web",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "npm run test -w @altio/web",
+    "e2e": "npm run e2e -w @altio/web",
+    "check": "npm run check -w @altio/web",
+    "build:release": "npm run build:release -w @altio/web"
   },
   "devDependencies": {
     "prettier": "^3.9.10"
   },
   "overrides": {
-    "next": "16.2.0",
+    "next": "16.4.2",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   }

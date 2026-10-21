@@ -1,0 +1,84 @@
+# Runs on every pull request and every push to a working branch.
+# A change cannot be merged while one of these steps is red.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, "altio_*", "feat/**"]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint (code style and common mistakes)
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Unit and component tests
+        run: npm run test -w @altio/web
+
+      - name: Build the static site
+        run: npm run build:export
+
+      - name: SEO lint (titles, descriptions, hreflang, links, sitemap)
+        run: npm run seo:lint -w @altio/web
+
+      - name: Image budget
+        run: node apps/web/scripts/optimize-images.mjs --check
+
+      - name: Install the test browser
+        run: npx playwright install --with-deps chromium
+        working-directory: apps/web
+
+      # The "visual" tests compare screenshots made on Windows, so they run on a
+      # developer computer (npm run e2e), not here. Everything else runs here.
+      - name: End-to-end tests (real browser, desktop and phone)
+        run: npx playwright test --grep-invert visual
+        working-directory: apps/web
+
+      - name: Smoke test of the built site
+        run: |
+          node apps/web/scripts/serve-out.mjs 4173 &
+          sleep 2
+          node apps/web/scripts/smoke.mjs http://127.0.0.1:4173
+
+      - name: Keep the test report when something fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            apps/web/playwright-report
+            apps/web/test-results
+          retention-days: 7
+
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Only what goes on the live site matters for the audit (development tools are not uploaded).
+      - name: Security audit of the packages used by the website
+        run: npm audit --omit=dev -w @altio/web --audit-level=high

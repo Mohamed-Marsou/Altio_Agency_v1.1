@@ -1,0 +1,75 @@
+# Uploads the static site to Hostinger.
+#   - automatic: every push to main (after CI is green on that commit);
+#   - by hand:   Actions > "Deploy to Hostinger" > Run workflow (choose a commit to go BACK to an older version).
+#
+# One-time setup (GitHub > Settings > Secrets and variables > Actions):
+#   secrets:   FTP_SERVER   (e.g. ftp.yourdomain.ma)   FTP_USERNAME   FTP_PASSWORD
+#   variables: FTP_DIR      (folder of the site on Hostinger, usually /public_html/)   SITE_URL (https://yourdomain.ma)
+# Nothing secret is ever written in the code.
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (shows what would be uploaded, uploads nothing)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tests
+        run: npm run test -w @altio/web
+
+      # Strict build: it STOPS here if a phone number or email is still a placeholder,
+      # or a text is still a draft (see apps/web/scripts/check-site-data.mjs).
+      - name: Release build (strict checks, then SEO lint)
+        run: npm run build:release -w @altio/web
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+
+      # The ready-to-upload folder is kept for 30 days: it is the way back if a release is bad.
+      - name: Keep this release (rollback copy)
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ github.sha }}
+          path: apps/web/out
+          retention-days: 30
+
+      - name: Upload to Hostinger (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: apps/web/out/
+          server-dir: ${{ vars.FTP_DIR }}
+          dry-run: ${{ inputs.dry_run == true }}
+          # Never delete the other sites (WordPress, other Next.js) that share this hosting plan:
+          # only files that this project uploaded earlier are removed or replaced.
+          dangerous-clean-slate: false
+          exclude: |
+            **/admindash/**
+            **/.git*/**
+
+      - name: Smoke test of the live site
+        if: ${{ inputs.dry_run != true }}
+        run: node apps/web/scripts/smoke.mjs "${{ vars.SITE_URL }}"
