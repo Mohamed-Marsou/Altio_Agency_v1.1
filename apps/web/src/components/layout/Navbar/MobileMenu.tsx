@@ -2,8 +2,11 @@
 
 import clsx from "clsx";
 import { ArrowRight, Menu, X } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
+import { useParams } from "next/navigation";
 import { useEffect, useId, useState, type CSSProperties } from "react";
+import { isLocale } from "@/lib/i18n";
+import { switchLocale } from "@/lib/i18n-client";
 import Flag, { type FlagCode } from "@/components/ui/Flag/Flag";
 import MorphButton from "@/components/ui/MorphButton/MorphButton";
 import styles from "./MobileMenu.module.scss";
@@ -40,6 +43,8 @@ export default function MobileMenu({
   title,
 }: MobileMenuProps) {
   const panelId = useId();
+  const params = useParams<{ locale?: string }>();
+  const currentCode = isLocale(params?.locale) ? params.locale : languages[0].code;
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -112,13 +117,21 @@ export default function MobileMenu({
 
           <div className={styles.mobileMenuFooter} style={{ "--index": links.length } as CSSProperties}>
             <ul className={styles.mobileMenuLanguages}>
-              {languages.map((language, index) => (
+              {languages.map((language) => (
                 <li
                   key={language.code}
-                  className={clsx(styles.mobileMenuLanguage, index === 0 && styles.mobileMenuLanguageIsCurrent)}
+                  className={clsx(styles.mobileMenuLanguage, language.code === currentCode && styles.mobileMenuLanguageIsCurrent)}
                 >
-                  <Flag code={language.code as FlagCode} />
-                  {language.label}
+                  <button
+                    type="button"
+                    className={styles.mobileMenuLanguageButton}
+                    aria-current={language.code === currentCode ? "true" : undefined}
+                    lang={language.code}
+                    onClick={() => switchLocale(language.code)}
+                  >
+                    <Flag code={language.code as FlagCode} />
+                    {language.label}
+                  </button>
                 </li>
               ))}
             </ul>

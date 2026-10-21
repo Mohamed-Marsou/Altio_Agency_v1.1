@@ -6,9 +6,19 @@
     "lead": "The fastest way is WhatsApp. Prefer a form? Fill it in below and we answer within a few hours."
   },
   "methods": {
-    "whatsapp": { "title": "WhatsApp", "text": "Fastest. We answer 24/7.", "message": "Hi Altio, I would like a free design for my business." },
-    "email": { "address": "hello@yourdomain.ma", "text": "For files and longer briefs" },
-    "location": { "title": "Tangier, Morocco", "text": "Mon to Fri 09:00 to 18:00" },
+    "whatsapp": {
+      "title": "WhatsApp",
+      "text": "Fastest. We answer 24/7.",
+      "message": "Hi Altio, I would like a free design for my business."
+    },
+    "email": {
+      "address": "{{email}}",
+      "text": "For files and longer briefs"
+    },
+    "location": {
+      "title": "Tangier, Morocco",
+      "text": "Mon to Fri 09:00 to 18:00"
+    },
     "reply": "We usually reply within a few hours, often in minutes.",
     "mapLabel": "Altio, Tangier"
   },
@@ -16,36 +26,79 @@
     "title": "Get your free design",
     "subtitle": "Four quick questions. No payment, no obligation.",
     "fields": {
-      "name": { "label": "Your name", "placeholder": "Sara Benali" },
-      "phone": { "label": "WhatsApp number", "placeholder": "+212 6 00 00 00 00" },
-      "business": { "label": "Business name and city", "placeholder": "Atlas Immo, Tangier" },
-      "need": { "label": "What do you need?" },
-      "message": { "label": "Tell us a little about it", "placeholder": "We are a real estate agency and want a site where clients can browse listings and message us…" }
+      "name": {
+        "label": "Your name",
+        "placeholder": "Sara Benali"
+      },
+      "phone": {
+        "label": "WhatsApp number",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "business": {
+        "label": "Business name and city",
+        "placeholder": "Atlas Immo, Tangier"
+      },
+      "need": {
+        "label": "What do you need?"
+      },
+      "message": {
+        "label": "Tell us a little about it",
+        "placeholder": "We are a real estate agency and want a site where clients can browse listings and message us…"
+      }
     },
-    "needs": ["Business website", "Online store", "Web app", "Managed care", "Not sure yet"],
+    "needs": [
+      "Business website",
+      "Online store",
+      "Web app",
+      "Managed care",
+      "Not sure yet"
+    ],
     "submit": "Send and get my free design",
     "errors": {
       "name": "Enter your name.",
       "phone": "Enter a number we can reach on WhatsApp.",
-      "need": "Choose what you need."
+      "need": "Choose what you need.",
+      "tooLong": "That is too long. Please shorten it.",
+      "tooFast": "Please check your answers once more, then send again.",
+      "rateLimit": "You already sent a few messages. Please wait a few minutes or message us on WhatsApp."
     },
     "note": "This opens WhatsApp with your answers filled in, ready to send.",
-    "promises": ["Design in 48 to 72 hours", "No payment before you see it", "We never share your details"],
+    "promises": [
+      "Design in 48 to 72 hours",
+      "No payment before you see it",
+      "We never share your details"
+    ],
     "messageTemplate": {
       "intro": "Hi Altio, I would like a free design.",
       "name": "Name",
       "business": "Business",
       "need": "I need",
       "details": "About it"
-    }
+    },
+    "emailFallback": "Prefer email? Send it by email instead",
+    "openWhatsapp": "WhatsApp did not open? Tap here",
+    "sent": "WhatsApp is open with your message. Press send there to finish.",
+    "emailSubject": "Free design request"
   },
   "next": {
     "eyebrow": "What happens next",
     "title": "From your message to your design",
     "steps": [
-      { "when": "Within hours", "title": "We reply", "text": "A real person reads your message, asks anything missing and confirms what you need." },
-      { "when": "48 to 72 hours", "title": "You get your design", "text": "A custom homepage in Figma, free, with no payment and no obligation." },
-      { "when": "Your call", "title": "You decide", "text": "Love it? We start building. Not for you? You owe nothing." }
+      {
+        "when": "Within hours",
+        "title": "We reply",
+        "text": "A real person reads your message, asks anything missing and confirms what you need."
+      },
+      {
+        "when": "48 to 72 hours",
+        "title": "You get your design",
+        "text": "A custom homepage in Figma, free, with no payment and no obligation."
+      },
+      {
+        "when": "Your call",
+        "title": "You decide",
+        "text": "Love it? We start building. Not for you? You owe nothing."
+      }
     ]
   }
 }

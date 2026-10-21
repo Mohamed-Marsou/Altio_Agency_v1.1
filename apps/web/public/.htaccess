@@ -1,0 +1,95 @@
+# =============================================================================
+# ALTIO: web server rules for Hostinger (Apache / LiteSpeed)
+# This file is uploaded with the site (it lives in public_html/.htaccess).
+# Every block says what it does. Lines starting with # are comments.
+# =============================================================================
+
+# ---- 1. Always use HTTPS and ONE address (no www) ---------------------------
+# Works for any domain name: nothing to change here.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # www -> no www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+  # ---- 2. Pages are folders: /en/blog -> /en/blog/ ----------------------------
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [L,R=301]
+</IfModule>
+
+# ---- 3. The page shown when an address does not exist -----------------------
+ErrorDocument 404 /404.html
+
+DirectoryIndex index.html
+
+# ---- 4. Compression: text files are sent about 4 times smaller ---------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ---- 5. Cache: files with a hash in their name never change -----------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 0 seconds"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/plain "access plus 0 seconds"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+  # Everything inside /_next/static has a unique name: keep it for a year, never ask again.
+  <FilesMatch "^.*\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # The uploaded pictures (WebP, new name for every picture).
+  <FilesMatch "\.webp$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Pages must always be checked, so a new post appears at once after a deploy.
+  <FilesMatch "\.(html|txt|xml)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+
+  # ---- 6. Security headers --------------------------------------------------
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # The site loads everything from itself. WhatsApp is only a link (it is not loaded in the page).
+  # 'unsafe-inline' is needed for the small scripts and styles Next.js writes into each page.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+</IfModule>
+
+# ---- 7. Search engines: never index the admin area (even if it is uploaded) --
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/admindash#">
+    Header set X-Robots-Tag "noindex, nofollow"
+  </If>
+</IfModule>
+
+# ---- 8. Private folders and files are never served --------------------------
+<FilesMatch "^\.(?!well-known)">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(map|log|env|bak)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

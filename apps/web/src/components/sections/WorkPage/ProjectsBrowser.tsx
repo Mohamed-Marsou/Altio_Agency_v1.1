@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { useMemo, useState } from "react";
 import Button from "@/components/ui/Button/Button";
 import type { Project, WorkPageContent } from "@/lib/content";
@@ -113,6 +113,7 @@ export default function ProjectsBrowser({ projects, content, nextHref }: Project
 
           <ProjectArt
             kind={featured.art}
+            image={featured.coverImage}
             url={featured.url}
             isLive={featured.status === "live"}
             liveLabel={labels.live}

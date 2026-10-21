@@ -5,52 +5,109 @@
     "accent": "before you pay.",
     "lead": "Tell us about your business. In 48 to 72 hours you get a custom homepage design, free and with no obligation. Love it? We build it. Not for you? You owe nothing.",
     "clockValue": "48 to 72 h",
-    "clockText": ["depending on complexity", "no payment, no commitment"]
+    "clockText": [
+      "depending on complexity",
+      "no payment, no commitment"
+    ]
   },
   "form": {
     "title": "Get your free design",
     "subtitle": "Four quick questions.",
     "fields": {
-      "name": { "label": "Your name", "placeholder": "Sara Benali" },
-      "phone": { "label": "WhatsApp number", "placeholder": "+212 6 00 00 00 00" },
-      "business": { "label": "Business name and city", "placeholder": "Atlas Immo, Tangier" },
-      "need": { "label": "What do you need?" },
-      "message": { "label": "Tell us a little about it", "placeholder": "" }
+      "name": {
+        "label": "Your name",
+        "placeholder": "Sara Benali"
+      },
+      "phone": {
+        "label": "WhatsApp number",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "business": {
+        "label": "Business name and city",
+        "placeholder": "Atlas Immo, Tangier"
+      },
+      "need": {
+        "label": "What do you need?"
+      },
+      "message": {
+        "label": "Tell us a little about it",
+        "placeholder": ""
+      }
     },
-    "needs": ["Business website", "Online store", "Web app", "Not sure yet"],
+    "needs": [
+      "Business website",
+      "Online store",
+      "Web app",
+      "Not sure yet"
+    ],
     "submit": "Send and get my free design",
     "errors": {
       "name": "Enter your name.",
       "phone": "Enter a number we can reach on WhatsApp.",
-      "need": "Choose what you need."
+      "need": "Choose what you need.",
+      "tooLong": "That is too long. Please shorten it.",
+      "tooFast": "Please check your answers once more, then send again.",
+      "rateLimit": "You already sent a few messages. Please wait a few minutes or message us on WhatsApp."
     },
     "note": "This opens WhatsApp with your answers filled in, ready to send.",
-    "promises": ["No payment before you see it", "We never share your details"],
+    "promises": [
+      "No payment before you see it",
+      "We never share your details"
+    ],
     "messageTemplate": {
       "intro": "Hi Altio, I would like a free design.",
       "name": "Name",
       "business": "Business",
       "need": "I need",
       "details": "About it"
-    }
+    },
+    "emailFallback": "Prefer email? Send it by email instead",
+    "openWhatsapp": "WhatsApp did not open? Tap here",
+    "sent": "WhatsApp is open with your message. Press send there to finish.",
+    "emailSubject": "Free design request"
   },
   "get": {
     "eyebrow": "What you get",
     "title": "A real design, not a template preview",
     "items": [
-      { "title": "Your homepage in Figma", "text": "Custom layout, your text, your brand colours." },
-      { "title": "Desktop and mobile", "text": "See how it looks on a computer and on a phone." },
-      { "title": "Free changes before approval", "text": "We adjust it with you until you are happy." }
+      {
+        "title": "Your homepage in Figma",
+        "text": "Custom layout, your text, your brand colours."
+      },
+      {
+        "title": "Desktop and mobile",
+        "text": "See how it looks on a computer and on a phone."
+      },
+      {
+        "title": "Free changes before approval",
+        "text": "We adjust it with you until you are happy."
+      }
     ]
   },
   "next": {
     "eyebrow": "What happens next",
     "title": "From your message to your design",
     "steps": [
-      { "when": "Today", "title": "You tell us", "text": "Send the short form or message us on WhatsApp." },
-      { "when": "Within hours", "title": "We reply", "text": "We confirm what you need and ask anything missing." },
-      { "when": "48 to 72 hours", "title": "You get your design", "text": "Your custom homepage, free, ready to review." },
-      { "when": "Your call", "title": "You decide", "text": "Approve it and we build, or walk away at no cost." }
+      {
+        "when": "Today",
+        "title": "You tell us",
+        "text": "Send the short form or message us on WhatsApp."
+      },
+      {
+        "when": "Within hours",
+        "title": "We reply",
+        "text": "We confirm what you need and ask anything missing."
+      },
+      {
+        "when": "48 to 72 hours",
+        "title": "You get your design",
+        "text": "Your custom homepage, free, ready to review."
+      },
+      {
+        "when": "Your call",
+        "title": "You decide",
+        "text": "Approve it and we build, or walk away at no cost."
+      }
     ]
   }
 }

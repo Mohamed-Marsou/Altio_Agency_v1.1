@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import Hero from "@/components/sections/Hero/Hero";
 import ProofStrip from "@/components/sections/ProofStrip/ProofStrip";
@@ -10,13 +11,28 @@ import Packs from "@/components/sections/Packs/Packs";
 import Why from "@/components/sections/Why/Why";
 import Faq from "@/components/sections/Faq/Faq";
 import CtaBand from "@/components/sections/CtaBand/CtaBand";
+import JsonLd from "@/components/system/JsonLd";
 import Reveal from "@/components/ui/Reveal/Reveal";
+import { getFaq } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import { setRequestLocale } from "@/lib/locale-server";
+import { faqJsonLd, localBusinessJsonLd, pageMetadata } from "@/lib/seo";
+import type { LocaleParams } from "@/lib/types";
+
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale as Locale, "/", "home");
+}
 
 // The Home page = a list of sections, top to bottom (the Footer comes from the
 // root layout, so every page has it).
-export default function Home() {
+export default async function Home({ params }: LocaleParams) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
+
   return (
     <>
+      <JsonLd data={[localBusinessJsonLd(locale as Locale), faqJsonLd(getFaq().items)]} />
       <Navbar currentPath="/" />
       <main>
         {/* The Hero is the first thing seen, so it is NOT wrapped. Every section

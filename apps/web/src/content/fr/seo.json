@@ -1,0 +1,51 @@
+{
+  "siteName": "Altio",
+  "locale": "fr_FR",
+  "ogAlt": "Altio, sites web et applications web pour les entreprises au Maroc",
+  "pages": {
+    "home": {
+      "title": "Sites web et applications sur mesure au Maroc",
+      "description": "Altio est une agence de Tanger qui conçoit des sites rapides, des boutiques en ligne et des applications web pour les entreprises marocaines. Design gratuit en 48 à 72 h."
+    },
+    "services": {
+      "title": "Services de création et développement web",
+      "description": "Sites vitrines, boutiques en ligne, applications web et gestion complète pour les entreprises au Maroc. Chaque service commence par un design gratuit que vous validez avant de payer."
+    },
+    "work": {
+      "title": "Nos réalisations : projets et études de cas",
+      "description": "De vrais projets réalisés par Altio : sites web, boutiques en ligne, applications web et gestion complète pour des entreprises au Maroc, avec leur histoire et des résultats mesurés."
+    },
+    "blog": {
+      "title": "Blog : sites web, référencement et vente en ligne",
+      "description": "Des articles pratiques sur les sites web, le référencement Google et la vente en ligne, écrits pour les chefs d’entreprise au Maroc. Courts, clairs et applicables cette semaine."
+    },
+    "about": {
+      "title": "À propos de l’agence",
+      "description": "Altio est une agence d’ingénieurs full-stack et de designers à Tanger. Nous concevons d’abord, construisons proprement et restons joignables après la mise en ligne de votre site."
+    },
+    "contact": {
+      "title": "Contactez-nous sur WhatsApp ou par formulaire",
+      "description": "Parlez-nous de votre activité sur WhatsApp ou avec un court formulaire. Nous répondons avec un design de page d’accueil sur mesure en 48 à 72 heures, gratuit et sans engagement."
+    },
+    "freeDesign": {
+      "title": "Recevez un design de site gratuit en 48 à 72 h",
+      "description": "Recevez un design de page d’accueil sur mesure en 48 à 72 heures, gratuit et sans engagement. Voyez votre site avant de payer quoi que ce soit, puis décidez de le construire ou non."
+    },
+    "referrals": {
+      "title": "Parrainage : apportez un client, soyez récompensé",
+      "description": "Apportez un client, soyez récompensé. Présentez une entreprise à Altio et choisissez votre récompense quand elle devient cliente. Des règles simples, des récompenses claires, sans limite."
+    },
+    "privacy": {
+      "title": "Confidentialité et cookies",
+      "description": "Les données qu’Altio collecte (presque aucune aujourd’hui), comment nous les utilisons, combien de temps nous les gardons et quels sont vos droits, en mots simples et sans jargon juridique."
+    },
+    "terms": {
+      "title": "Conditions d’utilisation",
+      "description": "Le design gratuit, le calendrier de paiement, les modifications gratuites, la propriété de votre site et le pack Managed, expliqués clairement avant de commencer à travailler avec nous."
+    },
+    "notFound": {
+      "title": "Page introuvable",
+      "description": "Cette page n’existe pas ou a été déplacée. Revenez à l’accueil d’Altio, ou écrivez-nous sur WhatsApp et nous vous orienterons rapidement vers la bonne page."
+    }
+  }
+}

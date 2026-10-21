@@ -1,5 +1,5 @@
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import type { Project, WorkPageContent } from "@/lib/content";
 import ProjectArt from "./ProjectArt";
 import styles from "./ProjectCard.module.scss";
@@ -22,6 +22,7 @@ export default function ProjectCard({ project, labels }: ProjectCardProps) {
         <span className={styles.projectCardPicture}>
           <ProjectArt
             kind={project.art}
+            image={project.coverImage}
             url={project.url}
             isLive={isLive}
             liveLabel={labels.live}

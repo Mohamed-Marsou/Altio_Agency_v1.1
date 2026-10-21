@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import BlogCard from "@/components/sections/BlogPage/BlogCard";
@@ -12,33 +12,47 @@ import CtaBand from "@/components/sections/CtaBand/CtaBand";
 import Logo from "@/components/ui/Logo/Logo";
 import MorphButton from "@/components/ui/MorphButton/MorphButton";
 import Reveal from "@/components/ui/Reveal/Reveal";
+import JsonLd from "@/components/system/JsonLd";
 import { getBlogPage, getPost, getPosts, getWhatsAppUrl } from "@/lib/content";
+import { LOCALES, type Locale } from "@/lib/i18n";
+import { setRequestLocale } from "@/lib/locale-server";
+import { articleJsonLd, breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
 import styles from "./post.module.scss";
 
 type PostPageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 // Static export: one HTML page per article, built ahead of time.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getPosts().map((post) => ({ slug: post.slug }));
+  return LOCALES.flatMap((locale) => getPosts(locale).map((post) => ({ locale, slug: post.slug })));
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPost(slug);
+  const { locale: rawLocale, slug } = await params;
+  const locale = rawLocale as Locale;
+  const post = getPost(slug, locale);
   if (!post) return {};
-  return { title: `${post.title} | Altio`, description: post.excerpt };
+  return buildMetadata({
+    locale,
+    path: `/blog/${slug}/`,
+    title: post.title,
+    description: post.excerpt,
+    type: "article",
+    publishedTime: post.date,
+  });
 }
 
 // A single article: coloured header (the topic's colour), cover, then the text
 // in a reading column with a sticky table of contents on the left and a share
 // rail on the right, an end call to action and related articles.
 export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = await params;
+  const { locale: rawLocale, slug } = await params;
+  const locale = rawLocale as Locale;
+  setRequestLocale(locale);
   const post = getPost(slug);
   if (!post) notFound();
 
@@ -63,6 +77,15 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div data-vibe={post.category}>
+      <JsonLd
+        data={[
+          articleJsonLd(locale, post),
+          breadcrumbJsonLd(locale, [
+            { name: text.breadcrumbRoot, path: "/blog/" },
+            { name: post.title, path: `/blog/${post.slug}/` },
+          ]),
+        ]}
+      />
       <PostProgress targetId="post-article" label={text.progressLabel} />
       <Navbar currentPath="/blog/" />
       <main>
@@ -77,11 +100,11 @@ export default async function PostPage({ params }: PostPageProps) {
             <p className={styles.postHeaderLead}>{post.excerpt}</p>
             <div className={styles.postHeaderAuthor}>
               <span className={styles.postHeaderAvatar}>
-                <Logo label={text.author} size={18} />
+                <Logo label={`ALTIO, ${text.author}`} size={18} />
               </span>
               <p>
                 <b>{text.author}</b>
-                <span>{formatDate(post.date)}</span>
+                <span>{formatDate(post.date, locale)}</span>
                 <span>
                   {post.readTime} {content.minRead}
                 </span>
@@ -91,7 +114,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </header>
 
         <div className={styles.postCover}>
-          <BlogCover kind={post.category} isWide />
+          <BlogCover kind={post.category} isWide image={post.coverImage} />
         </div>
 
         <div className={styles.postBody}>

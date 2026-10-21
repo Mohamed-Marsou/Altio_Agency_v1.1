@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { getFooter, getWhatsAppUrl } from "@/lib/content";
 import Button from "@/components/ui/Button/Button";
 import Logo from "@/components/ui/Logo/Logo";

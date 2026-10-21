@@ -2,8 +2,11 @@
 
 import clsx from "clsx";
 import { Check, ChevronDown } from "lucide-react";
+import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Flag, { type FlagCode } from "@/components/ui/Flag/Flag";
+import { isLocale } from "@/lib/i18n";
+import { switchLocale } from "@/lib/i18n-client";
 import styles from "./LanguageSwitcher.module.scss";
 
 type LanguageOption = { code: string; label: string };
@@ -15,11 +18,13 @@ type LanguageSwitcherProps = {
 };
 
 // Shows ONLY the current language (flag + code). Clicking opens a small popup
-// with every language (flag + name). For now choosing one just updates the
-// button: the real language switch (changing /en to /fr) comes with i18n.
+// with every language (flag + name). Choosing one opens the same page in that
+// language (see lib/i18n-client.ts).
 export default function LanguageSwitcher({ languages, buttonLabel }: LanguageSwitcherProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [currentCode, setCurrentCode] = useState(languages[0].code);
+  // The language comes from the address (/fr/...), so server and browser agree.
+  const params = useParams<{ locale?: string }>();
+  const currentCode = isLocale(params?.locale) ? params.locale : languages[0].code;
   const [isOpen, setIsOpen] = useState(false);
 
   const current = languages.find((language) => language.code === currentCode) ?? languages[0];
@@ -48,7 +53,8 @@ export default function LanguageSwitcher({ languages, buttonLabel }: LanguageSwi
       <button
         type="button"
         className={styles.languageSwitcherButton}
-        aria-label={buttonLabel}
+        // The name starts with the visible text (EN, FR, AR), as accessibility rules ask.
+        aria-label={`${current.code.toUpperCase()}: ${buttonLabel}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
@@ -80,8 +86,8 @@ export default function LanguageSwitcher({ languages, buttonLabel }: LanguageSwi
                     isSelected && styles.languageSwitcherOptionIsSelected,
                   )}
                   onClick={() => {
-                    setCurrentCode(language.code);
                     setIsOpen(false);
+                    switchLocale(language.code);
                   }}
                 >
                   <Flag code={language.code as FlagCode} />

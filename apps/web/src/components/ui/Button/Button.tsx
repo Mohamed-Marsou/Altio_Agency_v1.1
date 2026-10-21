@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import type { ReactNode } from "react";
 import styles from "./Button.module.scss";
 

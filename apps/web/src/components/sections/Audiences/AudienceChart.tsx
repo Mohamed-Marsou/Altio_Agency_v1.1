@@ -78,7 +78,8 @@ export default function AudienceChart({ option, chart, playId, panelId }: Audien
 
       {/* ---- The chart: SVG lines + HTML labels laid on top of it ---------------------- */}
       <div key={animationKey} className={styles.audienceChartAnimated}>
-        <div className={styles.audienceChartPlot}>
+        {/* The time axis always runs left to right (also in Arabic), so the chart keeps its geometry. */}
+        <div className={styles.audienceChartPlot} dir="ltr">
           <svg
             className={styles.audienceChartSvg}
             viewBox="0 0 640 300"
@@ -131,13 +132,16 @@ export default function AudienceChart({ option, chart, playId, panelId }: Audien
           {/* Milestones on the Altio line: a dot, a label (from md up) and a tooltip */}
           {option.chart.milestones.map((milestone, index) => {
             const position = toPercent(toPoint(series.altio[milestone.month], milestone.month, POINT_COUNT));
+            // Near the left or right edge the bubble is aligned to that edge, so it never leaves the screen.
+            const x = parseFloat(String(position.left));
+            const align = x < 35 ? "start" : x > 65 ? "end" : "center";
             return (
               <div
                 key={milestone.label}
                 className={styles.audienceChartMilestone}
                 style={{ ...position, "--delay": `${0.5 + index * 0.45}s` } as CSSProperties}
               >
-                <Tooltip text={milestone.tip} side="bottom">
+                <Tooltip text={milestone.tip} side="bottom" align={align}>
                   <span className={styles.audienceChartMilestoneDot} />
                   <span className={styles.audienceChartMilestoneLabel}>{milestone.label}</span>
                 </Tooltip>

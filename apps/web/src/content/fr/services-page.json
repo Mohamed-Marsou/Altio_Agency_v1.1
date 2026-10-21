@@ -1,0 +1,132 @@
+{
+  "hero": {
+    "eyebrow": "Services",
+    "title": "Quatre services.",
+    "accent": "Une équipe derrière chacun.",
+    "lead": "D’un premier site à une plateforme qui fait tourner votre activité, puis quelqu’un pour s’en occuper. Chaque service commence par un design gratuit : vous voyez le résultat avant de payer.",
+    "cta": {
+      "label": "Discuter sur WhatsApp",
+      "hoverLabel": "Envoyez-nous un message",
+      "message": "Bonjour Altio, je voudrais savoir quel service convient à mon entreprise."
+    },
+    "layers": [
+      { "name": "Launch", "text": "Votre entreprise en ligne, comme il faut" },
+      { "name": "Commerce", "text": "Vendez en ligne en toute confiance" },
+      { "name": "Custom", "text": "Construit autour de votre façon de travailler" },
+      { "name": "Managed", "text": "Nous gérons, vous grandissez" }
+    ],
+    "pins": [
+      "Design gratuit en 48 à 72 h",
+      "Code sur mesure, sans modèles",
+      "Réponses sur WhatsApp, 24h/24 et 7j/7"
+    ]
+  },
+  "stackLabel": "Les quatre services empilés : Launch, Commerce, Custom, Managed",
+  "packLabel": "Pack",
+  "serviceLabel": "Service",
+  "fitLabel": "Convient bien à :",
+  "mostUsed": "Le plus choisi",
+  "items": [
+    {
+      "id": "launch",
+      "art": "site",
+      "pack": "Launch",
+      "title": "Sites vitrines",
+      "lead": "Votre entreprise en ligne, comme il faut. Un site rapide et sur mesure pour votre restaurant, clinique, boutique ou agence, conçu pour qu’un visiteur puisse vous joindre en un clic.",
+      "features": [
+        "5 pages sur mesure",
+        "Bases du SEO",
+        "Intégration WhatsApp",
+        "3 modifications gratuites après la mise en ligne",
+        "Configuration du nom de domaine incluse",
+        "Conception mobile d’abord"
+      ],
+      "fit": "restaurants, cliniques, commerces locaux, immobilier, PME.",
+      "mostUsed": false,
+      "cta": {
+        "label": "Commencer avec Launch",
+        "hoverLabel": "Envoyez-nous un message",
+        "message": "Bonjour Altio, je souhaite parler du pack Launch."
+      }
+    },
+    {
+      "id": "commerce",
+      "art": "store",
+      "pack": "Commerce",
+      "title": "Boutiques en ligne",
+      "lead": "Vendez en ligne en toute confiance. Un catalogue, un paiement clair et un moyen simple de gérer les commandes, conçus pour transformer les visiteurs en acheteurs sur téléphone.",
+      "features": [
+        "Boutique en ligne et catalogue",
+        "Panier et paiement",
+        "Gestion des commandes et des produits",
+        "Bases du SEO",
+        "Conception mobile d’abord",
+        "3 modifications gratuites après la mise en ligne"
+      ],
+      "fit": "vêtements, cosmétiques, alimentation, artisanat, toute boutique prête à vendre en ligne.",
+      "mostUsed": false,
+      "cta": {
+        "label": "Ouvrir ma boutique",
+        "hoverLabel": "Envoyez-nous un message",
+        "message": "Bonjour Altio, je souhaite parler du pack Commerce."
+      }
+    },
+    {
+      "id": "custom",
+      "art": "app",
+      "pack": "Custom",
+      "title": "Applications et plateformes web",
+      "lead": "Construit autour de votre façon de travailler. Quand un tableur et un groupe WhatsApp ne suffisent plus, nous construisons l’outil : réservation, clients, rapports et espace d’administration.",
+      "features": [
+        "Application ou plateforme web",
+        "Espace d’administration et tableau de bord",
+        "Intégrations sur mesure",
+        "Défini avec vous",
+        "Plan de projet dédié",
+        "Rôles et connexion sécurisée"
+      ],
+      "fit": "équipes dépassées par le travail manuel, activités de réservation, plateformes.",
+      "mostUsed": true,
+      "cta": {
+        "label": "Construire mon outil",
+        "hoverLabel": "Envoyez-nous un message",
+        "message": "Bonjour Altio, je souhaite parler du pack Custom."
+      }
+    },
+    {
+      "id": "managed",
+      "art": "managed",
+      "pack": "Managed",
+      "title": "Gestion complète",
+      "lead": "Nous gérons, vous grandissez. Nous nous occupons de l’hébergement, des mises à jour et des améliorations chaque mois, pour que vous n’ayez jamais à vous soucier de la technique.",
+      "features": [
+        "Hébergement, mises à jour et corrections pris en charge",
+        "Améliorations mensuelles",
+        "Réponses prioritaires, 24h/24 et 7j/7",
+        "Vous avez l’accès, nous gérons le reste",
+        "Aucun travail technique de votre côté",
+        "Rapport mensuel en mots simples"
+      ],
+      "fit": "propriétaires qui veulent un site rapide, sûr et à jour sans lever le petit doigt.",
+      "mostUsed": false,
+      "cta": {
+        "label": "Nous le confier",
+        "hoverLabel": "Envoyez-nous un message",
+        "message": "Bonjour Altio, je souhaite parler du pack Managed."
+      }
+    }
+  ],
+  "included": {
+    "eyebrow": "Inclus dans chaque pack",
+    "title": "Le design, le référencement et le suivi sont inclus dans les quatre.",
+    "lead": "Vous ne payez jamais en plus ce qui fait fonctionner un site.",
+    "items": [
+      { "icon": "design", "title": "Design gratuit d’abord", "text": "Votre page d’accueil dans Figma en 48 à 72 heures, selon la complexité. Sans engagement." },
+      { "icon": "search", "title": "Bases du SEO", "text": "Une structure propre et la configuration Google Business, pour que l’on vous trouve." },
+      { "icon": "message", "title": "WhatsApp intégré", "text": "Un clic depuis n’importe quelle page pour discuter avec vous." },
+      { "icon": "chart", "title": "Suivi dès le premier jour", "text": "Vous voyez les appels, les clics et les formulaires, pas des suppositions." },
+      { "icon": "phone", "title": "Mobile d’abord", "text": "Conçu pour le téléphone que vos clients utilisent vraiment." },
+      { "icon": "refresh", "title": "3 modifications gratuites", "text": "Après la mise en ligne, pour que le site s’adapte à la vraie vie." }
+    ]
+  }
+}

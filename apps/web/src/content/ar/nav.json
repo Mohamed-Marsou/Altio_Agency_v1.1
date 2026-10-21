@@ -1,0 +1,29 @@
+{
+  "links": [
+    { "label": "الرئيسية", "href": "/" },
+    { "label": "الخدمات", "href": "/services/" },
+    { "label": "أعمالنا", "href": "/work/" },
+    { "label": "من نحن", "href": "/about/" },
+    { "label": "المدونة", "href": "/blog/" },
+    { "label": "اتصل بنا", "href": "/contact/" }
+  ],
+  "cta": {
+    "label": "احصل على تصميمك المجاني",
+    "hoverLabel": "راسلنا الآن",
+    "message": "مرحباً ألتيو، أرغب في الحصول على تصميم مجاني لمشروعي."
+  },
+  "languages": [
+    { "code": "en", "label": "English" },
+    { "code": "fr", "label": "Français" },
+    { "code": "ar", "label": "العربية" }
+  ],
+  "labels": {
+    "mainNavigation": "التنقل الرئيسي",
+    "homeLink": "ALTIO، الصفحة الرئيسية",
+    "toggleTheme": "تبديل الوضع الداكن",
+    "openMenu": "فتح القائمة",
+    "chooseLanguage": "اختيار اللغة",
+    "closeMenu": "إغلاق القائمة",
+    "menuTitle": "القائمة"
+  }
+}

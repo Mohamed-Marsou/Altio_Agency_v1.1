@@ -1,0 +1,38 @@
+{
+  "eyebrow": "Réalisations choisies",
+  "title": "De vrais projets, faits pour être utilisés.",
+  "linkLabel": "Voir toutes les réalisations",
+  "linkHref": "/work/",
+  "previewLabel": "Aperçu du projet",
+  "items": [
+    {
+      "id": "real-estate",
+      "tag": "Immobilier",
+      "title": "Site d’agence immobilière",
+      "meta": "Next.js · 2026 · ×3 demandes",
+      "href": "/work/atlas-immo/"
+    },
+    {
+      "id": "clothing-shop",
+      "tag": "E-commerce",
+      "title": "Boutique de vêtements",
+      "meta": "Next.js · 2026 · Des commandes dès le premier jour",
+      "href": "/work/nour-boutique/"
+    },
+    {
+      "id": "clinic",
+      "tag": "Santé",
+      "title": "Site de réservation pour clinique",
+      "meta": "React · 2026 · −60 % d’appels de réservation",
+      "href": "/work/clinique-tanger/"
+    },
+    {
+      "id": "your-project",
+      "tag": "Votre projet",
+      "title": "Votre entreprise pourrait être la prochaine",
+      "meta": "Commencez par un design gratuit",
+      "href": "/free-design/",
+      "isCta": true
+    }
+  ]
+}

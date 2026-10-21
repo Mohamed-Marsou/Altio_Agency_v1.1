@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import PageSchema from "@/components/system/PageSchema";
+import type { Locale } from "@/lib/i18n";
+import { setRequestLocale } from "@/lib/locale-server";
+import { pageMetadata } from "@/lib/seo";
+import type { LocaleParams } from "@/lib/types";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import ContactForm from "@/components/sections/ContactPage/ContactForm";
 import ContactMethods from "@/components/sections/ContactPage/ContactMethods";
@@ -7,20 +12,22 @@ import Reveal from "@/components/ui/Reveal/Reveal";
 import { getContact, getSite } from "@/lib/content";
 import styles from "./contact.module.scss";
 
-export const metadata: Metadata = {
-  title: "Contact | Altio",
-  description:
-    "Tell us about your business on WhatsApp or with a short form. We reply with a custom design in 48 to 72 hours.",
-};
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale as Locale, "/contact/", "contact");
+}
 
 // The Contact page: headline, then the ways to reach us next to the form, then
 // what happens next. The Footer comes from the layout.
-export default function ContactPage() {
+export default async function ContactPage({ params }: LocaleParams) {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
   const { hero, form } = getContact();
   const { whatsappNumber } = getSite();
 
   return (
     <>
+      <PageSchema locale={locale as Locale} path="/contact/" pageKey="contact" />
       <Navbar currentPath="/contact/" />
       <main>
         <header className={styles.contactHero}>

@@ -15,7 +15,7 @@
     ],
     "sections": [
       { "id": "who", "title": "Who we are", "blocks": [
-        { "type": "p", "text": "Altio is a web agency based in Tangier, Morocco. We are responsible for the personal data described on this page. You can reach us at hello@yourdomain.ma." }
+        { "type": "p", "text": "Altio is a web agency based in Tangier, Morocco. We are responsible for the personal data described on this page. You can reach us at {{email}}." }
       ] },
       { "id": "today", "title": "What we collect today", "blocks": [
         { "type": "p", "text": "Browsing this website does not send us any personal data. We do not use analytics, advertising or tracking tools. Your device only keeps one setting for us, described in the cookies section." }
@@ -25,9 +25,9 @@
         { "type": "ul", "items": ["reply to your message and prepare your free design;", "send you a quote, if you ask for one;", "manage your project, if you become a client."] }
       ] },
       { "id": "cookies", "title": "Cookies and browser storage", "blocks": [
-        { "type": "p", "text": "We do not use cookies for tracking. We store a single preference in your browser, so the site remembers it on your next visit:" },
-        { "type": "table", "head": ["Name", "Purpose", "Duration"], "rows": [["altio-theme", "Remembers light or dark mode", "Until you clear it"]] },
-        { "type": "p", "text": "This is a functional preference, not personal data, so it does not need a consent banner. If we add analytics later, we will update this page first and ask for your consent where required." }
+        { "type": "p", "text": "We do not use cookies for tracking. We store two small preferences in your browser, so the site remembers them on your next visit:" },
+        { "type": "table", "head": ["Name", "Purpose", "Duration"], "rows": [["altio-theme", "Remembers light or dark mode", "Until you clear it"], ["altio-locale", "Remembers your language", "Until you clear it"]] },
+        { "type": "p", "text": "These are functional preferences, not personal data, so they do not need a consent banner. If we add analytics later, we will update this page first and ask for your consent where required." }
       ] },
       { "id": "services", "title": "Other services we use", "blocks": [
         { "type": "p", "text": "WhatsApp (Meta) handles the messages you send us. When you click a WhatsApp button, you leave this site and their terms apply. Our fonts are served from our own site, so your browser does not contact Google." }
@@ -39,7 +39,7 @@
         { "type": "p", "text": "Under Moroccan law 09-08 on personal data, you can ask to see, correct or delete your data, and object to its use. Write to us and we answer within 30 days. You can also contact the CNDP, the national data protection authority." }
       ] },
       { "id": "reach", "title": "Contact", "blocks": [
-        { "type": "p", "text": "Questions about this page: hello@yourdomain.ma or WhatsApp +212 6 00 00 00 00." }
+        { "type": "p", "text": "Questions about this page: {{email}} or WhatsApp {{phone}}." }
       ] }
     ],
     "ask": { "title": "A question about your data?", "cta": "Ask us on WhatsApp", "message": "Hi Altio, I have a question about your privacy policy." }
@@ -82,7 +82,7 @@
         { "type": "p", "text": "Timelines depend on you sending content and feedback on time. If feedback is late, the delivery date moves by the same amount." }
       ] },
       { "id": "reach", "title": "Contact", "blocks": [
-        { "type": "p", "text": "Questions about these terms: hello@yourdomain.ma or WhatsApp +212 6 00 00 00 00." }
+        { "type": "p", "text": "Questions about these terms: {{email}} or WhatsApp {{phone}}." }
       ] }
     ],
     "ask": { "title": "Want to talk it through?", "cta": "Chat on WhatsApp", "message": "Hi Altio, I have a question about your terms." }

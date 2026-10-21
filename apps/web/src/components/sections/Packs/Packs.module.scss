@@ -126,7 +126,7 @@
   z-index: 0;
   padding: rem(8) space(4) space(6);
   border-radius: radius(md) radius(md) 0 0; // rounded tab
-  background: color(success);
+  background: var(--color-success-strong);
   color: color(white);
   font-size: rem(12);
   letter-spacing: 0.02em;

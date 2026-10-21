@@ -22,8 +22,12 @@ export const THEME_STORAGE_KEY = "altio-theme";
 // then the site simply stays on the system theme and nothing breaks.
 export const THEME_INIT_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-theme",t)}catch(e){}d.setAttribute("data-loader","on");setTimeout(function(){d.setAttribute("data-loader","done")},8000)})();`;
 
+// Same theme logic for the admin area, WITHOUT the loading screen.
+export const ADMIN_THEME_INIT_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-theme",t)}catch(e){}})();`;
+
 // The same script also switches the LOADING SCREEN on (data-loader="on") before the
 // first paint, so the page never flashes unstyled. The loader component switches
 // it off ("done") when the page is really ready. The 8 second timer is a last
 // safety net: if anything goes wrong, the loader can never stay forever.
 // Without JavaScript this script does not run, so the loader never appears.
+// The private admin area has its own script (ADMIN_THEME_INIT_SCRIPT) with no loader.

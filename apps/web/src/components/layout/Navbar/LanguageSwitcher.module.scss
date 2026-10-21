@@ -44,7 +44,7 @@
   @include reset-list;
   position: absolute;
   top: calc(100% + #{space(2)});
-  right: 0;
+  inset-inline-end: 0;
   z-index: z(overlay);
   min-width: rem(176);
   padding: space(2);

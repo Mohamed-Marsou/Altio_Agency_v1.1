@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import type { Project, WorkPageContent } from "@/lib/content";
 import ProjectArt from "./ProjectArt";
 import styles from "./CaseHero.module.scss";
@@ -58,6 +58,7 @@ export default function CaseHero({ project, content }: CaseHeroProps) {
 
           <ProjectArt
             kind={project.art}
+            image={project.coverImage}
             url={project.url}
             isLive={isLive}
             liveLabel={labels.live}

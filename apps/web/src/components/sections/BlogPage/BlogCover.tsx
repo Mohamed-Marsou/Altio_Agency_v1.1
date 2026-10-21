@@ -1,5 +1,7 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
+import CoverImage from "@/components/ui/CoverImage/CoverImage";
+import type { CoverImage as CoverImageData } from "@/lib/content";
 import styles from "./BlogCover.module.scss";
 
 type BlogCoverProps = {
@@ -7,6 +9,8 @@ type BlogCoverProps = {
   kind: string;
   /** A wider, shorter version for article headers. */
   isWide?: boolean;
+  /** A real picture from the media library: replaces the drawing. */
+  image?: CoverImageData;
 };
 
 // The cover picture of an article: a little scene drawn with CSS, tinted by the
@@ -86,7 +90,14 @@ const SCENES: Record<string, ReactNode> = {
   ),
 };
 
-export default function BlogCover({ kind, isWide = false }: BlogCoverProps) {
+export default function BlogCover({ kind, isWide = false, image }: BlogCoverProps) {
+  if (image) {
+    return (
+      <div className={clsx(styles.blogCover, styles.blogCoverHasImage, isWide && styles.blogCoverIsWide)}>
+        <CoverImage image={image} priority={isWide} sizes={isWide ? "100vw" : "(min-width: 1024px) 33vw, 100vw"} />
+      </div>
+    );
+  }
   return (
     <div className={clsx(styles.blogCover, isWide && styles.blogCoverIsWide)} aria-hidden="true">
       <span className={styles.blogCoverCircle} />

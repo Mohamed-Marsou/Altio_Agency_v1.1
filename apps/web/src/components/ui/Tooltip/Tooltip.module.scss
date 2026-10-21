@@ -50,14 +50,17 @@
 }
 
 // ---- Alignment: keep the bubble on screen near the edges ----------------------------
+// Logical properties: "start" is the LEFT edge in English and French and the RIGHT edge in Arabic.
 .tooltipBubbleAlignStart {
-  left: 0;
+  left: auto;
+  inset-inline-start: 0;
   transform: translate(0, rem(4));
 }
 
 .tooltipBubbleAlignEnd {
-  right: 0;
   left: auto;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
   transform: translate(0, rem(4));
 }
 

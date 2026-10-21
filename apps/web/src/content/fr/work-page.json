@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "eyebrow": "Réalisations",
+    "title": "De vrais projets,",
+    "accent": "faits pour être utilisés.",
+    "lead": "Chaque projet a son histoire, du problème que nous avons trouvé à ce qui a changé après la mise en ligne. Ouvrez-en un pour la lire."
+  },
+  "filters": {
+    "typeLabel": "Filtrer par type",
+    "statusLabel": "Filtrer par statut",
+    "all": "Tous",
+    "websites": "Sites web",
+    "stores": "Boutiques en ligne",
+    "apps": "Applications web",
+    "managed": "Gestion complète",
+    "live": "En ligne",
+    "private": "Projets privés"
+  },
+  "featuredTag": "À la une",
+  "allProjects": "Tous les projets",
+  "noResults": "Aucun projet ne correspond à ce filtre pour l’instant.",
+  "labels": {
+    "live": "En ligne",
+    "privateBuild": "Projet privé",
+    "privatePreview": "aperçu réservé au client",
+    "privateNoLink": "Projet privé, sans lien public",
+    "viewCase": "Voir l’étude de cas →",
+    "readCase": "Lire l’étude de cas →",
+    "visit": "Visiter"
+  },
+  "next": {
+    "title": "Votre projet pourrait être le prochain",
+    "text": "Commencez par un design gratuit en 48 à 72 heures. Aucun paiement avant de le voir.",
+    "cta": "Commencer par un design gratuit",
+    "message": "Bonjour Altio, je souhaite recevoir un design gratuit pour mon entreprise."
+  },
+  "sampleNote": "Projets et chiffres d’exemple pour l’instant. Les vrais les remplaceront.",
+  "case": {
+    "factLabels": { "client": "Client", "service": "Service", "timeline": "Délai", "stack": "Réalisé avec" },
+    "problemKicker": "Le problème",
+    "journeyKicker": "Notre parcours ensemble",
+    "journeyTitle": "Quatre étapes du premier message à la mise en ligne",
+    "builtKicker": "Ce que nous avons construit",
+    "builtTitle": "Trois choses qui ont changé leur quotidien",
+    "compareKicker": "Avant et après",
+    "compareTitle": "La même entreprise, une autre première impression",
+    "before": "Avant",
+    "after": "Après",
+    "resultsKicker": "Le résultat",
+    "resultsTitle": "Ce qui a changé après la mise en ligne",
+    "nextKicker": "Projet suivant",
+    "breadcrumbRoot": "Réalisations"
+  }
+}

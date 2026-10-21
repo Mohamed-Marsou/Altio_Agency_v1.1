@@ -21,7 +21,7 @@
 .postArticleQuote {
   margin: 0;
   padding: rem(6) 0 rem(6) space(6);
-  border-left: 4px solid var(--pv);
+  border-inline-start: 4px solid var(--pv);
   color: color(text);
   font-family: var(--font-display-stack);
   font-size: rem(24);

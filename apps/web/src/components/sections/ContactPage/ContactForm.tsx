@@ -1,8 +1,14 @@
 "use client";
 
 import clsx from "clsx";
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import site from "@/content/shared/site.json";
 import type { ContactContent } from "@/lib/content";
+import { contactSchema, fieldErrors } from "@/lib/forms/schemas";
+import { HONEYPOT_FIELD, checkSpam, getSessionStorage, readRecent, recordSend } from "@/lib/forms/spam";
+import { hasApi, submitLead, whatsappSubmission, type SubmitContext, type SubmitResult } from "@/lib/forms/submit";
+import { useLocale } from "@/lib/use-locale";
+import { FormFeedback, Honeypot, focusFirstError, type FormStatus } from "./FormParts";
 import styles from "./ContactForm.module.scss";
 
 type ContactFormProps = {
@@ -18,43 +24,98 @@ type Errors = Partial<Record<"name" | "phone" | "need", string>>;
 // The "Get your free design" form.
 //
 // The site is a static export for now (no server to receive a form), so on
-// submit we check the answers, build a ready-made WhatsApp message from them
-// and open WhatsApp with it. The visitor only has to press send. When the PHP
-// endpoint exists, only the body of `onSubmit` changes.
+// submit we check the answers (lib/forms/schemas.ts), build a ready-made
+// WhatsApp message and open WhatsApp with it. The visitor only has to press send.
+// If the backend exists (NEXT_PUBLIC_API_URL) the same data is posted there
+// instead; the form does not change (lib/forms/submit.ts).
 //
-// Validation is simple and friendly: name, a phone/WhatsApp number (at least 8
-// digits) and one choice of need are required. Errors appear under the field
-// and are announced to screen readers (aria-describedby + role="alert").
+// Protection without a server (lib/forms/spam.ts): a hidden honeypot field, a
+// minimum fill time and a limit of 3 sends per 10 minutes.
+// Errors appear under the field, are announced to screen readers, and the
+// keyboard focus jumps to the first problem.
 export default function ContactForm({ form, whatsappNumber, showMessage = true }: ContactFormProps) {
   const baseId = useId();
+  const locale = useLocale();
+  const startedAt = useRef(0);
   const [need, setNeed] = useState("");
   const [errors, setErrors] = useState<Errors>({});
+  const [status, setStatus] = useState<FormStatus>({ kind: "idle" });
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  // The fill-time clock starts when the form appears.
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "").trim();
-    const phone = String(data.get("phone") ?? "").trim();
-    const business = String(data.get("business") ?? "").trim();
-    const details = String(data.get("message") ?? "").trim();
+    const formElement = event.currentTarget;
+    const data = new FormData(formElement);
+    const text = (key: string) => String(data.get(key) ?? "");
 
-    const found: Errors = {};
-    if (!name) found.name = form.errors.name;
-    if (phone.replace(/\D/g, "").length < 8) found.phone = form.errors.phone;
-    if (!need) found.need = form.errors.need;
-    setErrors(found);
-    if (Object.keys(found).length > 0) return;
+    const now = Date.now();
+    const storage = getSessionStorage();
+    const verdict = checkSpam({
+      honeypot: text(HONEYPOT_FIELD),
+      startedAt: startedAt.current,
+      now,
+      recent: readRecent(storage, now),
+    });
+    if (verdict === "honeypot") return; // a bot: do nothing, say nothing
 
+    const parsed = contactSchema(form.errors).safeParse({
+      name: text("name"),
+      phone: text("phone"),
+      business: text("business"),
+      need,
+      details: text("message"),
+    });
+    if (!parsed.success) {
+      setErrors(fieldErrors(parsed.error));
+      setStatus({ kind: "idle" });
+      focusFirstError(formElement);
+      return;
+    }
+    setErrors({});
+
+    if (verdict === "too-fast") return setStatus({ kind: "blocked", message: form.errors.tooFast });
+    if (verdict === "rate-limited") return setStatus({ kind: "blocked", message: form.errors.rateLimit });
+
+    const value = parsed.data;
     const t = form.messageTemplate;
-    const lines = [
+    const message = [
       t.intro,
-      `${t.name}: ${name}`,
-      business && `${t.business}: ${business}`,
-      `${t.need}: ${need}`,
-      details && `${t.details}: ${details}`,
-    ].filter(Boolean);
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+      `${t.name}: ${value.name}`,
+      value.business && `${t.business}: ${value.business}`,
+      `${t.need}: ${value.need}`,
+      value.details && `${t.details}: ${value.details}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const context: SubmitContext = { whatsappNumber, email: site.email, subject: form.emailSubject, message };
+    const result: SubmitResult = hasApi
+      ? await submitLead(
+          {
+            kind: showMessage ? "contact" : "free-design",
+            locale,
+            page: window.location.pathname,
+            fields: { name: value.name, phone: value.phone, business: value.business, need: value.need, details: value.details },
+          },
+          context,
+        )
+      : whatsappSubmission(context);
+
+    recordSend(storage, now);
+    if (result.channel === "whatsapp") {
+      // No "noopener" here: it would make window.open() return null. We cut the link ourselves.
+      const opened = window.open(result.url, "_blank");
+      if (opened) opened.opener = null;
+      setStatus({ kind: "sent", whatsappUrl: result.url, emailUrl: result.emailUrl });
+    } else {
+      setStatus({ kind: "sent", whatsappUrl: `https://wa.me/${whatsappNumber}`, emailUrl: `mailto:${site.email}` });
+    }
+    formElement.reset();
+    setNeed("");
   };
 
   const fieldProps = (key: keyof Errors) => ({
@@ -73,6 +134,7 @@ export default function ContactForm({ form, whatsappNumber, showMessage = true }
     <form className={styles.contactForm} onSubmit={onSubmit} noValidate>
       <h2 className={styles.contactFormTitle}>{form.title}</h2>
       <p className={styles.contactFormSubtitle}>{form.subtitle}</p>
+      <Honeypot />
 
       <div className={styles.contactFormRow}>
         <label className={styles.contactFormField}>
@@ -81,6 +143,7 @@ export default function ContactForm({ form, whatsappNumber, showMessage = true }
             name="name"
             type="text"
             autoComplete="name"
+            maxLength={80}
             placeholder={form.fields.name.placeholder}
             {...fieldProps("name")}
           />
@@ -91,8 +154,10 @@ export default function ContactForm({ form, whatsappNumber, showMessage = true }
           <input
             name="phone"
             type="tel"
+            dir="ltr"
             autoComplete="tel"
             inputMode="tel"
+            maxLength={24}
             placeholder={form.fields.phone.placeholder}
             {...fieldProps("phone")}
           />
@@ -102,7 +167,7 @@ export default function ContactForm({ form, whatsappNumber, showMessage = true }
 
       <label className={styles.contactFormField}>
         {form.fields.business.label}
-        <input name="business" type="text" placeholder={form.fields.business.placeholder} />
+        <input name="business" type="text" maxLength={120} autoComplete="organization" placeholder={form.fields.business.placeholder} />
       </label>
 
       <fieldset className={styles.contactFormField} {...fieldProps("need")}>
@@ -129,7 +194,7 @@ export default function ContactForm({ form, whatsappNumber, showMessage = true }
       {showMessage && (
         <label className={styles.contactFormField}>
           {form.fields.message.label}
-          <textarea name="message" rows={4} placeholder={form.fields.message.placeholder} />
+          <textarea name="message" rows={4} maxLength={1000} placeholder={form.fields.message.placeholder} />
         </label>
       )}
 
@@ -137,6 +202,7 @@ export default function ContactForm({ form, whatsappNumber, showMessage = true }
         {form.submit}
       </button>
       <p className={styles.contactFormNote}>{form.note}</p>
+      <FormFeedback status={status} labels={{ sent: form.sent, openWhatsapp: form.openWhatsapp, emailFallback: form.emailFallback }} />
 
       <ul className={styles.contactFormPromises}>
         {form.promises.map((promise) => (

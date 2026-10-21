@@ -5,6 +5,8 @@
 .audiencesSection {
   @include section-y;
   background: color(page);
+  // The explanation bubbles of the chart are wider than a phone: they must never widen the page.
+  overflow-x: clip;
 }
 
 // The wrapper is also the page container (max 1200px + side padding).

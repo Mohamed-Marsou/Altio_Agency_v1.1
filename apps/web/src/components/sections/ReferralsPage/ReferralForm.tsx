@@ -1,8 +1,14 @@
 "use client";
 
 import clsx from "clsx";
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import site from "@/content/shared/site.json";
 import type { ReferralsContent } from "@/lib/content";
+import { fieldErrors, referralSchema } from "@/lib/forms/schemas";
+import { HONEYPOT_FIELD, checkSpam, getSessionStorage, readRecent, recordSend } from "@/lib/forms/spam";
+import { hasApi, submitLead, whatsappSubmission, type SubmitContext, type SubmitResult } from "@/lib/forms/submit";
+import { useLocale } from "@/lib/use-locale";
+import { FormFeedback, Honeypot, focusFirstError, type FormStatus } from "@/components/sections/ContactPage/FormParts";
 import styles from "@/components/sections/ContactPage/ContactForm.module.scss";
 
 type ReferralFormProps = {
@@ -12,42 +18,76 @@ type ReferralFormProps = {
 
 type Errors = Partial<Record<"yourName" | "yourPhone" | "theirName", string>>;
 
-// "Refer someone": same idea as the contact form. It checks the answers, builds a
-// WhatsApp message with them and opens WhatsApp, so nothing is stored by us. It
-// re-uses the contact form's styles on purpose, so both forms look identical.
+// "Refer someone": same idea as the contact form (same checks, same protection,
+// same WhatsApp or backend path, see ContactForm.tsx). It re-uses the contact
+// form's styles on purpose, so both forms look identical.
 export default function ReferralForm({ form, whatsappNumber }: ReferralFormProps) {
   const baseId = useId();
-  const [reward, setReward] = useState(form.rewardOptions[0]);
+  const locale = useLocale();
+  const startedAt = useRef(0);
+  const [reward, setReward] = useState(form.rewardOptions[0] ?? "");
   const [errors, setErrors] = useState<Errors>({});
+  const [status, setStatus] = useState<FormStatus>({ kind: "idle" });
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const yourName = String(data.get("yourName") ?? "").trim();
-    const yourPhone = String(data.get("yourPhone") ?? "").trim();
-    const theirName = String(data.get("theirName") ?? "").trim();
-    const theirPhone = String(data.get("theirPhone") ?? "").trim();
+    const formElement = event.currentTarget;
+    const data = new FormData(formElement);
+    const text = (key: string) => String(data.get(key) ?? "");
 
-    const found: Errors = {};
-    if (!yourName) found.yourName = form.errors.yourName;
-    if (yourPhone.replace(/\D/g, "").length < 8) found.yourPhone = form.errors.yourPhone;
-    if (!theirName) found.theirName = form.errors.theirName;
-    setErrors(found);
-    if (Object.keys(found).length > 0) return;
+    const now = Date.now();
+    const storage = getSessionStorage();
+    const verdict = checkSpam({ honeypot: text(HONEYPOT_FIELD), startedAt: startedAt.current, now, recent: readRecent(storage, now) });
+    if (verdict === "honeypot") return;
 
+    const parsed = referralSchema(form.errors).safeParse({
+      yourName: text("yourName"),
+      yourPhone: text("yourPhone"),
+      theirName: text("theirName"),
+      theirPhone: text("theirPhone"),
+      reward,
+    });
+    if (!parsed.success) {
+      setErrors(fieldErrors(parsed.error));
+      setStatus({ kind: "idle" });
+      focusFirstError(formElement);
+      return;
+    }
+    setErrors({});
+
+    if (verdict === "too-fast") return setStatus({ kind: "blocked", message: form.errors.tooFast });
+    if (verdict === "rate-limited") return setStatus({ kind: "blocked", message: form.errors.rateLimit });
+
+    const value = parsed.data;
     const t = form.messageTemplate;
-    const lines = [
+    const message = [
       t.intro,
-      `${t.yourName}: ${yourName} (${yourPhone})`,
-      `${t.theirName}: ${theirName}`,
-      theirPhone && `${t.theirPhone}: ${theirPhone}`,
-      `${t.reward}: ${reward}`,
-    ].filter(Boolean);
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+      `${t.yourName}: ${value.yourName} (${value.yourPhone})`,
+      `${t.theirName}: ${value.theirName}`,
+      value.theirPhone && `${t.theirPhone}: ${value.theirPhone}`,
+      `${t.reward}: ${value.reward}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const context: SubmitContext = { whatsappNumber, email: site.email, subject: form.emailSubject, message };
+    const result: SubmitResult = hasApi
+      ? await submitLead({ kind: "referral", locale, page: window.location.pathname, fields: { ...value } }, context)
+      : whatsappSubmission(context);
+
+    recordSend(storage, now);
+    if (result.channel === "whatsapp") {
+      const opened = window.open(result.url, "_blank");
+      if (opened) opened.opener = null;
+      setStatus({ kind: "sent", whatsappUrl: result.url, emailUrl: result.emailUrl });
+    } else {
+      setStatus({ kind: "sent", whatsappUrl: `https://wa.me/${whatsappNumber}`, emailUrl: `mailto:${site.email}` });
+    }
+    formElement.reset();
   };
 
   const fieldProps = (key: keyof Errors) => ({
@@ -67,16 +107,17 @@ export default function ReferralForm({ form, whatsappNumber }: ReferralFormProps
     <form className={styles.contactForm} onSubmit={onSubmit} noValidate>
       <h2 className={styles.contactFormTitle}>{form.title}</h2>
       <p className={styles.contactFormSubtitle}>{form.subtitle}</p>
+      <Honeypot />
 
       <div className={styles.contactFormRow}>
         <label className={styles.contactFormField}>
           {f.yourName.label}
-          <input name="yourName" type="text" autoComplete="name" placeholder={f.yourName.placeholder} {...fieldProps("yourName")} />
+          <input name="yourName" type="text" autoComplete="name" maxLength={80} placeholder={f.yourName.placeholder} {...fieldProps("yourName")} />
           {error("yourName")}
         </label>
         <label className={styles.contactFormField}>
           {f.yourPhone.label}
-          <input name="yourPhone" type="tel" autoComplete="tel" inputMode="tel" placeholder={f.yourPhone.placeholder} {...fieldProps("yourPhone")} />
+          <input name="yourPhone" type="tel" dir="ltr" autoComplete="tel" inputMode="tel" maxLength={24} placeholder={f.yourPhone.placeholder} {...fieldProps("yourPhone")} />
           {error("yourPhone")}
         </label>
       </div>
@@ -84,12 +125,12 @@ export default function ReferralForm({ form, whatsappNumber }: ReferralFormProps
       <div className={styles.contactFormRow}>
         <label className={styles.contactFormField}>
           {f.theirName.label}
-          <input name="theirName" type="text" placeholder={f.theirName.placeholder} {...fieldProps("theirName")} />
+          <input name="theirName" type="text" maxLength={120} placeholder={f.theirName.placeholder} {...fieldProps("theirName")} />
           {error("theirName")}
         </label>
         <label className={styles.contactFormField}>
           {f.theirPhone.label}
-          <input name="theirPhone" type="tel" inputMode="tel" placeholder={f.theirPhone.placeholder} />
+          <input name="theirPhone" type="tel" dir="ltr" inputMode="tel" maxLength={24} placeholder={f.theirPhone.placeholder} />
         </label>
       </div>
 
@@ -114,6 +155,7 @@ export default function ReferralForm({ form, whatsappNumber }: ReferralFormProps
         {form.submit}
       </button>
       <p className={styles.contactFormNote}>{form.note}</p>
+      <FormFeedback status={status} labels={{ sent: form.sent, openWhatsapp: form.openWhatsapp, emailFallback: form.emailFallback }} />
       <ul className={styles.contactFormPromises}>
         {form.promises.map((promise) => (
           <li key={promise}>{promise}</li>

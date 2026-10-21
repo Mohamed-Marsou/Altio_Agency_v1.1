@@ -1,5 +1,7 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
+import CoverImage from "@/components/ui/CoverImage/CoverImage";
+import type { CoverImage as CoverImageData } from "@/lib/content";
 import styles from "./ProjectArt.module.scss";
 
 type ProjectArtProps = {
@@ -13,6 +15,8 @@ type ProjectArtProps = {
   privatePreviewLabel: string;
   /** Hero version: bigger and gently floating. */
   isLarge?: boolean;
+  /** A real picture from the media library: replaces the drawn window. */
+  image?: CoverImageData;
 };
 
 // The picture of a project: a browser window drawn with CSS, tinted by the
@@ -89,7 +93,20 @@ export default function ProjectArt({
   privateLabel,
   privatePreviewLabel,
   isLarge = false,
+  image,
 }: ProjectArtProps) {
+  if (image) {
+    return (
+      <div className={clsx(styles.projectArt, styles.projectArtHasImage)}>
+        <span className={clsx(styles.projectArtStatus, !isLive && styles.projectArtStatusIsPrivate)}>
+          <i />
+          {isLive ? liveLabel : privateLabel}
+        </span>
+        <CoverImage image={image} priority={isLarge} sizes={isLarge ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 33vw, 100vw"} />
+      </div>
+    );
+  }
+
   return (
     <div className={clsx(styles.projectArt, isLarge && styles.projectArtIsLarge)} aria-hidden="true">
       <span className={clsx(styles.projectArtStatus, !isLive && styles.projectArtStatusIsPrivate)}>

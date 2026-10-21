@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "eyebrow": "Blog",
+    "title": "Des conseils pratiques pour",
+    "accent": "grandir en ligne.",
+    "lead": "Des articles courts et honnêtes sur les sites web, le référencement et la vente en ligne, écrits pour les chefs d’entreprise au Maroc."
+  },
+  "categories": {
+    "web": "Sites web",
+    "seo": "SEO",
+    "shop": "Boutiques en ligne",
+    "apps": "Applications web",
+    "tips": "Conseils business"
+  },
+  "all": "Tous",
+  "filterLabel": "Filtrer par sujet",
+  "featuredTag": "À la une",
+  "latest": "Derniers articles",
+  "readMore": "Lire l’article →",
+  "minRead": "min de lecture",
+  "noResults": "Aucun article sur ce sujet pour l’instant.",
+  "help": {
+    "title": "Une question à laquelle nous n’avons pas répondu ?",
+    "cta": "Posez-nous la question sur WhatsApp",
+    "message": "Bonjour Altio, j’ai une question après avoir lu votre blog."
+  },
+  "post": {
+    "breadcrumbRoot": "Blog",
+    "author": "L’équipe Altio",
+    "toc": "Dans cet article",
+    "share": "Partager",
+    "copyLink": "Copier le lien",
+    "copied": "Lien copié",
+    "shareWhatsapp": "Partager sur WhatsApp",
+    "progressLabel": "Progression de la lecture",
+    "endCta": {
+      "title": "Vous voulez que nous regardions votre site ?",
+      "text": "Envoyez-nous votre adresse et nous vous répondons avec trois corrections rapides.",
+      "cta": "Discuter sur WhatsApp",
+      "message": "Bonjour Altio, j’ai lu votre article et je voudrais que vous regardiez mon site web."
+    },
+    "related": "Continuer la lecture"
+  }
+}

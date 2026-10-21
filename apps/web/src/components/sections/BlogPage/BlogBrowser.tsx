@@ -1,10 +1,11 @@
 "use client";
 
 import clsx from "clsx";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { useMemo, useState } from "react";
 import Button from "@/components/ui/Button/Button";
 import { formatDate } from "@/lib/format";
+import { useLocale } from "@/lib/use-locale";
 import type { BlogPageContent, Post } from "@/lib/content";
 import BlogCard from "./BlogCard";
 import BlogCover from "./BlogCover";
@@ -20,6 +21,7 @@ type BlogBrowserProps = {
 // chips change what is shown. Each chip carries the topic's colour dot and the
 // number of articles. Before JavaScript runs everything is visible.
 export default function BlogBrowser({ posts, content, helpHref }: BlogBrowserProps) {
+  const locale = useLocale();
   const [topic, setTopic] = useState<string>("all");
   const categories = Object.entries(content.categories);
 
@@ -64,7 +66,7 @@ export default function BlogBrowser({ posts, content, helpHref }: BlogBrowserPro
                 {content.featuredTag} ·{" "}
                 {content.categories[featured.category as keyof typeof content.categories]}
               </span>
-              <span>{formatDate(featured.date)}</span>
+              <span>{formatDate(featured.date, locale)}</span>
               <span>
                 {featured.readTime} {content.minRead}
               </span>
@@ -75,7 +77,7 @@ export default function BlogBrowser({ posts, content, helpHref }: BlogBrowserPro
               {content.readMore}
             </Link>
           </div>
-          <BlogCover kind={featured.category} />
+          <BlogCover kind={featured.category} image={featured.coverImage} />
         </article>
       )}
 

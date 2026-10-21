@@ -1,0 +1,13 @@
+{
+  "title": "Voyez votre site avant de payer.",
+  "text": "Parlez-nous de votre activité et recevez un design sur mesure en 48 heures.",
+  "primary": {
+    "label": "Recevoir mon design gratuit",
+    "message": "Bonjour Altio, je souhaite recevoir un design gratuit pour mon entreprise.",
+    "hoverLabel": "Envoyez-nous un message"
+  },
+  "secondary": {
+    "label": "Discuter sur WhatsApp",
+    "message": "Bonjour Altio, j’ai une question sur vos services."
+  }
+}

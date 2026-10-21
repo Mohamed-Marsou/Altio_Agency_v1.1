@@ -1,0 +1,139 @@
+{
+  "hero": {
+    "eyebrow": "Parrainage",
+    "title": "Apportez un client,",
+    "accent": "soyez récompensé.",
+    "lead": "Vous connaissez une entreprise qui a besoin d’un site ? Présentez-nous. Quand elle devient cliente, nous vous remercions comme il se doit. Ouvert à tous : anciens clients et visiteurs.",
+    "primary": {
+      "label": "Parrainer quelqu’un sur WhatsApp",
+      "hoverLabel": "Envoyez-nous un message",
+      "message": "Bonjour Altio, je souhaite vous recommander une entreprise."
+    },
+    "secondary": "Remplir le formulaire",
+    "cards": [
+      {
+        "number": "1",
+        "title": "Vous",
+        "text": "Présentez une entreprise"
+      },
+      {
+        "number": "2",
+        "title": "Elle",
+        "text": "Reçoit un design gratuit"
+      },
+      {
+        "number": "3",
+        "title": "Récompense",
+        "text": "Vous choisissez laquelle"
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "Comment ça marche",
+    "title": "Trois étapes simples",
+    "items": [
+      {
+        "title": "Présentez-la",
+        "text": "Envoyez-nous son nom et son WhatsApp, ou partagez notre site. Demandez-lui toujours son accord d’abord."
+      },
+      {
+        "title": "Elle devient cliente",
+        "text": "Nous concevons sa page d’accueil gratuitement. Si elle l’aime, le projet démarre."
+      },
+      {
+        "title": "Vous êtes récompensé",
+        "text": "Une fois qu’elle a tout payé, nous convenons ensemble de votre récompense."
+      }
+    ]
+  },
+  "rewards": {
+    "eyebrow": "Récompenses",
+    "title": "Vous choisissez ce qui vous convient",
+    "lead": "Les montants sont convenus au cas par cas, selon le projet.",
+    "items": [
+      {
+        "icon": "C",
+        "title": "Crédit",
+        "text": "Une remise sur votre prochain projet."
+      },
+      {
+        "icon": "M",
+        "title": "Gestion offerte",
+        "text": "Des mois de gestion complète gratuits."
+      },
+      {
+        "icon": "€",
+        "title": "Espèces",
+        "text": "Un paiement direct, convenu avec vous."
+      },
+      {
+        "icon": "U",
+        "title": "Améliorations",
+        "text": "Des services gratuits ou des fonctionnalités en plus."
+      }
+    ],
+    "rules": [
+      "La récompense est versée une fois que le client parrainé a tout payé",
+      "Pas d’auto-parrainage",
+      "Nous ne contactons jamais personne sans son accord",
+      "Altio peut retenir les récompenses en cas d’abus"
+    ]
+  },
+  "form": {
+    "title": "Parrainer quelqu’un",
+    "subtitle": "Cela prend une minute. Nous ne le contactons que s’il est d’accord.",
+    "fields": {
+      "yourName": {
+        "label": "Votre nom",
+        "placeholder": "Sara Benali"
+      },
+      "yourPhone": {
+        "label": "Votre WhatsApp",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "theirName": {
+        "label": "Qui parrainez-vous ?",
+        "placeholder": "Karim, propriétaire du Café Médina"
+      },
+      "theirPhone": {
+        "label": "Son WhatsApp (s’il est d’accord)",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "reward": {
+        "label": "Récompense souhaitée"
+      }
+    },
+    "rewardOptions": [
+      "Crédit",
+      "Gestion offerte",
+      "Espèces",
+      "Améliorations",
+      "Je ne sais pas encore"
+    ],
+    "submit": "Envoyer sur WhatsApp",
+    "note": "Cela ouvre WhatsApp avec vos réponses déjà remplies, prêtes à être envoyées.",
+    "promises": [
+      "Elle a accepté d’être contactée",
+      "Nous ne partageons jamais les coordonnées"
+    ],
+    "errors": {
+      "yourName": "Entrez votre nom.",
+      "yourPhone": "Entrez un numéro joignable sur WhatsApp.",
+      "theirName": "Dites-nous qui vous parrainez.",
+      "tooLong": "C’est trop long. Merci de raccourcir.",
+      "tooFast": "Vérifiez vos réponses une dernière fois, puis envoyez à nouveau.",
+      "rateLimit": "Vous avez déjà envoyé plusieurs messages. Patientez quelques minutes ou écrivez-nous sur WhatsApp."
+    },
+    "messageTemplate": {
+      "intro": "Bonjour Altio, je souhaite parrainer quelqu’un.",
+      "yourName": "Mon nom",
+      "theirName": "Je parraine",
+      "theirPhone": "Son WhatsApp",
+      "reward": "Récompense souhaitée"
+    },
+    "emailFallback": "Vous préférez l’e-mail ? Envoyez-le par e-mail",
+    "openWhatsapp": "WhatsApp ne s’est pas ouvert ? Touchez ici",
+    "sent": "WhatsApp est ouvert avec votre message. Appuyez sur envoyer pour terminer.",
+    "emailSubject": "Parrainage"
+  }
+}

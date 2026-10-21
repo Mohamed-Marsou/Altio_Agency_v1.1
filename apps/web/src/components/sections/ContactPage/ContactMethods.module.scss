@@ -56,7 +56,7 @@ a.contactMethod {
 }
 
 .contactMethodArrow {
-  margin-left: auto;
+  margin-inline-start: auto;
   color: color(accent);
   transition: transform 0.4s var(--ease-out);
 }
@@ -65,17 +65,18 @@ a.contactMethod {
 .contactMethodIsWhatsapp {
   border-color: color(whatsapp);
   background: color(whatsapp);
-  color: color(white);
+  // Dark text: white on this green is only 2 : 1, dark text is about 9 : 1.
+  color: #07230f;
 
   .contactMethodIcon {
-    background: color-mix(in srgb, #{color(white)} 20%, transparent);
-    color: color(white);
+    background: color-mix(in srgb, #07230f 14%, transparent);
+    color: #07230f;
   }
 
   .contactMethodText,
   .contactMethodText b,
   .contactMethodArrow {
-    color: color(white);
+    color: #07230f;
   }
 
   @include on-hover {

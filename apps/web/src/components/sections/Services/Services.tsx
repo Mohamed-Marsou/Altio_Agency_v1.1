@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { getServices } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import styles from "./Services.module.scss";

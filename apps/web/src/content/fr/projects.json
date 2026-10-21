@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "atlas-immo",
+    "vibe": "estate",
+    "art": "estate",
+    "featured": true,
+    "status": "live",
+    "url": "atlasimmo.ma",
+    "category": "apps",
+    "tag": "Immobilier",
+    "title": "Atlas Immo",
+    "featuredTitle": "Atlas Immo : d’un modèle dépassé à l’agence que l’on appelle en premier",
+    "teaser": "Une refonte complète avec espace d’administration des annonces, demandes par WhatsApp et SEO local.",
+    "result": "×3 demandes en 4 mois",
+    "stats": [
+      { "value": "×3", "label": "demandes en 4 mois" },
+      { "value": "5 sem.", "label": "du design à la mise en ligne" },
+      { "value": "96", "label": "vitesse mobile" }
+    ],
+    "case": {
+      "heroTitle": "Atlas Immo,",
+      "heroAccent": "l’agence que l’on appelle en premier.",
+      "heroLead": "Une agence immobilière de Tanger coincée derrière un modèle dépassé. Nous avons refait son apparence, sa rapidité et sa façon de recevoir les demandes.",
+      "liveSince": "En ligne depuis mars 2026",
+      "facts": { "client": "Agence immobilière", "service": "Applications et plateformes web", "timeline": "5 semaines", "stack": "Next.js · Node.js · SQL" },
+      "problem": {
+        "title": "Une bonne agence cachée derrière un mauvais site",
+        "lead": "Les acheteurs jugeaient l’agence en quelques secondes, et le site leur donnait des raisons de partir.",
+        "pains": ["Lent sur téléphone, 7,8 secondes pour afficher les annonces", "Pas de bouton WhatsApp, pas d’étape suivante claire", "Annonces mises à jour en modifiant le code, donc rarement mises à jour"],
+        "notes": ["7,8 s de chargement", "Look de modèle", "Pas de WhatsApp"]
+      },
+      "journey": [
+        { "when": "Semaine 1", "title": "Découvrir", "text": "Nous avons appris à connaître l’agence, ses acheteurs et ses concurrents dans la ville." },
+        { "when": "Sous 72 h", "title": "Design gratuit", "text": "Une page d’accueil sur mesure dans Figma. Le propriétaire l’a validée avant de payer." },
+        { "when": "Semaines 2 à 4", "title": "Construire", "text": "Un code propre, un espace d’administration des annonces et des demandes par WhatsApp, avec des modifications gratuites." },
+        { "when": "Semaine 5", "title": "Lancer et grandir", "text": "En ligne, suivi et vérifié après 14 jours. Puis des améliorations mensuelles." }
+      ],
+      "built": [
+        { "title": "Des annonces que l’on peut filtrer", "text": "Recherche par quartier, surface et prix, pensée pour un pouce sur un téléphone.", "visual": "listing" },
+        { "title": "Une administration que l’équipe utilise", "text": "Ajouter, modifier et dépublier des annonces en quelques minutes, sans développeur.", "visual": "admin" },
+        { "title": "Des demandes en un clic", "text": "Chaque annonce ouvre une conversation WhatsApp avec le bien déjà nommé.", "visual": "whatsapp" }
+      ],
+      "compare": {
+        "before": [{ "label": "Vitesse mobile", "value": 38 }, { "label": "Visibilité de recherche", "value": 22 }, { "label": "Demandes mensuelles", "value": 12 }],
+        "after": [{ "label": "Vitesse mobile", "value": 96 }, { "label": "Visibilité de recherche", "value": 81 }, { "label": "Demandes mensuelles", "value": 36 }]
+      },
+      "results": [
+        { "value": "×3", "label": "Plus de demandes", "note": "Mesuré sur 4 mois" },
+        { "value": "96", "label": "Score de vitesse mobile", "note": "Contre 38 avant" },
+        { "value": "1 jour", "label": "Pour publier une annonce", "note": "Une semaine auparavant, via un développeur" }
+      ],
+      "quote": { "text": "Les clients nous écrivent maintenant depuis l’annonce elle-même. Nous ne perdons plus de prospects à cause d’un site lent.", "by": "Propriétaire, Atlas Immo" }
+    }
+  },
+  {
+    "slug": "nour-boutique",
+    "vibe": "store",
+    "art": "store",
+    "featured": false,
+    "status": "live",
+    "url": "nourboutique.ma",
+    "category": "stores",
+    "tag": "Boutique en ligne",
+    "title": "Nour Boutique",
+    "featuredTitle": "",
+    "teaser": "Une boutique de vêtements en ligne avec un paiement simple et un catalogue que la propriétaire met à jour seule.",
+    "result": "Des commandes dès le premier jour",
+    "stats": [],
+    "case": {
+      "heroTitle": "Nour Boutique,",
+      "heroAccent": "une boutique qui vend pendant qu’elle dort.",
+      "heroLead": "Une boutique de vêtements qui vivait de messages Instagram. Nous lui avons donné un magasin où les clients peuvent parcourir, choisir une taille et payer.",
+      "liveSince": "En ligne depuis janvier 2026",
+      "facts": { "client": "Boutique de vêtements", "service": "Boutiques en ligne", "timeline": "4 semaines", "stack": "Next.js · Node.js · SQL" },
+      "problem": {
+        "title": "Chaque vente commençait par une longue discussion",
+        "lead": "Les clients demandaient tailles et prix par message, et beaucoup abandonnaient avant de commander.",
+        "pains": ["Prix et stock vivaient dans le téléphone de la propriétaire", "Les commandes étaient écrites sur papier et souvent perdues", "Impossible de vendre quand la boutique était fermée"],
+        "notes": ["Messages seulement", "Pas d’info de stock", "Fermé = pas de ventes"]
+      },
+      "journey": [
+        { "when": "Semaine 1", "title": "Découvrir", "text": "Nous avons cartographié le catalogue, les tailles et la façon dont les clients aiment payer." },
+        { "when": "Sous 72 h", "title": "Design gratuit", "text": "Une page d’accueil lumineuse centrée sur les produits, et une page produit, dans Figma." },
+        { "when": "Semaines 2 à 3", "title": "Construire", "text": "Catalogue, panier, paiement et une liste de commandes que la propriétaire gère seule." },
+        { "when": "Semaine 4", "title": "Lancer et grandir", "text": "En ligne avec une première collection chargée et des photos optimisées pour les téléphones." }
+      ],
+      "built": [
+        { "title": "Un catalogue à l’image de la marque", "text": "De grandes photos, des tailles et un stock clairs, qui se chargent vite avec les données mobiles.", "visual": "listing" },
+        { "title": "Un paiement en trois clics", "text": "Panier, coordonnées de livraison et paiement, sans rien de plus à apprendre.", "visual": "cart" },
+        { "title": "Des commandes sous contrôle", "text": "Chaque commande arrive dans une liste, prête à être préparée et suivie.", "visual": "admin" }
+      ],
+      "compare": {
+        "before": [{ "label": "Vitesse mobile", "value": 41 }, { "label": "Commandes sans discussion", "value": 0 }, { "label": "Produits en ligne", "value": 10 }],
+        "after": [{ "label": "Vitesse mobile", "value": 94 }, { "label": "Commandes sans discussion", "value": 70 }, { "label": "Produits en ligne", "value": 100 }]
+      },
+      "results": [
+        { "value": "70%", "label": "Commandes sans discussion", "note": "Les clients paient seuls" },
+        { "value": "94", "label": "Score de vitesse mobile", "note": "Contre 41 avant" },
+        { "value": "24/7", "label": "Heures de vente", "note": "Même quand la boutique est fermée" }
+      ],
+      "quote": { "text": "J’ajoute une nouvelle pièce en quelques minutes et elle est en vente le jour même.", "by": "Propriétaire, Nour Boutique" }
+    }
+  },
+  {
+    "slug": "clinique-tanger",
+    "vibe": "app",
+    "art": "app",
+    "featured": false,
+    "status": "private",
+    "url": "",
+    "category": "apps",
+    "tag": "Application web",
+    "title": "Clinique Tanger",
+    "featuredTitle": "",
+    "teaser": "Une application de réservation et de file d’attente des patients qui a remplacé l’agenda papier à l’accueil.",
+    "result": "−60 % d’appels pour réserver",
+    "stats": [],
+    "case": {
+      "heroTitle": "Clinique Tanger,",
+      "heroAccent": "fini l’agenda papier.",
+      "heroLead": "Une clinique très occupée qui fonctionnait avec un agenda papier et un téléphone qui sonne. Nous avons construit un outil de réservation et de file d’attente que toute l’équipe utilise.",
+      "liveSince": "Projet privé, utilisé en interne",
+      "facts": { "client": "Clinique médicale", "service": "Applications et plateformes web", "timeline": "7 semaines", "stack": "React · Node.js · SQL" },
+      "problem": {
+        "title": "L’accueil était le goulot d’étranglement",
+        "lead": "Chaque réservation passait par un appel, et les doubles réservations étaient fréquentes.",
+        "pains": ["Rendez-vous notés dans un agenda papier", "Doubles réservations et aucun rappel", "Aucune vue sur les personnes qui attendent en ce moment"],
+        "notes": ["Agenda papier", "Doubles réservations", "Pas de rappels"]
+      },
+      "journey": [
+        { "when": "Semaines 1 à 2", "title": "Découvrir", "text": "Nous nous sommes assis à l’accueil et avons suivi une journée complète de réservations." },
+        { "when": "Sous 72 h", "title": "Design gratuit", "text": "Une interface calme et très contrastée, conçue pour un accueil chargé." },
+        { "when": "Semaines 3 à 6", "title": "Construire", "text": "Réservation, file d’attente des patients, rappels et rôles avec connexion sécurisée." },
+        { "when": "Semaine 7", "title": "Lancer et grandir", "text": "Déploiement salle par salle, avec formation et support dès le premier jour." }
+      ],
+      "built": [
+        { "title": "Une vue du jour où vit l’accueil", "text": "Chaque rendez-vous et qui attend, sur un seul écran.", "visual": "calendar" },
+        { "title": "Des rappels par message", "text": "Les patients sont rappelés automatiquement, donc moins d’absences.", "visual": "whatsapp" },
+        { "title": "Rôles et accès sécurisé", "text": "L’accueil, les médecins et la direction voient chacun ce dont ils ont besoin.", "visual": "admin" }
+      ],
+      "compare": {
+        "before": [{ "label": "Réservations par téléphone", "value": 100 }, { "label": "Rendez-vous manqués", "value": 30 }, { "label": "Temps pour réserver", "value": 70 }],
+        "after": [{ "label": "Réservations par téléphone", "value": 40 }, { "label": "Rendez-vous manqués", "value": 12 }, { "label": "Temps pour réserver", "value": 20 }]
+      },
+      "results": [
+        { "value": "−60%", "label": "Appels pour réserver", "note": "Les patients réservent en ligne" },
+        { "value": "−55%", "label": "Rendez-vous manqués", "note": "Grâce aux rappels" },
+        { "value": "0", "label": "Doubles réservations", "note": "Depuis le lancement" }
+      ],
+      "quote": { "text": "L’accueil a enfin le temps de s’occuper des personnes qui sont devant lui.", "by": "Directeur, Clinique Tanger" }
+    }
+  },
+  {
+    "slug": "cafe-medina",
+    "vibe": "managed",
+    "art": "managed",
+    "featured": false,
+    "status": "live",
+    "url": "cafemedina.ma",
+    "category": "managed",
+    "tag": "Gestion complète",
+    "title": "Café Médina",
+    "featuredTitle": "",
+    "teaser": "Un site de menu et un suivi mensuel : hébergement, mises à jour et changements de saison pris en charge pour eux.",
+    "result": "Menu mis à jour en 1 jour",
+    "stats": [],
+    "case": {
+      "heroTitle": "Café Médina,",
+      "heroAccent": "pris en charge, mois après mois.",
+      "heroLead": "Un café avec un beau menu et pas de temps pour les sites web. Nous avons construit le site, puis repris définitivement la partie technique.",
+      "liveSince": "En ligne depuis octobre 2025",
+      "facts": { "client": "Café et restaurant", "service": "Gestion complète", "timeline": "3 semaines, puis mensuel", "stack": "Next.js · Hébergement inclus" },
+      "problem": {
+        "title": "Un site dont personne n’avait le temps de s’occuper",
+        "lead": "L’ancien site affichait le menu de l’été dernier et se cassait après chaque mise à jour.",
+        "pains": ["Menu et prix périmés depuis des mois", "Hébergement et mises à jour dont personne n’était responsable", "Personne à appeler quand il tombait en panne"],
+        "notes": ["Ancien menu", "Page cassée", "Pas de support"]
+      },
+      "journey": [
+        { "when": "Semaine 1", "title": "Découvrir", "text": "Nous avons appris le rythme du menu : saisons, plats du jour et horaires d’ouverture." },
+        { "when": "Sous 72 h", "title": "Design gratuit", "text": "Une page d’accueil et une page de menu chaleureuses et appétissantes dans Figma." },
+        { "when": "Semaines 2 à 3", "title": "Construire", "text": "Un site de menu rapide avec réservations WhatsApp et Google Maps." },
+        { "when": "À partir de la semaine 4", "title": "Gestion complète", "text": "Nous gérons l’hébergement, les mises à jour et une amélioration mensuelle." }
+      ],
+      "built": [
+        { "title": "Un menu toujours à jour", "text": "Les changements de saison sont faits par nous, en général sous un jour.", "visual": "listing" },
+        { "title": "Réservations sur WhatsApp", "text": "Un clic pour réserver une table, avec la date déjà remplie.", "visual": "whatsapp" },
+        { "title": "Un rapport mensuel en mots simples", "text": "Ce qui a changé, comment cela a performé et ce qui vient ensuite.", "visual": "report" }
+      ],
+      "compare": {
+        "before": [{ "label": "Fraîcheur du menu", "value": 15 }, { "label": "Vitesse mobile", "value": 44 }, { "label": "Réservations en ligne", "value": 5 }],
+        "after": [{ "label": "Fraîcheur du menu", "value": 100 }, { "label": "Vitesse mobile", "value": 95 }, { "label": "Réservations en ligne", "value": 60 }]
+      },
+      "results": [
+        { "value": "1 jour", "label": "Pour changer le menu", "note": "Des mois auparavant" },
+        { "value": "99,9%", "label": "Disponibilité", "note": "Surveillée chaque mois" },
+        { "value": "60%", "label": "Réservations en ligne", "note": "Surtout via WhatsApp" }
+      ],
+      "quote": { "text": "Nous envoyons un message, et le site est mis à jour. C’est tout ce que nous voulions.", "by": "Propriétaire, Café Médina" }
+    }
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "eyebrow": "Pourquoi Altio",
+  "title": "Une équipe d’agence, pas une usine à modèles.",
+  "text": "Nous sommes une équipe d’ingénieurs full-stack et de designers qui traitent chaque site comme un produit, du premier design au support qui suit.",
+  "stats": [
+    { "value": "Équipe", "label": "d’ingénieurs" },
+    { "value": "48h", "label": "pour un design gratuit" },
+    { "value": "24/7", "label": "réponses" }
+  ],
+  "cards": [
+    {
+      "icon": "code",
+      "title": "Ingénierie full-stack",
+      "text": "Web, mobile et automatisation sous un même toit, avec des outils modernes et un code propre."
+    },
+    {
+      "icon": "layers",
+      "title": "Le design d’abord",
+      "text": "Un design sur mesure dans Figma avant la moindre ligne de code, pour que vous validiez exactement ce que vous recevrez."
+    },
+    {
+      "icon": "workflow",
+      "title": "Un processus clair",
+      "text": "Des phases définies, un tableau de projet suivi et un devis écrit. Pas de mauvaises surprises."
+    },
+    {
+      "icon": "message",
+      "title": "Toujours joignables",
+      "text": "Réponses sur WhatsApp à toute heure, et un vrai support après la mise en ligne."
+    }
+  ],
+  "stackLabel": "Notre stack",
+  "stack": [
+    { "name": "Node.js", "mostUsed": true },
+    { "name": "Kotlin", "mostUsed": false },
+    { "name": "React", "mostUsed": true },
+    { "name": "WordPress", "mostUsed": true },
+    { "name": "SQL", "mostUsed": false },
+    { "name": "Spring Boot", "mostUsed": false },
+    { "name": "Next.js", "mostUsed": false },
+    { "name": "C#", "mostUsed": false },
+    { "name": "Figma", "mostUsed": false },
+    { "name": "Java", "mostUsed": false },
+    { "name": ".NET", "mostUsed": true },
+    { "name": "NoSQL", "mostUsed": false },
+    { "name": "TypeScript", "mostUsed": false }
+  ],
+  "mostUsedTip": "Stack la plus utilisée"
+}

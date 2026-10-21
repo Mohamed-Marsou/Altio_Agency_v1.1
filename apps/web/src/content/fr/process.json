@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Comment ça marche",
+  "title": "Du premier message à la mise en ligne en quatre étapes.",
+  "subtitle": "Vous voyez votre design avant de dépenser quoi que ce soit.",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Parlez-nous de votre activité",
+      "text": "Écrivez-nous sur WhatsApp ou remplissez un formulaire d’une minute : ce que vous faites, votre site actuel et vos objectifs."
+    },
+    {
+      "number": "02",
+      "title": "Recevez votre design gratuit",
+      "text": "En 48 à 72 heures, selon la complexité, vous recevez un design de page d’accueil sur mesure dans Figma. Sans paiement, sans engagement."
+    },
+    {
+      "number": "03",
+      "title": "Vous validez, nous construisons",
+      "text": "Vous réglez 30 % à la validation du design. Nous construisons en une semaine à un mois, avec des modifications gratuites en cours de route."
+    },
+    {
+      "number": "04",
+      "title": "Lancement et croissance",
+      "text": "Vous voyez le MVP et réglez 30 %. Le solde est dû après 14 jours, site en ligne."
+    }
+  ]
+}

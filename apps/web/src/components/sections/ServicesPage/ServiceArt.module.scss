@@ -43,7 +43,7 @@
   }
 
   span {
-    margin-left: space(2);
+    margin-inline-start: space(2);
     padding: rem(3) space(4);
     border-radius: radius(pill);
     background: color(surface-2);
@@ -195,7 +195,7 @@
 .serviceArtSide {
   @include flex-col(space(2));
   padding: space(4) space(3);
-  border-right: 1px solid color(border);
+  border-inline-end: 1px solid color(border);
 
   i {
     height: rem(10);
@@ -270,7 +270,7 @@
   font-size: rem(13);
 
   em {
-    margin-left: auto;
+    margin-inline-start: auto;
     color: color(success);
     font-size: rem(12);
     font-style: normal;

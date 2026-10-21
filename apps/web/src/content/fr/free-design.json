@@ -1,0 +1,113 @@
+{
+  "hero": {
+    "eyebrow": "Design gratuit",
+    "title": "Voyez votre site",
+    "accent": "avant de payer.",
+    "lead": "Parlez-nous de votre activité. En 48 à 72 heures, vous recevez un design de page d’accueil sur mesure, gratuit et sans engagement. Il vous plaît ? Nous le construisons. Il ne vous convient pas ? Vous ne devez rien.",
+    "clockValue": "48 à 72 h",
+    "clockText": [
+      "selon la complexité",
+      "sans paiement, sans engagement"
+    ]
+  },
+  "form": {
+    "title": "Recevoir mon design gratuit",
+    "subtitle": "Quatre questions rapides.",
+    "fields": {
+      "name": {
+        "label": "Votre nom",
+        "placeholder": "Sara Benali"
+      },
+      "phone": {
+        "label": "Numéro WhatsApp",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "business": {
+        "label": "Nom de l’entreprise et ville",
+        "placeholder": "Atlas Immo, Tanger"
+      },
+      "need": {
+        "label": "De quoi avez-vous besoin ?"
+      },
+      "message": {
+        "label": "Dites-nous-en un peu plus",
+        "placeholder": ""
+      }
+    },
+    "needs": [
+      "Site vitrine",
+      "Boutique en ligne",
+      "Application web",
+      "Je ne sais pas encore"
+    ],
+    "submit": "Envoyer et recevoir mon design gratuit",
+    "errors": {
+      "name": "Entrez votre nom.",
+      "phone": "Entrez un numéro joignable sur WhatsApp.",
+      "need": "Choisissez ce dont vous avez besoin.",
+      "tooLong": "C’est trop long. Merci de raccourcir.",
+      "tooFast": "Vérifiez vos réponses une dernière fois, puis envoyez à nouveau.",
+      "rateLimit": "Vous avez déjà envoyé plusieurs messages. Patientez quelques minutes ou écrivez-nous sur WhatsApp."
+    },
+    "note": "Cela ouvre WhatsApp avec vos réponses déjà remplies, prêtes à être envoyées.",
+    "promises": [
+      "Aucun paiement avant de le voir",
+      "Nous ne partageons jamais vos coordonnées"
+    ],
+    "messageTemplate": {
+      "intro": "Bonjour Altio, je souhaite recevoir un design gratuit.",
+      "name": "Nom",
+      "business": "Entreprise",
+      "need": "J’ai besoin de",
+      "details": "À propos"
+    },
+    "emailFallback": "Vous préférez l’e-mail ? Envoyez-le par e-mail",
+    "openWhatsapp": "WhatsApp ne s’est pas ouvert ? Touchez ici",
+    "sent": "WhatsApp est ouvert avec votre message. Appuyez sur envoyer pour terminer.",
+    "emailSubject": "Demande de design gratuit"
+  },
+  "get": {
+    "eyebrow": "Ce que vous recevez",
+    "title": "Un vrai design, pas un aperçu de modèle",
+    "items": [
+      {
+        "title": "Votre page d’accueil dans Figma",
+        "text": "Mise en page sur mesure, vos textes, les couleurs de votre marque."
+      },
+      {
+        "title": "Ordinateur et mobile",
+        "text": "Voyez le rendu sur un ordinateur et sur un téléphone."
+      },
+      {
+        "title": "Modifications gratuites avant validation",
+        "text": "Nous l’ajustons avec vous jusqu’à ce que vous soyez satisfait."
+      }
+    ]
+  },
+  "next": {
+    "eyebrow": "La suite",
+    "title": "De votre message à votre design",
+    "steps": [
+      {
+        "when": "Aujourd’hui",
+        "title": "Vous nous écrivez",
+        "text": "Envoyez le court formulaire ou écrivez-nous sur WhatsApp."
+      },
+      {
+        "when": "En quelques heures",
+        "title": "Nous répondons",
+        "text": "Nous confirmons votre besoin et posons les questions manquantes."
+      },
+      {
+        "when": "48 à 72 heures",
+        "title": "Vous recevez votre design",
+        "text": "Votre page d’accueil sur mesure, gratuite, prête à être examinée."
+      },
+      {
+        "when": "À vous de décider",
+        "title": "Vous décidez",
+        "text": "Validez-la et nous construisons, ou partez sans rien payer."
+      }
+    ]
+  }
+}

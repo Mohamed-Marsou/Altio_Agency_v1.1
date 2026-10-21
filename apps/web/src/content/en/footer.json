@@ -1,5 +1,5 @@
 {
-  "logoLabel": "Altio home",
+  "logoLabel": "ALTIO home",
   "description": "Custom websites and web apps for businesses in Morocco. Designed first, built properly, supported after launch.",
   "ctaLabel": "Let’s talk",
   "ctaMessage": "Hi Altio, I would like to talk about my project.",
@@ -50,8 +50,8 @@
   "contact": {
     "title": "Contact",
     "location": "Tangier, Morocco",
-    "whatsapp": "WhatsApp: +212 6 00 00 00 00",
-    "email": "hello@yourdomain.ma"
+    "whatsapp": "WhatsApp: {{phone}}",
+    "email": "{{email}}"
   },
   "copyright": "© 2026 Altio Agency. All rights reserved.",
   "legal": [

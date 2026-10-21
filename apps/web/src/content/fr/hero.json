@@ -1,0 +1,28 @@
+{
+  "badge": "Design gratuit en 48 heures",
+  "title": "Un site web qui travaille aussi dur que vous.",
+  "headlines": [
+    "Un site web qui travaille aussi dur que vous.",
+    "Recevez votre design gratuit maintenant.",
+    "Voyez votre site avant de payer.",
+    "Transformez vos visiteurs en clients.",
+    "Arrêtez de ressembler à tout le monde.",
+    "Votre entreprise, en ligne et inoubliable."
+  ],
+  "lead": "Des sites sur mesure pour les entreprises locales au Maroc. Nous concevons votre page d’accueil gratuitement en 48 heures, et vous ne payez que si elle vous plaît.",
+  "primaryCta": {
+    "label": "Recevoir mon design gratuit",
+    "hoverLabel": "Envoyez-nous un message",
+    "message": "Bonjour Altio, je souhaite recevoir un design gratuit pour mon entreprise."
+  },
+  "secondaryCta": {
+    "label": "Discuter sur WhatsApp",
+    "message": "Bonjour Altio, j’ai une question sur vos services."
+  },
+  "microcopy": "Basés à Tanger · Nous répondons sur WhatsApp, 24h/24 et 7j/7",
+  "visual": {
+    "url": "votreentreprise.ma",
+    "chipReady": "Votre design est prêt",
+    "chipTime": "48h"
+  }
+}

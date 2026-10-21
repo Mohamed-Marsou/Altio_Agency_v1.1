@@ -1,0 +1,364 @@
+@use "abstracts" as *;
+
+// Mobile first: everything is one column; wider screens add columns.
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: space(6);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: space(3);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display-stack);
+  font-size: rem(26);
+}
+
+.sub,
+.muted {
+  margin: 0;
+  color: color(muted);
+  font-size: rem(13);
+}
+
+// Period switch (7 / 30 days)
+.seg {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+}
+
+.segBtn {
+  min-height: 2.5rem;
+  padding: 0 space(4);
+  border: 0;
+  border-radius: radius(pill);
+  background: transparent;
+  color: color(muted);
+  font: inherit;
+  font-size: rem(14);
+  cursor: pointer;
+}
+
+.segOn {
+  background: color(accent);
+  color: color(on-accent);
+}
+
+// ---- Needs attention: 2 columns on phones, 4 on desktop --------------------
+.attention {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: space(3);
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.attCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: space(4);
+  border: 1px solid color(border);
+  border-left: 4px solid var(--tone);
+  border-radius: radius(md);
+  background: color(surface);
+  color: color(text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tone_accent { --tone: #{color(accent)}; }
+.tone_warning { --tone: #{color(warning)}; }
+.tone_danger { --tone: #{color(danger)}; }
+.tone_success { --tone: #{color(success)}; }
+
+.attCount {
+  font-family: var(--font-display-stack);
+  font-size: rem(28);
+  font-weight: 800;
+  color: var(--tone);
+  line-height: 1.1;
+}
+
+.attLabel {
+  font-weight: 600;
+  font-size: rem(14);
+}
+
+.attDetail {
+  font-size: rem(12);
+  color: color(muted);
+}
+
+// ---- KPI cards -------------------------------------------------------------
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: space(3);
+
+  @include mq(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.kpi {
+  padding: space(4);
+  border: 1px solid color(border);
+  border-radius: radius(md);
+  background: color(surface);
+  min-width: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.kpiLabel {
+  font-size: rem(13);
+  color: color(muted);
+}
+
+.kpiValue {
+  font-family: var(--font-display-stack);
+  font-size: rem(26);
+  font-weight: 800;
+}
+
+.kpiDelta {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: rem(12);
+}
+
+.good { color: color(success); }
+.bad { color: color(danger); }
+
+.spark {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  margin-top: space(2);
+  color: color(accent);
+}
+
+// ---- Main cards ------------------------------------------------------------
+.cols {
+  display: grid;
+  gap: space(4);
+
+  @include mq(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.span2 {
+  @include mq(lg) {
+    grid-column: 1 / -1;
+  }
+}
+
+.card {
+  padding: space(4);
+  border: 1px solid color(border);
+  border-radius: radius(md);
+  background: color(surface);
+  min-width: 0;
+  scroll-margin-top: 5rem; // keeps the sticky top bar from covering the heading
+}
+
+.h2 {
+  margin: 0 0 space(3);
+  font-size: rem(16);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    padding: space(3) 0;
+    border-top: 1px solid color(border);
+  }
+
+  > li:first-child {
+    border-top: 0;
+  }
+}
+
+.empty {
+  color: color(muted);
+  font-size: rem(14);
+}
+
+// Filter chips scroll sideways on narrow screens instead of wrapping to 3 rows
+.chips {
+  display: flex;
+  gap: space(2);
+  margin-bottom: space(2);
+  overflow-x: auto;
+  padding-bottom: space(1);
+}
+
+.chip {
+  flex: none;
+  min-height: 2.5rem;
+  padding: 0 space(4);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  color: color(text);
+  font: inherit;
+  font-size: rem(13);
+  cursor: pointer;
+}
+
+.chipOn {
+  border-color: color(accent);
+  background: color(accent-soft);
+  color: color(accent);
+}
+
+.lead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: space(2) space(3);
+}
+
+.leadMain {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  grid-column: 1 / -1;
+
+  @include mq(md) {
+    grid-column: auto;
+  }
+}
+
+.status {
+  justify-self: start;
+  padding: 2px space(3);
+  border-radius: radius(pill);
+  background: color(surface-2);
+  font-size: rem(12);
+  font-weight: 600;
+
+  @include mq(md) {
+    justify-self: end;
+  }
+}
+
+.st_NEW { background: color(accent-soft); color: color(accent); }
+.st_WON { background: color(success); color: color(white); }
+
+.wa {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: radius(pill);
+  background: color(whatsapp);
+  color: color(white);
+  justify-self: end;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: space(3);
+  min-height: 2.75rem;
+  font-size: rem(14);
+  cursor: pointer;
+
+  input {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--color-accent);
+    flex: none;
+  }
+
+  > span:nth-child(2) {
+    flex: 1;
+  }
+}
+
+.struck {
+  text-decoration: line-through;
+  color: color(muted);
+}
+
+.due {
+  font-size: rem(12);
+  color: color(muted);
+}
+
+.funnelRow {
+  display: grid;
+  grid-template-columns: 6rem 1fr 2.5rem;
+  align-items: center;
+  gap: space(3);
+  font-size: rem(14);
+
+  strong {
+    text-align: right;
+  }
+}
+
+.bar {
+  height: 0.6rem;
+  border-radius: radius(pill);
+  background: color(surface-2);
+  overflow: hidden;
+
+  i {
+    display: block;
+    height: 100%;
+    background: color(accent);
+  }
+}
+
+.pay {
+  display: flex;
+  justify-content: space-between;
+  gap: space(3);
+  font-size: rem(14);
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.payRight {
+  text-align: right;
+}
+
+.overdue {
+  color: color(danger);
+  font-size: rem(13);
+  font-weight: 600;
+}
+
+.act {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: rem(14);
+}

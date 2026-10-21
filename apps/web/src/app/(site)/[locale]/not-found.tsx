@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import MorphButton from "@/components/ui/MorphButton/MorphButton";
 import { getNotFound, getWhatsAppUrl } from "@/lib/content";

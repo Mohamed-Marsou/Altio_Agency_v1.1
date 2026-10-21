@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { Monitor } from "lucide-react";
 import { getWork } from "@/lib/content";
 import Button from "@/components/ui/Button/Button";

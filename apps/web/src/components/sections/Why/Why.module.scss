@@ -124,7 +124,7 @@
 
 .whyStackLabel {
   @include text(eyebrow);
-  margin-right: space(2);
+  margin-inline-end: space(2);
   color: color(muted);
 }
 
