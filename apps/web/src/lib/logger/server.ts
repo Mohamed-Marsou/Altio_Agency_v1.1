@@ -20,6 +20,7 @@
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { appendFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync, utimesSync } from "node:fs";
 import path from "node:path";
+import { createAuth } from "../admin/auth";
 import { handleApi, maxBodyBytes } from "../admin/devApi";
 import { createStore } from "../admin/store";
 import { formatEntry, formatTime, parseLog, sanitizePayload, type LogEntry, type LogPayload } from "./format";
@@ -37,6 +38,18 @@ const ALLOWED_ORIGINS = new Set([
   "http://localhost:3001",
   "http://127.0.0.1:3001",
 ]);
+
+// The dashboard login. ADMIN_PASSWORD_HASH comes from apps/web/.env.local (made by
+// `npm run admin:password`). It stays in this server's memory and never reaches the browser.
+// Without it there is no login (your own computer only).
+const auth = createAuth({ hash: process.env.ADMIN_PASSWORD_HASH });
+
+function bearerToken(req: IncomingMessage): string | null {
+  return /^Bearer (\S+)$/.exec(String(req.headers.authorization ?? ""))?.[1] ?? null;
+}
+
+const unauthorized = (res: ServerResponse) =>
+  send(res, 401, JSON.stringify({ error: { code: "UNAUTHORIZED", message: "Please log in." } }));
 
 let nextId = 1;
 let windowStart = 0;
@@ -105,13 +118,38 @@ function handle(req: IncomingMessage, res: ServerResponse) {
 
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     return send(res, 204, "");
   }
 
   // The dashboard API. Anything that changes data must come from one of our own pages.
   if (url.startsWith("/api/")) {
     if (req.method !== "GET" && !origin) return send(res, 403, JSON.stringify({ error: { code: "ORIGIN_REQUIRED", message: "Missing origin." } }));
+
+    // ---- login (public) ----
+    if (url === "/api/session" && req.method === "GET") {
+      return send(res, 200, JSON.stringify({ required: auth.required, authenticated: auth.validate(bearerToken(req)) }));
+    }
+    if (url === "/api/login" && req.method === "POST") {
+      readBody(req, 2048)
+        .then((raw) => {
+          const password = String((JSON.parse(raw.toString("utf8")) as { password?: unknown }).password ?? "");
+          const result = auth.login(password, req.socket.remoteAddress ?? "unknown");
+          if (result.ok) return send(res, 200, JSON.stringify({ token: result.token, expiresAt: result.expiresAt }));
+          const message = result.code === "TOO_MANY_ATTEMPTS" ? `Too many wrong tries. Try again in ${Math.ceil((result.retryAfterSeconds ?? 60) / 60)} minute(s).` : "Wrong password.";
+          if (result.retryAfterSeconds) res.setHeader("Retry-After", String(result.retryAfterSeconds));
+          send(res, result.status, JSON.stringify({ error: { code: result.code, message } }));
+        })
+        .catch(() => send(res, 400, JSON.stringify({ error: { code: "BAD_REQUEST", message: "Could not read the request." } })));
+      return;
+    }
+    if (url === "/api/logout" && req.method === "POST") {
+      auth.logout(bearerToken(req));
+      return send(res, 200, '{"ok":true}');
+    }
+
+    // ---- everything else needs a session (when a password is set) ----
+    if (url !== "/api/health" && !auth.validate(bearerToken(req))) return unauthorized(res);
     void handleApiHttp(req, res, url);
     return;
   }
@@ -132,6 +170,8 @@ function handle(req: IncomingMessage, res: ServerResponse) {
       .catch(() => send(res, 400, '{"error":"bad request"}'));
     return;
   }
+
+  if (req.method === "GET" && (url === "/logs" || url === "/logs.txt") && !auth.validate(bearerToken(req))) return unauthorized(res);
 
   if (req.method === "GET" && url === "/logs") {
     const entries = readEntries().reverse(); // newest first

@@ -19,7 +19,8 @@
     "test": "npm run test -w @altio/web",
     "e2e": "npm run e2e -w @altio/web",
     "check": "npm run check -w @altio/web",
-    "build:release": "npm run build:release -w @altio/web"
+    "build:release": "npm run build:release -w @altio/web",
+    "admin:password": "npm run admin:password -w @altio/web"
   },
   "devDependencies": {
     "prettier": "^3.9.10"

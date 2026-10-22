@@ -37,6 +37,17 @@ test("an unknown address shows the 404 page with the right status", async ({ pag
   await expect(page.getByRole("heading", { name: "404" })).toBeVisible();
 });
 
+test("the admin area is never listed by search engines", async ({ page }) => {
+  for (const path of ["/admindash/", "/admindash/blog/", "/admindash/projects/", "/admindash/media/", "/admindash/audit/"]) {
+    await page.goto(path);
+    const robots = await page.locator('meta[name="robots"]').getAttribute("content");
+    expect(robots, path).toMatch(/noindex/);
+    expect(robots, path).toMatch(/nofollow/);
+  }
+  const sitemap = await (await page.request.get("/sitemap.xml")).text();
+  expect(sitemap).not.toContain("admindash");
+});
+
 test("the admin area has no public footer, loader or custom cursor", async ({ page }) => {
   await page.goto("/admindash/");
   await expect(page.locator("footer")).toHaveCount(0);

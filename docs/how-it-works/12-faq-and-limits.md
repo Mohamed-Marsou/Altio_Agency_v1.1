@@ -31,10 +31,10 @@
 
 **Why do some drawings show English words in French and Arabic?** They are decorative mock-ups with fixed English text (see `docs/content-audit.md`, section 3).
 
-**Is the dashboard private?** It is not uploaded to Hostinger (`deploy.yml` excludes it), is `noindex`, and has no login because it has no live data. Do not add real data there before the backend login exists.
+**Is the dashboard private?** It is not uploaded to Hostinger (`deploy.yml` excludes it), is `noindex` in four ways, and can be locked with a password (`npm run admin:password`, see 13). Do not add real data there before the backend login exists.
 
 ## Known limits (honest list)
-1. Dashboard editing: dev only; no login, scheduling, trash or revisions.
+1. Dashboard editing: dev only; the password protects the local dev server (see 13); no accounts, scheduling, trash or revisions.
 2. The four case studies, their results and quotes are **samples**; the Work page shows a note saying so.
 3. The Overview page shows sample numbers.
 4. FR and AR texts are drafts; legal pages need a lawyer.

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Copy, Download, FlaskConical, RefreshCw } from "lucide-react";
 import type { LogEntry, LogLevel } from "@/lib/logger/format";
+import { authHeaders, signalLoggedOut } from "@/lib/admin/auth-client";
 import { getLogBase, logger } from "@/lib/logger/client";
 import styles from "./AuditView.module.scss";
 
@@ -39,7 +40,8 @@ export default function AuditView() {
   const load = useCallback(async () => {
     if (!base) return;
     try {
-      const res = await fetch(`${base}/logs`, { cache: "no-store" });
+      const res = await fetch(`${base}/logs`, { cache: "no-store", headers: authHeaders() });
+      if (res.status === 401) return signalLoggedOut();
       if (!res.ok) throw new Error(String(res.status));
       const json = (await res.json()) as { file: string; entries: LogEntry[] };
       setEntries(json.entries);
@@ -78,6 +80,20 @@ export default function AuditView() {
   const warnCount = entries.length - errorCount;
   const last = entries[0];
 
+  // The txt file is private (same login as the rest), so it is fetched with the session
+  // and shown from memory: a plain link could not carry the login.
+  const openTxt = async () => {
+    if (!base) return;
+    try {
+      const res = await fetch(`${base}/logs.txt`, { headers: authHeaders(), cache: "no-store" });
+      if (res.status === 401) return signalLoggedOut();
+      const blob = new Blob([await res.text()], { type: "text/plain;charset=utf-8" });
+      window.open(URL.createObjectURL(blob), "_blank", "noopener");
+    } catch {
+      setState("offline");
+    }
+  };
+
   const sendTest = () => {
     logger.error("Test error sent from the Audit log page", { component: "AuditView", source: "manual-test" });
     setTimeout(() => void load(), 700);
@@ -108,9 +124,9 @@ export default function AuditView() {
             <FlaskConical size={16} aria-hidden="true" /> Send test error
           </button>
           {base && (
-            <a className={styles.btn} href={`${base}/logs.txt`} target="_blank" rel="noopener noreferrer">
+            <button type="button" className={styles.btn} onClick={() => void openTxt()}>
               <Download size={16} aria-hidden="true" /> Open .txt
-            </a>
+            </button>
           )}
         </div>
       </div>

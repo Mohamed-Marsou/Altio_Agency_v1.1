@@ -12,6 +12,7 @@ import {
   History,
   Image as ImageIcon,
   Layers,
+  LogOut,
   LayoutDashboard,
   Menu,
   MessageSquareQuote,
@@ -24,6 +25,8 @@ import {
 } from "lucide-react";
 import ErrorBoundary from "@/components/system/ErrorBoundary";
 import ThemeToggle from "@/components/ui/ThemeToggle/ThemeToggle";
+import { LOGOUT_EVENT, fetchSession, logout } from "@/lib/admin/auth-client";
+import LoginScreen from "./LoginScreen";
 import { ADMIN_NAV } from "@/lib/admin/nav";
 import styles from "./AdminShell.module.scss";
 
@@ -51,6 +54,32 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  // Login: asks the admin server whether a password is needed and whether we are logged in.
+  //   checking = waiting for the answer, login = show the password screen, ready = show the dashboard
+  //   (also "ready" when the server is not reachable: the pages show their own "not connected" notice).
+  const [gate, setGate] = useState<"checking" | "login" | "ready">("checking");
+  const [passwordRequired, setPasswordRequired] = useState(false);
+  const [passwordMissing, setPasswordMissing] = useState(false);
+
+  useEffect(() => {
+    let alive = true;
+    const check = async () => {
+      const session = await fetchSession();
+      if (!alive) return;
+      setPasswordRequired(Boolean(session?.required));
+      setPasswordMissing(session !== null && !session.required);
+      setGate(session?.required && !session.authenticated ? "login" : "ready");
+    };
+    void check();
+    // Any request that gets "please log in" (session ended) sends us back to the password screen.
+    const back = () => setGate("login");
+    window.addEventListener(LOGOUT_EVENT, back);
+    return () => {
+      alive = false;
+      window.removeEventListener(LOGOUT_EVENT, back);
+    };
+  }, []);
+
   // While the phone drawer is open: Escape closes it and the page behind cannot scroll.
   useEffect(() => {
     if (!open) return;
@@ -62,6 +91,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  if (gate === "checking") return <div className={styles.shell} aria-busy="true" />;
+  if (gate === "login") return <LoginScreen onSuccess={() => window.location.reload()} />;
 
   return (
     <div className={styles.shell}>
@@ -127,8 +159,28 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           </button>
           {/* Only the Overview still uses made-up numbers; the Audit log is real data */}
           <span className={styles.sample}>{pathname === "/admindash" || pathname === "/admindash/" ? "Sample data" : "Live data"}</span>
+          {passwordRequired && (
+            <button
+              type="button"
+              className={styles.menuBtn}
+              style={{ display: "inline-flex" }}
+              aria-label="Log out"
+              title="Log out"
+              onClick={async () => {
+                await logout();
+                setGate("login");
+              }}
+            >
+              <LogOut size={18} aria-hidden="true" />
+            </button>
+          )}
           <ThemeToggle label="Toggle dark mode" />
         </header>
+        {passwordMissing && (
+          <p role="note" style={{ margin: 0, padding: "0.5rem 1rem", fontSize: "0.8125rem", background: "var(--color-surface-2)", color: "var(--color-muted)" }}>
+            No dashboard password is set (fine on your own computer). To set one: <code>npm run admin:password</code>, then restart.
+          </p>
+        )}
         <main className={styles.content}>
           {/* If a page inside crashes, only this area is replaced and the crash is logged */}
           <ErrorBoundary name="AdminPage">{children}</ErrorBoundary>

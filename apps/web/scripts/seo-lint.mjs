@@ -180,6 +180,19 @@ function main() {
     }
   }
 
+  // The admin area must NEVER be indexable: every dashboard page needs a noindex tag.
+  const adminDir = path.join(OUT, "admindash");
+  if (existsSync(adminDir)) {
+    for (const file of htmlFiles(adminDir)) {
+      const html = readFileSync(file, "utf8");
+      const robots = tags(html, /<meta[^>]+name="robots"[^>]*>/gi).map((t) => attr(t, "content") ?? "").join(",");
+      if (!/noindex/.test(robots) || !/nofollow/.test(robots)) {
+        problems++;
+        console.log(`\nAdmin page is not noindex: ${path.relative(OUT, file)}`);
+      }
+    }
+  }
+
   // robots.txt
   const robotsFile = path.join(OUT, "robots.txt");
   if (!existsSync(robotsFile) || !/Sitemap:\s*\S+sitemap\.xml/i.test(readFileSync(robotsFile, "utf8"))) {

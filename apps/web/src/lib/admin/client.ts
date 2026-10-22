@@ -5,6 +5,7 @@
 // (lib/admin/devApi.ts, started by `npm run dev`). When the real backend exists,
 // set NEXT_PUBLIC_ADMIN_API_URL and add login: the screens do not change.
 // =============================================================================
+import { authHeaders, signalLoggedOut } from "./auth-client";
 import { ALLOWED_IMAGE_TYPES, MAX_UPLOAD_BYTES, type MediaEntry, type PostRecord, type ProjectRecord } from "./schemas";
 
 const DEV_BASE = "http://127.0.0.1:4001";
@@ -34,7 +35,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   try {
     response = await fetch(`${base}${path}`, {
       method,
-      headers: body === undefined ? undefined : { "Content-Type": "application/json" },
+      headers: { ...authHeaders(), ...(body === undefined ? {} : { "Content-Type": "application/json" }) },
       body: body === undefined ? undefined : JSON.stringify(body),
       cache: "no-store",
     });
@@ -42,6 +43,7 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
     throw new ApiError(0, "OFFLINE", "Could not reach the admin server. Is `npm run dev` running?");
   }
   const data = (await response.json().catch(() => null)) as { error?: { code: string; message: string; fields?: Record<string, string> } } | null;
+  if (response.status === 401) signalLoggedOut(); // the session ended: show the login screen
   if (!response.ok) {
     const error = data?.error;
     throw new ApiError(response.status, error?.code ?? "ERROR", error?.message ?? "Something went wrong.", error?.fields);
@@ -70,6 +72,7 @@ function upload(file: File, onProgress?: (percent: number) => void): Promise<Med
     const xhr = new XMLHttpRequest();
     xhr.open("POST", `${base}/api/media?name=${encodeURIComponent(file.name)}`);
     xhr.setRequestHeader("Content-Type", "application/octet-stream");
+    for (const [name, value] of Object.entries(authHeaders())) xhr.setRequestHeader(name, value);
     xhr.upload.onprogress = (event) => event.lengthComputable && onProgress?.(Math.round((event.loaded / event.total) * 100));
     xhr.onerror = () => reject(new ApiError(0, "OFFLINE", "Could not reach the admin server. Is `npm run dev` running?"));
     xhr.onload = () => {
@@ -80,7 +83,10 @@ function upload(file: File, onProgress?: (percent: number) => void): Promise<Med
         // not JSON: handled below
       }
       if (xhr.status >= 200 && xhr.status < 300) resolve(data as MediaEntry & { duplicate: boolean });
-      else reject(new ApiError(xhr.status, data.error?.code ?? "ERROR", data.error?.message ?? "The upload failed."));
+      else {
+        if (xhr.status === 401) signalLoggedOut();
+        reject(new ApiError(xhr.status, data.error?.code ?? "ERROR", data.error?.message ?? "The upload failed."));
+      }
     };
     xhr.send(file);
   });

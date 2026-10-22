@@ -25,7 +25,8 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run build:export && npm run seo:lint",
     "og": "node scripts/generate-og.mjs",
     "e2e:admin": "cross-env E2E_ADMIN=1 playwright test",
-    "claims": "node scripts/claims-audit.mjs"
+    "claims": "node scripts/claims-audit.mjs",
+    "admin:password": "node scripts/admin-password.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
