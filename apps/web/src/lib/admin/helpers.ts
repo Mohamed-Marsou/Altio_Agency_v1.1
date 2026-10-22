@@ -12,6 +12,13 @@ export function slugify(text: string): string {
     .slice(0, 60);
 }
 
+/** "2026-10-22T09:30:00Z" -> "22 Oct 2026, 10:30" (the browser's own time zone). */
+export function formatDateTime(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return date.toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
 export function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;

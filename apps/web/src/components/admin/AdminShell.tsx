@@ -60,12 +60,18 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const [gate, setGate] = useState<"checking" | "login" | "ready">("checking");
   const [passwordRequired, setPasswordRequired] = useState(false);
   const [passwordMissing, setPasswordMissing] = useState(false);
+  const [mode, setMode] = useState<"accounts" | "shared" | "open">("shared");
+  const [who, setWho] = useState<string | null>(null); // the logged-in admin, shown in the sidebar
 
   useEffect(() => {
     let alive = true;
     const check = async () => {
       const session = await fetchSession();
       if (!alive) return;
+      if (session) {
+        setMode(session.mode);
+        setWho(session.actor?.id ? session.actor.name : null);
+      }
       setPasswordRequired(Boolean(session?.required));
       setPasswordMissing(session !== null && !session.required);
       setGate(session?.required && !session.authenticated ? "login" : "ready");
@@ -93,13 +99,16 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }, [open]);
 
   if (gate === "checking") return <div className={styles.shell} aria-busy="true" />;
-  if (gate === "login") return <LoginScreen onSuccess={() => window.location.reload()} />;
+  if (gate === "login") return <LoginScreen mode={mode} onSuccess={() => window.location.reload()} />;
 
   return (
     <div className={styles.shell}>
       <aside id="admin-nav" className={`${styles.sidebar} ${open ? styles.sidebarOpen : ""}`} aria-label="Admin navigation">
         <div className={styles.brandRow}>
-          <span className={styles.brand}>Altio <span>admin</span></span>
+          {/* The logo opens the public website in a new tab */}
+          <a href="/" target="_blank" rel="noopener" className={styles.brand} aria-label="Altio admin: open the website in a new tab" title="Open the website in a new tab">
+            Altio <span>admin</span>
+          </a>
           <button type="button" className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close menu">
             <X size={20} aria-hidden="true" />
           </button>
@@ -141,10 +150,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         </nav>
 
         <div className={styles.user}>
-          <span className={styles.avatar} aria-hidden="true">M</span>
+          <span className={styles.avatar} aria-hidden="true">{(who ?? "A").charAt(0).toUpperCase()}</span>
           <span>
-            <strong>Mister MTM</strong>
-            <small>Owner</small>
+            <strong>{who ?? "Altio team"}</strong>
+            <small>{who ? "Admin" : mode === "shared" ? "Shared password" : "Local"}</small>
           </span>
         </div>
       </aside>
@@ -178,7 +187,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         </header>
         {passwordMissing && (
           <p role="note" style={{ margin: 0, padding: "0.5rem 1rem", fontSize: "0.8125rem", background: "var(--color-surface-2)", color: "var(--color-muted)" }}>
-            No dashboard password is set (fine on your own computer). To set one: <code>npm run admin:password</code>, then restart.
+            No login is set (fine on your own computer). Add the first admin on the Users page, or run <code>npm run admin:password</code> and restart.
           </p>
         )}
         <main className={styles.content}>

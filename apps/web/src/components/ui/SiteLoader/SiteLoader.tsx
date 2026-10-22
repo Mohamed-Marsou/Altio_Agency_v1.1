@@ -128,6 +128,12 @@ export default function SiteLoader() {
     <div
       ref={rootRef}
       className={clsx(styles.siteLoader, isLeaving && styles.siteLoaderIsLeaving)}
+      // The brand name is a logo, not text to translate or mirror: always left to right, never
+      // touched by the browser's auto-translate (it turned the letters into "HASLTIO"), and the
+      // same in every language (also in Arabic, where the page itself is right to left).
+      dir="ltr"
+      lang="en"
+      translate="no"
       role="status"
       aria-live="polite"
     >

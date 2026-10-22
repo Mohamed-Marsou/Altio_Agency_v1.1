@@ -56,7 +56,14 @@ export function signalLoggedOut() {
   if (typeof window !== "undefined") window.dispatchEvent(new Event(LOGOUT_EVENT));
 }
 
-export type SessionState = { required: boolean; authenticated: boolean };
+export type SessionState = {
+  required: boolean;
+  authenticated: boolean;
+  /** accounts = email + own password, shared = one password, open = no login */
+  mode: "accounts" | "shared" | "open";
+  /** who is logged in (null when not logged in) */
+  actor: { id: string | null; name: string } | null;
+};
 
 /** Does the server need a password, and are we logged in? null = server not reachable. */
 export async function fetchSession(): Promise<SessionState | null> {
@@ -73,14 +80,15 @@ export async function fetchSession(): Promise<SessionState | null> {
 
 export type LoginOutcome = { ok: true } | { ok: false; message: string };
 
-export async function login(password: string): Promise<LoginOutcome> {
+/** `email` is only needed in "accounts" mode. */
+export async function login(password: string, email?: string): Promise<LoginOutcome> {
   const base = getApiBase();
   if (!base) return { ok: false, message: "The admin server is not connected." };
   try {
     const response = await fetch(`${base}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ password, ...(email ? { email } : {}) }),
     });
     const data = (await response.json().catch(() => null)) as { token?: string; expiresAt?: number; error?: { message?: string } } | null;
     if (response.ok && data?.token && data.expiresAt) {

@@ -46,4 +46,4 @@ Posts and projects store only the picture `cover: "<id>"`. `lib/content.ts` turn
 Screens: `components/admin/*` (styles in `ui.module.scss`, `AdminShell` for the frame and mobile drawer). Logic: `lib/admin/*`. Pages: `app/(admin)/admindash/**`. Tests: `lib/admin/store.test.ts` (37 cases), `devApi.test.ts`, `helpers.test.ts`, `e2e/admin/crud.spec.ts` (13 real-browser flows).
 
 ## What it cannot do yet
-Accounts and roles (there is one shared password for the local dev server, see 13), saving on the live site (no server), scheduling, trash/restore, revisions, publishing a rebuild, leads/payments/analytics screens. The backend plan is `docs/finalBE.md`.
+Roles beyond "admin" (accounts exist now, see 14), saving on the live site (no server), scheduling, trash/restore, revisions, publishing a rebuild, leads/payments/analytics screens. The backend plan is `docs/finalBE.md`.

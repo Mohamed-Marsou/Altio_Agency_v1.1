@@ -37,6 +37,7 @@ Visitor                         You (admin)                      Later
 | [11-backend.md](11-backend.md) | Express API and database schema | what exists, what is planned |
 | [12-faq-and-limits.md](12-faq-and-limits.md) | Cheat sheet and known limits | "why does it do that?" |
 | [13-dashboard-login-and-privacy.md](13-dashboard-login-and-privacy.md) | Dashboard password and search-engine privacy | login, `.env`, noindex |
+| [14-users-and-admins.md](14-users-and-admins.md) | Admin accounts, own passwords, who made what | users CRUD, admin full page, private authorship |
 
 Other documents: `docs/finalFE.md` and `docs/finalBE.md` (the plans), `docs/OWNER-CHECKLIST.md` (what is needed to go live), `docs/DEPLOY.md`, `docs/content-audit.md` (claims to verify).
 

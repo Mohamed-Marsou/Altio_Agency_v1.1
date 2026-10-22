@@ -6,7 +6,11 @@
 // set NEXT_PUBLIC_ADMIN_API_URL and add login: the screens do not change.
 // =============================================================================
 import { authHeaders, signalLoggedOut } from "./auth-client";
+import type { AdminProfile, PublicAdmin } from "./adminSchemas";
 import { ALLOWED_IMAGE_TYPES, MAX_UPLOAD_BYTES, type MediaEntry, type PostRecord, type ProjectRecord } from "./schemas";
+
+/** What the form sends to create or change an admin. The password is only sent, never received. */
+export type AdminInput = { name: string; email: string; description: string };
 
 const DEV_BASE = "http://127.0.0.1:4001";
 
@@ -107,6 +111,15 @@ export const adminApi = {
     create: (record: ProjectRecord) => request<ProjectRecord>("POST", "/api/projects", record),
     update: (slug: string, record: ProjectRecord) => request<ProjectRecord>("PUT", `/api/projects/${slug}`, record),
     remove: (slug: string) => request<{ ok: true }>("DELETE", `/api/projects/${slug}`),
+  },
+  admins: {
+    list: () => request<{ items: PublicAdmin[] }>("GET", "/api/admins").then((r) => r.items),
+    get: (id: string) => request<PublicAdmin>("GET", `/api/admins/${id}`),
+    profile: (id: string) => request<AdminProfile>("GET", `/api/admins/${id}/profile`),
+    create: (input: AdminInput & { password: string }) => request<PublicAdmin>("POST", "/api/admins", input),
+    update: (id: string, input: AdminInput & { status: PublicAdmin["status"] }) => request<PublicAdmin>("PUT", `/api/admins/${id}`, input),
+    setPassword: (id: string, password: string) => request<{ ok: true }>("POST", `/api/admins/${id}/password`, { password }),
+    remove: (id: string) => request<{ ok: true }>("DELETE", `/api/admins/${id}`),
   },
   media: {
     list: () => request<{ items: MediaEntry[] }>("GET", "/api/media").then((r) => r.items),

@@ -43,7 +43,7 @@ export const ADMIN_NAV: AdminNavGroup[] = [
   {
     title: "System",
     items: [
-      { id: "users", label: "Users and roles", icon: "shield-check" },
+      { id: "users", label: "Users and admins", icon: "shield-check", href: "/admindash/users/" },
       { id: "settings", label: "Settings", icon: "settings" },
       { id: "audit", label: "Audit log", icon: "history", href: "/admindash/audit/" },
     ],

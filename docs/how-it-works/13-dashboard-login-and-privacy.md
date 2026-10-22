@@ -11,7 +11,9 @@
 
 Also: the dashboard is not in `sitemap.xml`, has no link from the public site, and its pages have no SEO texts. Checked automatically: `scripts/seo-lint.mjs` fails the build if any dashboard page lacks `noindex`, `e2e/public/site.spec.ts` checks the tag on 5 pages and that the sitemap never mentions it.
 
-## B. Password (works now, until the backend login exists)
+> Update: admins can now have their own accounts (email + own password), see [14](14-users-and-admins.md). The shared password below is the starting mode and stops working once the first admin exists.
+
+## B. Shared password (the starting mode, until the first admin is created)
 
 ### The idea, answering "can the password live in .env?"
 Yes, and that is what is built. A `.env` value is read only by the **server**; it is not in the browser files. A static page alone can never check a password safely (everything in it can be read), so the check is done by the dev server (`npm run dev`):

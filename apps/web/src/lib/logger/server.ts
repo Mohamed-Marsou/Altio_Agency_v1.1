@@ -21,6 +21,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from "node:ht
 import { appendFileSync, existsSync, mkdirSync, readFileSync, renameSync, statSync, utimesSync } from "node:fs";
 import path from "node:path";
 import { createAuth } from "../admin/auth";
+import { createAdminStore, type Actor } from "../admin/adminStore";
 import { handleApi, maxBodyBytes } from "../admin/devApi";
 import { createStore } from "../admin/store";
 import { formatEntry, formatTime, parseLog, sanitizePayload, type LogEntry, type LogPayload } from "./format";
@@ -42,7 +43,24 @@ const ALLOWED_ORIGINS = new Set([
 // The dashboard login. ADMIN_PASSWORD_HASH comes from apps/web/.env.local (made by
 // `npm run admin:password`). It stays in this server's memory and never reaches the browser.
 // Without it there is no login (your own computer only).
-const auth = createAuth({ hash: process.env.ADMIN_PASSWORD_HASH });
+// Admin accounts (Users page) live in apps/web/.admin-data (git-ignored, never part of the site).
+// As soon as one admin exists, the login asks for email + that admin's own password.
+const adminData = createAdminStore({
+  dataDir: path.join(process.cwd(), ".admin-data"),
+  onRevoke: (id) => auth.revokeAdmin(id),
+});
+const auth = createAuth({
+  hash: process.env.ADMIN_PASSWORD_HASH,
+  accounts: { hasActive: adminData.admins.hasActive, credentials: adminData.admins.credentials, onLogin: adminData.admins.recordLogin },
+});
+
+/** Who is behind a request: the logged-in admin, or a label when there are no accounts yet. */
+function actorFor(token: string | null): Actor {
+  const who = auth.identify(token);
+  const admin = who?.adminId ? adminData.admins.get(who.adminId) : undefined;
+  if (admin) return { id: admin.id, name: admin.name };
+  return { id: null, name: auth.mode() === "shared" ? "Shared password" : "Local (no login)" };
+}
 
 function bearerToken(req: IncomingMessage): string | null {
   return /^Bearer (\S+)$/.exec(String(req.headers.authorization ?? ""))?.[1] ?? null;
@@ -128,15 +146,21 @@ function handle(req: IncomingMessage, res: ServerResponse) {
 
     // ---- login (public) ----
     if (url === "/api/session" && req.method === "GET") {
-      return send(res, 200, JSON.stringify({ required: auth.required, authenticated: auth.validate(bearerToken(req)) }));
+      const token = bearerToken(req);
+      const authenticated = auth.validate(token);
+      const actor = authenticated ? actorFor(token) : null;
+      return send(res, 200, JSON.stringify({ required: auth.required, authenticated, mode: auth.mode(), actor }));
     }
     if (url === "/api/login" && req.method === "POST") {
       readBody(req, 2048)
         .then((raw) => {
-          const password = String((JSON.parse(raw.toString("utf8")) as { password?: unknown }).password ?? "");
-          const result = auth.login(password, req.socket.remoteAddress ?? "unknown");
+          const body = JSON.parse(raw.toString("utf8")) as { password?: unknown; email?: unknown };
+          const password = String(body.password ?? "");
+          const email = typeof body.email === "string" ? body.email.slice(0, 120) : undefined;
+          const result = auth.login(password, req.socket.remoteAddress ?? "unknown", email);
           if (result.ok) return send(res, 200, JSON.stringify({ token: result.token, expiresAt: result.expiresAt }));
-          const message = result.code === "TOO_MANY_ATTEMPTS" ? `Too many wrong tries. Try again in ${Math.ceil((result.retryAfterSeconds ?? 60) / 60)} minute(s).` : "Wrong password.";
+          // Same words for a wrong password, an unknown email and a disabled account: nothing to learn from them.
+          const message = result.code === "TOO_MANY_ATTEMPTS" ? `Too many wrong tries. Try again in ${Math.ceil((result.retryAfterSeconds ?? 60) / 60)} minute(s).` : auth.mode() === "accounts" ? "Wrong email or password." : "Wrong password.";
           if (result.retryAfterSeconds) res.setHeader("Retry-After", String(result.retryAfterSeconds));
           send(res, result.status, JSON.stringify({ error: { code: result.code, message } }));
         })
@@ -222,7 +246,7 @@ async function handleApiHttp(req: IncomingMessage, res: ServerResponse, url: str
     }
     const body = method === "GET" || method === "DELETE" ? Buffer.alloc(0) : await readBody(req, limit);
     const query = new URL(req.url ?? "/", "http://localhost").searchParams;
-    const result = await handleApi(store, { method, path: url, query, body });
+    const result = await handleApi(store, { method, path: url, query, body }, { admins: adminData, actor: actorFor(bearerToken(req)) });
     send(res, result.status, JSON.stringify(result.body));
   } catch {
     send(res, 413, JSON.stringify({ error: { code: "TOO_LARGE", message: "The request is too large." } }));

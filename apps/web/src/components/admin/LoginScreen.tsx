@@ -6,7 +6,10 @@ import ui from "./ui.module.scss";
 
 // The password screen of the dashboard. The password goes to the admin server, which
 // compares it with a stored fingerprint; this page never holds the real password.
-export default function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
+// With admin accounts ("accounts" mode) it also asks for the email.
+export default function LoginScreen({ onSuccess, mode = "shared" }: { onSuccess: () => void; mode?: "accounts" | "shared" | "open" }) {
+  const withEmail = mode === "accounts";
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -14,10 +17,11 @@ export default function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
 
   async function submit(event: FormEvent) {
     event.preventDefault();
+    if (withEmail && !email.trim()) return setError("Enter your email.");
     if (!password) return setError("Enter your password.");
     setBusy(true);
     setError("");
-    const result = await login(password);
+    const result = await login(password, withEmail ? email.trim() : undefined);
     setBusy(false);
     if (result.ok) {
       setPassword("");
@@ -34,8 +38,15 @@ export default function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
           Altio admin
         </h1>
         <p className={ui.sub} style={{ marginBottom: "1rem" }}>
-          Private area. Enter the dashboard password.
+          Private area. {withEmail ? "Log in with your admin email and password." : "Enter the dashboard password."}
         </p>
+
+        {withEmail && (
+          <label className={ui.field}>
+            <span>Email</span>
+            <input type="email" value={email} autoComplete="username" autoFocus onChange={(event) => setEmail(event.target.value)} />
+          </label>
+        )}
 
         <label className={ui.field}>
           <span>Password</span>
@@ -43,7 +54,7 @@ export default function LoginScreen({ onSuccess }: { onSuccess: () => void }) {
             type={visible ? "text" : "password"}
             value={password}
             autoComplete="current-password"
-            autoFocus
+            autoFocus={!withEmail}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "login-error" : undefined}
             onChange={(event) => setPassword(event.target.value)}
