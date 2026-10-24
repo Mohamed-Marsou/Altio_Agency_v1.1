@@ -1,0 +1,55 @@
+@use "abstracts" as *;
+
+.caseNextSection {
+  padding-block: 0 var(--section-y);
+  background: color(page);
+}
+
+.caseNextContent {
+  @include container;
+}
+
+.caseNextCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+  padding: space(6);
+  border-radius: rem(30);
+  background: var(--pv-soft);
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: rem(36);
+  }
+}
+
+.caseNextText {
+  @include flex-col(space(3), flex-start);
+}
+
+.caseNextKicker {
+  @include text(eyebrow);
+  color: var(--pv);
+}
+
+.caseNextTitle {
+  @include text(display-2);
+}
+
+.caseNextLead {
+  color: color(muted);
+}
+
+.caseNextButton {
+  @include button-base;
+  @include button-size(large);
+  margin-top: space(3);
+  background: var(--pv);
+  color: var(--pv-on);
+  text-decoration: none;
+
+  @include on-hover {
+    filter: brightness(1.08);
+  }
+}

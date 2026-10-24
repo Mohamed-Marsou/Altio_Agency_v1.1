@@ -1,0 +1,132 @@
+{
+  "hero": {
+    "eyebrow": "Services",
+    "title": "Four services.",
+    "accent": "One team behind each.",
+    "lead": "From a first website to a platform that runs your business, then someone to look after it. Every service starts with a free design, so you see the result before you pay.",
+    "cta": {
+      "label": "Chat on WhatsApp",
+      "hoverLabel": "Send us a message",
+      "message": "Hi Altio, I would like to know which service fits my business."
+    },
+    "layers": [
+      { "name": "Launch", "text": "Your business online, properly" },
+      { "name": "Commerce", "text": "Sell online with confidence" },
+      { "name": "Custom", "text": "Built around how you work" },
+      { "name": "Managed", "text": "We run it, you grow" }
+    ],
+    "pins": [
+      "Free design in 48 to 72 h",
+      "Custom code, no templates",
+      "Answers on WhatsApp, 24/7"
+    ]
+  },
+  "stackLabel": "The four services, stacked: Launch, Commerce, Custom, Managed",
+  "packLabel": "Pack",
+  "serviceLabel": "Service",
+  "fitLabel": "Good fit for:",
+  "mostUsed": "Most used",
+  "items": [
+    {
+      "id": "launch",
+      "art": "site",
+      "pack": "Launch",
+      "title": "Business websites",
+      "lead": "Your business online, properly. A fast, custom site for your restaurant, clinic, shop or agency, built so a visitor can reach you in one tap.",
+      "features": [
+        "5 custom pages",
+        "SEO foundations",
+        "WhatsApp integration",
+        "3 free changes after launch",
+        "Domain setup included",
+        "Mobile-first build"
+      ],
+      "fit": "restaurants, clinics, local shops, real estate, SMEs.",
+      "mostUsed": false,
+      "cta": {
+        "label": "Start with Launch",
+        "hoverLabel": "Send us a message",
+        "message": "Hi Altio, I would like to talk about the Launch pack."
+      }
+    },
+    {
+      "id": "commerce",
+      "art": "store",
+      "pack": "Commerce",
+      "title": "Online stores",
+      "lead": "Sell online with confidence. A catalogue, a clear checkout and a simple way to manage orders, designed to turn browsers into buyers on a phone.",
+      "features": [
+        "Online store and catalogue",
+        "Cart and checkout",
+        "Orders and product management",
+        "SEO foundations",
+        "Mobile-first build",
+        "3 free changes after launch"
+      ],
+      "fit": "clothing, cosmetics, food, crafts, any shop ready to sell online.",
+      "mostUsed": false,
+      "cta": {
+        "label": "Open my store",
+        "hoverLabel": "Send us a message",
+        "message": "Hi Altio, I would like to talk about the Commerce pack."
+      }
+    },
+    {
+      "id": "custom",
+      "art": "app",
+      "pack": "Custom",
+      "title": "Web apps and platforms",
+      "lead": "Built around how you work. When a spreadsheet and a WhatsApp group stop being enough, we build the tool: booking, clients, reports and an admin panel.",
+      "features": [
+        "Web app or platform",
+        "Admin panel and dashboard",
+        "Custom integrations",
+        "Scoped together with you",
+        "Dedicated project plan",
+        "Roles and secure login"
+      ],
+      "fit": "teams that outgrew manual work, booking businesses, platforms.",
+      "mostUsed": true,
+      "cta": {
+        "label": "Build my tool",
+        "hoverLabel": "Send us a message",
+        "message": "Hi Altio, I would like to talk about the Custom pack."
+      }
+    },
+    {
+      "id": "managed",
+      "art": "managed",
+      "pack": "Managed",
+      "title": "Managed care",
+      "lead": "We run it, you grow. We look after hosting, updates and improvements every month, so you never deal with the technical side.",
+      "features": [
+        "Hosting, updates and fixes handled",
+        "Monthly improvements",
+        "Priority answers, 24/7",
+        "You get access, we handle the rest",
+        "No technical work on your side",
+        "Monthly report in plain words"
+      ],
+      "fit": "owners who want a site that stays fast, safe and current without lifting a finger.",
+      "mostUsed": false,
+      "cta": {
+        "label": "Hand it over",
+        "hoverLabel": "Send us a message",
+        "message": "Hi Altio, I would like to talk about the Managed pack."
+      }
+    }
+  ],
+  "included": {
+    "eyebrow": "Included in every pack",
+    "title": "Design, search and tracking come with all four.",
+    "lead": "You never pay extra for the parts that make a site work.",
+    "items": [
+      { "icon": "design", "title": "Free design first", "text": "Your homepage in Figma within 48 to 72 hours, depending on complexity. No obligation." },
+      { "icon": "search", "title": "SEO foundations", "text": "Clean structure and Google Business setup, so people find you." },
+      { "icon": "message", "title": "WhatsApp built in", "text": "One tap from any page to a conversation with you." },
+      { "icon": "chart", "title": "Tracking from day one", "text": "You see calls, clicks and forms, not guesses." },
+      { "icon": "phone", "title": "Mobile-first", "text": "Designed for the phone your customers actually use." },
+      { "icon": "refresh", "title": "3 free changes", "text": "After launch, so the site fits real life." }
+    ]
+  }
+}

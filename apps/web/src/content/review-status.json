@@ -1,0 +1,24 @@
+{
+  "_comment": "Review state of every content file. 'draft' = written by Claude, not yet read by a native speaker. Set a file to 'reviewed' only after a person has read it. The release check (npm run check:release) can refuse to ship while drafts remain.",
+  "reviewedBy": { "en": "", "fr": "", "ar": "" },
+  "files": {
+    "en": {
+      "about": "draft", "audiences": "draft", "blog-page": "draft", "contact": "draft", "cta": "draft", "faq": "draft", "footer": "draft",
+      "free-design": "draft", "hero": "draft", "legal": "draft", "nav": "draft", "not-found": "draft", "packs": "draft", "posts": "draft",
+      "problem": "draft", "process": "draft", "projects": "draft", "proof": "draft", "referrals": "draft", "seo": "draft", "services": "draft",
+      "services-page": "draft", "why": "draft", "work": "draft", "work-page": "draft"
+    },
+    "fr": {
+      "about": "draft", "audiences": "draft", "blog-page": "draft", "contact": "draft", "cta": "draft", "faq": "draft", "footer": "draft",
+      "free-design": "draft", "hero": "draft", "legal": "draft", "nav": "draft", "not-found": "draft", "packs": "draft", "posts": "draft",
+      "problem": "draft", "process": "draft", "projects": "draft", "proof": "draft", "referrals": "draft", "seo": "draft", "services": "draft",
+      "services-page": "draft", "why": "draft", "work": "draft", "work-page": "draft"
+    },
+    "ar": {
+      "about": "draft", "audiences": "draft", "blog-page": "draft", "contact": "draft", "cta": "draft", "faq": "draft", "footer": "draft",
+      "free-design": "draft", "hero": "draft", "legal": "draft", "nav": "draft", "not-found": "draft", "packs": "draft", "posts": "draft",
+      "problem": "draft", "process": "draft", "projects": "draft", "proof": "draft", "referrals": "draft", "seo": "draft", "services": "draft",
+      "services-page": "draft", "why": "draft", "work": "draft", "work-page": "draft"
+    }
+  }
+}

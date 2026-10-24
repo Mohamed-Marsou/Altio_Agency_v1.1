@@ -1,0 +1,13 @@
+{
+  "title": "See your website before you pay.",
+  "text": "Tell us about your business and get a custom design in 48 hours.",
+  "primary": {
+    "label": "Get your free design",
+    "message": "Hi Altio, I would like a free design for my business.",
+    "hoverLabel": "Send us a message"
+  },
+  "secondary": {
+    "label": "Chat on WhatsApp",
+    "message": "Hi Altio, I have a question about your services."
+  }
+}

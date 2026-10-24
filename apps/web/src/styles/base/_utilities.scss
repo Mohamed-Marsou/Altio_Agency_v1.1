@@ -23,3 +23,12 @@
 [data-custom-cursor="on"] * {
   cursor: none !important;
 }
+
+// Right to left (Arabic): arrows that point "forward" must point left.
+[dir="rtl"] {
+  .lucide-arrow-right,
+  .lucide-chevron-right,
+  .lucide-arrow-up-right {
+    transform: scaleX(-1);
+  }
+}

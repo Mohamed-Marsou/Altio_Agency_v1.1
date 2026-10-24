@@ -22,6 +22,19 @@
   }
 }
 
+// Phone-only styles (BELOW the breakpoint). Use it sparingly: the normal way is
+// mobile first with mq(). It exists for the rare case where phones get a
+// different layout than tablets (e.g. the Audiences section).
+//   @include mq-down(md) { ... }   => applies up to 767px
+@mixin mq-down($breakpoint) {
+  @if not map.has-key($breakpoints, $breakpoint) {
+    @error "Unknown breakpoint `#{$breakpoint}`. Use one of: #{map.keys($breakpoints)}.";
+  }
+  @media (max-width: #{map.get($breakpoints, $breakpoint) - 0.02px}) {
+    @content;
+  }
+}
+
 // -----------------------------------------------------------------------------
 // FLEX HELPERS
 // One mixin for every flex layout so the intent reads clearly:

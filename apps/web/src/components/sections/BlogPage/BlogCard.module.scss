@@ -1,0 +1,54 @@
+@use "abstracts" as *;
+
+.blogCard {
+  min-width: 0;
+}
+
+.blogCardLink {
+  @include flex-col(space(3));
+  @include focus-ring;
+  color: color(text);
+  text-decoration: none;
+  transition: transform 0.5s var(--ease-out);
+
+  @include on-hover {
+    transform: translateY(#{rem(-6)});
+
+    .blogCardTitle {
+      color: var(--pv);
+    }
+  }
+}
+
+.blogCardMeta {
+  @include flex(row, flex-start, center, space(3), wrap);
+  color: color(muted);
+  font-size: rem(13);
+  font-weight: 500;
+}
+
+.blogCardTag {
+  padding: rem(4) space(3);
+  border-radius: radius(pill);
+  background: var(--pv-soft);
+  color: var(--pv);
+  font-size: rem(12);
+  font-weight: 600;
+}
+
+.blogCardTitle {
+  @include text(title-md);
+  transition: color 0.4s var(--ease-out);
+}
+
+.blogCardText {
+  @include text(small);
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .blogCardLink,
+  .blogCardTitle {
+    transition: none;
+  }
+}

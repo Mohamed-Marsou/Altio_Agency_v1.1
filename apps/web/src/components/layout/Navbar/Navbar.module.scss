@@ -43,13 +43,6 @@
   @include icon-button;
 }
 
-// The hamburger exists only below xl: xl+ shows the full link row instead.
-.navbarMenuButton {
-  @include mq(xl) {
-    display: none;
-  }
-}
-
 // CTA button: hidden on phones, shown from lg (1024px).
 .navbarCtaWrapper {
   display: none;

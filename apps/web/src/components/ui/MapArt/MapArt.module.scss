@@ -1,0 +1,93 @@
+@use "abstracts" as *;
+
+// A stylised map: a soft-blue tile with a street grid (two repeating gradients),
+// a diagonal road, the sea on the right and a bobbing pin.
+%mapArtBase {
+  position: relative;
+  min-height: rem(300);
+  border-radius: rem(24);
+  background: color(accent-soft);
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 #{rem(46)}, color-mix(in srgb, #{color(accent)} 12%, transparent) #{rem(46)} #{rem(48)}),
+      repeating-linear-gradient(90deg, transparent 0 #{rem(62)}, color-mix(in srgb, #{color(accent)} 12%, transparent) #{rem(62)} #{rem(64)});
+  }
+}
+
+.mapArt {
+  @extend %mapArtBase;
+}
+
+.mapArtIsCompact {
+  @extend %mapArtBase;
+  min-height: rem(220);
+}
+
+.mapArtSea {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 30%;
+  background: color-mix(in srgb, #{color(accent)} 22%, #{color(surface)});
+}
+
+.mapArtRoad {
+  position: absolute;
+  top: 46%;
+  right: -10%;
+  left: -10%;
+  height: rem(20);
+  background: color(surface);
+  box-shadow: 0 0 0 1px color(border);
+  transform: rotate(-12deg);
+}
+
+.mapArtPin {
+  position: absolute;
+  top: 34%;
+  left: 44%;
+  width: rem(38);
+  height: rem(38);
+  border-radius: 50% 50% 50% 0;
+  background: color(accent);
+  box-shadow: 0 #{rem(14)} #{rem(24)} #{rem(-8)} color-mix(in srgb, #{color(accent)} 60%, transparent);
+  transform: rotate(-45deg);
+  animation: mapArtBob 3s ease-in-out infinite;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: rem(11);
+    border-radius: 50%;
+    background: color(surface);
+  }
+}
+
+.mapArtLabel {
+  position: absolute;
+  top: 52%;
+  left: 36%;
+  padding: space(2) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(md);
+  background: color(surface);
+  box-shadow: shadow(card);
+  font-size: rem(12);
+  font-weight: 600;
+}
+
+@keyframes mapArtBob {
+  50% {
+    transform: rotate(-45deg) translate(#{rem(-4)}, #{rem(4)});
+  }
+}
+
+@include reduced-motion {
+  .mapArtPin {
+    animation: none;
+  }
+}

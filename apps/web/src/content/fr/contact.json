@@ -1,0 +1,104 @@
+{
+  "hero": {
+    "eyebrow": "Contact",
+    "title": "Parlez-nous de votre activité.",
+    "accent": "Nous répondons avec un design.",
+    "lead": "Le plus rapide, c’est WhatsApp. Vous préférez un formulaire ? Remplissez-le ci-dessous et nous répondons en quelques heures."
+  },
+  "methods": {
+    "whatsapp": {
+      "title": "WhatsApp",
+      "text": "Le plus rapide. Nous répondons 24h/24 et 7j/7.",
+      "message": "Bonjour Altio, je souhaite recevoir un design gratuit pour mon entreprise."
+    },
+    "email": {
+      "address": "{{email}}",
+      "text": "Pour les fichiers et les briefs plus longs"
+    },
+    "location": {
+      "title": "Tanger, Maroc",
+      "text": "Du lundi au vendredi, 09:00 à 18:00"
+    },
+    "reply": "Nous répondons en général en quelques heures, souvent en quelques minutes.",
+    "mapLabel": "Altio, Tanger"
+  },
+  "form": {
+    "title": "Recevoir mon design gratuit",
+    "subtitle": "Quatre questions rapides. Sans paiement, sans engagement.",
+    "fields": {
+      "name": {
+        "label": "Votre nom",
+        "placeholder": "Sara Benali"
+      },
+      "phone": {
+        "label": "Numéro WhatsApp",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "business": {
+        "label": "Nom de l’entreprise et ville",
+        "placeholder": "Atlas Immo, Tanger"
+      },
+      "need": {
+        "label": "De quoi avez-vous besoin ?"
+      },
+      "message": {
+        "label": "Dites-nous-en un peu plus",
+        "placeholder": "Nous sommes une agence immobilière et voulons un site où les clients peuvent parcourir les annonces et nous écrire…"
+      }
+    },
+    "needs": [
+      "Site vitrine",
+      "Boutique en ligne",
+      "Application web",
+      "Gestion complète",
+      "Je ne sais pas encore"
+    ],
+    "submit": "Envoyer et recevoir mon design gratuit",
+    "errors": {
+      "name": "Entrez votre nom.",
+      "phone": "Entrez un numéro joignable sur WhatsApp.",
+      "need": "Choisissez ce dont vous avez besoin.",
+      "tooLong": "C’est trop long. Merci de raccourcir.",
+      "tooFast": "Vérifiez vos réponses une dernière fois, puis envoyez à nouveau.",
+      "rateLimit": "Vous avez déjà envoyé plusieurs messages. Patientez quelques minutes ou écrivez-nous sur WhatsApp."
+    },
+    "note": "Cela ouvre WhatsApp avec vos réponses déjà remplies, prêtes à être envoyées.",
+    "promises": [
+      "Design en 48 à 72 heures",
+      "Aucun paiement avant de le voir",
+      "Nous ne partageons jamais vos coordonnées"
+    ],
+    "messageTemplate": {
+      "intro": "Bonjour Altio, je souhaite recevoir un design gratuit.",
+      "name": "Nom",
+      "business": "Entreprise",
+      "need": "J’ai besoin de",
+      "details": "À propos"
+    },
+    "emailFallback": "Vous préférez l’e-mail ? Envoyez-le par e-mail",
+    "openWhatsapp": "WhatsApp ne s’est pas ouvert ? Touchez ici",
+    "sent": "WhatsApp est ouvert avec votre message. Appuyez sur envoyer pour terminer.",
+    "emailSubject": "Demande de design gratuit"
+  },
+  "next": {
+    "eyebrow": "La suite",
+    "title": "De votre message à votre design",
+    "steps": [
+      {
+        "when": "En quelques heures",
+        "title": "Nous répondons",
+        "text": "Une vraie personne lit votre message, pose les questions manquantes et confirme votre besoin."
+      },
+      {
+        "when": "48 à 72 heures",
+        "title": "Vous recevez votre design",
+        "text": "Une page d’accueil sur mesure dans Figma, gratuite, sans paiement et sans engagement."
+      },
+      {
+        "when": "À vous de décider",
+        "title": "Vous décidez",
+        "text": "Vous l’aimez ? Nous commençons à construire. Il ne vous convient pas ? Vous ne devez rien."
+      }
+    ]
+  }
+}

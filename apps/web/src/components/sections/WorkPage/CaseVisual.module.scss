@@ -1,0 +1,98 @@
+@use "abstracts" as *;
+
+// A tinted tile (project colour) holding a small drawing.
+.caseVisual {
+  @include flex-col(space(2));
+  justify-content: center;
+  height: rem(190);
+  padding: space(6);
+  border-radius: rem(16);
+  background: var(--pv-soft);
+  overflow: hidden;
+}
+
+.caseVisualChips {
+  display: flex;
+  gap: rem(6);
+
+  i {
+    padding: rem(3) space(3);
+    border-radius: radius(pill);
+    background: color(surface);
+    color: var(--pv);
+    font-size: rem(11);
+    font-style: normal;
+    font-weight: 600;
+  }
+}
+
+.caseVisualTiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: space(2);
+
+  b {
+    height: rem(70);
+    border-radius: radius(sm);
+    background: linear-gradient(135deg, var(--pv-mid), color(surface));
+  }
+}
+
+.caseVisualLine {
+  display: block;
+  width: 100%;
+  height: rem(10);
+  border-radius: rem(8);
+  background: color(surface);
+}
+
+.caseVisualLineStrong {
+  width: 45%;
+  background: var(--pv);
+}
+
+.caseVisualWhatsapp,
+.caseVisualButton {
+  align-self: center;
+  padding: rem(10) space(6);
+  border-radius: radius(pill);
+  font-size: rem(13);
+  font-weight: 600;
+}
+
+.caseVisualWhatsapp {
+  background: color(whatsapp);
+  color: #07230f; // dark text: white on this green is only 2 : 1
+}
+
+.caseVisualButton {
+  background: var(--pv);
+  color: var(--pv-on);
+}
+
+.caseVisualRow {
+  @include flex-between;
+  padding: rem(9) space(3);
+  border-radius: radius(sm);
+  background: color(surface);
+  font-size: rem(12);
+  font-weight: 600;
+
+  em {
+    color: var(--pv);
+    font-style: normal;
+  }
+}
+
+.caseVisualBars {
+  display: flex;
+  align-items: flex-end;
+  gap: space(2);
+  height: 100%;
+
+  i {
+    flex: 1;
+    border-radius: rem(6) rem(6) 0 0;
+    background: var(--pv);
+  }
+}

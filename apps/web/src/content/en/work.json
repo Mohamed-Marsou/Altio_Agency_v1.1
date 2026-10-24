@@ -1,0 +1,38 @@
+{
+  "eyebrow": "Selected work",
+  "title": "Real projects, built to be used.",
+  "linkLabel": "See all work",
+  "linkHref": "/work/",
+  "previewLabel": "Project preview",
+  "items": [
+    {
+      "id": "real-estate",
+      "tag": "Real estate",
+      "title": "Real estate agency website",
+      "meta": "Next.js · 2026 · ×3 enquiries",
+      "href": "/work/atlas-immo/"
+    },
+    {
+      "id": "clothing-shop",
+      "tag": "E-commerce",
+      "title": "Clothing shop",
+      "meta": "Next.js · 2026 · Orders from day one",
+      "href": "/work/nour-boutique/"
+    },
+    {
+      "id": "clinic",
+      "tag": "Healthcare",
+      "title": "Clinic booking website",
+      "meta": "React · 2026 · −60% booking calls",
+      "href": "/work/clinique-tanger/"
+    },
+    {
+      "id": "your-project",
+      "tag": "Your project",
+      "title": "Your business could be next",
+      "meta": "Start with a free design",
+      "href": "/free-design/",
+      "isCta": true
+    }
+  ]
+}

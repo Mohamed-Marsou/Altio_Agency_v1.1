@@ -1,0 +1,55 @@
+@use "abstracts" as *;
+
+// Contact page shell. Phone: methods, then the form (one column).
+// lg: two columns, methods left (0.9 part), form right (1.1 part).
+.contactHero {
+  padding-block: space(12) space(4);
+  background: color(page);
+
+  @include mq(lg) {
+    padding-block: rem(64) space(6);
+  }
+}
+
+.contactHeroContent {
+  @include container;
+  @include flex-col(space(4), flex-start);
+}
+
+.contactHeroEyebrow {
+  @include text(eyebrow);
+  color: color(accent);
+}
+
+.contactHeroTitle {
+  @include text(display-1);
+  max-width: rem(900);
+}
+
+.contactHeroAccent {
+  color: color(accent);
+}
+
+.contactHeroLead {
+  @include text(lead);
+  max-width: rem(560);
+  color: color(muted);
+}
+
+.contactMain {
+  padding-block: space(6) var(--section-y);
+  background: color(page);
+}
+
+.contactMainContent {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: start;
+
+  @include mq(lg) {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: rem(40);
+  }
+}

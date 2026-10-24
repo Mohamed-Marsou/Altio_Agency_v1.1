@@ -1,0 +1,251 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// ABOUT HERO  (mobile first)
+// Phone: text, then the orbit (drawn a little smaller). lg: two columns.
+// The two dashed rings slowly turn in opposite directions, the role cards and
+// pins bob gently (each offset in time).
+// =============================================================================
+
+.aboutHero {
+  padding-block: space(12) space(8);
+  background: color(page);
+  overflow: hidden;
+
+  @include mq(lg) {
+    padding-block: rem(72) rem(56);
+  }
+}
+
+.aboutHeroContent {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+  align-items: center;
+
+  @include mq(lg) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: rem(56);
+  }
+}
+
+.aboutHeroText {
+  @include flex-col(space(6), flex-start);
+}
+
+.aboutHeroEyebrow {
+  @include text(eyebrow);
+  color: color(accent);
+}
+
+.aboutHeroTitle {
+  @include text(display-1);
+}
+
+.aboutHeroAccent {
+  color: color(accent);
+}
+
+.aboutHeroLead {
+  @include text(lead);
+  max-width: rem(520);
+  color: color(muted);
+}
+
+// ---- Orbit ------------------------------------------------------------------------------------------
+.aboutHeroOrbit {
+  position: relative;
+  height: rem(420);
+
+  @include mq(lg) {
+    height: rem(440);
+  }
+}
+
+.aboutHeroRingInner,
+.aboutHeroRingOuter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed color(accent-light);
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.aboutHeroRingInner {
+  width: rem(230);
+  height: rem(230);
+  animation: aboutHeroSpin 60s linear infinite;
+
+  @include mq(lg) {
+    width: rem(290);
+    height: rem(290);
+  }
+}
+
+.aboutHeroRingOuter {
+  width: rem(340);
+  height: rem(340);
+  animation: aboutHeroSpin 90s linear infinite reverse;
+
+  @include mq(lg) {
+    width: rem(430);
+    height: rem(430);
+  }
+}
+
+.aboutHeroCore {
+  @include flex-center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: rem(120);
+  height: rem(120);
+  border-radius: 50%;
+  background: linear-gradient(135deg, color(accent), color-mix(in srgb, #{color(accent)} 65%, #{color(white)}));
+  box-shadow: 0 #{rem(30)} #{rem(60)} #{rem(-20)} color-mix(in srgb, #{color(accent)} 60%, transparent);
+  color: color(white);
+  translate: -50% -50%;
+
+  svg {
+    width: rem(50);
+    height: rem(50);
+  }
+
+  @include mq(lg) {
+    width: rem(150);
+    height: rem(150);
+
+    svg {
+      width: rem(64);
+      height: rem(64);
+    }
+  }
+}
+
+.aboutHeroNode {
+  @include flex-col(rem(2));
+  position: absolute;
+  padding: space(3) space(4);
+  border: 1px solid color(border);
+  border-radius: rem(18);
+  background: color(surface);
+  box-shadow: shadow(card);
+  color: color(muted);
+  font-size: rem(12);
+  animation: aboutHeroBob 6s ease-in-out infinite;
+  animation-delay: calc(var(--node) * -2s);
+
+  i {
+    @include flex-center;
+    width: rem(30);
+    height: rem(30);
+    margin-bottom: rem(6);
+    border-radius: rem(10);
+    background: color(accent-soft);
+    color: color(accent);
+    font-family: var(--font-display-stack);
+    font-size: rem(13);
+    font-style: normal;
+    font-weight: 800;
+  }
+
+  b {
+    color: color(text);
+    font-family: var(--font-display-stack);
+    font-size: rem(15);
+  }
+
+  // Phone positions first (the cards sit above, right of and below the core);
+  // the wider layout from lg moves them out to the rings.
+  &[data-index="0"] {
+    top: 0;
+    left: 0;
+  }
+
+  &[data-index="1"] {
+    top: 42%;
+    right: 0;
+  }
+
+  &[data-index="2"] {
+    bottom: 0;
+    left: 6%;
+  }
+
+  @include mq(lg) {
+    &[data-index="0"] {
+      top: 12%;
+    }
+
+    &[data-index="1"] {
+      top: 30%;
+    }
+
+    &[data-index="2"] {
+      bottom: 4%;
+      left: 14%;
+    }
+  }
+}
+
+.aboutHeroPin {
+  @include flex-center(space(2));
+  position: absolute;
+  padding: rem(7) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  box-shadow: shadow(card);
+  font-size: rem(12);
+  font-weight: 600;
+  white-space: nowrap;
+  animation: aboutHeroBob 6s ease-in-out infinite;
+  animation-delay: calc(var(--pin) * -3s - 1s);
+
+  // The pins would crowd the small orbit on phones.
+  display: none;
+
+  @include mq(md) {
+    display: flex;
+  }
+
+  i {
+    width: rem(8);
+    height: rem(8);
+    border-radius: 50%;
+    background: color(success);
+  }
+
+  &[data-index="0"] {
+    top: 0;
+    right: 8%;
+  }
+
+  &[data-index="1"] {
+    top: 56%;
+    left: 0;
+  }
+}
+
+@keyframes aboutHeroSpin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes aboutHeroBob {
+  50% {
+    transform: translateY(#{rem(-8)});
+  }
+}
+
+@include reduced-motion {
+  .aboutHeroRingInner,
+  .aboutHeroRingOuter,
+  .aboutHeroNode,
+  .aboutHeroPin {
+    animation: none;
+  }
+}

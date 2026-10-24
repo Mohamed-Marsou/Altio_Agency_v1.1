@@ -78,7 +78,8 @@ export default function AudienceChart({ option, chart, playId, panelId }: Audien
 
       {/* ---- The chart: SVG lines + HTML labels laid on top of it ---------------------- */}
       <div key={animationKey} className={styles.audienceChartAnimated}>
-        <div className={styles.audienceChartPlot}>
+        {/* The time axis always runs left to right (also in Arabic), so the chart keeps its geometry. */}
+        <div className={styles.audienceChartPlot} dir="ltr">
           <svg
             className={styles.audienceChartSvg}
             viewBox="0 0 640 300"
@@ -131,13 +132,16 @@ export default function AudienceChart({ option, chart, playId, panelId }: Audien
           {/* Milestones on the Altio line: a dot, a label (from md up) and a tooltip */}
           {option.chart.milestones.map((milestone, index) => {
             const position = toPercent(toPoint(series.altio[milestone.month], milestone.month, POINT_COUNT));
+            // Near the left or right edge the bubble is aligned to that edge, so it never leaves the screen.
+            const x = parseFloat(String(position.left));
+            const align = x < 35 ? "start" : x > 65 ? "end" : "center";
             return (
               <div
                 key={milestone.label}
                 className={styles.audienceChartMilestone}
                 style={{ ...position, "--delay": `${0.5 + index * 0.45}s` } as CSSProperties}
               >
-                <Tooltip text={milestone.tip} side="bottom">
+                <Tooltip text={milestone.tip} side="bottom" align={align}>
                   <span className={styles.audienceChartMilestoneDot} />
                   <span className={styles.audienceChartMilestoneLabel}>{milestone.label}</span>
                 </Tooltip>
@@ -241,7 +245,46 @@ export default function AudienceChart({ option, chart, playId, panelId }: Audien
         ))}
       </div>
 
-      {/* ---- The six strategy steps, lighting up one after another ------------------- */}
+      {/* ---- Phones only: the three KPIs as rings (Altio value, small "vs template") ----
+          Replaces the legend and the KPI bars, which are too dense for a phone. */}
+      <div key={`${animationKey}-stats`} className={styles.audienceChartStats}>
+        {option.chart.kpis.map((kpi, index) => (
+          <Tooltip
+            key={kpi.label}
+            text={kpi.tip}
+            align={index === 0 ? "start" : index === option.chart.kpis.length - 1 ? "end" : "center"}
+            className={styles.audienceChartStatItem}
+          >
+            <span className={styles.audienceChartStat} style={{ "--delay": `${index * 0.15}s` } as CSSProperties}>
+              <svg className={styles.audienceChartStatRing} viewBox="0 0 52 52" aria-hidden="true">
+                <circle className={styles.audienceChartStatTrack} cx="26" cy="26" r="21" />
+                <circle
+                  className={styles.audienceChartStatValue}
+                  cx="26"
+                  cy="26"
+                  r="21"
+                  pathLength={100}
+                  style={{ "--ring-value": kpi.values[2] } as CSSProperties}
+                />
+                <text className={styles.audienceChartStatNumber} x="26" y="31" textAnchor="middle">
+                  {kpi.values[2]}
+                </text>
+              </svg>
+              <span className={styles.audienceChartStatLabel}>{kpi.label}</span>
+              <span className={styles.audienceChartStatVersus}>
+                {chart.statsVersus} {kpi.values[0]}
+              </span>
+            </span>
+          </Tooltip>
+        ))}
+      </div>
+
+      {/* ---- The six strategy steps, lighting up one after another -------------------
+          On phones the steps become a row of pills you can swipe. */}
+      <div className={styles.audienceChartStepsHeader} aria-hidden="true">
+        <span className={styles.audienceChartStepsTitle}>{chart.stepsLabel}</span>
+        <span className={styles.audienceChartStepsHint}>{chart.stepsHint}</span>
+      </div>
       <ol key={`${animationKey}-steps`} className={styles.audienceChartSteps} aria-label={chart.stepsLabel}>
         {chart.steps.map((step, index) => (
           <li

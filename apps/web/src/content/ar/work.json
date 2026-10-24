@@ -1,0 +1,38 @@
+{
+  "eyebrow": "أعمال مختارة",
+  "title": "مشاريع حقيقية، صُنعت لتُستخدم.",
+  "linkLabel": "شاهد كل الأعمال",
+  "linkHref": "/work/",
+  "previewLabel": "معاينة المشروع",
+  "items": [
+    {
+      "id": "real-estate",
+      "tag": "عقارات",
+      "title": "موقع وكالة عقارية",
+      "meta": "Next.js · 2026 · ×3 طلبات",
+      "href": "/work/atlas-immo/"
+    },
+    {
+      "id": "clothing-shop",
+      "tag": "تجارة إلكترونية",
+      "title": "متجر ملابس",
+      "meta": "Next.js · 2026 · طلبات منذ اليوم الأول",
+      "href": "/work/nour-boutique/"
+    },
+    {
+      "id": "clinic",
+      "tag": "الصحة",
+      "title": "موقع حجز لعيادة",
+      "meta": "React · 2026 · −60% من مكالمات الحجز",
+      "href": "/work/clinique-tanger/"
+    },
+    {
+      "id": "your-project",
+      "tag": "مشروعك",
+      "title": "قد يكون مشروعك التالي",
+      "meta": "ابدأ بتصميم مجاني",
+      "href": "/free-design/",
+      "isCta": true
+    }
+  ]
+}

@@ -10,8 +10,23 @@ build
 .env*
 !.env.example
 
+# admin accounts (password fingerprints) and the private activity log: never committed, never part of the site
+.admin-data
+**/.admin-data
+
+# error logs written by the dev error logger (can contain page paths and stack traces)
+logs
+**/logs/*.txt
+
 # misc
 .DS_Store
 *.pem
 *.tsbuildinfo
 npm-debug.log*
+
+# test and tool output
+test-results
+playwright-report
+coverage
+.e2e-backup
+dist

@@ -10,6 +10,10 @@ type MorphButtonProps = {
   /** Text shown while hovering, on the green button ("Send us a message"). */
   hoverLabel: string;
   size?: "medium" | "large";
+  /** primary = blue, light = white (for blue bands), outline = white with border. */
+  variant?: "primary" | "light" | "outline";
+  /** Stretch to the full width of its container. */
+  fullWidth?: boolean;
   className?: string;
 };
 
@@ -21,6 +25,8 @@ export default function MorphButton({
   label,
   hoverLabel,
   size = "medium",
+  variant = "primary",
+  fullWidth = false,
   className,
 }: MorphButtonProps) {
   const sizeClass =
@@ -29,7 +35,14 @@ export default function MorphButton({
   return (
     <a
       href={href}
-      className={clsx(styles.morphButton, sizeClass, className)}
+      className={clsx(
+        styles.morphButton,
+        sizeClass,
+        variant === "light" && styles.morphButtonLight,
+        variant === "outline" && styles.morphButtonOutline,
+        fullWidth && styles.morphButtonFullWidth,
+        className,
+      )}
       target="_blank"
       rel="noopener noreferrer"
     >

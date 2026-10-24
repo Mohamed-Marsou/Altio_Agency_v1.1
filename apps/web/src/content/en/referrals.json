@@ -1,0 +1,139 @@
+{
+  "hero": {
+    "eyebrow": "Referrals",
+    "title": "Bring a client,",
+    "accent": "get rewarded.",
+    "lead": "Know a business that needs a website? Introduce us. When they become a client, we thank you properly. Open to everyone: past clients and visitors.",
+    "primary": {
+      "label": "Refer someone on WhatsApp",
+      "hoverLabel": "Send us a message",
+      "message": "Hi Altio, I would like to refer a business to you."
+    },
+    "secondary": "Fill the form",
+    "cards": [
+      {
+        "number": "1",
+        "title": "You",
+        "text": "Introduce a business"
+      },
+      {
+        "number": "2",
+        "title": "They",
+        "text": "Get a free design"
+      },
+      {
+        "number": "3",
+        "title": "Reward",
+        "text": "You choose how"
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "How it works",
+    "title": "Three simple steps",
+    "items": [
+      {
+        "title": "Introduce them",
+        "text": "Send us their name and WhatsApp, or share our site. Always ask them first."
+      },
+      {
+        "title": "They become a client",
+        "text": "We design their homepage for free. If they love it, the project starts."
+      },
+      {
+        "title": "You get rewarded",
+        "text": "Once they have fully paid, we agree your reward together."
+      }
+    ]
+  },
+  "rewards": {
+    "eyebrow": "Rewards",
+    "title": "You pick what suits you",
+    "lead": "Amounts are agreed case by case, depending on the project.",
+    "items": [
+      {
+        "icon": "C",
+        "title": "Credit",
+        "text": "Money off your own next project."
+      },
+      {
+        "icon": "M",
+        "title": "Free care",
+        "text": "Months of free Managed care."
+      },
+      {
+        "icon": "€",
+        "title": "Cash",
+        "text": "A direct payment, agreed with you."
+      },
+      {
+        "icon": "U",
+        "title": "Upgrades",
+        "text": "Free services or extra features."
+      }
+    ],
+    "rules": [
+      "Reward is given after the referred client has fully paid",
+      "No self-referrals",
+      "We never contact anyone without their consent",
+      "Altio may withhold rewards in case of abuse"
+    ]
+  },
+  "form": {
+    "title": "Refer someone",
+    "subtitle": "Takes one minute. We contact them only if they agree.",
+    "fields": {
+      "yourName": {
+        "label": "Your name",
+        "placeholder": "Sara Benali"
+      },
+      "yourPhone": {
+        "label": "Your WhatsApp",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "theirName": {
+        "label": "Who are you referring?",
+        "placeholder": "Karim, owner of Café Médina"
+      },
+      "theirPhone": {
+        "label": "Their WhatsApp (if they agreed)",
+        "placeholder": "+212 6XX XX XX XX"
+      },
+      "reward": {
+        "label": "Preferred reward"
+      }
+    },
+    "rewardOptions": [
+      "Credit",
+      "Free care",
+      "Cash",
+      "Upgrades",
+      "Not sure yet"
+    ],
+    "submit": "Send on WhatsApp",
+    "note": "This opens WhatsApp with your answers filled in, ready to send.",
+    "promises": [
+      "They agreed to be contacted",
+      "We never share details"
+    ],
+    "errors": {
+      "yourName": "Enter your name.",
+      "yourPhone": "Enter a number we can reach on WhatsApp.",
+      "theirName": "Tell us who you are referring.",
+      "tooLong": "That is too long. Please shorten it.",
+      "tooFast": "Please check your answers once more, then send again.",
+      "rateLimit": "You already sent a few messages. Please wait a few minutes or message us on WhatsApp."
+    },
+    "messageTemplate": {
+      "intro": "Hi Altio, I would like to refer someone.",
+      "yourName": "My name",
+      "theirName": "Referring",
+      "theirPhone": "Their WhatsApp",
+      "reward": "Preferred reward"
+    },
+    "emailFallback": "Prefer email? Send it by email instead",
+    "openWhatsapp": "WhatsApp did not open? Tap here",
+    "sent": "WhatsApp is open with your message. Press send there to finish.",
+    "emailSubject": "Referral"
+  }
+}

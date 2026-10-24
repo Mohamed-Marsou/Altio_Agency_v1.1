@@ -1,0 +1,51 @@
+{
+  "siteName": "Altio",
+  "locale": "en_US",
+  "ogAlt": "Altio, websites and web apps for businesses in Morocco",
+  "pages": {
+    "home": {
+      "title": "Custom websites and web apps in Morocco",
+      "description": "Altio is a Tangier agency that builds fast websites, online stores and web apps for Moroccan businesses. See your free design in 48 to 72 hours."
+    },
+    "services": {
+      "title": "Web design and development services",
+      "description": "Business websites, online stores, web apps and managed care for businesses in Morocco. Every service starts with a free design you approve before paying."
+    },
+    "work": {
+      "title": "Our work: real projects and case studies",
+      "description": "Real projects built by Altio: websites, online stores, web apps and managed care for businesses in Morocco, each with its own story and measured results."
+    },
+    "blog": {
+      "title": "Blog: websites, search and selling online",
+      "description": "Practical articles on websites, Google search and selling online, written for business owners in Morocco. Short, clear and easy to apply this week."
+    },
+    "about": {
+      "title": "About the agency",
+      "description": "Altio is an agency of full-stack engineers and designers in Tangier. We design first, build properly and stay reachable after your website goes live."
+    },
+    "contact": {
+      "title": "Contact us on WhatsApp or by form",
+      "description": "Tell us about your business on WhatsApp or with a short form. We reply with a custom homepage design in 48 to 72 hours, free and without obligation."
+    },
+    "freeDesign": {
+      "title": "Get a free website design in 48 to 72 hours",
+      "description": "Get a custom homepage design in 48 to 72 hours, free and with no obligation. See your website before you pay anything, then decide if you want to build it."
+    },
+    "referrals": {
+      "title": "Referral program: bring a client, get rewarded",
+      "description": "Bring a client, get rewarded. Introduce a business to Altio and choose your reward once they become a client. Simple rules, clear rewards, no limits."
+    },
+    "privacy": {
+      "title": "Privacy and cookies",
+      "description": "What data Altio collects (almost none today), how we use it, how long we keep it and what your rights are, written in plain words without legal jargon."
+    },
+    "terms": {
+      "title": "Terms of service",
+      "description": "The free design, the payment schedule, free changes, ownership of your website and the Managed pack, explained clearly before you start working with us."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "This page does not exist or has moved. Go back to the Altio home page, or message us on WhatsApp and we will point you to the right place quickly."
+    }
+  }
+}

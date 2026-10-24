@@ -1,0 +1,71 @@
+{
+  "eyebrow": "Packs",
+  "title": "Quatre façons de travailler avec nous.",
+  "subtitle": "Chaque pack commence par un design gratuit. Nous communiquons les tarifs après avoir compris votre activité.",
+  "ctaLabel": "Parlons-en",
+  "note": "Après la livraison, restons simples : nous clôturons le projet et vous aidons tâche par tâche, ou nous vous faisons passer au pack Managed.",
+  "items": [
+    {
+      "id": "launch",
+      "number": "Pack 01",
+      "name": "Launch",
+      "tagline": "Votre entreprise en ligne, comme il faut.",
+      "featured": false,
+      "message": "Bonjour Altio, je souhaite parler du pack Launch.",
+      "features": [
+        "5 pages sur mesure",
+        "Bases du SEO",
+        "Intégration WhatsApp",
+        "3 modifications gratuites après la mise en ligne",
+        "Configuration du nom de domaine incluse"
+      ]
+    },
+    {
+      "id": "commerce",
+      "number": "Pack 02",
+      "name": "Commerce",
+      "tagline": "Vendez en ligne en toute confiance.",
+      "featured": false,
+      "message": "Bonjour Altio, je souhaite parler du pack Commerce.",
+      "features": [
+        "Boutique en ligne et catalogue",
+        "Panier et paiement",
+        "Gestion des commandes et des produits",
+        "Bases du SEO",
+        "Conception mobile d’abord"
+      ]
+    },
+    {
+      "id": "custom",
+      "number": "Pack 03",
+      "name": "Custom",
+      "tagline": "Construit autour de votre façon de travailler.",
+      "featured": true,
+      "message": "Bonjour Altio, je souhaite parler du pack Custom.",
+      "features": [
+        "Application ou plateforme web",
+        "Espace d’administration et tableau de bord",
+        "Intégrations sur mesure",
+        "Défini avec vous",
+        "Plan de projet dédié"
+      ]
+    },
+    {
+      "id": "managed",
+      "number": "Pack 04",
+      "name": "Managed",
+      "tagline": "Nous gérons, vous grandissez.",
+      "featured": false,
+      "message": "Bonjour Altio, je souhaite parler du pack Managed.",
+      "features": [
+        "Hébergement, mises à jour et corrections pris en charge",
+        "Améliorations mensuelles",
+        "Réponses prioritaires, 24h/24 et 7j/7",
+        "Vous avez l’accès, nous gérons le reste",
+        "Aucun travail technique de votre côté"
+      ]
+    }
+  ],
+  "badge": "Pack le plus choisi",
+  "hoverLabel": "Envoyez-nous un message"
+}

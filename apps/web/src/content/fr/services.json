@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Ce que nous construisons",
+  "title": "Tout ce qu’il faut pour gagner des clients en ligne.",
+  "subtitle": "Quatre services, un pour chaque étape : lancer, vendre, construire et prendre soin.",
+  "linkLabel": "En savoir plus",
+  "items": [
+    {
+      "id": "websites",
+      "icon": "monitor",
+      "title": "Sites vitrines",
+      "text": "Des sites rapides et sur mesure, avec le SEO et WhatsApp intégrés.",
+      "href": "/services/#launch"
+    },
+    {
+      "id": "stores",
+      "icon": "cart",
+      "title": "Boutiques en ligne",
+      "text": "Un catalogue, un panier et un paiement qui transforment les visiteurs en acheteurs.",
+      "href": "/services/#commerce"
+    },
+    {
+      "id": "apps",
+      "icon": "layout",
+      "title": "Applications et plateformes web",
+      "text": "Espaces d’administration, réservation et outils sur mesure pour gérer votre activité.",
+      "href": "/services/#custom"
+    },
+    {
+      "id": "managed",
+      "icon": "shield",
+      "title": "Gestion complète",
+      "text": "Hébergement, mises à jour et améliorations mensuelles, pris en charge pour vous.",
+      "href": "/services/#managed"
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "atlas-immo",
+    "vibe": "estate",
+    "art": "estate",
+    "featured": true,
+    "status": "live",
+    "url": "atlasimmo.ma",
+    "category": "apps",
+    "tag": "Real estate",
+    "title": "Atlas Immo",
+    "featuredTitle": "Atlas Immo: from a dated template to the agency people call first",
+    "teaser": "A full redesign and rebuild with a listings admin, WhatsApp enquiries and local SEO.",
+    "result": "×3 enquiries in 4 months",
+    "stats": [
+      { "value": "×3", "label": "enquiries in 4 months" },
+      { "value": "5 wks", "label": "design to launch" },
+      { "value": "96", "label": "mobile speed" }
+    ],
+    "case": {
+      "heroTitle": "Atlas Immo,",
+      "heroAccent": "the agency people call first.",
+      "heroLead": "A Tangier real estate agency stuck behind a dated template. We rebuilt how it looks, loads and takes enquiries.",
+      "liveSince": "Live since March 2026",
+      "facts": { "client": "Real estate agency", "service": "Web apps and platforms", "timeline": "5 weeks", "stack": "Next.js · Node.js · SQL" },
+      "problem": {
+        "title": "A good agency hidden behind a bad website",
+        "lead": "Buyers judged the agency in seconds, and the site gave them reasons to leave.",
+        "pains": ["Slow on phones, 7.8 seconds to show listings", "No WhatsApp button, no clear next step", "Listings updated by editing code, so rarely updated"],
+        "notes": ["7.8 s to load", "Template look", "No WhatsApp"]
+      },
+      "journey": [
+        { "when": "Week 1", "title": "Discover", "text": "We learned the agency, its buyers and its competitors in the city." },
+        { "when": "Within 72 h", "title": "Free design", "text": "A custom homepage in Figma. The owner approved it before paying." },
+        { "when": "Weeks 2 to 4", "title": "Build", "text": "Clean code, a listings admin and WhatsApp enquiries, with free changes." },
+        { "when": "Week 5", "title": "Launch and grow", "text": "Live, tracked and checked after 14 days. Then monthly improvements." }
+      ],
+      "built": [
+        { "title": "Listings people can filter", "text": "Search by area, size and price, built for a thumb on a phone.", "visual": "listing" },
+        { "title": "An admin the team uses", "text": "Add, edit and unpublish listings in minutes, no developer needed.", "visual": "admin" },
+        { "title": "Enquiries in one tap", "text": "Every listing opens a WhatsApp chat with the property already named.", "visual": "whatsapp" }
+      ],
+      "compare": {
+        "before": [{ "label": "Mobile speed", "value": 38 }, { "label": "Search visibility", "value": 22 }, { "label": "Monthly enquiries", "value": 12 }],
+        "after": [{ "label": "Mobile speed", "value": 96 }, { "label": "Search visibility", "value": 81 }, { "label": "Monthly enquiries", "value": 36 }]
+      },
+      "results": [
+        { "value": "×3", "label": "More enquiries", "note": "Measured over 4 months" },
+        { "value": "96", "label": "Mobile speed score", "note": "Up from 38" },
+        { "value": "1 day", "label": "To publish a listing", "note": "Was a week, through a developer" }
+      ],
+      "quote": { "text": "Clients now message us from the listing itself. We stopped losing leads to a slow site.", "by": "Owner, Atlas Immo" }
+    }
+  },
+  {
+    "slug": "nour-boutique",
+    "vibe": "store",
+    "art": "store",
+    "featured": false,
+    "status": "live",
+    "url": "nourboutique.ma",
+    "category": "stores",
+    "tag": "Online store",
+    "title": "Nour Boutique",
+    "featuredTitle": "",
+    "teaser": "An online clothing shop with a clean checkout and a catalogue the owner updates alone.",
+    "result": "Orders from day one",
+    "stats": [],
+    "case": {
+      "heroTitle": "Nour Boutique,",
+      "heroAccent": "a shop that sells while it sleeps.",
+      "heroLead": "A clothing boutique that lived on Instagram messages. We gave it a store where customers can browse, pick a size and pay.",
+      "liveSince": "Live since January 2026",
+      "facts": { "client": "Clothing boutique", "service": "Online stores", "timeline": "4 weeks", "stack": "Next.js · Node.js · SQL" },
+      "problem": {
+        "title": "Every sale started with a long chat",
+        "lead": "Customers asked for sizes and prices in messages, and many gave up before ordering.",
+        "pains": ["Prices and stock lived in the owner’s phone", "Orders were written on paper and often lost", "No way to sell when the shop was closed"],
+        "notes": ["Messages only", "No stock info", "Closed = no sales"]
+      },
+      "journey": [
+        { "when": "Week 1", "title": "Discover", "text": "We mapped the catalogue, the sizes and how customers like to pay." },
+        { "when": "Within 72 h", "title": "Free design", "text": "A bright, product-first homepage and product page in Figma." },
+        { "when": "Weeks 2 to 3", "title": "Build", "text": "Catalogue, cart, checkout and an order list the owner can run alone." },
+        { "when": "Week 4", "title": "Launch and grow", "text": "Live with a first collection loaded and photos made fast for phones." }
+      ],
+      "built": [
+        { "title": "A catalogue that looks like the brand", "text": "Big photos, clear sizes and stock, loading fast on mobile data.", "visual": "listing" },
+        { "title": "Checkout in three taps", "text": "Cart, delivery details and payment with nothing extra to learn.", "visual": "cart" },
+        { "title": "Orders under control", "text": "Every order lands in one list, ready to prepare and track.", "visual": "admin" }
+      ],
+      "compare": {
+        "before": [{ "label": "Mobile speed", "value": 41 }, { "label": "Orders without a chat", "value": 0 }, { "label": "Products online", "value": 10 }],
+        "after": [{ "label": "Mobile speed", "value": 94 }, { "label": "Orders without a chat", "value": 70 }, { "label": "Products online", "value": 100 }]
+      },
+      "results": [
+        { "value": "70%", "label": "Orders without a chat", "note": "Customers check out alone" },
+        { "value": "94", "label": "Mobile speed score", "note": "Up from 41" },
+        { "value": "24/7", "label": "Selling hours", "note": "Even when the shop is closed" }
+      ],
+      "quote": { "text": "I upload a new piece in minutes and it is on sale the same day.", "by": "Owner, Nour Boutique" }
+    }
+  },
+  {
+    "slug": "clinique-tanger",
+    "vibe": "app",
+    "art": "app",
+    "featured": false,
+    "status": "private",
+    "url": "",
+    "category": "apps",
+    "tag": "Web app",
+    "title": "Clinique Tanger",
+    "featuredTitle": "",
+    "teaser": "A booking and patient-queue app that replaced the paper diary at reception.",
+    "result": "−60% phone calls to book",
+    "stats": [],
+    "case": {
+      "heroTitle": "Clinique Tanger,",
+      "heroAccent": "no more paper diary.",
+      "heroLead": "A busy clinic running on a paper diary and a ringing phone. We built a booking and queue tool the whole team uses.",
+      "liveSince": "Private build, used internally",
+      "facts": { "client": "Medical clinic", "service": "Web apps and platforms", "timeline": "7 weeks", "stack": "React · Node.js · SQL" },
+      "problem": {
+        "title": "The reception desk was the bottleneck",
+        "lead": "Every booking meant a call, and double bookings were common.",
+        "pains": ["Appointments written in a paper diary", "Double bookings and no reminders", "No view of who is waiting right now"],
+        "notes": ["Paper diary", "Double bookings", "No reminders"]
+      },
+      "journey": [
+        { "when": "Weeks 1 to 2", "title": "Discover", "text": "We sat at reception and followed a full day of bookings." },
+        { "when": "Within 72 h", "title": "Free design", "text": "A calm, high-contrast interface designed for a busy desk." },
+        { "when": "Weeks 3 to 6", "title": "Build", "text": "Booking, patient queue, reminders and roles with secure login." },
+        { "when": "Week 7", "title": "Launch and grow", "text": "Rolled out room by room, with training and support on day one." }
+      ],
+      "built": [
+        { "title": "A day view the desk lives in", "text": "Every appointment and who is waiting, on one screen.", "visual": "calendar" },
+        { "title": "Reminders by message", "text": "Patients are reminded automatically, so fewer no-shows.", "visual": "whatsapp" },
+        { "title": "Roles and secure access", "text": "Reception, doctors and the manager each see what they need.", "visual": "admin" }
+      ],
+      "compare": {
+        "before": [{ "label": "Bookings by phone", "value": 100 }, { "label": "Missed appointments", "value": 30 }, { "label": "Time to book", "value": 70 }],
+        "after": [{ "label": "Bookings by phone", "value": 40 }, { "label": "Missed appointments", "value": 12 }, { "label": "Time to book", "value": 20 }]
+      },
+      "results": [
+        { "value": "−60%", "label": "Phone calls to book", "note": "Patients book online" },
+        { "value": "−55%", "label": "Missed appointments", "note": "Thanks to reminders" },
+        { "value": "0", "label": "Double bookings", "note": "Since launch" }
+      ],
+      "quote": { "text": "Reception finally has time to look after the people in front of them.", "by": "Manager, Clinique Tanger" }
+    }
+  },
+  {
+    "slug": "cafe-medina",
+    "vibe": "managed",
+    "art": "managed",
+    "featured": false,
+    "status": "live",
+    "url": "cafemedina.ma",
+    "category": "managed",
+    "tag": "Managed care",
+    "title": "Café Médina",
+    "featuredTitle": "",
+    "teaser": "A menu site and monthly care: hosting, updates and seasonal changes handled for them.",
+    "result": "Menu updated in 1 day",
+    "stats": [],
+    "case": {
+      "heroTitle": "Café Médina,",
+      "heroAccent": "looked after, month after month.",
+      "heroLead": "A café with a lovely menu and no time for websites. We built the site, then took over the technical side for good.",
+      "liveSince": "Live since October 2025",
+      "facts": { "client": "Café and restaurant", "service": "Managed care", "timeline": "3 weeks, then monthly", "stack": "Next.js · Hosting included" },
+      "problem": {
+        "title": "A website nobody had time to look after",
+        "lead": "The old site showed last summer’s menu and broke after every update.",
+        "pains": ["Menu and prices months out of date", "Hosting and updates nobody owned", "No one to call when it broke"],
+        "notes": ["Old menu", "Broken page", "No support"]
+      },
+      "journey": [
+        { "when": "Week 1", "title": "Discover", "text": "We learned the menu rhythm: seasons, specials and opening hours." },
+        { "when": "Within 72 h", "title": "Free design", "text": "A warm, appetising homepage and menu page in Figma." },
+        { "when": "Weeks 2 to 3", "title": "Build", "text": "A fast menu site with WhatsApp bookings and Google Maps." },
+        { "when": "From week 4", "title": "Managed care", "text": "We handle hosting, updates and a monthly improvement." }
+      ],
+      "built": [
+        { "title": "A menu that is always current", "text": "Seasonal changes are done by us, usually within a day.", "visual": "listing" },
+        { "title": "Bookings on WhatsApp", "text": "One tap to reserve a table, with the date already filled in.", "visual": "whatsapp" },
+        { "title": "A monthly report in plain words", "text": "What changed, how it performed, and what comes next.", "visual": "report" }
+      ],
+      "compare": {
+        "before": [{ "label": "Menu freshness", "value": 15 }, { "label": "Mobile speed", "value": 44 }, { "label": "Reservations online", "value": 5 }],
+        "after": [{ "label": "Menu freshness", "value": 100 }, { "label": "Mobile speed", "value": 95 }, { "label": "Reservations online", "value": 60 }]
+      },
+      "results": [
+        { "value": "1 day", "label": "To change the menu", "note": "Was months" },
+        { "value": "99.9%", "label": "Uptime", "note": "Monitored every month" },
+        { "value": "60%", "label": "Bookings online", "note": "Mostly through WhatsApp" }
+      ],
+      "quote": { "text": "We send a message, and the site is updated. That is all we wanted.", "by": "Owner, Café Médina" }
+    }
+  }
+]

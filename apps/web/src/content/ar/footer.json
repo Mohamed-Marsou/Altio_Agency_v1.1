@@ -1,0 +1,38 @@
+{
+  "logoLabel": "ALTIO، الصفحة الرئيسية",
+  "description": "مواقع وتطبيقات ويب مخصصة للشركات في المغرب. نصمّم أولاً، ونبني بإتقان، ونرافقك بعد الإطلاق.",
+  "ctaLabel": "لنتحدث",
+  "ctaMessage": "مرحباً ألتيو، أرغب في الحديث عن مشروعي.",
+  "columns": [
+    {
+      "title": "الخدمات",
+      "links": [
+        { "label": "مواقع الشركات", "href": "/services/#launch" },
+        { "label": "المتاجر الإلكترونية", "href": "/services/#commerce" },
+        { "label": "تطبيقات ومنصات الويب", "href": "/services/#custom" },
+        { "label": "الإدارة الكاملة", "href": "/services/#managed" }
+      ]
+    },
+    {
+      "title": "الشركة",
+      "links": [
+        { "label": "من نحن", "href": "/about/" },
+        { "label": "أعمالنا", "href": "/work/" },
+        { "label": "المدونة", "href": "/blog/" },
+        { "label": "برنامج الإحالة", "href": "/referrals/" }
+      ]
+    }
+  ],
+  "contact": {
+    "title": "اتصل بنا",
+    "location": "طنجة، المغرب",
+    "whatsapp": "واتساب: {{phone}}",
+    "email": "{{email}}"
+  },
+  "copyright": "© 2026 وكالة ألتيو. جميع الحقوق محفوظة.",
+  "legal": [
+    { "label": "الخصوصية", "href": "/privacy/" },
+    { "label": "الشروط", "href": "/terms/" },
+    { "label": "ملفات الارتباط", "href": "/cookies/" }
+  ]
+}

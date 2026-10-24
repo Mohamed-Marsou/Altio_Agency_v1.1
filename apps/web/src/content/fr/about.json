@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "eyebrow": "À propos",
+    "title": "Une petite équipe qui",
+    "accent": "répond quand vous appelez.",
+    "lead": "Nous sommes une agence d’ingénieurs full-stack et de designers à Tanger. Nous concevons d’abord, construisons proprement et restons joignables après la mise en ligne.",
+    "cta": {
+      "label": "Discuter sur WhatsApp",
+      "hoverLabel": "Envoyez-nous un message",
+      "message": "Bonjour Altio, je voudrais en savoir plus sur votre équipe."
+    },
+    "nodes": [
+      { "letter": "D", "title": "Design", "text": "Figma, avant tout code" },
+      { "letter": "E", "title": "Ingénierie", "text": "Un code propre, rapide et sur mesure" },
+      { "letter": "S", "title": "Support", "text": "De vraies personnes après la mise en ligne" }
+    ],
+    "pins": ["Basés à Tanger", "Réponses sur WhatsApp, 24h/24 et 7j/7"],
+    "orbitLabel": "Design, ingénierie et support autour du symbole Altio"
+  },
+  "numbers": [
+    { "value": "48 à 72 h", "label": "pour un design gratuit" },
+    { "value": "3", "label": "modifications gratuites après la mise en ligne" },
+    { "value": "14 jours", "label": "en ligne avant le paiement final" },
+    { "value": "24/7", "label": "réponses sur WhatsApp" }
+  ],
+  "story": {
+    "eyebrow": "Notre histoire",
+    "title": "Pourquoi nous travaillons ainsi",
+    "big": "La plupart des sites locaux ressemblent à tous les autres et sont oubliés après la mise en ligne.",
+    "bigAccent": "Nous voulions construire le contraire.",
+    "paragraphs": [
+      "Alors nous commençons par le design, gratuit, pour que vous voyiez le résultat avant de dépenser quoi que ce soit. Ensuite nous le construisons avec un code propre et sur mesure, nous configurons le référencement et le suivi, et nous restons proches une fois le site en ligne. Pas de modèles, pas de constructeurs de pages, pas de disparition.",
+      "Nous sommes une équipe, pas une entreprise d’une seule personne : quelqu’un répond toujours et le travail ne dépend jamais d’une seule personne."
+    ]
+  },
+  "principles": {
+    "eyebrow": "Ce en quoi nous croyons",
+    "title": "Quatre règles que nous ne brisons pas",
+    "items": [
+      { "title": "Le design d’abord", "text": "Vous validez un design sur mesure avant tout code ou paiement." },
+      { "title": "Un langage clair", "text": "Un devis écrit, des phases claires, sans surprises ni jargon." },
+      { "title": "Fait pour durer", "text": "Un code rapide, accessible et propre, dont vous n’êtes pas prisonnier." },
+      { "title": "Toujours joignables", "text": "Des réponses sur WhatsApp et un vrai support après la mise en ligne." }
+    ]
+  },
+  "roles": {
+    "eyebrow": "Comment l’équipe travaille",
+    "title": "Trois rôles, une équipe derrière chaque projet",
+    "items": [
+      { "tag": "Design", "title": "Façonne l’expérience", "bars": [50, 80, 60, 95], "points": ["Votre design gratuit dans Figma", "Ordinateur, mobile et mode sombre", "Couleurs et typographie de votre marque"] },
+      { "tag": "Ingénierie", "title": "Construit proprement", "bars": [90, 55, 75, 40], "points": ["Sites, boutiques et applications web sur mesure", "SEO et suivi configurés", "Espaces d’administration et intégrations"] },
+      { "tag": "Support", "title": "Prend soin du site", "bars": [70, 70, 70, 70], "points": ["Réponses sur WhatsApp, 24h/24 et 7j/7", "Modifications gratuites après la mise en ligne", "Hébergement et suivi mensuel"] }
+    ],
+    "stack": ["Next.js", "React", "Node.js", "WordPress", ".NET", "Spring Boot", "Kotlin", "TypeScript", "SQL", "NoSQL", "Figma"]
+  },
+  "place": {
+    "eyebrow": "Où nous sommes",
+    "title": "À Tanger, au service d’entreprises de tout le Maroc",
+    "text": "Passez nous voir, appelez ou écrivez. La plupart des clients n’ont jamais besoin de se déplacer : nous travaillons par WhatsApp et en appels vidéo.",
+    "hours": [
+      { "day": "Du lundi au vendredi", "time": "09:00 à 18:00" },
+      { "day": "Samedi", "time": "10:00 à 14:00" },
+      { "day": "WhatsApp", "time": "24h/24 et 7j/7" }
+    ],
+    "mapLabel": "Altio, Tanger"
+  }
+}

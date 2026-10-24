@@ -24,7 +24,7 @@
   --color-inverse: #0b0d12; // dark blocks on a light page
 
   // ---- Colour: brand accent (the single accent of the brand)
-  --color-accent: #1463ff;
+  --color-accent: #125ae6; // was #1463ff: 4.3 : 1 on the pale blue, now 5 : 1 (WCAG AA)
   --color-accent-hover: #0a3fb3;
   --color-accent-soft: #e8efff; // light blue tint (badges, icon tiles)
   --color-accent-light: #7aa5ff; // lighter blue (hover indicators, soft borders)
@@ -37,8 +37,10 @@
 
   // ---- Colour: lines + status
   --color-border: #e6e8ee;
-  --color-success: #12a150;
+  --color-success: #097436; // text and icons (was #12a150, only 3.4 : 1 on white)
+  --color-success-strong: #097436; // background of a label with white text
   --color-warning: #d98a00; // charts: the "badly coded" line
+  --color-danger: #c53a33; // problems and warnings (the "before" notes)
   --color-neutral: #9aa3b2; // charts: the "generic template" line
   --color-whatsapp: #25d366; // WhatsApp green (WhatsApp buttons only)
   --color-whatsapp-hover: #1ebe5b;
@@ -96,16 +98,21 @@
 // Switched by putting data-theme="dark" on <html>.
 // -----------------------------------------------------------------------------
 [data-theme="dark"] {
+  // Tells the browser to draw its own parts (scrollbars, form controls) dark too.
+  color-scheme: dark;
+
   --color-page: #0b0d12;
   --color-surface: #12151c;
   --color-surface-2: #1a1f2a;
   --color-inverse: #ffffff;
 
-  --color-accent: #4f86ff;
+  --color-accent: #5a8fff; // a little lighter than #4f86ff to reach 4.5 : 1 on the dark tint
+  --color-success: #1fb76a; // brighter green for text on dark surfaces
   --color-accent-hover: #1463ff;
   --color-accent-soft: #16233f;
   --color-accent-light: #8fb2ff;
   --color-warning: #e3a33a;
+  --color-danger: #ff7a70;
   --color-neutral: #6b7585;
 
   --color-text: #f4f6fa;
@@ -117,4 +124,13 @@
 
   --shadow-card: 0 8px 30px rgb(0 0 0 / 40%);
   --shadow-float: 0 20px 60px -10px rgb(79 134 255 / 30%);
+}
+
+// ---- Arabic (right to left) --------------------------------------------------
+// On /ar the page uses the Arabic font (loaded only for that language, see
+// app/fonts.ts). Arabic letters connect, so they get no letter-spacing and a
+// little more line height.
+[dir="rtl"] {
+  --font-display-stack: var(--font-arabic), "Segoe UI", Tahoma, system-ui, sans-serif;
+  --font-text-stack: var(--font-arabic), "Segoe UI", Tahoma, system-ui, sans-serif;
 }

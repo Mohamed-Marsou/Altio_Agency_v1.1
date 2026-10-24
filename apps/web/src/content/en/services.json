@@ -1,0 +1,36 @@
+{
+  "eyebrow": "What we build",
+  "title": "Everything you need to win clients online.",
+  "subtitle": "Four services, one for every stage: launch, sell, build and look after.",
+  "linkLabel": "Learn more",
+  "items": [
+    {
+      "id": "websites",
+      "icon": "monitor",
+      "title": "Business websites",
+      "text": "Fast, custom sites with SEO and WhatsApp built in.",
+      "href": "/services/#launch"
+    },
+    {
+      "id": "stores",
+      "icon": "cart",
+      "title": "Online stores",
+      "text": "A catalogue, cart and checkout that turn browsers into buyers.",
+      "href": "/services/#commerce"
+    },
+    {
+      "id": "apps",
+      "icon": "layout",
+      "title": "Web apps and platforms",
+      "text": "Admin panels, booking and custom tools to run your business.",
+      "href": "/services/#custom"
+    },
+    {
+      "id": "managed",
+      "icon": "shield",
+      "title": "Managed care",
+      "text": "Hosting, updates and monthly improvements, handled for you.",
+      "href": "/services/#managed"
+    }
+  ]
+}

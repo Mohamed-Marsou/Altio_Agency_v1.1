@@ -1,0 +1,29 @@
+{
+  "links": [
+    { "label": "Accueil", "href": "/" },
+    { "label": "Services", "href": "/services/" },
+    { "label": "Réalisations", "href": "/work/" },
+    { "label": "À propos", "href": "/about/" },
+    { "label": "Blog", "href": "/blog/" },
+    { "label": "Contact", "href": "/contact/" }
+  ],
+  "cta": {
+    "label": "Recevoir mon design gratuit",
+    "hoverLabel": "Envoyez-nous un message",
+    "message": "Bonjour Altio, je souhaite recevoir un design gratuit pour mon entreprise."
+  },
+  "languages": [
+    { "code": "en", "label": "English" },
+    { "code": "fr", "label": "Français" },
+    { "code": "ar", "label": "العربية" }
+  ],
+  "labels": {
+    "mainNavigation": "Navigation principale",
+    "homeLink": "ALTIO accueil",
+    "toggleTheme": "Activer le mode sombre",
+    "openMenu": "Ouvrir le menu",
+    "chooseLanguage": "Choisir la langue",
+    "closeMenu": "Fermer le menu",
+    "menuTitle": "Menu"
+  }
+}

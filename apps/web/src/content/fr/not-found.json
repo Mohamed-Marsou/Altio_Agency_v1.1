@@ -1,0 +1,16 @@
+{
+  "url": "{{domain}}/cette-page",
+  "title": "Cette page n’existe pas",
+  "lead": "Elle a peut-être été déplacée, ou le lien contient une faute de frappe. Voici un moyen rapide de revenir.",
+  "home": "Retour à l’accueil",
+  "whatsapp": { "label": "Dites-nous ce que vous cherchiez", "message": "Bonjour Altio, je n’ai pas trouvé une page sur votre site." },
+  "popularTitle": "Pages populaires",
+  "popular": [
+    { "label": "Services", "href": "/services/" },
+    { "label": "Réalisations", "href": "/work/" },
+    { "label": "Blog", "href": "/blog/" },
+    { "label": "À propos", "href": "/about/" },
+    { "label": "Contact", "href": "/contact/" },
+    { "label": "Design gratuit", "href": "/free-design/" }
+  ]
+}

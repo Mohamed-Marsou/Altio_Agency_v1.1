@@ -1,0 +1,15 @@
+{
+  "brand": "Altio",
+  "legalName": "Altio",
+  "domain": "altio.ma",
+  "whatsappNumber": "212600000000",
+  "phoneDisplay": "+212 6 00 00 00 00",
+  "email": "hello@yourdomain.ma",
+  "verified": false,
+  "city": "Tangier",
+  "country": "MA",
+  "address": "Tangier, Morocco",
+  "geo": { "lat": 35.7595, "lng": -5.834 },
+  "openingHours": ["Mo-Fr 09:00-18:00", "Sa 10:00-14:00"],
+  "social": []
+}

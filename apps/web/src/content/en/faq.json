@@ -1,0 +1,29 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Questions we hear most.",
+  "subtitle": "Still unsure?",
+  "linkLabel": "Message us on WhatsApp.",
+  "linkMessage": "Hi Altio, I have a question before starting.",
+  "items": [
+    {
+      "question": "How much does a website cost?",
+      "answer": "Each pack is described above, and we share pricing after we understand your business. You always get a written quote before anything starts."
+    },
+    {
+      "question": "How long does it take?",
+      "answer": "You get your free design in 48 to 72 hours, depending on complexity. After you approve it, we build in one week to one month, with free changes along the way."
+    },
+    {
+      "question": "Do I really pay nothing for the design?",
+      "answer": "Yes. The homepage design is free, with no payment and no obligation. You only pay when you approve it and we start building."
+    },
+    {
+      "question": "Who owns the website?",
+      "answer": "With Launch, Commerce and Custom, the website is yours. With the Managed pack, we run everything for you and you get access, but not the source code."
+    },
+    {
+      "question": "What happens after launch?",
+      "answer": "You get 3 free changes after launch. After that we help task by task, or you can move to the Managed pack for hosting, updates and priority support."
+    }
+  ]
+}

@@ -107,6 +107,8 @@
       }
     ],
     "stepsLabel": "Our strategy",
+    "stepsHint": "Swipe",
+    "statsVersus": "vs",
     "steps": [
       { "title": "Discover", "tip": "We learn your business, your customers and your competitors." },
       { "title": "Design", "tip": "A custom design in Figma before any code, free for you to review." },

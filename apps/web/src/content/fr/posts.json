@@ -1,0 +1,147 @@
+[
+  {
+    "slug": "local-business-website-checklist",
+    "category": "web",
+    "featured": true,
+    "date": "2026-03-12",
+    "readTime": 6,
+    "title": "7 choses pour que votre site local vous apporte des appels",
+    "excerpt": "Une courte liste de contrôle que nous utilisons sur chaque projet, du bouton WhatsApp aux horaires d’ouverture.",
+    "featuredExcerpt": "Une courte liste de contrôle que nous utilisons sur chaque projet, du bouton WhatsApp aux horaires d’ouverture, avec de vrais exemples d’entreprises marocaines.",
+    "body": [
+      { "type": "p", "text": "La plupart des sites locaux perdent leurs visiteurs en quelques secondes. Les gens sont sur leur téléphone, pressés, et veulent une seule chose : vous joindre. Voici la liste de contrôle que nous utilisons avant la mise en ligne de n’importe quel site." },
+      { "type": "h2", "id": "whatsapp", "text": "1. Un bouton WhatsApp sur chaque page" },
+      { "type": "p", "text": "Au Maroc, un message vaut mieux qu’un formulaire. Un bouton WhatsApp bien visible transforme un visiteur curieux en conversation en un clic. Placez-le dans l’en-tête et de nouveau à la fin de chaque page, avec un premier message déjà rédigé pour que les gens n’aient pas à réfléchir." },
+      { "type": "quote", "text": "Si un visiteur ne peut pas vous contacter en un clic, il contactera quelqu’un d’autre." },
+      { "type": "h2", "id": "fast", "text": "2. Rapide sur téléphone" },
+      { "type": "p", "text": "La plupart des visiteurs arrivent avec leurs données mobiles. Chaque seconde de chargement supplémentaire fait perdre des gens. Compressez vos photos, évitez les carrousels lourds et testez sur un vrai téléphone, pas seulement sur un ordinateur." },
+      { "type": "callout", "title": "Test rapide", "items": ["Ouvrez votre site avec vos données mobiles, pas en Wi-Fi", "Comptez les secondes avant de pouvoir lire la première ligne", "Si cela dépasse trois secondes, commencez par les photos"] },
+      { "type": "figure", "caption": "Une mise en page simple avec une action claire vaut mieux qu’une page d’accueil chargée." },
+      { "type": "h2", "id": "hours", "text": "3. Des horaires clairs et une carte" },
+      { "type": "p", "text": "Mettez votre adresse, vos horaires et une carte en haut de page. Les personnes qui cherchent un lieu à proximité décident vite, et une information manquante est une raison de partir. Gardez les informations identiques à celles de votre fiche Google Business." },
+      { "type": "h2", "id": "photos", "text": "4. De vraies photos" },
+      { "type": "p", "text": "Des photos de votre vrai magasin, de votre équipe au travail et de vos réalisations inspirent plus confiance que des images d’archive. Utilisez quelques bonnes photos plutôt que beaucoup de moyennes." },
+      { "type": "h2", "id": "proof", "text": "5. Des avis et des preuves" },
+      { "type": "p", "text": "Montrez ce que disent vos clients et ce que vous avez réalisé. Deux ou trois avis honnêtes et quelques projets terminés suffisent pour qu’un inconnu se sente en sécurité en vous contactant." },
+      { "type": "h2", "id": "next-step", "text": "6. Une étape suivante claire" },
+      { "type": "p", "text": "Chaque page doit mener à une seule action : appeler, écrire ou réserver. Une page avec cinq boutons concurrents n’en voit cliquer aucun." },
+      { "type": "h2", "id": "maps", "text": "7. Prêt pour Google Maps" },
+      { "type": "p", "text": "Assurez-vous que le nom de votre entreprise, votre adresse et votre téléphone sont strictement identiques partout en ligne. La cohérence est l’un des moyens les plus simples de bien se classer dans les résultats locaux." }
+    ]
+  },
+  {
+    "slug": "show-up-on-google-maps",
+    "category": "seo",
+    "featured": false,
+    "date": "2026-03-03",
+    "readTime": 5,
+    "title": "Comment apparaître sur Google Maps dans votre ville",
+    "excerpt": "Configurez votre fiche Google Business en un après-midi, étape par étape.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Quand quelqu’un cherche ce que vous vendez en ajoutant votre ville, Google Maps décide qui il voit en premier. Une fiche complète est le moyen le moins cher d’en faire partie." },
+      { "type": "h2", "id": "claim", "text": "1. Revendiquez votre fiche" },
+      { "type": "p", "text": "Cherchez le nom de votre entreprise sur Google. Si une fiche existe, revendiquez-la. Sinon, créez-en une. Google vous demandera de la vérifier, en général avec un code envoyé par courrier ou par téléphone." },
+      { "type": "h2", "id": "complete", "text": "2. Remplissez tout" },
+      { "type": "p", "text": "Nom, catégorie, adresse, téléphone, horaires, site web et courte description. Les fiches incomplètes sont moins bien classées et inspirent moins confiance." },
+      { "type": "callout", "title": "À faire aujourd’hui", "items": ["Choisissez la catégorie principale la plus précise", "Ajoutez votre numéro WhatsApp comme téléphone", "Importez au moins dix vraies photos"] },
+      { "type": "h2", "id": "reviews", "text": "3. Demandez des avis" },
+      { "type": "p", "text": "Après chaque travail réussi, envoyez à vos clients un lien pour laisser un avis. Répondez à chaque avis, y compris aux mauvais, poliment et rapidement." },
+      { "type": "quote", "text": "Les avis sont le nouveau bouche-à-oreille, et ils travaillent pendant que vous dormez." }
+    ]
+  },
+  {
+    "slug": "selling-clothes-online-morocco",
+    "category": "shop",
+    "featured": false,
+    "date": "2026-02-21",
+    "readTime": 7,
+    "title": "Vendre des vêtements en ligne au Maroc : les attentes clients",
+    "excerpt": "Tailles, livraison et paiement à la livraison : les détails qui décident d’une commande.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Les clients qui parcourent une boutique de vêtements sur leur téléphone décident vite. Voici les détails qui font la différence entre un panier abandonné et une commande." },
+      { "type": "h2", "id": "sizes", "text": "1. Des tailles et un stock clairs" },
+      { "type": "p", "text": "Affichez les tailles disponibles sur la page produit et un guide des tailles simple. Rien ne fait perdre une vente plus vite que de découvrir au paiement que sa taille n’est plus disponible." },
+      { "type": "h2", "id": "delivery", "text": "2. Une livraison que l’on explique en une ligne" },
+      { "type": "p", "text": "Indiquez le délai et le coût de livraison avant le paiement. Les clients acceptent des frais, mais pas une surprise." },
+      { "type": "h2", "id": "payment", "text": "3. Paiement à la livraison et par carte" },
+      { "type": "p", "text": "Beaucoup de clients marocains préfèrent encore payer à la livraison. Le proposer, à côté du paiement par carte, supprime la plus grande hésitation." },
+      { "type": "callout", "title": "Liste de contrôle du paiement", "items": ["Commande sans compte, sans inscription", "Coût de livraison affiché tôt", "Un lien WhatsApp pour les questions"] }
+    ]
+  },
+  {
+    "slug": "when-a-spreadsheet-stops-being-enough",
+    "category": "apps",
+    "featured": false,
+    "date": "2026-02-09",
+    "readTime": 4,
+    "title": "Quand un tableur ne suffit plus",
+    "excerpt": "Quatre signes qu’il est temps de passer vos réservations et vos clients dans un vrai outil.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Un tableur est un excellent premier outil. À un moment, il commence à vous coûter du temps et des erreurs. Voici des signes que vous en êtes là." },
+      { "type": "h2", "id": "double", "text": "1. Des doubles réservations" },
+      { "type": "p", "text": "Si deux personnes peuvent réserver le même créneau, votre outil ne vous protège pas. Un outil de réservation bloque le conflit à votre place." },
+      { "type": "h2", "id": "people", "text": "2. Plus d’une personne le modifie" },
+      { "type": "p", "text": "Quand votre équipe partage un fichier, les versions divergent. Un vrai outil donne à chacun le bon accès et une seule source de vérité." },
+      { "type": "h2", "id": "reports", "text": "3. Vous faites vos rapports à la main" },
+      { "type": "p", "text": "Si vous passez une soirée par semaine à compter, un tableau de bord peut le faire en quelques secondes, chaque jour." },
+      { "type": "quote", "text": "Le meilleur outil est celui que votre équipe ouvre sans y penser." }
+    ]
+  },
+  {
+    "slug": "design-before-build",
+    "category": "tips",
+    "featured": false,
+    "date": "2026-01-28",
+    "readTime": 5,
+    "title": "Pourquoi votre site doit être conçu avant d’être construit",
+    "excerpt": "Ce que vous fait économiser une étape de design gratuite, et ce qu’il faut y chercher.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Modifier un design sur maquette prend quelques minutes. Modifier un site terminé prend des jours. C’est tout l’intérêt de concevoir d’abord." },
+      { "type": "h2", "id": "see", "text": "1. Vous le voyez avant de payer" },
+      { "type": "p", "text": "Un design dans Figma montre exactement ce que vous recevrez, sur ordinateur et sur mobile, pour qu’il n’y ait pas de surprises plus tard." },
+      { "type": "h2", "id": "changes", "text": "2. Les modifications coûtent peu" },
+      { "type": "p", "text": "Déplacer un bouton ou réécrire un titre dans un design est instantané. Après la construction, la même modification touche le code, les tests et le contenu." },
+      { "type": "callout", "title": "Ce que comprend une bonne étape de design", "items": ["Des mises en page ordinateur et mobile", "Vos vrais textes, pas des textes factices", "Une étape de validation claire avant tout code"] }
+    ]
+  },
+  {
+    "slug": "template-or-custom-website",
+    "category": "web",
+    "featured": false,
+    "date": "2026-01-15",
+    "readTime": 8,
+    "title": "Modèle ou site sur mesure ? Une comparaison honnête",
+    "excerpt": "Là où les modèles conviennent, et là où ils vous coûtent discrètement des clients.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Les modèles ne sont pas mauvais. Ils sont le bon choix dans certaines situations et un raccourci coûteux dans d’autres. Voici comment savoir dans laquelle vous êtes." },
+      { "type": "h2", "id": "templates", "text": "Là où les modèles conviennent" },
+      { "type": "p", "text": "Une page temporaire, un projet personnel ou un très petit budget peuvent être bien servis par un modèle, à condition d’accepter que l’aspect ressemble à beaucoup d’autres sites." },
+      { "type": "h2", "id": "cost", "text": "Là où ils vous coûtent des clients" },
+      { "type": "p", "text": "Les modèles embarquent du code que vous n’utilisez jamais, ce qui ralentit les pages. Ils font aussi ressembler votre entreprise à toutes les autres, ce qui est l’opposé de ce que vous voulez quand les gens comparent les options." },
+      { "type": "quote", "text": "Un site web est la première chose que les clients jugent. Faites-en le vôtre." }
+    ]
+  },
+  {
+    "slug": "write-a-website-brief",
+    "category": "tips",
+    "featured": false,
+    "date": "2026-01-04",
+    "readTime": 4,
+    "title": "Comment rédiger un court brief pour votre site web",
+    "excerpt": "Cinq questions à se poser avant de parler à une agence, pour obtenir un meilleur design.",
+    "featuredExcerpt": "",
+    "body": [
+      { "type": "p", "text": "Vous n’avez pas besoin d’un long document. Cinq réponses claires donnent à n’importe quel designer ce qu’il faut pour bien démarrer." },
+      { "type": "h2", "id": "who", "text": "1. Qui sont vos clients ?" },
+      { "type": "p", "text": "Décrivez un client type : âge, ville, ce qu’il veut et ce qui l’inquiète." },
+      { "type": "h2", "id": "action", "text": "2. Quelle action voulez-vous ?" },
+      { "type": "p", "text": "Des appels, des messages, des réservations ou des commandes. Choisissez une action principale, et le design y mènera." },
+      { "type": "callout", "title": "Vos cinq réponses", "items": ["Qui sont vos clients", "L’action unique que vous voulez", "Trois sites que vous aimez, et pourquoi", "Ce que vous vendez et ce qui vous distingue", "Votre échéance"] }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Les questions que l’on nous pose le plus.",
+  "subtitle": "Encore un doute ?",
+  "linkLabel": "Écrivez-nous sur WhatsApp.",
+  "linkMessage": "Bonjour Altio, j’ai une question avant de commencer.",
+  "items": [
+    {
+      "question": "Combien coûte un site web ?",
+      "answer": "Chaque pack est décrit plus haut, et nous communiquons les tarifs après avoir compris votre activité. Vous recevez toujours un devis écrit avant le début de tout travail."
+    },
+    {
+      "question": "Combien de temps cela prend-il ?",
+      "answer": "Vous recevez votre design gratuit en 48 à 72 heures, selon la complexité. Après votre validation, nous construisons en une semaine à un mois, avec des modifications gratuites en cours de route."
+    },
+    {
+      "question": "Le design est-il vraiment gratuit ?",
+      "answer": "Oui. Le design de la page d’accueil est gratuit, sans paiement et sans engagement. Vous ne payez qu’une fois le design validé et la construction lancée."
+    },
+    {
+      "question": "À qui appartient le site ?",
+      "answer": "Avec Launch, Commerce et Custom, le site est à vous. Avec le pack Managed, nous gérons tout pour vous et vous avez un accès, mais pas le code source."
+    },
+    {
+      "question": "Que se passe-t-il après la mise en ligne ?",
+      "answer": "Vous bénéficiez de 3 modifications gratuites après la mise en ligne. Ensuite, nous vous aidons tâche par tâche, ou vous passez au pack Managed pour l’hébergement, les mises à jour et un support prioritaire."
+    }
+  ]
+}

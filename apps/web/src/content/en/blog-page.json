@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "eyebrow": "Blog",
+    "title": "Practical notes for",
+    "accent": "growing online.",
+    "lead": "Short, honest articles on websites, search and selling online, written for business owners in Morocco."
+  },
+  "categories": {
+    "web": "Websites",
+    "seo": "SEO",
+    "shop": "Online stores",
+    "apps": "Web apps",
+    "tips": "Business tips"
+  },
+  "all": "All",
+  "filterLabel": "Filter by topic",
+  "featuredTag": "Featured",
+  "latest": "Latest articles",
+  "readMore": "Read the article →",
+  "minRead": "min read",
+  "noResults": "No article in this topic yet.",
+  "help": {
+    "title": "Have a question we have not answered?",
+    "cta": "Ask us on WhatsApp",
+    "message": "Hi Altio, I have a question after reading your blog."
+  },
+  "post": {
+    "breadcrumbRoot": "Blog",
+    "author": "Altio team",
+    "toc": "In this article",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "shareWhatsapp": "Share on WhatsApp",
+    "progressLabel": "Reading progress",
+    "endCta": {
+      "title": "Want us to look at your site?",
+      "text": "Send us your address and we reply with three quick fixes.",
+      "cta": "Chat on WhatsApp",
+      "message": "Hi Altio, I read your article and would like you to look at my website."
+    },
+    "related": "Keep reading"
+  }
+}

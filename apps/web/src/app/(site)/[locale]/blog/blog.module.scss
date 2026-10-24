@@ -1,0 +1,13 @@
+@use "abstracts" as *;
+
+// Shell of the Blog list page: the container holding the chips, the featured
+// article and the grid.
+.blogPageSection {
+  padding-block: 0 var(--section-y);
+  background: color(page);
+}
+
+.blogPageContent {
+  @include container;
+  @include flex-col(space(12));
+}

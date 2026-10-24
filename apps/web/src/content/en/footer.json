@@ -1,0 +1,71 @@
+{
+  "logoLabel": "ALTIO home",
+  "description": "Custom websites and web apps for businesses in Morocco. Designed first, built properly, supported after launch.",
+  "ctaLabel": "Let’s talk",
+  "ctaMessage": "Hi Altio, I would like to talk about my project.",
+  "columns": [
+    {
+      "title": "Services",
+      "links": [
+        {
+          "label": "Business websites",
+          "href": "/services/#launch"
+        },
+        {
+          "label": "Online stores",
+          "href": "/services/#commerce"
+        },
+        {
+          "label": "Web apps and platforms",
+          "href": "/services/#custom"
+        },
+        {
+          "label": "Managed care",
+          "href": "/services/#managed"
+        }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        {
+          "label": "About",
+          "href": "/about/"
+        },
+        {
+          "label": "Work",
+          "href": "/work/"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog/"
+        },
+        {
+          "label": "Referrals",
+          "href": "/referrals/"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "title": "Contact",
+    "location": "Tangier, Morocco",
+    "whatsapp": "WhatsApp: {{phone}}",
+    "email": "{{email}}"
+  },
+  "copyright": "© 2026 Altio Agency. All rights reserved.",
+  "legal": [
+    {
+      "label": "Privacy",
+      "href": "/privacy/"
+    },
+    {
+      "label": "Terms",
+      "href": "/terms/"
+    },
+    {
+      "label": "Cookies",
+      "href": "/cookies/"
+    }
+  ]
+}

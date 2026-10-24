@@ -1,0 +1,37 @@
+@use "abstracts" as *;
+
+.postShare {
+  display: flex;
+  gap: space(3);
+}
+
+.postShareIsRail {
+  position: sticky;
+  top: calc(var(--navbar-height) + #{space(6)});
+  flex-direction: column;
+}
+
+.postShareIsRow {
+  flex-direction: row;
+  align-items: center;
+}
+
+.postShareButton {
+  @include icon-button(rem(44));
+}
+
+.postShareButtonIsWhatsapp {
+  border-color: color(whatsapp);
+  background: color(whatsapp);
+  color: color(white);
+
+  &:hover {
+    border-color: color(whatsapp);
+    filter: brightness(1.08);
+  }
+}
+
+// Text for screen readers: announces "Link copied".
+.postShareStatus {
+  @include visually-hidden;
+}

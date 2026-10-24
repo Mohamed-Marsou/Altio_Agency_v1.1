@@ -1,0 +1,141 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// FAQ SECTION  (mobile first)
+// Phone: heading, then the list  |  lg: heading left (5 parts), list right (7).
+// Hover on a question: the text turns blue and the + icon fills with the accent.
+// =============================================================================
+
+.faqSection {
+  @include section-y;
+  background: color(page);
+}
+
+.faqContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+    gap: space(16);
+  }
+}
+
+.faqIntro {
+  @include flex-col(space(4));
+}
+
+.faqHelp {
+  @include text(lead);
+  color: color(muted);
+}
+
+.faqHelpLink {
+  color: color(accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: rem(4);
+  transition: color 0.3s var(--ease-out);
+
+  @include on-hover {
+    color: color(success);
+  }
+}
+
+// ---- The list --------------------------------------------------------------------------------
+.faqList {
+  @include reset-list;
+  border-top: 1px solid color(border);
+}
+
+.faqItem {
+  border-bottom: 1px solid color(border);
+}
+
+.faqQuestionHeading {
+  margin: 0;
+}
+
+.faqQuestion {
+  @include reset-button;
+  @include flex(row, space-between, center, space(4));
+  @include focus-ring;
+  width: 100%;
+  padding-block: space(6);
+  text-align: start;
+
+  @include on-hover {
+    .faqQuestionText {
+      color: color(accent);
+    }
+
+    .faqIcon {
+      background: color(accent);
+      color: color(on-accent);
+    }
+  }
+}
+
+.faqQuestionText {
+  @include text(heading);
+  transition: color 0.35s var(--ease-out);
+}
+
+// Round icon: a plus when closed, a minus when open.
+.faqIcon {
+  @include flex-center;
+  flex: none;
+  width: rem(32);
+  height: rem(32);
+  border-radius: 50%;
+  color: color(accent);
+  transition:
+    background-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+}
+
+.faqIconMinus {
+  display: none;
+}
+
+.faqItemIsOpen {
+  .faqIconPlus {
+    display: none;
+  }
+
+  .faqIconMinus {
+    display: block;
+  }
+}
+
+// ---- The answer slides open --------------------------------------------------------------
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-out);
+}
+
+.faqItemIsOpen .faqAnswer {
+  grid-template-rows: 1fr;
+}
+
+.faqAnswerInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faqAnswerText {
+  padding: 0 rem(40) space(6) 0;
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .faqAnswer,
+  .faqQuestionText,
+  .faqIcon,
+  .faqHelpLink {
+    transition: none;
+  }
+}

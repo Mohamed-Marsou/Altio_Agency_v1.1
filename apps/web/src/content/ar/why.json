@@ -1,0 +1,49 @@
+{
+  "eyebrow": "لماذا ألتيو",
+  "title": "فريق وكالة، لا مصنع قوالب.",
+  "text": "نحن فريق من المهندسين المتكاملين والمصممين، نعامل كل موقع كمنتج، من أول تصميم إلى الدعم الذي يليه.",
+  "stats": [
+    { "value": "فريق", "label": "من المهندسين" },
+    { "value": "48 س", "label": "لتصميم مجاني" },
+    { "value": "24/7", "label": "ردود" }
+  ],
+  "cards": [
+    {
+      "icon": "code",
+      "title": "هندسة متكاملة",
+      "text": "الويب والجوال والأتمتة تحت سقف واحد، بأدوات حديثة وشيفرة نظيفة."
+    },
+    {
+      "icon": "layers",
+      "title": "التصميم أولاً",
+      "text": "تصميم مخصص على Figma قبل أي برمجة، لتوافق على ما ستحصل عليه بالضبط."
+    },
+    {
+      "icon": "workflow",
+      "title": "منهج واضح",
+      "text": "مراحل محددة، ولوحة مشروع متابَعة، وعرض سعر مكتوب. لا مفاجآت."
+    },
+    {
+      "icon": "message",
+      "title": "دائماً في متناولك",
+      "text": "ردود على واتساب على مدار الساعة، ودعم حقيقي بعد الإطلاق."
+    }
+  ],
+  "stackLabel": "تقنياتنا",
+  "stack": [
+    { "name": "Node.js", "mostUsed": true },
+    { "name": "Kotlin", "mostUsed": false },
+    { "name": "React", "mostUsed": true },
+    { "name": "WordPress", "mostUsed": true },
+    { "name": "SQL", "mostUsed": false },
+    { "name": "Spring Boot", "mostUsed": false },
+    { "name": "Next.js", "mostUsed": false },
+    { "name": "C#", "mostUsed": false },
+    { "name": "Figma", "mostUsed": false },
+    { "name": "Java", "mostUsed": false },
+    { "name": ".NET", "mostUsed": true },
+    { "name": "NoSQL", "mostUsed": false },
+    { "name": "TypeScript", "mostUsed": false }
+  ],
+  "mostUsedTip": "التقنية الأكثر استعمالاً"
+}

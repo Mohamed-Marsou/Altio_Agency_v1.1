@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import Link from "next/link";
+import Link from "@/components/ui/LocaleLink/LocaleLink";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import styles from "./NavLinks.module.scss";
 

@@ -1,0 +1,21 @@
+@use "abstracts" as *;
+
+// Round icon button (same look as the menu button).
+.themeToggle {
+  @include icon-button;
+}
+
+// Light mode (default): show the moon. Dark mode: show the sun.
+.themeToggleSun {
+  display: none;
+}
+
+:global([data-theme="dark"]) {
+  .themeToggleMoon {
+    display: none;
+  }
+
+  .themeToggleSun {
+    display: block;
+  }
+}

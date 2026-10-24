@@ -27,3 +27,13 @@ h5,
 h6 {
   @include text(heading);
 }
+
+// Arabic: no letter-spacing (it breaks the joined letters) and a taller line.
+[dir="rtl"] {
+  letter-spacing: 0;
+  line-height: 1.75;
+
+  * {
+    letter-spacing: 0 !important;
+  }
+}

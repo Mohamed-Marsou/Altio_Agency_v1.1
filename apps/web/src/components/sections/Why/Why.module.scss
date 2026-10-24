@@ -1,0 +1,160 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// WHY ALTIO SECTION  (mobile first)
+// Phone: intro + numbers, then the cards (1 column), then the tools.
+// sm: cards in 2 columns  |  lg: intro on the left (5 parts), details right (7).
+// Hover on a card: soft blue background, the icon tile fills with the accent.
+// =============================================================================
+
+.whySection {
+  @include section-y;
+  background: color(surface);
+}
+
+.whyContent {
+  @include container;
+  @include flex-col(space(12));
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+    gap: space(16);
+  }
+}
+
+.whyIntro {
+  @include flex-col(space(8));
+}
+
+// Three big numbers under a thin line.
+.whyStats {
+  display: flex;
+  align-items: center; // every number block sits on the same middle line
+  gap: space(8);
+  margin: 0;
+  padding-top: space(8);
+  border-top: 1px solid color(border);
+}
+
+.whyStat {
+  @include flex-col(rem(2), center);
+  text-align: center;
+}
+
+.whyStatValue {
+  @include text(display-2);
+  color: color(accent);
+}
+
+.whyStatLabel {
+  @include text(small);
+  margin: 0;
+  color: color(muted);
+}
+
+.whyDetails {
+  @include flex-col(space(6));
+}
+
+.whyCards {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: space(4);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.whyCard {
+  @include flex-col(space(2));
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: radius(card);
+  background: color(page);
+  transition:
+    background-color 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+
+  @include on-hover {
+    background: color(accent-soft);
+    border-color: color(accent-light);
+
+    .whyCardIcon {
+      background: color(accent);
+      color: color(on-accent);
+    }
+
+    .whyCardTitle {
+      color: color(accent);
+    }
+  }
+}
+
+.whyCardIcon {
+  @include flex-center;
+  width: rem(48);
+  height: rem(48);
+  margin-bottom: space(2);
+  border-radius: radius(md);
+  background: color(accent-soft);
+  color: color(accent);
+  transition:
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+}
+
+.whyCardTitle {
+  @include text(title-md);
+  transition: color 0.4s var(--ease-out);
+}
+
+.whyCardText {
+  @include text(small);
+  color: color(muted);
+}
+
+// "Our stack" label + a wrapping row of small pills.
+.whyStack {
+  @include flex-wrap-row(space(2));
+}
+
+.whyStackLabel {
+  @include text(eyebrow);
+  margin-inline-end: space(2);
+  color: color(muted);
+}
+
+.whyStackList {
+  @include reset-list;
+  @include flex-wrap-row(space(2));
+}
+
+.whyStackItem {
+  @include text(label);
+  padding: space(1) space(3);
+  border: 1px solid color(border);
+  border-radius: radius(pill);
+  background: color(surface);
+  font-size: rem(13);
+  transition:
+    border-color 0.35s var(--ease-out),
+    color 0.35s var(--ease-out);
+
+  @include on-hover {
+    border-color: color(accent);
+    color: color(accent);
+  }
+}
+
+@include reduced-motion {
+  .whyCard,
+  .whyCardIcon,
+  .whyCardTitle,
+  .whyStackItem {
+    transition: none;
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "logoLabel": "ALTIO accueil",
+  "description": "Sites web et applications web sur mesure pour les entreprises au Maroc. Conçus d’abord, construits proprement, accompagnés après la mise en ligne.",
+  "ctaLabel": "Parlons-en",
+  "ctaMessage": "Bonjour Altio, je souhaite parler de mon projet.",
+  "columns": [
+    {
+      "title": "Services",
+      "links": [
+        { "label": "Sites vitrines", "href": "/services/#launch" },
+        { "label": "Boutiques en ligne", "href": "/services/#commerce" },
+        { "label": "Applications et plateformes web", "href": "/services/#custom" },
+        { "label": "Gestion complète", "href": "/services/#managed" }
+      ]
+    },
+    {
+      "title": "Entreprise",
+      "links": [
+        { "label": "À propos", "href": "/about/" },
+        { "label": "Réalisations", "href": "/work/" },
+        { "label": "Blog", "href": "/blog/" },
+        { "label": "Parrainage", "href": "/referrals/" }
+      ]
+    }
+  ],
+  "contact": {
+    "title": "Contact",
+    "location": "Tanger, Maroc",
+    "whatsapp": "WhatsApp : {{phone}}",
+    "email": "{{email}}"
+  },
+  "copyright": "© 2026 Altio Agency. Tous droits réservés.",
+  "legal": [
+    { "label": "Confidentialité", "href": "/privacy/" },
+    { "label": "Conditions", "href": "/terms/" },
+    { "label": "Cookies", "href": "/cookies/" }
+  ]
+}

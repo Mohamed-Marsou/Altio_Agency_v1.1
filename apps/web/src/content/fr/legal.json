@@ -1,0 +1,90 @@
+{
+  "labels": {
+    "shortTitle": "En bref",
+    "tocTitle": "Sur cette page",
+    "updated": "Dernière mise à jour",
+    "draft": "Brouillon · à faire relire par un juriste avant publication"
+  },
+  "privacy": {
+    "title": "Confidentialité et cookies",
+    "updated": "Octobre 2026",
+    "short": [
+      "Ce site ne dépose aucun cookie de suivi et n’utilise aucun outil d’analyse pour l’instant.",
+      "Si vous nous écrivez, nous utilisons vos coordonnées uniquement pour vous répondre et préparer votre design.",
+      "Nous ne vendons jamais vos données. Vous pouvez nous demander de les supprimer à tout moment."
+    ],
+    "sections": [
+      { "id": "who", "title": "Qui sommes-nous", "blocks": [
+        { "type": "p", "text": "Altio est une agence web basée à Tanger, au Maroc. Nous sommes responsables des données personnelles décrites sur cette page. Vous pouvez nous joindre à {{email}}." }
+      ] },
+      { "id": "today", "title": "Ce que nous collectons aujourd’hui", "blocks": [
+        { "type": "p", "text": "Naviguer sur ce site ne nous envoie aucune donnée personnelle. Nous n’utilisons ni outil d’analyse, ni publicité, ni outil de suivi. Votre appareil ne conserve pour nous que deux réglages, décrits dans la section sur les cookies." }
+      ] },
+      { "id": "contact", "title": "Quand vous nous contactez", "blocks": [
+        { "type": "p", "text": "Les formulaires de contact et de design gratuit ouvrent WhatsApp avec vos réponses préremplies. Rien n’est enregistré de notre côté tant que vous n’appuyez pas sur envoyer dans WhatsApp. Quand vous le faites, nous recevons votre nom, votre numéro et les détails que vous avez écrits, et nous les utilisons uniquement pour :" },
+        { "type": "ul", "items": ["répondre à votre message et préparer votre design gratuit ;", "vous envoyer un devis, si vous en demandez un ;", "gérer votre projet, si vous devenez client."] }
+      ] },
+      { "id": "cookies", "title": "Cookies et stockage du navigateur", "blocks": [
+        { "type": "p", "text": "Nous n’utilisons pas de cookies de suivi. Nous enregistrons deux petites préférences dans votre navigateur, pour que le site s’en souvienne lors de votre prochaine visite :" },
+        { "type": "table", "head": ["Nom", "Utilité", "Durée"], "rows": [["altio-theme", "Mémorise le mode clair ou sombre", "Jusqu’à ce que vous l’effaciez"], ["altio-locale", "Mémorise votre langue", "Jusqu’à ce que vous l’effaciez"]] },
+        { "type": "p", "text": "Ce sont des préférences fonctionnelles, pas des données personnelles, elles ne nécessitent donc pas de bandeau de consentement. Si nous ajoutons des outils d’analyse plus tard, nous mettrons d’abord cette page à jour et demanderons votre consentement lorsque c’est requis." }
+      ] },
+      { "id": "services", "title": "Autres services que nous utilisons", "blocks": [
+        { "type": "p", "text": "WhatsApp (Meta) gère les messages que vous nous envoyez. Quand vous cliquez sur un bouton WhatsApp, vous quittez ce site et leurs conditions s’appliquent. Nos polices sont servies depuis notre propre site, votre navigateur ne contacte donc pas Google." }
+      ] },
+      { "id": "keep", "title": "Combien de temps nous conservons les données", "blocks": [
+        { "type": "p", "text": "Les messages de personnes qui ne deviennent pas clientes sont supprimés après 12 mois. Les dossiers de projets clients sont conservés aussi longtemps que le projet et les obligations légales l’exigent." }
+      ] },
+      { "id": "rights", "title": "Vos droits", "blocks": [
+        { "type": "p", "text": "Selon la loi marocaine 09-08 relative aux données personnelles, vous pouvez demander à consulter, corriger ou supprimer vos données, et vous opposer à leur utilisation. Écrivez-nous et nous répondons sous 30 jours. Vous pouvez aussi contacter la CNDP, l’autorité nationale de protection des données." }
+      ] },
+      { "id": "reach", "title": "Contact", "blocks": [
+        { "type": "p", "text": "Questions sur cette page : {{email}} ou WhatsApp {{phone}}." }
+      ] }
+    ],
+    "ask": { "title": "Une question sur vos données ?", "cta": "Posez-nous la question sur WhatsApp", "message": "Bonjour Altio, j’ai une question sur votre politique de confidentialité." }
+  },
+  "terms": {
+    "title": "Conditions d’utilisation",
+    "updated": "Octobre 2026",
+    "short": [
+      "Le premier design est gratuit, sans engagement.",
+      "Vous payez en trois étapes : à la validation du design, quand vous voyez le MVP, et 14 jours après la mise en ligne.",
+      "Vous bénéficiez de 3 modifications gratuites après la mise en ligne. Le site vous appartient."
+    ],
+    "sections": [
+      { "id": "design", "title": "Le design gratuit", "blocks": [
+        { "type": "p", "text": "Nous livrons un design de page d’accueil sur mesure en 48 à 72 heures, selon la complexité. Il ne coûte rien et ne crée aucune obligation. Nous conservons les fichiers du design, sauf si vous le validez et que le projet démarre." }
+      ] },
+      { "id": "quotes", "title": "Devis et prix", "blocks": [
+        { "type": "p", "text": "Les prix ne sont pas publiés. Après avoir compris votre activité, vous recevez un devis écrit avec le périmètre, le délai et le prix. Le travail ne commence qu’une fois que vous l’avez accepté." }
+      ] },
+      { "id": "payment", "title": "Calendrier de paiement", "blocks": [
+        { "type": "p", "text": "Les projets sont payés en trois parties :" },
+        { "type": "pay", "parts": [
+          { "value": "30%", "label": "À la validation du design" },
+          { "value": "30%", "label": "Quand nous vous montrons le MVP" },
+          { "value": "40%", "label": "14 jours après la mise en ligne de votre site" }
+        ] },
+        { "type": "p", "text": "Le paiement final est dû une fois que votre site est en ligne depuis 14 jours, pour que vous puissiez d’abord vérifier que tout fonctionne." }
+      ] },
+      { "id": "changes", "title": "Modifications", "blocks": [
+        { "type": "p", "text": "Les modifications pendant la construction sont incluses. Après la mise en ligne, chaque pack comprend 3 demandes de modification gratuites. Les modifications supplémentaires sont facturées séparément ou couvertes par le pack Managed." }
+      ] },
+      { "id": "ownership", "title": "Propriété", "blocks": [
+        { "type": "p", "text": "Une fois le projet entièrement payé, le site et son contenu vous appartiennent. Nous pouvons présenter le travail terminé dans notre portfolio, sauf si vous nous demandez de ne pas le faire." }
+      ] },
+      { "id": "managed", "title": "Pack Managed", "blocks": [
+        { "type": "p", "text": "Avec le pack Managed, nous hébergeons et entretenons votre site moyennant un abonnement mensuel. Vous avez un accès et des rapports, et nous gérons le travail technique. Le code source reste chez Altio tant que le pack est actif." },
+        { "type": "callout", "text": "Vous pouvez quitter le pack Managed à tout moment avec un mois de préavis. Nous vous expliquerons vos options pour déplacer le site ailleurs." }
+      ] },
+      { "id": "delays", "title": "Retards", "blocks": [
+        { "type": "p", "text": "Les délais dépendent de l’envoi à temps de vos contenus et de vos retours. Si les retours arrivent en retard, la date de livraison est décalée d’autant." }
+      ] },
+      { "id": "reach", "title": "Contact", "blocks": [
+        { "type": "p", "text": "Questions sur ces conditions : {{email}} ou WhatsApp {{phone}}." }
+      ] }
+    ],
+    "ask": { "title": "Envie d’en parler ?", "cta": "Discuter sur WhatsApp", "message": "Bonjour Altio, j’ai une question sur vos conditions." }
+  }
+}

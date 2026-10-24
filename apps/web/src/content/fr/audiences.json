@@ -1,0 +1,122 @@
+{
+  "eyebrow": "Avec qui nous travaillons",
+  "title": "Entreprises et particuliers. Le même niveau d’exigence.",
+  "subtitle": "Un modèle vous met en ligne. Une stratégie vous fait trouver, faire confiance et réserver. Choisissez qui vous êtes et voyez la différence.",
+  "optionsLabel": "Avec qui nous travaillons",
+  "options": [
+    {
+      "key": "business",
+      "title": "Pour les entreprises",
+      "audience": "Restaurants · Cliniques · Boutiques · Immobilier · PME",
+      "value": "Transformez vos visiteurs en clients : un site et un plan de croissance construits autour de votre offre, de votre ville et de vos concurrents.",
+      "outcomes": [
+        "SEO local et visibilité sur Google Maps",
+        "Parcours de prospects et de réservations avec WhatsApp intégré",
+        "Tableaux de bord, outils d’administration et boutiques en ligne quand vous grandissez"
+      ],
+      "chips": [
+        { "label": "Site ou boutique", "tip": "Un site rapide sur mesure, ou une boutique en ligne si vous vendez des produits." },
+        { "label": "SEO local", "tip": "Apparaissez sur Google et Google Maps quand on cherche près de chez vous." },
+        { "label": "Suivi des prospects", "tip": "Voyez chaque appel, clic WhatsApp et formulaire venant du site." }
+      ],
+      "chart": {
+        "metric": "Prospects qualifiés par mois",
+        "series": {
+          "template": [8, 10, 12, 14, 15, 16, 17, 17, 18, 18, 19, 19, 19],
+          "bad": [8, 13, 18, 22, 22, 20, 18, 16, 15, 14, 14, 13, 12],
+          "altio": [8, 12, 18, 27, 36, 45, 54, 62, 70, 77, 84, 90, 96]
+        },
+        "milestones": [
+          { "month": 1, "label": "Lancement", "tip": "Votre site est en ligne : rapide, suivi et prêt à être trouvé." },
+          { "month": 3, "label": "Indexé sur Google", "tip": "Google a trouvé et listé vos pages, généralement dans les premières semaines." },
+          { "month": 6, "label": "Première page", "tip": "Vos pages clés commencent à apparaître sur la première page de résultats pour vos recherches principales (selon la concurrence)." },
+          { "month": 11, "label": "Croissance composée", "tip": "Les visites et les demandes se renforcent mutuellement à mesure que le contenu et le classement s’accumulent." }
+        ],
+        "kpis": [
+          { "label": "Vitesse de page", "context": "Mobile", "tip": "La vitesse de chargement du site sur un téléphone. Les sites lents perdent des visiteurs et se classent moins bien.", "values": [30, 45, 96] },
+          { "label": "Visibilité de recherche", "context": "Google", "tip": "La fréquence à laquelle le site apparaît dans les résultats Google pour ce que vous proposez.", "values": [20, 24, 90] },
+          { "label": "Flux de prospects", "context": "Par mois", "tip": "Les demandes qui vous parviennent chaque mois via le site.", "values": [25, 32, 92] }
+        ]
+      }
+    },
+    {
+      "key": "individuals",
+      "title": "Pour les particuliers",
+      "audience": "Freelances · Consultants · Médecins · Créateurs · Coachs",
+      "value": "Soyez trouvé, paraissez crédible et soyez réservé : un site de marque personnelle qui travaille pour vous pendant que vous dormez.",
+      "outcomes": [
+        "Un portfolio ou profil qui inspire confiance immédiatement",
+        "Visibilité dans les recherches sur votre nom et votre domaine",
+        "Un parcours de réservation et de contact simple qui convertit"
+      ],
+      "chips": [
+        { "label": "Site de marque personnelle", "tip": "Une page de profil qui vous présente, vous, votre travail et vos services, clairement." },
+        { "label": "Parcours de réservation", "tip": "Permettez à vos clients de réserver ou de vous contacter en une étape." },
+        { "label": "SEO de niche", "tip": "Soyez bien classé sur votre nom et sur le service pour lequel vous êtes connu." }
+      ],
+      "chart": {
+        "metric": "Demandes et réservations par mois",
+        "series": {
+          "template": [6, 8, 9, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14],
+          "bad": [6, 10, 14, 16, 15, 14, 12, 11, 10, 10, 9, 9, 8],
+          "altio": [6, 14, 24, 35, 45, 54, 62, 69, 75, 81, 86, 90, 93]
+        },
+        "milestones": [
+          { "month": 1, "label": "Lancement", "tip": "Votre profil est en ligne : rapide, clair et prêt à être trouvé." },
+          { "month": 3, "label": "Trouvé par votre nom", "tip": "Les personnes qui cherchent votre nom trouvent désormais votre site en premier." },
+          { "month": 6, "label": "Réservé chaque semaine", "tip": "Un flux régulier de demandes et de réservations commence à arriver (selon votre domaine)." },
+          { "month": 11, "label": "Connu dans votre niche", "tip": "Vous apparaissez pour les services pour lesquels vous êtes connu, et les recommandations s’y ajoutent." }
+        ],
+        "kpis": [
+          { "label": "Crédibilité", "context": "Première impression", "tip": "À quel point les visiteurs vous trouvent professionnel et digne de confiance dans les premières secondes.", "values": [35, 40, 95] },
+          { "label": "Visibilité de recherche", "context": "Nom + niche", "tip": "La fréquence à laquelle vous apparaissez sur Google pour votre nom et votre spécialité.", "values": [18, 22, 88] },
+          { "label": "Réservations", "context": "Par mois", "tip": "Les réservations et demandes qui vous parviennent chaque mois via le site.", "values": [22, 30, 90] }
+        ]
+      }
+    }
+  ],
+  "note": {
+    "title": "Même ingénierie, même SEO, même support.",
+    "text": "Seule la stratégie change. Chaque site est du code sur mesure, rapide sur mobile, structuré pour la recherche et suivi dès le premier jour."
+  },
+  "chart": {
+    "title": "Trajectoire de croissance sur 12 mois",
+    "badge": "Modèle illustratif",
+    "badgeTip": "Un modèle de trajectoires typiques, pas une promesse. Les vrais chiffres dépendent de votre marché, et nous les mesurons avec vous après le lancement.",
+    "startLabel": "Lancement",
+    "monthLabel": "Mois",
+    "endLabels": { "template": "Stagne", "bad": "Décline", "altio": "S’amplifie" },
+    "legend": [
+      {
+        "key": "template",
+        "title": "Modèle générique",
+        "text": "La même mise en page que des milliers de sites. Lent, difficile à classer, oubliable.",
+        "tip": "Construit avec les mêmes blocs que des milliers d’autres sites, avec des extensions et du code superflu que vous n’utilisez jamais."
+      },
+      {
+        "key": "bad",
+        "title": "Site mal codé",
+        "text": "Il a l’air correct, mais le code est lourd et sans structure. Les moteurs de recherche l’ignorent.",
+        "tip": "Souvent fait à la hâte : cassé sur mobile, sans titres clairs ni informations de page, lent. Les moteurs de recherche ont du mal à le lire."
+      },
+      {
+        "key": "altio",
+        "title": "Altio",
+        "text": "Un code propre et réfléchi, une structure SEO, de la vitesse et du suivi.",
+        "tip": "Un code sur mesure propre, une structure claire sur chaque page, des objectifs de vitesse et un suivi intégré dès le premier jour."
+      }
+    ],
+    "stepsLabel": "Notre stratégie",
+    "stepsHint": "Faites glisser",
+    "statsVersus": "contre",
+    "steps": [
+      { "title": "Découvrir", "tip": "Nous apprenons à connaître votre activité, vos clients et vos concurrents." },
+      { "title": "Concevoir", "tip": "Un design sur mesure dans Figma avant tout code, gratuit à examiner." },
+      { "title": "Code propre", "tip": "Un code rapide et accessible, avec une structure claire, construit page par page." },
+      { "title": "SEO", "tip": "Titres, descriptions, données structurées et fiches locales configurés correctement." },
+      { "title": "Suivi", "tip": "Statistiques et suivi des prospects, pour voir ce qui fonctionne." },
+      { "title": "Croissance", "tip": "Nous nous améliorons à partir des données réelles après le lancement (support tâche par tâche ou pack Managed)." }
+    ],
+    "disclaimer": "Modèle illustratif de trajectoires typiques, pas une garantie. Nous mesurons vos vrais chiffres avec vous après le lancement."
+  }
+}

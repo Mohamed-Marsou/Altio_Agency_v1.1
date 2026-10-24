@@ -1,0 +1,87 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// INCLUDED SECTION  (mobile first)
+// Phone: 1 column | sm: 2 | lg: 3. Hover on a card: soft blue background and
+// the icon tile fills with the accent (same language as the Home cards).
+// =============================================================================
+
+.includedSection {
+  @include section-y;
+  background: color(surface);
+}
+
+.includedContent {
+  @include container;
+  @include flex-col(space(8));
+
+  @include mq(lg) {
+    gap: space(12);
+  }
+}
+
+.includedGrid {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(4);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mq(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: space(6);
+  }
+}
+
+.includedCard {
+  @include flex-col(space(2));
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: radius(card);
+  background: color(page);
+  transition:
+    background-color 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+
+  @include on-hover {
+    background: color(accent-soft);
+    border-color: color(accent-light);
+
+    .includedIcon {
+      background: color(accent);
+      color: color(on-accent);
+    }
+  }
+}
+
+.includedIcon {
+  @include flex-center;
+  width: rem(44);
+  height: rem(44);
+  margin-bottom: space(2);
+  border-radius: radius(md);
+  background: color(accent-soft);
+  color: color(accent);
+  transition:
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out);
+}
+
+.includedTitle {
+  @include text(title-md);
+}
+
+.includedText {
+  @include text(small);
+  color: color(muted);
+}
+
+@include reduced-motion {
+  .includedCard,
+  .includedIcon {
+    transition: none;
+  }
+}

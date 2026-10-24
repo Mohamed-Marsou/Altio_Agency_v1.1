@@ -1,0 +1,100 @@
+// =============================================================================
+// PROJECT VIBES (Work pages)
+// Every project sets data-vibe="estate|store|app|managed" on its card or page
+// and gets its own colour: --pv (main), --pv-soft (tinted background),
+// --pv-mid (medium tint) and --pv-on (text colour on top of --pv).
+// Everything inside re-tints itself. The dark theme uses lighter versions so
+// they stay readable. All colours reach a contrast of 4.5 : 1 on their own tint (WCAG AA). All colours reach a contrast of 4.5 : 1 on their own tint (WCAG AA).
+// =============================================================================
+[data-vibe="estate"] {
+  --pv: #0b6b63;
+}
+
+[data-vibe="store"] {
+  --pv: #b83a14;
+}
+
+[data-vibe="app"] {
+  --pv: #5b3dd0;
+}
+
+[data-vibe="managed"] {
+  --pv: #8f5600;
+}
+
+// Blog topics reuse the same engine: web, seo, shop, apps, tips.
+[data-vibe="web"] {
+  --pv: #125ae6;
+}
+
+[data-vibe="seo"] {
+  --pv: #0b6b63;
+}
+
+[data-vibe="shop"] {
+  --pv: #b83a14;
+}
+
+[data-vibe="apps"] {
+  --pv: #5b3dd0;
+}
+
+[data-vibe="tips"] {
+  --pv: #8f5600;
+}
+
+[data-theme="dark"] [data-vibe="web"],
+[data-theme="dark"][data-vibe="web"] {
+  --pv: #5a8fff;
+}
+
+[data-theme="dark"] [data-vibe="seo"],
+[data-theme="dark"][data-vibe="seo"] {
+  --pv: #34c5b5;
+}
+
+[data-theme="dark"] [data-vibe="shop"],
+[data-theme="dark"][data-vibe="shop"] {
+  --pv: #ff7a59;
+}
+
+[data-theme="dark"] [data-vibe="apps"],
+[data-theme="dark"][data-vibe="apps"] {
+  --pv: #9b86ff;
+}
+
+[data-theme="dark"] [data-vibe="tips"],
+[data-theme="dark"][data-vibe="tips"] {
+  --pv: #e8a33d;
+}
+
+[data-theme="dark"] [data-vibe="estate"],
+[data-theme="dark"][data-vibe="estate"] {
+  --pv: #34c5b5;
+}
+
+[data-theme="dark"] [data-vibe="store"],
+[data-theme="dark"][data-vibe="store"] {
+  --pv: #ff7a59;
+}
+
+[data-theme="dark"] [data-vibe="app"],
+[data-theme="dark"][data-vibe="app"] {
+  --pv: #9b86ff;
+}
+
+[data-theme="dark"] [data-vibe="managed"],
+[data-theme="dark"][data-vibe="managed"] {
+  --pv: #e8a33d;
+}
+
+[data-vibe] {
+  --pv-on: #ffffff;
+  --pv-soft: color-mix(in srgb, var(--pv) 14%, var(--color-surface));
+  --pv-mid: color-mix(in srgb, var(--pv) 35%, var(--color-surface));
+}
+
+[data-theme="dark"] [data-vibe],
+[data-theme="dark"][data-vibe] {
+  --pv-on: #0b0d12;
+}

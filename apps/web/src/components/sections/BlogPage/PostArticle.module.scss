@@ -1,0 +1,83 @@
+@use "abstracts" as *;
+
+// The reading column: big comfortable text, 680px wide at most.
+.postArticle {
+  @include flex-col(rem(22));
+  font-size: rem(18);
+  line-height: 1.75;
+
+  p {
+    color: color-mix(in srgb, #{color(text)} 86%, #{color(muted)});
+  }
+}
+
+.postArticleHeading {
+  @include text(display-3);
+  // Keeps the heading clear of the sticky navbar when the contents link jumps here.
+  scroll-margin-top: calc(var(--navbar-height) + #{space(6)});
+  margin-top: space(8);
+}
+
+.postArticleQuote {
+  margin: 0;
+  padding: rem(6) 0 rem(6) space(6);
+  border-inline-start: 4px solid var(--pv);
+  color: color(text);
+  font-family: var(--font-display-stack);
+  font-size: rem(24);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.postArticleCallout {
+  @include flex-col(space(3));
+  padding: rem(24) rem(26);
+  border-radius: rem(20);
+  background: var(--pv-soft);
+
+  p {
+    color: var(--pv);
+    font-family: var(--font-display-stack);
+    font-size: rem(17);
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  ul {
+    @include reset-list;
+    @include flex-col(space(3));
+    font-size: rem(16);
+    line-height: 1.5;
+  }
+
+  li {
+    @include flex(row, flex-start, flex-start, space(3));
+
+    &::before {
+      content: "✓";
+      flex: none;
+      width: rem(22);
+      height: rem(22);
+      margin-top: rem(1);
+      border-radius: 50%;
+      background: var(--pv);
+      color: var(--pv-on);
+      font-size: rem(12);
+      font-weight: 700;
+      line-height: rem(22);
+      text-align: center;
+    }
+  }
+}
+
+.postArticleFigure {
+  margin: 0;
+
+  figcaption {
+    margin-top: space(3);
+    color: color(muted);
+    font-size: rem(13);
+    line-height: 1.5;
+  }
+}

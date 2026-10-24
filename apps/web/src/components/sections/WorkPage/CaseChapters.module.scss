@@ -1,0 +1,471 @@
+@use "abstracts" as *;
+
+// =============================================================================
+// CASE CHAPTERS  (mobile first)
+// Chapters alternate grey / white. Everything coloured uses --pv (the project's
+// colour, set by data-vibe on the wrapper).
+// Animations start under data-in-view="true" (InView). The resting style is the
+// FINISHED picture; the keyframes only describe where things come FROM
+// (animation-fill-mode: backwards), so the page is complete without JavaScript.
+// =============================================================================
+
+.caseChapter {
+  @include section-y;
+  background: color(page);
+}
+
+.caseChapterIsWhite {
+  background: color(surface);
+}
+
+.caseChapterContent {
+  @include container;
+  @include flex-col(space(12));
+}
+
+.caseChapterSplit {
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr);
+    gap: rem(72);
+    align-items: center;
+  }
+}
+
+.caseChapterText {
+  @include flex-col(space(4), flex-start);
+}
+
+.caseKicker {
+  @include flex-center(space(3));
+  color: var(--pv);
+  font-size: rem(12);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    width: rem(28);
+    height: 2px;
+    background: var(--pv);
+  }
+}
+
+.caseTitle {
+  @include text(display-2);
+  max-width: rem(760);
+}
+
+.caseLead {
+  @include text(lead);
+  max-width: rem(520);
+  color: color(muted);
+}
+
+// ---- 1. Problem ---------------------------------------------------------------------------------
+.casePains {
+  @include reset-list;
+  @include flex-col(space(3));
+  margin-top: space(2);
+
+  li {
+    @include flex(row, flex-start, flex-start, space(3));
+    color: color(muted);
+
+    &::before {
+      content: "×";
+      color: color(danger);
+      font-family: var(--font-display-stack);
+      font-size: rem(18);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+  }
+}
+
+.caseBefore {
+  position: relative;
+  padding: space(6);
+  border-radius: rem(22);
+  background: color(surface-2);
+}
+
+// The "before" window is drawn in grey on purpose.
+.caseBeforeWindow {
+  @include flex-col(rem(10));
+  padding: space(4);
+  border: 1px solid color(border);
+  border-radius: rem(14);
+  background: color(surface);
+  filter: grayscale(1);
+  opacity: 0.85;
+}
+
+.caseBeforeLine {
+  display: block;
+  height: rem(10);
+  border-radius: rem(8);
+  background: color(surface-2);
+}
+
+.caseBeforeLineStrong {
+  width: 70%;
+  height: rem(16);
+  background: color(muted);
+}
+
+.caseBeforeBlock {
+  display: block;
+  height: rem(60);
+  border-radius: radius(sm);
+  background: color(surface-2);
+}
+
+.caseNote {
+  position: absolute;
+  padding: rem(6) space(3);
+  border: 1px solid color(danger);
+  border-radius: radius(pill);
+  background: color(surface);
+  box-shadow: shadow(card);
+  color: color(danger);
+  font-size: rem(12);
+  font-weight: 600;
+}
+
+.caseNote1 {
+  top: space(4);
+  right: space(4);
+}
+
+.caseNote2 {
+  bottom: rem(70);
+  left: space(4);
+}
+
+.caseNote3 {
+  right: space(6);
+  bottom: space(4);
+}
+
+// ---- 2. Journey ---------------------------------------------------------------------------------
+.caseJourney {
+  position: relative;
+}
+
+.caseJourneyList {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(8);
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include mq(lg) {
+    position: relative;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: space(6);
+
+    // The grey rail behind the dots, and the coloured line that fills it.
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: rem(22);
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: color(border);
+    }
+
+    &::after {
+      background: var(--pv);
+      transform-origin: left;
+    }
+  }
+}
+
+.caseStep {
+  @include flex-col(space(2), flex-start);
+  position: relative;
+
+  small {
+    color: var(--pv);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    @include text(title-md);
+  }
+
+  p {
+    @include text(small);
+    color: color(muted);
+  }
+}
+
+.caseStepDot {
+  @include flex-center;
+  position: relative;
+  z-index: 1;
+  width: rem(46);
+  height: rem(46);
+  border-radius: 50%;
+  background: var(--pv);
+  color: var(--pv-on);
+  font-family: var(--font-display-stack);
+  font-size: rem(15);
+  font-weight: 800;
+}
+
+// ---- 3. Built -------------------------------------------------------------------------------------
+.caseBuilt {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(6);
+
+  @include mq(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.caseBuiltCard {
+  @include flex-col(space(3));
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: rem(24);
+  background: color(surface);
+  transition:
+    transform 0.5s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+
+  h3 {
+    @include text(title-md);
+  }
+
+  p {
+    @include text(small);
+    color: color(muted);
+  }
+
+  @include on-hover {
+    transform: translateY(#{rem(-4)});
+    border-color: var(--pv);
+  }
+}
+
+// ---- 4. Before / after --------------------------------------------------------------------------
+.caseCompare {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(6);
+
+  @include mq(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.casePane {
+  @include flex-col(space(4));
+  padding: space(6);
+  border: 1px solid color(border);
+  border-radius: rem(22);
+  background: color(surface);
+
+  h3 {
+    color: color(muted);
+    font-family: var(--font-text-stack);
+    font-size: rem(15);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+.casePaneIsAfter {
+  border-color: var(--pv);
+  background: var(--pv-soft);
+
+  h3 {
+    color: var(--pv);
+  }
+
+  .caseBar i::after {
+    background: var(--pv);
+  }
+}
+
+.caseBar {
+  @include flex-col(rem(6));
+  font-size: rem(13);
+
+  div {
+    @include flex-between;
+  }
+
+  i {
+    position: relative;
+    display: block;
+    height: rem(8);
+    border-radius: rem(8);
+    background: color(surface-2);
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--value);
+      border-radius: rem(8);
+      background: color(muted);
+    }
+  }
+}
+
+// ---- 5. Results + quote -------------------------------------------------------------------------
+.caseResults {
+  @include reset-list;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: space(6);
+
+  @include mq(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.caseResult {
+  @include flex-col(rem(6));
+  padding: rem(28);
+  border: 1px solid color(border);
+  border-radius: rem(24);
+  background: color(surface);
+
+  b {
+    color: var(--pv);
+    font-family: var(--font-display-stack);
+    font-size: rem(52);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  span {
+    font-weight: 600;
+  }
+
+  small {
+    color: color(muted);
+    font-size: rem(13);
+  }
+}
+
+.caseSample {
+  @include text(small);
+  margin-top: rem(-32);
+  color: color(muted);
+}
+
+.caseQuote {
+  @include flex-col(space(4));
+  margin: 0;
+  padding: space(8);
+  border-radius: rem(28);
+  background: var(--pv);
+  color: var(--pv-on);
+
+  @include mq(lg) {
+    padding: rem(44);
+  }
+
+  blockquote {
+    max-width: 30ch;
+    margin: 0;
+    font-family: var(--font-display-stack);
+    font-size: rem(26);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  figcaption {
+    opacity: 0.85;
+    font-size: rem(14);
+  }
+}
+
+// =============================================================================
+// ANIMATIONS (only while the part is on screen)
+// =============================================================================
+:global([data-in-view="true"]) {
+  .caseNote {
+    animation: caseNotePop 0.5s var(--ease-out) var(--delay, 0s) backwards;
+  }
+
+  .caseStep {
+    animation: caseStepIn 0.6s var(--ease-out) calc(var(--step) * 0.35s) backwards;
+  }
+
+  .caseStepDot {
+    animation: caseDotFill 0.4s ease calc(var(--step) * 0.35s) backwards;
+  }
+
+  .caseJourneyList::after {
+    animation: caseLineGrow 1.4s var(--ease-out) backwards;
+  }
+
+  .caseBar i::after {
+    animation: caseBarGrow 1.1s var(--ease-out) var(--delay, 0s) backwards;
+  }
+}
+
+@keyframes caseNotePop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes caseStepIn {
+  from {
+    opacity: 0;
+    transform: translateY(#{rem(16)});
+  }
+}
+
+@keyframes caseDotFill {
+  from {
+    background: color(surface);
+    color: var(--pv);
+    box-shadow: inset 0 0 0 2px var(--pv);
+  }
+}
+
+@keyframes caseLineGrow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes caseBarGrow {
+  from {
+    width: 0;
+  }
+}
+
+@include reduced-motion {
+  .caseBuiltCard {
+    transition: none;
+  }
+
+  :global([data-in-view="true"]) * {
+    animation: none !important;
+  }
+}

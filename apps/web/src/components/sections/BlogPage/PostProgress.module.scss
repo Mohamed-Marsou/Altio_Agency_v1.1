@@ -1,0 +1,21 @@
+@use "abstracts" as *;
+
+// Fixed at the very top, above the navbar. The coloured bar starts at 0 width
+// (scaleX 0) and is stretched by the component while the visitor scrolls.
+.postProgress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: z(overlay);
+  height: rem(4);
+  background: transparent;
+  pointer-events: none;
+}
+
+.postProgressBar {
+  display: block;
+  height: 100%;
+  border-radius: 0 rem(4) rem(4) 0;
+  background: var(--pv);
+  transform: scaleX(0);
+  transform-origin: left;
+}

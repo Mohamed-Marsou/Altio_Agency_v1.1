@@ -1,0 +1,27 @@
+{
+  "eyebrow": "How it works",
+  "title": "From first message to launch in four steps.",
+  "subtitle": "You see your design before you spend anything.",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Tell us about your business",
+      "text": "Message us on WhatsApp or fill a one-minute form: what you do, your current site and your goals."
+    },
+    {
+      "number": "02",
+      "title": "Get your free design",
+      "text": "Within 48 to 72 hours, depending on complexity, you receive a custom homepage design in Figma. No payment, no obligation."
+    },
+    {
+      "number": "03",
+      "title": "Approve, then we build",
+      "text": "Pay 30% when your design is approved. We build in one week to one month, with free changes along the way."
+    },
+    {
+      "number": "04",
+      "title": "Launch and grow",
+      "text": "You see the MVP and pay 30%. The balance is due after 14 days with your site live."
+    }
+  ]
+}

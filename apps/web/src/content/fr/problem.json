@@ -1,0 +1,22 @@
+{
+  "eyebrow": "Le problème",
+  "title": "Votre site est la première chose que les clients jugent.",
+  "subtitle": "La plupart des sites locaux les perdent en quelques secondes, et personne ne s’en aperçoit avant que le téléphone ne sonne plus.",
+  "items": [
+    {
+      "number": "01",
+      "title": "Générique par défaut",
+      "text": "Les sites à partir de modèles ressemblent à tous les autres et se chargent lentement : les visiteurs partent avant d’avoir lu un seul mot."
+    },
+    {
+      "number": "02",
+      "title": "Difficile à joindre",
+      "text": "Pas de bouton WhatsApp et pas d’étape suivante claire. Un visiteur intéressé ne peut pas vous contacter en un clic."
+    },
+    {
+      "number": "03",
+      "title": "Construit, puis oublié",
+      "text": "Beaucoup d’agences hébergent un modèle pendant un an puis disparaissent. Vous méritez un vrai support après la mise en ligne."
+    }
+  ]
+}

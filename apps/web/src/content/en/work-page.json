@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "eyebrow": "Work",
+    "title": "Real projects,",
+    "accent": "built to be used.",
+    "lead": "Every project has its own story, from the problem we found to what changed after launch. Open one to read it."
+  },
+  "filters": {
+    "typeLabel": "Filter by type",
+    "statusLabel": "Filter by status",
+    "all": "All",
+    "websites": "Websites",
+    "stores": "Online stores",
+    "apps": "Web apps",
+    "managed": "Managed",
+    "live": "Live",
+    "private": "Private builds"
+  },
+  "featuredTag": "Featured",
+  "allProjects": "All projects",
+  "noResults": "No project matches this filter yet.",
+  "labels": {
+    "live": "Live",
+    "privateBuild": "Private build",
+    "privatePreview": "client-only preview",
+    "privateNoLink": "Private project, no public link",
+    "viewCase": "View case study →",
+    "readCase": "Read the case study →",
+    "visit": "Visit"
+  },
+  "next": {
+    "title": "Your project could be next",
+    "text": "Start with a free design in 48 to 72 hours. No payment before you see it.",
+    "cta": "Start with a free design",
+    "message": "Hi Altio, I would like a free design for my business."
+  },
+  "sampleNote": "Sample projects and figures shown for now. Real ones replace them.",
+  "case": {
+    "factLabels": { "client": "Client", "service": "Service", "timeline": "Timeline", "stack": "Built with" },
+    "problemKicker": "The problem",
+    "journeyKicker": "Our journey together",
+    "journeyTitle": "Four steps from first message to launch",
+    "builtKicker": "What we built",
+    "builtTitle": "Three things that changed their day",
+    "compareKicker": "Before and after",
+    "compareTitle": "Same business, a different first impression",
+    "before": "Before",
+    "after": "After",
+    "resultsKicker": "The result",
+    "resultsTitle": "What changed after launch",
+    "nextKicker": "Next project",
+    "breadcrumbRoot": "Work"
+  }
+}

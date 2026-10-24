@@ -40,7 +40,10 @@ export default function Tooltip({
           align === "end" && styles.tooltipBubbleAlignEnd,
         )}
       >
-        {text}
+        {/* dir="auto": the text reads in its own direction (Arabic right to left), while the bubble keeps its place */}
+        <span dir="auto" style={{ display: "block" }}>
+          {text}
+        </span>
       </span>
     </span>
   );

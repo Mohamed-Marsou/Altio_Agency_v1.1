@@ -1,0 +1,732 @@
+// =============================================================================
+// ALTIO DATABASE SCHEMA  (PostgreSQL, Prisma)
+// -----------------------------------------------------------------------------
+// Read order: enums, then Auth, Media, Content (projects, blog, services, packs,
+// testimonials, FAQ), Leads and payments, Referrals and rewards, Analytics,
+// Settings and Audit.
+//
+// Conventions
+//  - ids are UUIDs.
+//  - Text people read in more than one language lives in a "<Thing>I18n" table:
+//    one row per (thing, locale). The main table holds what does not change by
+//    language (slug, status, order). This is how EN and FR editing works.
+//  - Content tables have `deletedAt` (soft delete) so editors can restore.
+//  - Money uses Decimal, never Float.
+//  - Internal pack prices live in their own table (PackPrice) so no public query
+//    can ever return them by accident.
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------------------------------------------------------------
+// ENUMS
+// ----------------------------------------------------------------------------
+enum Role {
+  OWNER
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum Locale {
+  EN
+  FR
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  UNPUBLISHED
+}
+
+enum ProjectCategory {
+  WEBSITES
+  STORES
+  APPS
+  MANAGED
+}
+
+enum PackKey {
+  LAUNCH
+  COMMERCE
+  CUSTOM
+  MANAGED
+}
+
+enum LeadSource {
+  FREE_DESIGN
+  CONTACT
+  WHATSAPP
+  REFERRAL
+  AD
+  OTHER
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  DESIGN_SENT
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum ActivityType {
+  NOTE
+  STATUS
+  EMAIL
+  CALL
+  WHATSAPP
+  SYSTEM
+}
+
+enum PaymentMilestone {
+  DESIGN_APPROVED // 30%: when the client approves the design
+  MVP_SHOWN // 30%: when we show the MVP
+  FINAL // 40%: 14 days after the site is live
+  MANAGED_MONTHLY // Managed pack, every month
+  OTHER
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+enum ReferrerType {
+  CLIENT
+  PARTNER
+  OTHER
+}
+
+enum ReferrerStatus {
+  ACTIVE
+  PAUSED
+  BLOCKED
+}
+
+enum ReferralStatus {
+  NEW
+  CONTACTED
+  SIGNED
+  PAID
+  REJECTED
+}
+
+enum ReferralSource {
+  LINK
+  CODE
+  FORM
+  MANUAL
+}
+
+enum RewardKind {
+  CREDIT
+  FREE_MAINTENANCE
+  CASH
+  SERVICE
+  OTHER
+}
+
+enum RewardStatus {
+  PROPOSED
+  APPROVED
+  GRANTED
+  CANCELLED
+}
+
+// ----------------------------------------------------------------------------
+// AUTH: users, sessions, invites
+// ----------------------------------------------------------------------------
+model User {
+  id           String    @id @default(uuid()) @db.Uuid
+  email        String    @unique
+  passwordHash String // argon2id
+  name         String
+  role         Role      @default(EDITOR)
+  isActive     Boolean   @default(true)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  refreshTokens   RefreshToken[]
+  passwordResets  PasswordReset[]
+  invitesSent     Invite[]
+  posts           Post[]
+  leadsAssigned   Lead[]          @relation("LeadAssignee")
+  activities      LeadActivity[]
+  mediaUploaded   Media[]
+  rewardsMade     Reward[]        @relation("RewardCreatedBy")
+  rewardsApproved Reward[]        @relation("RewardApprovedBy")
+  auditLogs       AuditLog[]
+
+  @@map("users")
+}
+
+// One row per login session. `familyId` groups a chain of rotated tokens: if an
+// old token of a family is used again (reuse detected), the whole family is revoked.
+model RefreshToken {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  familyId  String    @db.Uuid
+  tokenHash String    @unique // only a hash is stored, never the token
+  userAgent String?
+  ip        String?
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([familyId])
+  @@map("refresh_tokens")
+}
+
+model PasswordReset {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("password_resets")
+}
+
+// "Invite a teammate by email": the person opens the link and sets a password.
+model Invite {
+  id          String    @id @default(uuid()) @db.Uuid
+  email       String
+  role        Role
+  tokenHash   String    @unique
+  invitedById String    @db.Uuid
+  expiresAt   DateTime
+  acceptedAt  DateTime?
+  createdAt   DateTime  @default(now())
+
+  invitedBy User @relation(fields: [invitedById], references: [id])
+
+  @@index([email])
+  @@map("invites")
+}
+
+// ----------------------------------------------------------------------------
+// MEDIA
+// ----------------------------------------------------------------------------
+model Media {
+  id           String   @id @default(uuid()) @db.Uuid
+  key          String   @unique // path in the storage bucket
+  url          String
+  mime         String
+  size         Int // bytes
+  width        Int?
+  height       Int?
+  uploadedById String?  @db.Uuid
+  createdAt    DateTime @default(now())
+
+  uploadedBy    User?          @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  i18n          MediaI18n[]
+  projects      ProjectMedia[]
+  projectCovers Project[]      @relation("ProjectCover")
+  postCovers    Post[]         @relation("PostCover")
+
+  @@map("media")
+}
+
+model MediaI18n {
+  id      String @id @default(uuid()) @db.Uuid
+  mediaId String @db.Uuid
+  locale  Locale
+  alt     String
+
+  media Media @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@unique([mediaId, locale])
+  @@map("media_i18n")
+}
+
+// ----------------------------------------------------------------------------
+// PROJECTS (Work) : each project is a case study with its own colour ("vibe")
+// ----------------------------------------------------------------------------
+model Project {
+  id               String          @id @default(uuid()) @db.Uuid
+  slug             String          @unique
+  status           ContentStatus   @default(DRAFT)
+  category         ProjectCategory
+  vibe             String // estate | store | app | managed (colour theme of the page)
+  art              String // which illustration the card uses
+  year             Int?
+  stack            String[]
+  hostedUrl        String? // public address, if the site is live
+  isPrivateBuild   Boolean         @default(false) // true = no public link
+  featured         Boolean         @default(false)
+  sortOrder        Int             @default(0)
+  coverId          String?         @db.Uuid
+  clientPermission String? // proof / note that the client agreed to show the work
+  publishedAt      DateTime?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  deletedAt        DateTime?
+
+  cover Media?         @relation("ProjectCover", fields: [coverId], references: [id], onDelete: SetNull)
+  i18n  ProjectI18n[]
+  media ProjectMedia[]
+
+  @@index([status, sortOrder])
+  @@index([deletedAt])
+  @@map("projects")
+}
+
+model ProjectI18n {
+  id             String  @id @default(uuid()) @db.Uuid
+  projectId      String  @db.Uuid
+  locale         Locale
+  title          String
+  teaser         String
+  result         String? // the one-line result shown on the card
+  seoTitle       String?
+  seoDescription String?
+  // The whole story (hero text, problem, journey, what we built, before/after,
+  // results, quote) as JSON, exactly the shape the site reads from projects.json.
+  story          Json
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, locale])
+  @@map("project_i18n")
+}
+
+model ProjectMedia {
+  projectId String @db.Uuid
+  mediaId   String @db.Uuid
+  sortOrder Int    @default(0)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  media   Media   @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, mediaId])
+  @@map("project_media")
+}
+
+// ----------------------------------------------------------------------------
+// BLOG
+// ----------------------------------------------------------------------------
+model Category {
+  id        String    @id @default(uuid()) @db.Uuid
+  key       String    @unique // web | seo | shop | apps | tips
+  vibe      String // the topic colour
+  sortOrder Int       @default(0)
+  deletedAt DateTime?
+
+  i18n  CategoryI18n[]
+  posts Post[]
+
+  @@map("categories")
+}
+
+model CategoryI18n {
+  id         String @id @default(uuid()) @db.Uuid
+  categoryId String @db.Uuid
+  locale     Locale
+  name       String
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, locale])
+  @@map("category_i18n")
+}
+
+model Post {
+  id             String        @id @default(uuid()) @db.Uuid
+  slug           String        @unique
+  status         ContentStatus @default(DRAFT)
+  authorId       String?       @db.Uuid
+  categoryId     String        @db.Uuid
+  coverId        String?       @db.Uuid
+  tags           String[]
+  featured       Boolean       @default(false)
+  readingMinutes Int?
+  publishedAt    DateTime? // a future date = scheduled
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  deletedAt      DateTime?
+
+  author   User?      @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  category Category   @relation(fields: [categoryId], references: [id])
+  cover    Media?     @relation("PostCover", fields: [coverId], references: [id], onDelete: SetNull)
+  i18n     PostI18n[]
+
+  @@index([status, publishedAt])
+  @@index([categoryId])
+  @@map("posts")
+}
+
+model PostI18n {
+  id             String  @id @default(uuid()) @db.Uuid
+  postId         String  @db.Uuid
+  locale         Locale
+  title          String
+  excerpt        String
+  // The article body as typed blocks (paragraph, h2, quote, callout, figure):
+  // the same shape the site renders from posts.json.
+  body           Json
+  seoTitle       String?
+  seoDescription String?
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, locale])
+  @@map("post_i18n")
+}
+
+// ----------------------------------------------------------------------------
+// SERVICES, PACKS, TESTIMONIALS, FAQ
+// ----------------------------------------------------------------------------
+model Service {
+  id        String        @id @default(uuid()) @db.Uuid
+  slug      String        @unique // launch | commerce | custom | managed
+  status    ContentStatus @default(PUBLISHED)
+  icon      String?
+  sortOrder Int           @default(0)
+  deletedAt DateTime?
+
+  i18n ServiceI18n[]
+
+  @@map("services")
+}
+
+model ServiceI18n {
+  id        String   @id @default(uuid()) @db.Uuid
+  serviceId String   @db.Uuid
+  locale    Locale
+  title     String
+  summary   String
+  lead      String?
+  features  String[]
+  fit       String? // "Good fit for..."
+  ctaLabel  String?
+
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@unique([serviceId, locale])
+  @@map("service_i18n")
+}
+
+model Pack {
+  id        String        @id @default(uuid()) @db.Uuid
+  key       PackKey       @unique
+  status    ContentStatus @default(PUBLISHED)
+  featured  Boolean       @default(false) // "Most used pack"
+  sortOrder Int           @default(0)
+  deletedAt DateTime?
+
+  i18n   PackI18n[]
+  prices PackPrice[]
+
+  @@map("packs")
+}
+
+model PackI18n {
+  id       String   @id @default(uuid()) @db.Uuid
+  packId   String   @db.Uuid
+  locale   Locale
+  name     String
+  tagline  String
+  features String[]
+  ctaLabel String
+
+  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  @@unique([packId, locale])
+  @@map("pack_i18n")
+}
+
+// INTERNAL ONLY. Prices are never published. Only OWNER and ADMIN can read them,
+// and no public endpoint selects from this table.
+model PackPrice {
+  id        String   @id @default(uuid()) @db.Uuid
+  packId    String   @db.Uuid
+  amount    Decimal  @db.Decimal(12, 2)
+  currency  String   @default("MAD")
+  monthly   Boolean  @default(false) // true for the Managed pack (per month)
+  note      String?
+  updatedAt DateTime @updatedAt
+
+  pack Pack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  @@index([packId])
+  @@map("pack_prices")
+}
+
+model Testimonial {
+  id           String        @id @default(uuid()) @db.Uuid
+  authorName   String
+  authorRole   String?
+  company      String?
+  consentProof String? // link or note proving the person agreed to be quoted
+  status       ContentStatus @default(DRAFT)
+  sortOrder    Int           @default(0)
+  deletedAt    DateTime?
+
+  i18n TestimonialI18n[]
+
+  @@map("testimonials")
+}
+
+model TestimonialI18n {
+  id            String @id @default(uuid()) @db.Uuid
+  testimonialId String @db.Uuid
+  locale        Locale
+  quote         String
+
+  testimonial Testimonial @relation(fields: [testimonialId], references: [id], onDelete: Cascade)
+
+  @@unique([testimonialId, locale])
+  @@map("testimonial_i18n")
+}
+
+model Faq {
+  id        String        @id @default(uuid()) @db.Uuid
+  status    ContentStatus @default(PUBLISHED)
+  sortOrder Int           @default(0)
+  deletedAt DateTime?
+
+  i18n FaqI18n[]
+
+  @@map("faqs")
+}
+
+model FaqI18n {
+  id       String @id @default(uuid()) @db.Uuid
+  faqId    String @db.Uuid
+  locale   Locale
+  question String
+  answer   String
+
+  faq Faq @relation(fields: [faqId], references: [id], onDelete: Cascade)
+
+  @@unique([faqId, locale])
+  @@map("faq_i18n")
+}
+
+// ----------------------------------------------------------------------------
+// LEADS and PAYMENTS
+// ----------------------------------------------------------------------------
+model Lead {
+  id               String     @id @default(uuid()) @db.Uuid
+  source           LeadSource
+  status           LeadStatus @default(NEW)
+  name             String
+  business         String?
+  city             String?
+  phone            String?
+  email            String?
+  websiteUrl       String?
+  message          String?
+  packInterest     PackKey?
+  locale           Locale     @default(EN)
+  utm              Json? // { source, medium, campaign, content, term }
+  referredByCode   String? // code or link the visitor came with
+  consentAt        DateTime? // when the person agreed to be contacted
+  assignedToId     String?    @db.Uuid
+  firstRespondedAt DateTime? // used for "time to first reply"
+  nextStepAt       DateTime? // follow-up reminder
+  nextStepNote     String?
+  wonAmount        Decimal?   @db.Decimal(12, 2) // revenue, filled when WON
+  lostReason       String?
+  clickupTaskId    String? // sync with ClickUp
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  deletedAt        DateTime?
+
+  assignedTo User?          @relation("LeadAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  activities LeadActivity[]
+  payments   Payment[]
+  referral   Referral?
+
+  @@index([status, createdAt])
+  @@index([assignedToId, status])
+  @@index([source])
+  @@index([nextStepAt])
+  @@map("leads")
+}
+
+model LeadActivity {
+  id        String       @id @default(uuid()) @db.Uuid
+  leadId    String       @db.Uuid
+  userId    String?      @db.Uuid // empty for system events (auto-reply, status by webhook)
+  type      ActivityType
+  body      String
+  createdAt DateTime     @default(now())
+
+  lead Lead  @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([leadId, createdAt])
+  @@map("lead_activities")
+}
+
+// The three-part payment plan (30% / 30% / 40%) and Managed monthly fees.
+// A client counts as "fully paid" when every non-cancelled payment is PAID; the
+// referral reward rule depends on this.
+model Payment {
+  id        String           @id @default(uuid()) @db.Uuid
+  leadId    String           @db.Uuid
+  milestone PaymentMilestone
+  label     String?
+  amount    Decimal          @db.Decimal(12, 2)
+  currency  String           @default("MAD")
+  status    PaymentStatus    @default(PENDING)
+  dueAt     DateTime?
+  paidAt    DateTime?
+  createdAt DateTime         @default(now())
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([status, dueAt])
+  @@map("payments")
+}
+
+// ----------------------------------------------------------------------------
+// REFERRALS and REWARDS
+// ----------------------------------------------------------------------------
+model Referrer {
+  id        String         @id @default(uuid()) @db.Uuid
+  name      String
+  contact   String // WhatsApp or email
+  code      String         @unique // their personal code or link slug
+  type      ReferrerType   @default(OTHER)
+  status    ReferrerStatus @default(ACTIVE)
+  notes     String?
+  createdAt DateTime       @default(now())
+
+  referrals Referral[]
+  rewards   Reward[]
+
+  @@map("referrers")
+}
+
+model Referral {
+  id           String         @id @default(uuid()) @db.Uuid
+  referrerId   String         @db.Uuid
+  leadId       String?        @unique @db.Uuid // the lead created for the referred business
+  referredName String?
+  status       ReferralStatus @default(NEW)
+  source       ReferralSource @default(FORM)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  referrer Referrer @relation(fields: [referrerId], references: [id])
+  lead     Lead?    @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  rewards  Reward[]
+
+  @@index([referrerId, status])
+  @@map("referrals")
+}
+
+// A reward is only GRANTED after the referred client has fully paid (checked in
+// the service layer using Payment). Every reward keeps who proposed and approved it.
+model Reward {
+  id           String       @id @default(uuid()) @db.Uuid
+  referrerId   String       @db.Uuid
+  referralId   String       @db.Uuid
+  kind         RewardKind
+  valueNote    String? // e.g. "3 months of free Managed care"
+  amount       Decimal?     @db.Decimal(12, 2) // internal value
+  status       RewardStatus @default(PROPOSED)
+  createdById  String?      @db.Uuid
+  approvedById String?      @db.Uuid
+  grantedAt    DateTime?
+  createdAt    DateTime     @default(now())
+
+  referrer   Referrer @relation(fields: [referrerId], references: [id])
+  referral   Referral @relation(fields: [referralId], references: [id])
+  createdBy  User?    @relation("RewardCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  approvedBy User?    @relation("RewardApprovedBy", fields: [approvedById], references: [id], onDelete: SetNull)
+
+  @@index([referrerId])
+  @@index([status])
+  @@map("rewards")
+}
+
+// ----------------------------------------------------------------------------
+// ANALYTICS (first-party, no personal data)
+// ----------------------------------------------------------------------------
+// One row per event (page_view, cta_click, whatsapp_click, form_submit...). No IP,
+// no name, no email. `sessionId` is a random id made in the browser.
+model AnalyticsEvent {
+  id        BigInt   @id @default(autoincrement())
+  ts        DateTime @default(now())
+  sessionId String
+  name      String
+  path      String
+  locale    String?
+  referrer  String?
+  utm       Json?
+  device    String? // mobile | desktop | tablet
+  country   String? // coarse, from the CDN
+  props     Json?
+
+  @@index([ts, name])
+  @@index([path, ts])
+  @@index([sessionId])
+  @@map("analytics_events")
+}
+
+// Nightly rollup so dashboard charts stay fast (the raw events are deleted after
+// the retention period, 13 months).
+model AnalyticsDaily {
+  day       DateTime @db.Date
+  metric    String // visitors | sessions | leads | whatsapp_clicks | page:/services/ ...
+  dimension String   @default("") // source, device, country... ("" = total)
+  value     Int
+
+  @@id([day, metric, dimension])
+  @@map("analytics_daily")
+}
+
+// ----------------------------------------------------------------------------
+// SETTINGS and AUDIT
+// ----------------------------------------------------------------------------
+// Key/value store for site info, contact details, social links, auto-reply text,
+// business hours, feature flags and integration settings.
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+// Every change made in the admin: who, what, when, and a before/after diff.
+model AuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String?  @db.Uuid
+  action    String // create | update | delete | publish | unpublish | login | grant_reward ...
+  entity    String // project | post | lead | reward | user ...
+  entityId  String?
+  diff      Json?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([entity, entityId])
+  @@index([userId, createdAt])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
